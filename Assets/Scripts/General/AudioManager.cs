@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     bool zonechange = false;
     bool combat = false;
-    float pause = 0f;
+    public float pause = 0f;
     float combatvalue = 0.0f;
 
     float drumvalue = 0.0f;
@@ -258,7 +258,7 @@ public class AudioManager : MonoBehaviour
         float hpParam = 1f - (hp.currentHP / hp.maxHP);
         LevelManager.Instance.currentTrack.SetParameter("HP", hpParam);
 
-        if (pc.paused)
+        if (PauseManager.Instance.paused)
         {
             pause = 1f;
         }

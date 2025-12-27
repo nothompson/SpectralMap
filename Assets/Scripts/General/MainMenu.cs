@@ -72,6 +72,11 @@
             }
 
             StartCoroutine(SpriteIntro());
+
+            if (PauseManager.Instance.paused)
+                {
+                    PauseManager.Instance.paused = false;
+                }
         }
 
         IEnumerator SpriteIntro()
