@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: fleshGrunt
+  m_EditorClassIdentifier: 
+  step:
+    Guid:
+      Data1: 995425315
+      Data2: 1207244883
+      Data3: 747583930
+      Data4: 1733594824
+    Path: event:/Enemies/fleshGrunt/Step
+  agro:
+    Guid:
+      Data1: -772670936
+      Data2: 1183840597
+      Data3: -732755785
+      Data4: 1568817329
+    Path: event:/Enemies/fleshGrunt/Engaged
+  hurt:
+    Guid:
+      Data1: -493958036
+      Data2: 1331421430
+      Data3: -1282745954
+      Data4: -1570125311
+    Path: event:/Enemies/fleshGrunt/Hurt
+  idle:
+    Guid:
+      Data1: -1241024536
+      Data2: 1253846971
+      Data3: -279607919
+      Data4: 1539539814
+    Path: event:/Enemies/fleshGrunt/Idle
+  attacking:
+    Guid:
+      Data1: 541828540
+      Data2: 1156202266
+      Data3: 551629444
+      Data4: 623348542
+    Path: event:/Enemies/fleshGrunt/Swing
+  attack:
+    Guid:
+      Data1: 131056505
+      Data2: 1188715181
+      Data3: -1497856104
+      Data4: 1527133139
+    Path: event:/Enemies/fleshGrunt/Hit
+  death:
+    Guid:
+      Data1: -2113844309
+      Data2: 1277070868
+      Data3: 937712542
+      Data4: 2001712554
+    Path: event:/Enemies/fleshGrunt/Death
