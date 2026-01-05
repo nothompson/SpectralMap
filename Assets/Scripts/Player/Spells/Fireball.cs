@@ -103,6 +103,7 @@ public class Fireball : MonoBehaviour
                 if (e != null)
                 {
                     Vector3 impact = force;
+
                     damagedHP.Add(targetHP);
 
                     if(playerControl.playerVelocity.y > 20f || playerControl.playerVelocity.y < -20f)

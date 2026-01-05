@@ -25,5 +25,16 @@ public class UserSounds : ScriptableObject
     public FMODUnity.EventReference JournalOpen;
 
     public FMODUnity.EventReference JournalClose;
+
+     public FMODUnity.EventReference JournalPrevious;
+
+    public FMODUnity.EventReference JournalNext;
+    public FMODUnity.EventReference JournalEntry;
+
+        
+    public FMODUnity.EventReference BodybagOpen;
+
+    public FMODUnity.EventReference BodybagClose;
+
     
 }

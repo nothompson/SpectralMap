@@ -82,3 +82,38 @@ MonoBehaviour:
       Data3: 1595344784
       Data4: 32695319
     Path: event:/General/UI/JournalClose
+  JournalPrevious:
+    Guid:
+      Data1: -1634565640
+      Data2: 1329646630
+      Data3: -1211488891
+      Data4: -1430624030
+    Path: event:/General/UI/JournalPrevious
+  JournalNext:
+    Guid:
+      Data1: -2126783551
+      Data2: 1095187163
+      Data3: 1827525775
+      Data4: 161512603
+    Path: event:/General/UI/JournalNext
+  JournalEntry:
+    Guid:
+      Data1: -1295409276
+      Data2: 1243901090
+      Data3: 1393056146
+      Data4: 1192126728
+    Path: event:/General/UI/JournalEntry
+  BodybagOpen:
+    Guid:
+      Data1: -766708277
+      Data2: 1263852368
+      Data3: 659684270
+      Data4: 53459958
+    Path: event:/General/UI/BodybagOpen
+  BodybagClose:
+    Guid:
+      Data1: -1038843264
+      Data2: 1086006142
+      Data3: 1913458340
+      Data4: -2104667085
+    Path: event:/General/UI/BodybagClose

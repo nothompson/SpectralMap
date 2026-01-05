@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
 
     public FMOD.Studio.EventInstance TextInstance;
 
+    public FMOD.Studio.EventInstance BagInstance;
+
 
     private void Awake()
     {
@@ -159,6 +161,21 @@ public class AudioManager : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot(sounds.JournalClose);
     }
+    
+    public void JournalNext()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sounds.JournalNext);
+    }
+
+    public void JournalPrevious()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sounds.JournalPrevious);
+    }
+
+    public void JournalEntry()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sounds.JournalEntry);
+    }
 
 
     public void TextOpen()
@@ -183,8 +200,35 @@ public class AudioManager : MonoBehaviour
 
         TextInstance = FMODUnity.RuntimeManager.CreateInstance(sounds.TextClose);
         TextInstance.start();
-
     }
+
+    public void BodybagOpen()
+    {
+        if(BagInstance.isValid())
+        {
+        BagInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        BagInstance.release();
+        }
+
+        BagInstance = FMODUnity.RuntimeManager.CreateInstance(sounds.BodybagOpen);
+        BagInstance.start();
+        
+    }
+
+    public void BodybagClose()
+    {
+        if(BagInstance.isValid())
+        {
+        BagInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        BagInstance.release();
+        }
+
+        BagInstance = FMODUnity.RuntimeManager.CreateInstance(sounds.BodybagClose);
+        BagInstance.start();
+        
+    }
+
+
 
     void Update()
     {

@@ -105,6 +105,8 @@ public class JournalManager : MonoBehaviour
 
         rightSide.pageToDisplay = leftSide.pageToDisplay + 1;
 
+        AudioManager.Instance.JournalPrevious();
+
         UpdatePagination();
     }
 
@@ -122,6 +124,8 @@ public class JournalManager : MonoBehaviour
             leftSide.pageToDisplay += 2;
             rightSide.pageToDisplay = leftSide.pageToDisplay + 1;
         }
+
+        AudioManager.Instance.JournalNext();
 
         UpdatePagination();
     }

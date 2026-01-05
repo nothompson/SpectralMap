@@ -48,6 +48,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-8952217420572559105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/BodybagOpen
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/BodybagOpen
+  Guid:
+    Data1: -766708277
+    Data2: 1263852368
+    Data3: 659684270
+    Data4: 53459958
+  Banks:
+  - {fileID: -7580317201073629646}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1071
 --- !u!114 &-8732472131970152946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +201,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3500
+--- !u!114 &-8009454876549714345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/JournalEntry
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/JournalEntry
+  Guid:
+    Data1: -1295409276
+    Data2: 1243901090
+    Data3: 1393056146
+    Data4: 1192126728
+  Banks:
+  - {fileID: 8819122450496210091}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1714
 --- !u!114 &-7580317201073629646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +243,10 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/General.bank
   Name: General
   StudioPath: bank:/General
-  lastModified: 639014073650712141
+  lastModified: 639025538619174763
   FileSizes:
   - Name: Desktop
-    Value: 1272416
+    Value: 1329792
   Exists: 1
 --- !u!114 &-7136787472702271208
 MonoBehaviour:
@@ -890,6 +944,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1632270435722087493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/JournalNext
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/JournalNext
+  Guid:
+    Data1: -2126783551
+    Data2: 1095187163
+    Data3: 1827525775
+    Data4: 161512603
+  Banks:
+  - {fileID: -7580317201073629646}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 857
 --- !u!114 &-1300978812095994851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1200,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-142180078589798131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/JournalPrevious
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/JournalPrevious
+  Guid:
+    Data1: -1634565640
+    Data2: 1329646630
+    Data3: -1211488891
+    Data4: -1430624030
+  Banks:
+  - {fileID: -7580317201073629646}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 857
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1288,11 @@ MonoBehaviour:
   - {fileID: -7136787472702271208}
   - {fileID: -3118923473829643475}
   - {fileID: 4134304516755938669}
+  - {fileID: -8009454876549714345}
+  - {fileID: 8299995890411200400}
+  - {fileID: -1632270435722087493}
+  - {fileID: -8952217420572559105}
+  - {fileID: -142180078589798131}
   EditorParameters:
   - {fileID: -9011601522343118807}
   MasterBanks:
@@ -1187,7 +1300,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 7614826322633461421}
   cacheVersion: 131849
-  cacheTime: 639014073650712141
+  cacheTime: 639025538619707596
   SerializableEventsDict:
   - key: event:/Enemies/fleshGrunt/Step
     index: 0
@@ -1265,6 +1378,16 @@ MonoBehaviour:
     index: 36
   - key: event:/NPCs/GhostBell
     index: 37
+  - key: event:/General/UI/JournalEntry
+    index: 38
+  - key: event:/General/UI/BodybagClose
+    index: 39
+  - key: event:/General/UI/JournalNext
+    index: 40
+  - key: event:/General/UI/BodybagOpen
+    index: 41
+  - key: event:/General/UI/JournalPrevious
+    index: 42
 --- !u!114 &269605977536820212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,7 +1670,7 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639014058520683888
+  lastModified: 639025538619674803
   FileSizes:
   - Name: Desktop
     Value: 3356
@@ -2081,10 +2204,10 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639014058520724010
+  lastModified: 639025538619707596
   FileSizes:
   - Name: Desktop
-    Value: 4178
+    Value: 4378
   Exists: 1
 --- !u!114 &7838721707991515568
 MonoBehaviour:
@@ -2110,6 +2233,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &8299995890411200400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/BodybagClose
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/BodybagClose
+  Guid:
+    Data1: -1038843264
+    Data2: 1086006142
+    Data3: 1913458340
+    Data4: -2104667085
+  Banks:
+  - {fileID: -7580317201073629646}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1071
 --- !u!114 &8405953637463016388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,10 +2398,10 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/Enemies.bank
   Name: Enemies
   StudioPath: bank:/Enemies
-  lastModified: 639006806645622171
+  lastModified: 639025538613015591
   FileSizes:
   - Name: Desktop
-    Value: 827040
+    Value: 852544
   Exists: 1
 --- !u!114 &8902753477045596188
 MonoBehaviour:

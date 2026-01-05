@@ -137,7 +137,7 @@ public class TrickManager : MonoBehaviour
 
         while(t < duration)
         {
-            t += Time.unscaledDeltaTime;
+            t += Time.deltaTime;
 
             float time = Mathf.Clamp01(t / duration);
 
