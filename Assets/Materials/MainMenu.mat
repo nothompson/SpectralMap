@@ -82,11 +82,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TwirlStrength: 0.12828636
+    - _TwirlStrength: -4
     - _UVSec: 0
-    - _Voronoi: 0.2573267
-    - _Y: -0.5902564
-    - _YStrength: 0.003663344
+    - _Voronoi: 0.33492473
+    - _Y: -1
+    - _YStrength: 0.04246236
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

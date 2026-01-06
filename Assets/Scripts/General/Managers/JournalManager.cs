@@ -46,11 +46,13 @@ public class JournalManager : MonoBehaviour
     public void Open()
     {
         canvas.SetActive(true);
+        AudioManager.Instance.JournalOpen();
     }
 
     public void Close()
     {
         canvas.SetActive(false);
+        AudioManager.Instance.JournalClose();
     }
 
     public void AddText(string input)

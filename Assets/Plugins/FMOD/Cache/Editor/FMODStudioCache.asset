@@ -1300,7 +1300,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 7614826322633461421}
   cacheVersion: 131849
-  cacheTime: 639025538619707596
+  cacheTime: 639031604128267945
   SerializableEventsDict:
   - key: event:/Enemies/fleshGrunt/Step
     index: 0
@@ -1670,10 +1670,10 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639025538619674803
+  lastModified: 639031604128152177
   FileSizes:
   - Name: Desktop
-    Value: 3356
+    Value: 3652
   Exists: 1
 --- !u!114 &3738847118615312481
 MonoBehaviour:
@@ -2204,7 +2204,7 @@ MonoBehaviour:
   Path: ../../../../Documents/FMOD Studio/fps/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639025538619707596
+  lastModified: 639031604128267945
   FileSizes:
   - Name: Desktop
     Value: 4378

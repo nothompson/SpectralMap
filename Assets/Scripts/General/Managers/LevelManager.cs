@@ -86,6 +86,8 @@ public class LevelManager: MonoBehaviour
 
         yield return StartCoroutine(Load(sceneName));
 
+        AudioManager.Instance.pause = 0f;
+
         PlayTrack(sceneName);
 
     }

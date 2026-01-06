@@ -333,7 +333,6 @@ public class Enemy : MonoBehaviour, IKnockback
             groundMask,
             ref enemyVelocity,
             ref groundTimer,
-            60f,
             coyoteTime
         );
         reset = MovementFunctions.ResetCheck(

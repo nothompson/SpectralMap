@@ -71,6 +71,7 @@ public class PauseManager : MonoBehaviour
     {
         flowTime = 0f;
         paused = true;
+        AudioManager.Instance.pause = 1f;
         Time.timeScale = 0f;
         StartCoroutine(ScreenShot());
         StartCoroutine(HudIntro());
@@ -79,6 +80,7 @@ public class PauseManager : MonoBehaviour
     public void Unpause()
     {
         StartCoroutine(Close());
+        AudioManager.Instance.pause = 0f;
     }
 
     public IEnumerator ScreenShot()

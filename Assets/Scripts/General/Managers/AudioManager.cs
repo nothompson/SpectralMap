@@ -302,15 +302,6 @@ public class AudioManager : MonoBehaviour
         float hpParam = 1f - (hp.currentHP / hp.maxHP);
         LevelManager.Instance.currentTrack.SetParameter("HP", hpParam);
 
-        if (PauseManager.Instance.paused)
-        {
-            pause = 1f;
-        }
-        else
-        {
-            pause = 0f;
-        }
-
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("GlobalPause", pause);
 
         if (combat)
