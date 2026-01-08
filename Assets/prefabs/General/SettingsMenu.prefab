@@ -886,8 +886,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 7608103436900354524}
+  master: {fileID: 7608103437438460842}
   sensitivitySlider: {fileID: 5707646726279313404}
-  mouseSensitivity: 3.5
+  mouseSensitivity: 0.15
 --- !u!1 &7608103436874041273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcaName: Sounds
+  initValue: 0
 --- !u!114 &5031906669148759043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,7 +1540,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.3
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1579,6 +1581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcaName: Music
+  initValue: 1
 --- !u!114 &989393043920761364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,7 +1718,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1756,6 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcaName: Master
+  initValue: 0.2
 --- !u!114 &7608627635981009687
 MonoBehaviour:
   m_ObjectHideFlags: 0

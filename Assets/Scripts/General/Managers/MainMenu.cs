@@ -81,6 +81,12 @@
 
         IEnumerator SpriteIntro()
         {
+
+            if(letterAnimations != null && letterAnimations.Length > 0)
+            {
+                StartCoroutine(AnimateTitle());
+            }
+
             var rects = new RectTransform[sprites.Length];
             var baseScales = new Vector3[sprites.Length];
 
@@ -174,11 +180,6 @@
                 UIJitter jitter = buttons[i].GetComponent<UIJitter>();
                 if (jitter != null)
                     jitter.EnableJitter();
-            }
-
-            if(letterAnimations != null && letterAnimations.Length > 0)
-            {
-                StartCoroutine(AnimateTitle());
             }
         }
 

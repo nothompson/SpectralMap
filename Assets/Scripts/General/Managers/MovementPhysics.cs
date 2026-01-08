@@ -7,8 +7,11 @@
         public static class MovementFunctions
         {
         public static float SlopeLimit = 45f;
-        public static float MaxAirSpeed = 30f;
+        public static float MaxAirSpeed = 100f;
+        public static float MaxFallSpeed = -50f;
         public static float airControl = 0.3f;
+
+        public static int MaxClipPlanes = 4;
 
         public static Vector3 Gravity = new Vector3(0f,-20f,0f);
 
@@ -37,50 +40,79 @@
                 return velocity;
             }
 
-            public static Vector3 Accelerate(Vector3 velocity, Vector3 wishDir, float wishSpeed, float accel)
+            public static Vector3 Accelerate(Vector3 velocity, Vector3 wishdir, float wishSpeed, float accel)
             {
 
-                float currentSpeed = Vector3.Dot(velocity, wishDir);
-                float addspeed = wishSpeed - currentSpeed;
+                float addspeed, accelspeed, currentspeed;
+
+                currentspeed = Vector3.Dot(velocity,wishdir);
+
+                addspeed = wishSpeed - currentspeed;
+
                 if (addspeed <= 0) return velocity;
 
-                float accelspeed = accel * wishSpeed * Time.fixedDeltaTime;
+                accelspeed = accel * wishSpeed * Time.fixedDeltaTime;
 
-                if (accelspeed > addspeed)
-                {
-                    accelspeed = addspeed;
-                }
-                velocity += accelspeed * wishDir;
+                if (accelspeed > addspeed) accelspeed = addspeed;
+                
+                velocity += accelspeed * wishdir;
 
                 return velocity;
             }
 
-            public static Vector3 AirMovement(Vector3 velocity, Transform cam, float fmove, float smove, float speed, float accel)
+            public static Vector3 AirAccelerate(Vector3 velocity, Vector3 wishdir, float wishspeed, float accel)
             {
+                float addspeed, accelspeed, currentspeed;
+                float wishspd;
+
+                wishspd = wishspeed;
+
+                if(wishspd > MaxAirSpeed) wishspd = MaxAirSpeed;
+
+                currentspeed = Vector3.Dot(velocity, wishdir);
+
+                addspeed = wishspd - currentspeed;
+
+                if(addspeed <= 0) return velocity;
+
+                accelspeed = accel * wishspeed * Time.fixedDeltaTime;
+
+                if(accelspeed > addspeed) accelspeed = addspeed;
+
+                velocity += accelspeed * wishdir;
+
+                return velocity;
+            }
+
+            public static Vector3 AirMovement(Vector3 velocity, Transform cam, float forwardmove, float sidemove, float speed, float accel)
+            {                
+                float fmove, smove;
+                fmove = forwardmove;
+                smove = sidemove;
+
                 Vector3 forward = cam.transform.forward;
                 Vector3 right = cam.transform.right;
 
                 forward.y = 0;
                 right.y = 0;
+
                 forward.Normalize();
                 right.Normalize();
 
-                Vector3 wishvel = forward * fmove + right * smove;
+                Vector3 wishvel;
+                wishvel.x = forward.x * fmove + right.x * smove;
+                wishvel.z = forward.z * fmove + right.z * smove;
                 wishvel.y = 0;
 
-                Vector3 wishDir = wishvel.normalized;
-                float wishSpeed = wishvel.magnitude * speed;
+                float wishspeed = wishvel.magnitude * speed;
+                Vector3 wishdir = wishspeed > 0 ? wishvel / wishspeed: Vector3.zero;
 
-                if(wishSpeed > MaxAirSpeed)
+                if(wishspeed != 0 && wishspeed > MaxAirSpeed)
                 {
-                    wishSpeed = MaxAirSpeed;
+                    wishspeed = MaxAirSpeed;
                 }
 
-                velocity = Accelerate(velocity, wishDir, wishSpeed, accel);
-
-                velocity = AirControl(velocity, wishDir, wishSpeed, airControl);
-
-                ApplyGravity(ref velocity);
+                velocity = AirAccelerate(velocity, wishdir, wishspeed, accel);
                 
                 return velocity;
 
@@ -93,6 +125,11 @@
 
                 float wishSpeed = wishDir.magnitude;
                 wishSpeed *= speed;
+
+                if(velocity.y < 0)
+                {
+                    velocity.y = 0;
+                }
 
                 velocity = Accelerate(velocity, wishDir, wishSpeed, accel);
 
@@ -133,12 +170,6 @@
 
                     //"coyote time" allows a buffer period after leaving collider to still jump
                     groundTimer = coyoteTime;
-
-                    if (velocity.y < -2f)
-                    {
-                        //if grounded and negative velocity still accumulating, quickly clamp it
-                        velocity.y = Mathf.Lerp(velocity.y, -2f, Time.fixedDeltaTime * 10f);
-                    }
                 }
                 else
                 {
@@ -165,13 +196,14 @@
             public static bool CanSurf(RaycastHit hit)
             {
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
-                return angle > SlopeLimit + 5f && angle < 80f;
+                return angle > SlopeLimit && angle < 88f;
             }
 
             public static void ClipVelocity(Vector3 velocity, Vector3 normal, ref Vector3 clipped, float overbounce = 1f)
             {
                 var angle = normal.y;
                 var backoff = Vector3.Dot(velocity, normal) * overbounce;
+
 
                 for (int i = 0; i < 3; i++)
                 {
@@ -180,46 +212,106 @@
                 }
 
                 float adjust = Vector3.Dot(clipped, normal);
+
                 if (adjust < 0.0f)
                 {
                     clipped -= normal * adjust;
                 }
             }
 
-        public static Vector3 AirControl(Vector3 velocity, Vector3 wishDir, float wishSpeed, float aircontrol)
+        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded = true, float bounce = 0f, float surfaceFriction = 1f)
         {
-            if(wishSpeed == 0) return velocity;
-            
-            float zSpeed = velocity.y;
-            velocity.y = 0;
+            Vector3 ogVel = velocity;
+            Vector3 primalVel = velocity;
 
-            float speed = velocity.magnitude;
-            if(speed == 0) {
-                velocity.y = zSpeed;
-                return velocity;
-            }
+            Vector3[] planes = new Vector3[MaxClipPlanes];
+            int numPlanes = 0;
 
-            Vector3 velNorm = velocity / speed;
+            float timeLeft = dt;
 
-            float dot = Vector3.Dot(velNorm,wishDir);
-
-            if(dot > 0)
+            for (int i = 0; i < MaxClipPlanes; i++)
             {
-                float k = 32f * aircontrol * dot * dot * Time.fixedDeltaTime;
+                if(velocity.magnitude < 0.0001f) break;
 
-                velNorm = velNorm * speed + wishDir * k;
+                Vector3 end = pos + velocity * timeLeft;
 
-                float mag = velNorm.magnitude;
-                if(mag > 0.001f)
+                if(!Physics.CapsuleCast(
+                    pos + Vector3.up * 0.5f,
+                    pos + Vector3.up * 1.8f,
+                    rad,
+                    velocity.normalized,
+                    out RaycastHit hit,
+                    velocity.magnitude * timeLeft,
+                    ground
+                ))
                 {
-                    velNorm /= mag;
-                    velocity.x = velNorm.x * speed;
-                    velocity.z = velNorm.z * speed;
+                    pos = end;
+                    break;
+                }
+                pos += velocity * hit.distance;
+
+                float traveled = hit.distance / velocity.magnitude;
+                timeLeft -= traveled;
+
+                if(timeLeft <= 0f) break;
+
+                if(numPlanes < MaxClipPlanes)
+                {
+                    planes[numPlanes++] = hit.normal;
+                }
+
+                if (traveled > 0.0001f)
+                {
+                    ogVel = velocity;
+                    numPlanes = 0;
+                }
+
+                if(numPlanes ==1)
+                {
+            
+                        float overbounce = hit.normal.y > 0.7f ? 1.0f : 1f + bounce * (1f - surfaceFriction);
+
+                        Vector3 clipped = velocity;
+                        ClipVelocity(velocity,planes[0], ref clipped, overbounce);
+                        velocity = clipped;
+                }
+                else{
+
+                for(int j = 0; j < numPlanes; j++)
+                {
+                    Vector3 clipped = velocity;
+                    ClipVelocity(velocity, planes[j], ref clipped, 1.0f);
+                    velocity = clipped;
+
+                    for(int n = 0; n < numPlanes; n++)
+                    {
+                        if(n!=j && Vector3.Dot(velocity, planes[n]) < 0f)
+                        {
+                            goto crease;
+                        }
+                    }
+                    continue;
+
+                    crease:
+                        if (numPlanes >= 2)
+                    {
+                        Vector3 dir = Vector3.Cross(planes[0], planes[1]).normalized;
+                        float speed = Vector3.Dot(velocity,dir);
+                        velocity = dir * speed;
+                    }
+                    else
+                    {
+                        velocity = Vector3.zero;
+                    }
+                    break;
+                }
+            } 
+            if(numPlanes >= 3)
+                {
+                    velocity = Vector3.zero;
+                    break;
                 }
             }
-
-            velocity.y = zSpeed;
-
             return velocity;
         }
 
@@ -230,7 +322,21 @@
 
             public static void ApplyGravity(ref Vector3 velocity)
             {
+                if(velocity.y <= MaxFallSpeed) velocity.y = MaxFallSpeed;
                 velocity.y += Gravity.y * Time.fixedDeltaTime;
+            }
+
+            public static void StartGravity(ref Vector3 velocity)
+            {
+                if(velocity.y <= MaxFallSpeed) velocity.y = MaxFallSpeed;
+                velocity.y += Gravity.y * 0.5f * Time.fixedDeltaTime;
+            }
+
+            
+            public static void FinishGravity(ref Vector3 velocity)
+            {
+                if(velocity.y <= MaxFallSpeed) velocity.y = MaxFallSpeed;
+                velocity.y += Gravity.y * Time.fixedDeltaTime * 0.5f;
             }
 
         }

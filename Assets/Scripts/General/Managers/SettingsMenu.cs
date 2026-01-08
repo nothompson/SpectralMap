@@ -7,9 +7,16 @@ public class SettingsMenu : MonoBehaviour
 {
     public static SettingsMenu Instance;
     public GameObject canvas;
+    public GameObject master; 
+    private Slider masterSlider;
     public Slider sensitivitySlider; 
 
     public float mouseSensitivity; 
+
+
+    private FMOD.Studio.VCA vca;
+
+    
 
     void Awake()
     {
@@ -26,7 +33,13 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
+        masterSlider = master.GetComponent<Slider>();
+
         SetSensitivity(sensitivitySlider.value);
+
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
+
+        vca.setVolume(masterSlider.value);
     }
 
     public void Open()

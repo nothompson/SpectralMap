@@ -75,7 +75,8 @@ public class TrickManager : MonoBehaviour
         TrickDictionary["RocketJump"] = 50;
         TrickDictionary["Pogo"] = 100;
         TrickDictionary["Wall"] = 75;
-        TrickDictionary["Surf Shot"] = 125;
+        TrickDictionary["Surf Shot"] = 100;
+        TrickDictionary["Surf Jump"] = 150;
         TrickDictionary["Sync"] = 250;
         TrickDictionary["Tri-Sync"] = 500;
         TrickDictionary["Quad-Sync"] = 1000;

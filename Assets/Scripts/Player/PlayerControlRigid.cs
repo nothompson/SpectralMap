@@ -23,9 +23,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     [Header("Movement Control")]
     public float moveSpeed = 6.0f;
+    public float airSpeed = 1.5f;
     public float jumpHeight = 8.0f;
     public float gravity = -20.0f;
     public float airAcceleration = 2.0f;
+    public float surfAcceleration = 5f;
     public float friction = 5.0f;
     public float runDeacceleration = 10.0f;
     public float runAcceleration = 15.0f;
@@ -36,15 +38,24 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public bool confused = false;
 
+    private bool autojumpInput;
+
+    private bool jumpInput;
+
     [Header("Collision/Surf Params")]
     //buffer distance/cushioning for ground check
+    public bool autojump;
     public float GroundDistance = 0.1f;
+    public float coyoteTime = 0.25f;
+    public float surfBoost = 2.0f;
+    public float surfBoostThreshold = 25f;
     public bool grounded;
+    public bool groundedLastFrame = false;
     public bool surfing;
+    public bool surfingLastFrame = false;
+
 
     public bool reset;
-    public bool groundedLastFrame = false;
-
     public bool surfCast;
     public RaycastHit surfHit;
     
@@ -75,7 +86,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     float dot;
     float k;
     float slopeAngle;
-    float coyoteTime = 0.25f;
     float groundTimer = 0f;
     float queueTimer = 0.0f;
     //local x rotation of camera
@@ -110,6 +120,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     Vector3[] restingPos;
     Vector3[] restingRot;
 
+    Vector3 lastSurfNormal;
+
+    Coroutine fallingRoutine;
+
     //end of class variables
     //--------------------------------
     #region Initialize
@@ -142,6 +156,37 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         MovementInputs();
         PlayerCamera();
+                
+        SurfCheck();
+
+
+    }
+
+    void CalculateVelocity()
+    {
+        groundedLastFrame = grounded;
+        surfingLastFrame = surfing;
+
+
+        GroundedCheck();
+        ResetCheck();
+        if (autojump)
+        {
+            AutoJump();
+        }
+        else
+        {
+            Jump();
+        }
+
+        if(!groundedLastFrame) MovementFunctions.StartGravity(ref playerVelocity);
+        // if(!groundedLastFrame) MovementFunctions.ApplyGravity(ref playerVelocity);
+
+        Movement();
+        Tricks();
+
+        if(!groundedLastFrame) MovementFunctions.FinishGravity(ref playerVelocity);
+
     }
 
     void FixedUpdate()
@@ -151,15 +196,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         currentCheckpoint.saveCheckpoint();
     }
 
-    void CalculateVelocity()
-    {
-        GroundedCheck();
-        SurfCheck();
-        Jump();
-        Movement();
-        Tricks();
-        groundedLastFrame = grounded;
-    }
 
     #endregion
 
@@ -215,9 +251,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             }
             groundTrigger = grounded;
 
-            if (playerVelocity.y < -10 && !jumped)
+            if (playerVelocity.y < -20f)
             {
-                StartCoroutine(jumpBounce());
+                fallingRoutine = StartCoroutine(jumpBounce());
             }
 
         }
@@ -229,7 +265,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void tilt()
     {
-        float strafeSpeed = Mathf.Abs(Vector3.Dot(playerVelocity, transform.right));
+        float strafeSpeed = Mathf.Abs(Vector3.Dot(playerVelocity, YawPivot.transform.right));
 
         float tiltAmount = 5f * strafeSpeed * 0.05f;
         if (InputManager.Instance.inputs.Player.Move.ReadValue<Vector2>().x < -0.1f)
@@ -249,8 +285,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         float dur = 3f;
         float t = 0f;
+        jumped = false;
 
-        while (t < dur && !grounded)
+        while (t < dur && !jumped)
         {
             t += Time.deltaTime;
             float elapsed = t / dur;
@@ -259,18 +296,24 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             {
                 hands[i].localPosition = new Vector3(restingPos[i].x,restingPos[i].y * jumpAmp, restingPos[i].z);
             }
-            jumped = true;
             yield return null;
         }
     }
     public IEnumerator bounce()
     {
+        jumped = true;
+
+        if(fallingRoutine != null)
+        {
+            StopCoroutine(fallingRoutine);
+            fallingRoutine = null;
+        }
+
         float dur = 0.75f;
         float t = 0f;
 
         while (t < dur)
         {
-            jumped = false;
             t += Time.deltaTime;
             float elapsed = t / dur;
             float bounceAmp = bounceCurve.Evaluate(elapsed);
@@ -311,49 +354,53 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     void Movement()
     {
 
-        if(reset){
-            currentCheckpoint.Reset();
-        }
-
         bool landed = grounded && !groundedLastFrame;
 
+
         surfing = surfCast && MovementFunctions.CanSurf(surfHit);
-
-        if (grounded)
-        {
-            groundMove();
-            if (RocketJumped)
-            {
-                RocketJumped = false;
-            }
-            if (StartPogoTimer)
-            {
-                StartPogoTimer = false;
-            }
-            if (CanPogo)
-            {
-                CanPogo = false;
-            }
-            
-            pogoTimer = 0f;
-
-            if(landed && TrickManager.Instance.Score > 0 && !TrickManager.Instance.completed)
-            {
-                TrickManager.Instance.StartComboTimer();
-            }
-
-        }
-        else
-        {
-            airMove();
-
-            StartPogoTimer = true;
-        }
 
         if (surfing)
         {
             grounded = false;
             surfMove();
+        }
+        else
+        {
+            if (surfingLastFrame && playerSpeed > surfBoostThreshold)
+            {
+                TrickManager.Instance.AddTrick("Surf Jump");
+                playerVelocity += Vector3.up * surfBoost;
+            }
+
+            if (grounded)
+            {
+                groundMove();
+                if (RocketJumped)
+                {
+                    RocketJumped = false;
+                }
+                if (StartPogoTimer)
+                {
+                    StartPogoTimer = false;
+                }
+                if (CanPogo)
+                {
+                    CanPogo = false;
+                }
+                
+                pogoTimer = 0f;
+
+                if(landed && TrickManager.Instance.Score > 0 && !TrickManager.Instance.completed)
+                {
+                    TrickManager.Instance.StartComboTimer();
+                }
+            }
+            else
+            {
+                airMove();
+
+                StartPogoTimer = true;
+            }
         }
 
         if (impact.magnitude > 0.1f)
@@ -376,26 +423,31 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             ref groundTimer,
             coyoteTime
         );
+    }
 
+    void ResetCheck()
+    {
         reset = MovementFunctions.ResetCheck(
             GroundCheck,
             GroundDistance,
             resetMask
         );
+
+        if(reset){
+            currentCheckpoint.Reset();
+        }
     }
 
     public void SurfCheck()
     {
-        surfCast = Physics.Raycast(GroundCheck.position, Vector3.down, out surfHit, GroundDistance + 1.5f, GroundMask);
+        surfCast = Physics.SphereCast(GroundCheck.position, 0.2f, Vector3.down, out surfHit, GroundDistance + 0.75f, GroundMask);
     }
 
     void Jump()
     {
+        bool didJump = false;
         //if grounded and jump iwnput, then jump
-        if (InputManager.Instance.inputs.Player.Jump.triggered)
-        {
-            jumpQueue = true;
-        }
+
         //if queued, then start ticking down timer
         if (jumpQueue && queueTimer >= 0)
         {
@@ -409,18 +461,56 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             queueTimer = queueParam;
         }
         // //add to jump queue 
-        if ((grounded || groundTimer > 0f) && jumpQueue)
+        if ((grounded || groundTimer > 0f) && jumpQueue && !didJump)
         {
             wishJump = true;
             jumpQueue = false;
-            groundTimer = 0f;
+            queueTimer = 0f;
         }
         //apply jump
-        if(grounded && wishJump)
+        if(grounded && wishJump && !didJump)
         {
+            didJump = true;
             playerVelocity.y = jumpHeight;
 
             wishJump = false;
+
+            playerVelocity += Vector3.up * 0.01f;
+
+            groundTimer = 0f;
+
+            grounded = false;
+
+            if (!groundedLastFrame)
+            {
+                Debug.Log("bhop");
+                StartCoroutine(bounce());
+                AudioManager.Instance.Land();
+                didJump = false;
+            }
+        }
+    }
+
+    public void AutoJump()
+    {
+        if ((grounded || groundTimer > 0f) && autojumpInput)
+        {
+
+            playerVelocity.y = jumpHeight;
+
+            wishJump = false;
+
+            playerVelocity += Vector3.up * 0.01f;
+
+            groundTimer = 0f;
+
+            grounded = false;
+            if (!groundedLastFrame)
+            {
+                Debug.Log("bhop");
+                StartCoroutine(bounce());
+                AudioManager.Instance.Land();
+            }
         }
     }
 
@@ -473,6 +563,14 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             fmove *= -1f;
             smove *= -1f;
         }
+
+        autojumpInput = InputManager.Instance.inputs.Player.Jump.IsPressed();
+        jumpInput = InputManager.Instance.inputs.Player.Jump.triggered;
+
+        if (jumpInput)
+        {
+            jumpQueue = true;
+        }
     }
 
     public void airMove()
@@ -481,9 +579,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             playerVelocity,
             YawPivot.transform,
             fmove, smove,
-            moveSpeed,
+            airSpeed,
             airAcceleration
         );
+
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, GroundDistance, GroundMask, grounded);    
     }
 
     public void groundMove()
@@ -501,18 +601,29 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void surfMove()
     {
-
         Vector3 normal = surfHit.normal;
 
-        Vector3 alongSlope = Vector3.ProjectOnPlane(playerVelocity, normal);
-        playerVelocity = alongSlope;
+        // normal = (normal + Vector3.up * 0.01f).normalized;
 
-        Vector3 downhill = Vector3.Cross(Vector3.Cross(normal, Vector3.down), normal).normalized;
-        playerVelocity += downhill * MovementFunctions.Gravity.magnitude * Time.fixedDeltaTime;
+        Vector3 wishDir = new Vector3(smove, 0f,fmove);
+        wishDir = YawPivot.transform.TransformDirection(wishDir);
 
-        Vector3 moveInput = YawPivot.transform.TransformDirection(new Vector3(0,0,fmove));
-        Vector3 wishVel = Vector3.ProjectOnPlane(moveInput.normalized * moveSpeed, normal);
-        playerVelocity = MovementFunctions.Accelerate(playerVelocity, wishVel.normalized, wishVel.magnitude, runAcceleration);
+        wishDir = Vector3.ProjectOnPlane(wishDir, normal);
+        float wishSpeed = wishDir.magnitude * airSpeed;
+
+
+        if(wishSpeed > 0f) wishDir.Normalize();
+
+        playerVelocity = MovementFunctions.AirAccelerate(playerVelocity, wishDir, wishSpeed, surfAcceleration);
+
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, GroundDistance, GroundMask, grounded);
+
+        float into = Vector3.Dot(playerVelocity, normal);
+        if(into < 0f)
+        {
+            playerVelocity -= normal * into * 0.5f;
+        }
+
 
     }
 

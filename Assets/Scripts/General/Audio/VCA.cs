@@ -9,10 +9,13 @@ public class VCA : MonoBehaviour
     private FMOD.Studio.VCA vca;
 
     public string vcaName;
+    public float initValue;
 
     private Slider slider;
 
-    void Start()
+    public bool debug = false;
+
+    void Awake()
     {
         vca = FMODUnity.RuntimeManager.GetVCA("vca:/" + vcaName);
         slider = GetComponent<Slider>();
@@ -22,5 +25,7 @@ public class VCA : MonoBehaviour
     {
         vca.setVolume(value);
     }
+
+
 
 }

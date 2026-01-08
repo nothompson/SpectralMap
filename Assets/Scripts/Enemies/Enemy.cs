@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour, IKnockback
 
     public float moveSpeed;
     public float friction = 5f;
+    [Range(0,2)]
+    public float airSpeedFactor = 0.5f;
     public float deacelleration = 10f;
     public float jumpHeight = 10f;
     [Range(0,1)]
@@ -117,7 +119,7 @@ public class Enemy : MonoBehaviour, IKnockback
         oldDist = attackDistance;
 
         initSpeed = moveSpeed;
-        airSpeed = moveSpeed * 0.35f;
+        airSpeed = moveSpeed * airSpeedFactor;
 
         // moveVelocity = new Vector3(0, 0, 0);
         // knockVelocity = new Vector3(0, 0, 0);
@@ -191,11 +193,6 @@ public class Enemy : MonoBehaviour, IKnockback
         if (!grounded)
         {
             MovementFunctions.ApplyGravity(ref enemyVelocity);
-        }
-
-        if(enemyVelocity.y > 15f)
-        {
-            enemyVelocity.y = 15f;
         }
 
         // knockVelocity = Vector3.Lerp(knockVelocity, Vector3.zero, Time.fixedDeltaTime * knockbackDecay);
@@ -303,7 +300,7 @@ public class Enemy : MonoBehaviour, IKnockback
         if (!grounded)
         {
             // MovementFunctions.ApplyGravity(ref enemyVelocity);
-            applyFriction(0.75f);
+            applyFriction(0.5f);
             moveSpeed = airSpeed;
 
         }
@@ -416,7 +413,7 @@ public class Enemy : MonoBehaviour, IKnockback
             {
                 jumpAcross = false;
             }
-            else if (infront && distance <= 8f)
+            else if (infront && distance <= 5f)
             {
                 fbx.SetTrigger("moving");
                 jumpAcross = true;
@@ -562,7 +559,7 @@ public class Enemy : MonoBehaviour, IKnockback
                             critical = true;
                             engage = false;
 
-                            if (dist < 5f)
+                            if (dist < 3f)
                             {
                                 jumpAcross = true;
                             }
