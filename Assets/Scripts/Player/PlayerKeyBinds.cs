@@ -18,18 +18,15 @@ public class PlayerKeyBinds : MonoBehaviour
     {
         playerControl = player.GetComponent<PlayerControlRigid>();
         playerMagic = player.GetComponent<MagicManagement>();
+
+        InputManager.Instance.inputs.Player.Reset.performed += OnReset;
+        InputManager.Instance.inputs.Player.Save.performed += OnSave;
     }
 
     // Update is called once per frame
     void Update()
     {
         keyBinds();
-    }
-
-    void OnEnable()
-    {
-        InputManager.Instance.inputs.Player.Reset.performed += OnReset;
-        InputManager.Instance.inputs.Player.Save.performed += OnSave;
     }
 
         void OnDisable()

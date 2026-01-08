@@ -219,7 +219,7 @@
                 }
             }
 
-        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded = true, float bounce = 0f, float surfaceFriction = 1f, float stepHeight = 2f)
+        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded, ref int stepFramesLeft, float bounce = 0f, float surfaceFriction = 1f, float stepHeight = 8f)
         {
             Vector3 ogVel = velocity;
             Vector3 primalVel = velocity;
@@ -255,14 +255,13 @@
                     break;
                 }
 
-                if(hit.distance < 0.05f) 
+                if(hit.distance < 0.05f && stepFramesLeft >= 0) 
                 {
-                    Debug.Log("hit was too small");
-
-                    Vector3 stepUp = Vector3.up * 0.5f;
+                    Vector3 stepUp = Vector3.up * 2f;
                     Vector3 newPos = pos + stepUp;
                     if (!Physics.CapsuleCast(newPos + Vector3.up * 0.5f, newPos + Vector3.up * 1.5f, rad, velocity.normalized, velocity.magnitude * timeLeft, ground))
                     {
+                        stepFramesLeft -= 1;
                         Debug.Log("trying to step up ledge");
                         velocity.y += stepHeight;
                     }
@@ -290,12 +289,11 @@
                 {
                         Debug.Log("contacted with plane, clipping velocity");
 
-                        // velocity += Vector3.up * 2f;
-                        // float overbounce = hit.normal.y > 0.7f ? 1.0f : 0.9f;
+                        float overbounce = hit.normal.y > 0.7f ? 1.0f : 0.9f;
 
-                        // Vector3 clipped = velocity;
-                        // ClipVelocity(velocity,planes[0], ref clipped, overbounce);
-                        // velocity = clipped;
+                        Vector3 clipped = velocity;
+                        ClipVelocity(velocity,planes[0], ref clipped, overbounce);
+                        velocity = clipped;
                 }
                 else{
 

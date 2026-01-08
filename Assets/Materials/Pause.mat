@@ -89,7 +89,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1.0298549
+    - _Alpha: 1.0091888
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -102,7 +102,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RandomOffset: 0.01863429
+    - _RandomOffset: 0.08738922
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -111,12 +111,12 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Strength: 0.14107049
+    - _Strength: 0.16328281
     - _TimeScale: 0.005652186
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _UVSec: 0
-    - _UnscaledTime: 0.40305853
+    - _UnscaledTime: 0.46652234
     - _ZWrite: 1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}

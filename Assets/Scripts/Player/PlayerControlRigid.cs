@@ -130,6 +130,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     Coroutine fallingRoutine;
 
+    int stepFrames; 
+
+    int stepFrameTarget = 1;
+
     //end of class variables
     //--------------------------------
     #region Initialize
@@ -403,6 +407,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
             if (grounded)
             {
+                stepFrames = stepFrameTarget;
                 groundMove();
                 if (RocketJumped)
                 {
@@ -612,7 +617,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             airAcceleration
         );
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);    
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded, ref stepFrames);    
     }
 
     public void groundMove()
@@ -645,7 +650,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         playerVelocity = MovementFunctions.AirAccelerate(playerVelocity, wishDir, wishSpeed, surfAcceleration);
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded, ref stepFrames);
 
         float into = Vector3.Dot(playerVelocity, currentSurfNormal);
         if(into < 0f)
