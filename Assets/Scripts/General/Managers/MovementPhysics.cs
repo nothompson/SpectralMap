@@ -195,8 +195,8 @@
 
             public static bool CanSurf(RaycastHit hit)
             {
-                float angle = Vector3.Angle(hit.normal, Vector3.up);
-                return angle > SlopeLimit && angle < 88f;
+                    float upDot = Vector3.Dot(hit.normal, Vector3.up);
+                    return upDot < 0.7f && upDot > 0.05f;
             }
 
             public static void ClipVelocity(Vector3 velocity, Vector3 normal, ref Vector3 clipped, float overbounce = 1f)
@@ -219,7 +219,7 @@
                 }
             }
 
-        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded = true, float bounce = 0f, float surfaceFriction = 1f)
+        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded = true, float bounce = 0f, float surfaceFriction = 1f, float stepHeight = 2f)
         {
             Vector3 ogVel = velocity;
             Vector3 primalVel = velocity;
@@ -229,6 +229,12 @@
 
             float timeLeft = dt;
 
+            if (grounded)
+            {
+                velocity += Vector3.up * 0.01f;
+                Debug.Log("pushing up slightly");
+            }
+
             for (int i = 0; i < MaxClipPlanes; i++)
             {
                 if(velocity.magnitude < 0.0001f) break;
@@ -236,8 +242,8 @@
                 Vector3 end = pos + velocity * timeLeft;
 
                 if(!Physics.CapsuleCast(
-                    pos + Vector3.up * 0.5f,
-                    pos + Vector3.up * 1.8f,
+                    pos + Vector3.up * 0.6f,
+                    pos + Vector3.up * 1.4f,
                     rad,
                     velocity.normalized,
                     out RaycastHit hit,
@@ -248,7 +254,21 @@
                     pos = end;
                     break;
                 }
-                pos += velocity * hit.distance;
+
+                if(hit.distance < 0.05f) 
+                {
+                    Debug.Log("hit was too small");
+
+                    Vector3 stepUp = Vector3.up * 0.5f;
+                    Vector3 newPos = pos + stepUp;
+                    if (!Physics.CapsuleCast(newPos + Vector3.up * 0.5f, newPos + Vector3.up * 1.5f, rad, velocity.normalized, velocity.magnitude * timeLeft, ground))
+                    {
+                        Debug.Log("trying to step up ledge");
+                        velocity.y += stepHeight;
+                    }
+                }
+
+                pos += velocity * hit.distance * 0.99f;
 
                 float traveled = hit.distance / velocity.magnitude;
                 timeLeft -= traveled;
@@ -268,12 +288,14 @@
 
                 if(numPlanes ==1)
                 {
-            
-                        float overbounce = hit.normal.y > 0.7f ? 1.0f : 1f + bounce * (1f - surfaceFriction);
+                        Debug.Log("contacted with plane, clipping velocity");
 
-                        Vector3 clipped = velocity;
-                        ClipVelocity(velocity,planes[0], ref clipped, overbounce);
-                        velocity = clipped;
+                        // velocity += Vector3.up * 2f;
+                        // float overbounce = hit.normal.y > 0.7f ? 1.0f : 0.9f;
+
+                        // Vector3 clipped = velocity;
+                        // ClipVelocity(velocity,planes[0], ref clipped, overbounce);
+                        // velocity = clipped;
                 }
                 else{
 
@@ -293,22 +315,25 @@
                     continue;
 
                     crease:
-                        if (numPlanes >= 2)
+                    if (numPlanes >= 2)
                     {
+                        Debug.Log("hitting two planes");
                         Vector3 dir = Vector3.Cross(planes[0], planes[1]).normalized;
                         float speed = Vector3.Dot(velocity,dir);
                         velocity = dir * speed;
                     }
                     else
                     {
-                        velocity = Vector3.zero;
+                        velocity *= 0.5f;
+                        // velocity = Vector3.zero;
                     }
                     break;
                 }
             } 
             if(numPlanes >= 3)
                 {
-                    velocity = Vector3.zero;
+                    Debug.Log("hitting too many planes, slowing down");
+                    velocity *= 0.5f;
                     break;
                 }
             }

@@ -42,6 +42,8 @@ public class Launcher : MonoBehaviour
 
     bool shooting, readyToShoot;
 
+    float shootTimer = 0f;
+
     bool punching;
 
     bool fireball, wind, slime, slimeOn, slimeOff;
@@ -56,6 +58,11 @@ public class Launcher : MonoBehaviour
 
     public bool allowInvoke = true;
 
+    float errorCooldown = 0f;
+    float errorTimer = 0.5f;
+
+    bool cooldown = false;
+
     void Start()
     {
         spell = 1;
@@ -69,6 +76,17 @@ public class Launcher : MonoBehaviour
     {
         MyInput();
         soundUpdate();
+
+        if(shootTimer > 0f)
+        {
+            shootTimer -= Time.deltaTime;
+        }
+
+              if(shootTimer <= 0f && cooldown)
+            {
+                cooldown = false;
+                // rightHandAnim.SetTrigger("Ready");
+            }
     }
 
     private void soundUpdate()
@@ -77,7 +95,17 @@ public class Launcher : MonoBehaviour
         fireSound.SetParameter("WetDryRocket", 1.0f - normalizedMagic);
         
         //error sound if out of magic
-        if (readyToShoot && shooting && playerMagic.magicPoints < costToShoot)
+        if (readyToShoot && InputManager.Instance.inputs.Player.Fire.IsPressed() && playerMagic.magicPoints < costToShoot)
+        {
+            errorCooldown -= Time.deltaTime;
+            if(errorCooldown <=0){
+                mana.Error();
+                cantShootYet.Play();
+                errorCooldown = errorTimer;
+            }
+        }
+        
+        if(readyToShoot && InputManager.Instance.inputs.Player.Fire.triggered && playerMagic.magicPoints < costToShoot)
         {
             mana.Error();
             cantShootYet.Play();
@@ -87,9 +115,18 @@ public class Launcher : MonoBehaviour
     private void MyInput()
     {
         if(!player.paused){
-        //left click. if yes trigger bool
-        shooting = InputManager.Instance.inputs.Player.Fire.triggered;
-        if (readyToShoot && shooting && playerMagic.magicPoints >= costToShoot)
+            //left click. if yes trigger bool
+            // shooting = InputManager.Instance.inputs.Player.Fire.triggered;
+            if (InputManager.Instance.inputs.Player.Fire.IsPressed())
+            {
+                shooting = true;
+            }
+            else
+            {
+                shooting = false;
+            }
+
+        if (shootTimer <= 0f && shooting && playerMagic.magicPoints >= costToShoot)
         {
             Shoot();
         }
@@ -144,7 +181,11 @@ public class Launcher : MonoBehaviour
 
     private void Shoot()
     {
-        readyToShoot = false;
+        // readyToShoot = false;
+
+        cooldown = true;
+
+        shootTimer = firingSpeed;
         //raycast to see where rocket will land
         rightHandAnim.SetTrigger("Fire");
         if (spell == 1)
@@ -166,11 +207,11 @@ public class Launcher : MonoBehaviour
         playerMagic.justUsed = true;
         playerMagic.regenTimer = playerMagic.magicBufferTime;
 
-        if (allowInvoke)
-        {
-            Invoke("ResetShot", firingSpeed);
-            allowInvoke = false;
-        }
+        // if (allowInvoke)
+        // {
+        //     Invoke("ResetShot", firingSpeed);
+        //     allowInvoke = false;
+        // }
     }
 
     private void Punch()
@@ -223,8 +264,6 @@ public class Launcher : MonoBehaviour
 
     private void ResetShot()
     {
-        readyToShoot = true;
-        allowInvoke = true;
         rightHandAnim.SetTrigger("Ready");
     }
 

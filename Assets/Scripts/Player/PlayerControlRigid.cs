@@ -46,6 +46,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     //buffer distance/cushioning for ground check
     public bool autojump;
     public float GroundDistance = 0.1f;
+    public float CapsuleRadius = 0.5f;
     public float coyoteTime = 0.25f;
     public float surfBoost = 2.0f;
     public float surfBoostThreshold = 25f;
@@ -53,6 +54,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public bool groundedLastFrame = false;
     public bool surfing;
     public bool surfingLastFrame = false;
+
+    Vector3 currentSurfNormal;
+    float surfStickTimer = 0f;
+
+    float surfStickTime = 0.08f;
 
 
     public bool reset;
@@ -357,7 +363,30 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         bool landed = grounded && !groundedLastFrame;
 
 
-        surfing = surfCast && MovementFunctions.CanSurf(surfHit);
+        bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit) && playerVelocity.y <= 0f && Vector3.Dot(playerVelocity.normalized, surfHit.normal) < -0.1f;
+
+        if (!surfing)
+        {
+            if (wishsurf)
+            {
+                surfing = true;
+                surfStickTimer = surfStickTime;
+                currentSurfNormal = surfHit.normal;
+            }
+        }
+        else
+        {
+            surfStickTimer -= Time.fixedDeltaTime;
+
+            bool lost = !surfCast || Vector3.Dot(currentSurfNormal, surfHit.normal) < 0.95f;
+
+            bool away = Vector3.Dot(playerVelocity, currentSurfNormal) > 0.1f;
+
+            if((lost || away) && surfStickTimer <= 0f)
+            {
+                surfing = false;
+            }
+        }
 
         if (surfing)
         {
@@ -583,7 +612,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             airAcceleration
         );
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, GroundDistance, GroundMask, grounded);    
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);    
     }
 
     public void groundMove()
@@ -601,14 +630,14 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void surfMove()
     {
-        Vector3 normal = surfHit.normal;
+        float cachedYVel = playerVelocity.y;
 
         // normal = (normal + Vector3.up * 0.01f).normalized;
 
         Vector3 wishDir = new Vector3(smove, 0f,fmove);
         wishDir = YawPivot.transform.TransformDirection(wishDir);
 
-        wishDir = Vector3.ProjectOnPlane(wishDir, normal);
+        wishDir = Vector3.ProjectOnPlane(wishDir, currentSurfNormal);
         float wishSpeed = wishDir.magnitude * airSpeed;
 
 
@@ -616,13 +645,15 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         playerVelocity = MovementFunctions.AirAccelerate(playerVelocity, wishDir, wishSpeed, surfAcceleration);
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, GroundDistance, GroundMask, grounded);
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);
 
-        float into = Vector3.Dot(playerVelocity, normal);
+        float into = Vector3.Dot(playerVelocity, currentSurfNormal);
         if(into < 0f)
         {
-            playerVelocity -= normal * into * 0.5f;
+            playerVelocity -= currentSurfNormal * into * 0.5f;
         }
+
+        playerVelocity.y = Mathf.Max(playerVelocity.y, cachedYVel);
 
 
     }
