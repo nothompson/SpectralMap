@@ -45,6 +45,13 @@ public class TrickManager : MonoBehaviour
     public bool comboTimerActive = false;
     public float comboTimerElapsed = 0f;
 
+    Coroutine BoredTimer;
+
+    public float boredDur = 3.5f;
+
+    private List<string> currentTricks = new List<string>();
+    public int maxTricks = 15;
+
 
     void Awake()
     {
@@ -106,18 +113,17 @@ public class TrickManager : MonoBehaviour
         }
 
         TrickCount++;
+        currentTricks.Add(trick);
+
+        if(currentTricks.Count > maxTricks)
+        {
+            currentTricks.RemoveAt(0);
+        }
+        TrickText.input = string.Join("+ ", currentTricks);
+
         if(TrickDictionary.TryGetValue(trick, out int value))
         {
             Score += value;
-        }
-
-        if (string.IsNullOrEmpty(TrickText.input))
-        {
-            TrickText.input = trick;
-        }
-        else
-        {
-            TrickText.input += " + " + trick;
         }
 
         ScoreText.input = Score.ToString("#,##0") + " x " + TrickCount;
@@ -130,6 +136,34 @@ public class TrickManager : MonoBehaviour
             trickText.rectTransform.localScale = trickTextInitSize;
         }
         trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
+
+        RestartBoredom();
+    }
+
+    void RestartBoredom()
+    {
+        if(BoredTimer != null)
+        {
+            StopCoroutine(BoredTimer);
+            BoredTimer = null;
+        }
+        BoredTimer = StartCoroutine(Boredom());
+    }
+
+    IEnumerator Boredom()
+    {
+        float t = 0f;
+
+        while(t < boredDur)
+        {
+            if (!PauseManager.Instance.paused)
+            {
+                t += Time.deltaTime;
+            }
+        yield return null;
+        }
+
+        StartComboTimer();
     }
 
     IEnumerator AnimateText(RectTransform rect, Vector3 initSize, float duration, AnimationCurve curve)
@@ -221,11 +255,13 @@ public class TrickManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        currentTricks.Clear();
         TrickText.input = string.Empty;
         TrickText.Refresh();
         ScoreText.input = string.Empty;
         ScoreText.Refresh();
         Score = 0;
+        TrickCount = 0;
     }
 
     public void BHop()

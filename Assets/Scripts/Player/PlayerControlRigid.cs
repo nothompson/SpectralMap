@@ -32,7 +32,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public float runDeacceleration = 10.0f;
     public float runAcceleration = 15.0f;
     public float queueParam = 0.5f;
-    public float pogoTime = 0.15f;
+    public float pogoTime = 0.225f;
 
     public float syncTime = 0.1f;
 
@@ -44,7 +44,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     [Header("Collision/Surf Params")]
     //buffer distance/cushioning for ground check
-    public bool autojump;
+    public bool autojump = true;
     public float GroundDistance = 0.1f;
     public float CapsuleRadius = 0.5f;
     public float coyoteTime = 0.25f;
@@ -59,7 +59,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     float surfStickTimer = 0f;
 
     float surfStickTime = 0.08f;
-
 
     public bool reset;
     public bool surfCast;
@@ -99,6 +98,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     float cameraTilt = 0.0f;
 
     float cameraYaw = 0.0f;
+
+    float fallPos = 1f;
+
+    bool holdingFall = false;
     [Header("For Referencing")]
     public Vector3 playerVelocity;
     private Vector3 impact;
@@ -121,7 +124,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public int syncHits = 0;
     float pogoTimer = 0f;
     public float syncTimer = 0f;
-    bool StartPogoTimer = false;
     public bool syncResult = false;
     Vector3[] restingPos;
     Vector3[] restingRot;
@@ -180,6 +182,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         GroundedCheck();
         ResetCheck();
+
         if (autojump)
         {
             AutoJump();
@@ -261,9 +264,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             }
             groundTrigger = grounded;
 
-            if (playerVelocity.y < -20f)
+            if (playerVelocity.y < -20f && fallingRoutine == null)
             {
-                fallingRoutine = StartCoroutine(jumpBounce());
+                fallingRoutine = StartCoroutine(Falling()); 
             }
 
         }
@@ -291,27 +294,38 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             cameraTilt = Mathf.SmoothStep(cameraTilt, 0f, Time.deltaTime * 10f);
         }
     }
-    public IEnumerator jumpBounce()
+    public IEnumerator Falling()
     {
         float dur = 3f;
         float t = 0f;
         jumped = false;
+        holdingFall = true;
 
         while (t < dur && !jumped)
         {
             t += Time.deltaTime;
             float elapsed = t / dur;
-            float jumpAmp = jumpCurve.Evaluate(elapsed);
+            fallPos = jumpCurve.Evaluate(elapsed);
             for(int i = 0; i < hands.Length; i++)
             {
-                hands[i].localPosition = new Vector3(restingPos[i].x,restingPos[i].y * jumpAmp, restingPos[i].z);
+                hands[i].localPosition = new Vector3(restingPos[i].x,restingPos[i].y * fallPos, restingPos[i].z);
             }
             yield return null;
+        }
+
+        if (!jumped)
+        {
+            fallPos = jumpCurve.Evaluate(1f);
+            for(int i = 0; i < hands.Length; i++)
+            {
+                hands[i].localPosition = new Vector3(restingPos[i].x,restingPos[i].y * fallPos, restingPos[i].z);
+            }
         }
     }
     public IEnumerator bounce()
     {
         jumped = true;
+        holdingFall = false;
 
         if(fallingRoutine != null)
         {
@@ -405,43 +419,44 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 playerVelocity += Vector3.up * surfBoost;
             }
 
-            if (grounded)
+            if (!grounded)
+            {
+                airMove();
+                
+                pogoTimer += Time.fixedDeltaTime;
+
+                if(pogoTimer >= pogoTime)
+                {
+                    CanPogo = true;
+                }
+            }
+            else
             {
                 stepFrames = stepFrameTarget;
+
                 groundMove();
                 if (RocketJumped)
                 {
                     RocketJumped = false;
                 }
-                if (StartPogoTimer)
-                {
-                    StartPogoTimer = false;
-                }
                 if (CanPogo)
                 {
                     CanPogo = false;
                 }
-                
+
                 pogoTimer = 0f;
 
                 if(landed && TrickManager.Instance.Score > 0 && !TrickManager.Instance.completed)
                 {
                     TrickManager.Instance.StartComboTimer();
                 }
-            }
-            else
-            {
-                airMove();
 
-                StartPogoTimer = true;
             }
         }
 
-        if (impact.magnitude > 0.1f)
+        if(playerVelocity.y > 0)
         {
-            playerVelocity += impact;
-            //reset so it doesnt accumulate
-            impact = Vector3.zero;
+            CanPogo = false;
         }
 
         playerSpeed = rb.linearVelocity.magnitude;
@@ -517,7 +532,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
             if (!groundedLastFrame)
             {
-                Debug.Log("bhop");
                 StartCoroutine(bounce());
                 AudioManager.Instance.Land();
                 didJump = false;
@@ -529,38 +543,26 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         if ((grounded || groundTimer > 0f) && autojumpInput)
         {
+            if (!groundedLastFrame && playerVelocity.y <= 0)
+            {
+                StartCoroutine(bounce());
+                AudioManager.Instance.Land();
+            }
+
+            pogoTimer = 0f;
 
             playerVelocity.y = jumpHeight;
 
             wishJump = false;
 
-            playerVelocity += Vector3.up * 0.01f;
-
             groundTimer = 0f;
 
             grounded = false;
-            if (!groundedLastFrame)
-            {
-                Debug.Log("bhop");
-                StartCoroutine(bounce());
-                AudioManager.Instance.Land();
-            }
         }
     }
 
     public void Tricks()
     {
-        if (StartPogoTimer)
-        {
-            pogoTimer+= Time.fixedDeltaTime;
-            if(pogoTimer > pogoTime)
-            {
-                pogoTimer = pogoTime;
-                CanPogo = true;
-                StartPogoTimer = false;
-            }
-        }
-
         if (StartSyncTimer)
         {
             syncTimer+= Time.fixedDeltaTime;
@@ -617,7 +619,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             airAcceleration
         );
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded, ref stepFrames);    
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);    
     }
 
     public void groundMove()
@@ -650,7 +652,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         playerVelocity = MovementFunctions.AirAccelerate(playerVelocity, wishDir, wishSpeed, surfAcceleration);
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded, ref stepFrames);
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);
 
         float into = Vector3.Dot(playerVelocity, currentSurfNormal);
         if(into < 0f)

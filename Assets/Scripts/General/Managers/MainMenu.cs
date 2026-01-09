@@ -42,6 +42,11 @@
 
         public Material bg;
 
+        public bool introPlaying = false;
+        public bool queueLoad = false;
+
+        private int titlefinished = 0;
+
         void Start()
         {
             StopAllCoroutines();
@@ -73,10 +78,10 @@
 
             StartCoroutine(SpriteIntro());
 
-            if (PauseManager.Instance.paused)
-                {
+            if (PauseManager.Instance != null && PauseManager.Instance.paused)
+            {
                     PauseManager.Instance.paused = false;
-                }
+            }
         }
 
         IEnumerator SpriteIntro()
@@ -181,10 +186,14 @@
                 if (jitter != null)
                     jitter.EnableJitter();
             }
+
         }
 
         public IEnumerator AnimateTitle()
         {
+            introPlaying = true;
+            titlefinished = 0;
+
             float letterDelay = 0.05f;
 
             for(int i = 0; i < letterAnimations.Length; i++)
@@ -198,11 +207,19 @@
 
                 anim.SetFrame(lastFrame);
 
-                StartCoroutine(anim.AnimateToTarget(0));
+                anim.AnimateTo(this, 0, onTarget:() => CompleteTitleLetter());
 
                 yield return new WaitForSeconds(letterDelay);
-                
             }
+
+            while(titlefinished < letterAnimations.Length) yield return null;
+
+            introPlaying = false;
+        }
+
+        void CompleteTitleLetter()
+        {
+            titlefinished++;
         }
 
         void Update()

@@ -31,8 +31,10 @@ public class PlayerKeyBinds : MonoBehaviour
 
         void OnDisable()
     {
-        InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
-        InputManager.Instance.inputs.Player.Save.performed -= OnSave;
+        if(InputManager.Instance.inputs!= null){
+            InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
+            InputManager.Instance.inputs.Player.Save.performed -= OnSave;
+        }
     }
     
     public void keyBinds()

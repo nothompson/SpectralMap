@@ -12,13 +12,25 @@ public class MainMenuPlayButton : SceneTriggerButton
 
     private string scene; 
 
+    private bool transitioning = false;
+
     public override void TriggerSceneChange(string sceneName)
     {
+
+        if(transitioning) return; 
+
+        if (mainMenu.introPlaying)
+        {
+            StartCoroutine(TitleQueue(sceneName));
+            return;
+        }
         if(mainMenu.letterAnimations == null || mainMenu.letterAnimations.Length < 1)
         {
             base.TriggerSceneChange(sceneName);
             return;
         }
+
+        transitioning = true;
 
         scene = sceneName;
 
@@ -36,6 +48,13 @@ public class MainMenuPlayButton : SceneTriggerButton
 
             letterAnimate[i] = letters.AnimateTo(this,lastFrame,onTarget: ()=> LetterComplete(letters));
         }
+    }
+
+    IEnumerator TitleQueue(string sceneName)
+    {
+        while(mainMenu.introPlaying) yield return null;
+
+        TriggerSceneChange(sceneName);
     }
 
     private void LetterComplete(SpriteAnimate letter)

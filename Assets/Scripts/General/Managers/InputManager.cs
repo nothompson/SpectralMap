@@ -23,4 +23,14 @@ public class InputManager : MonoBehaviour
         inputs = new InputSystem_Actions();
         inputs.Player.Enable();
     }
+
+    void OnDestroy()
+    {
+        if(inputs != null)
+        {
+            inputs.Player.Disable();
+            inputs.Dispose();
+            inputs = null;
+        }
+    }
 }
