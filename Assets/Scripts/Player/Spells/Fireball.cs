@@ -149,6 +149,7 @@ public class Fireball : MonoBehaviour
             }
             if (pc != null)
             {
+        
                 if(pc.playerVelocity.y < 0f)
                 {
                     pc.playerVelocity.y = 0f;

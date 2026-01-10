@@ -136,6 +136,47 @@
                 return velocity;
             }
 
+            public static void GetCapsule(Vector3 position, float height, float radius, out Vector3 bottom, out Vector3 top)
+            {
+                bottom = position + Vector3.up * radius;
+                top = position + Vector3.up * (height - radius);
+            }
+
+            public static Vector3 StayOnGround(Vector3 position,float height, float radius, float step, LayerMask ground, ref bool stepping)
+        {
+            stepping = false;
+            Vector3 upoffset = Vector3.up * 0.1f;
+            Vector3 starting = position + upoffset;
+
+            GetCapsule(starting, height, radius, out var upbottom, out var uptop);
+
+            bool upsweep = Physics.CapsuleCast(upbottom, uptop, radius, Vector3.up, out RaycastHit uphit, 0.05f, ground, QueryTriggerInteraction.Ignore);
+
+            if(upsweep) starting += Vector3.up * uphit.distance;
+
+            GetCapsule(starting, height, radius, out var downbottom, out var downtop);
+
+            bool downsweep = Physics.CapsuleCast(downbottom, downtop, radius, Vector3.down, out RaycastHit downhit, step, ground, QueryTriggerInteraction.Ignore);
+
+            if (downsweep)
+            {
+                if(downhit.normal.y >= 0.7f)
+                {
+                    float delta = Mathf.Abs(position.y - downhit.point.y);
+
+                    if(delta >= 0.03f)
+                    {
+                        Debug.Log("pushing down");
+                        stepping = true;
+                        position.y = downhit.point.y;
+                    }
+                }
+            }
+    
+            return position;
+
+        }
+
             public static bool GroundedCheck(
                 Transform GroundCheck,
                 float GroundDistance,
@@ -167,6 +208,11 @@
                 if (ground)
                 {
                     grounded = true;
+
+                    if(velocity.y <= 0f)
+                    {
+                        velocity.y =- 2f;
+                    }
 
                     //"coyote time" allows a buffer period after leaving collider to still jump
                     groundTimer = coyoteTime;
@@ -219,8 +265,10 @@
                 }
             }
 
-        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float rad, LayerMask ground, bool grounded, float bounce = 0f, float surfaceFriction = 1f, float stepHeight = 8f)
+        public static Vector3 TryPlayerMove(Vector3 pos, Vector3 velocity, float dt, float height, float rad, LayerMask ground, bool grounded, float bounce = 0f, float surfaceFriction = 1f, float stepHeight = 8f)
         {
+            GetCapsule(pos, height, rad, out Vector3 bottom, out Vector3 top);
+
             Vector3 ogVel = velocity;
             Vector3 primalVel = velocity;
 
@@ -236,8 +284,8 @@
                 Vector3 end = pos + velocity * timeLeft;
 
                 if(!Physics.CapsuleCast(
-                    pos + Vector3.up * 0.6f,
-                    pos + Vector3.up * 1.4f,
+                    bottom,
+                    top,
                     rad,
                     velocity.normalized,
                     out RaycastHit hit,
@@ -249,10 +297,13 @@
                     break;
                 }
 
-                pos += velocity * hit.distance * 0.99f;
+
 
                 float traveled = hit.distance / velocity.magnitude;
+
                 timeLeft -= traveled;
+
+                pos += velocity * traveled;
 
                 if(timeLeft <= 0f) break;
 
@@ -269,9 +320,6 @@
 
                 if(numPlanes ==1)
                 {
-                        Debug.Log("ramp slide?");
-         
-
                         float overbounce = hit.normal.y > 0.7f ? 1.0f : 0.9f;
 
                         Vector3 clipped = velocity;

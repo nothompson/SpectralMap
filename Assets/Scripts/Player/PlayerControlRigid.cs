@@ -20,6 +20,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public Transform gun = null;
     public Transform[] hands = null;
     public GameObject YawPivot; 
+    public CapsuleCollider capsule; 
 
     [Header("Movement Control")]
     public float moveSpeed = 6.0f;
@@ -55,6 +56,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public bool surfing;
     public bool surfingLastFrame = false;
 
+    public float StepHeight = 2f;
+
     Vector3 currentSurfNormal;
     float surfStickTimer = 0f;
 
@@ -63,7 +66,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public bool reset;
     public bool surfCast;
     public RaycastHit surfHit;
-    
+
+    public bool stepping;
 
     [Header("Camera")]
     public AnimationCurve bounceCurve;
@@ -136,6 +140,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     int stepFrameTarget = 1;
 
+    
+
     //end of class variables
     //--------------------------------
     #region Initialize
@@ -170,8 +176,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         PlayerCamera();
                 
         SurfCheck();
-
-
     }
 
     void CalculateVelocity()
@@ -183,6 +187,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         GroundedCheck();
         ResetCheck();
 
+        Tricks();
+
         if (autojump)
         {
             AutoJump();
@@ -192,13 +198,23 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             Jump();
         }
 
+        // if(!groundedLastFrame && !grounded)
+        // {
+        //     //Wait a frame
+        // } 
+        // else if (!grounded) MovementFunctions.StartGravity(ref playerVelocity);
+
         if(!groundedLastFrame) MovementFunctions.StartGravity(ref playerVelocity);
-        // if(!groundedLastFrame) MovementFunctions.ApplyGravity(ref playerVelocity);
 
         Movement();
-        Tricks();
 
         if(!groundedLastFrame) MovementFunctions.FinishGravity(ref playerVelocity);
+  
+        // if(!groundedLastFrame && !grounded)
+        // {
+        //     //Wait a frame
+        // } 
+        // else if (!grounded) MovementFunctions.FinishGravity(ref playerVelocity);
 
     }
 
@@ -380,6 +396,16 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         bool landed = grounded && !groundedLastFrame;
 
+        Vector3 position;
+
+
+        // if(!grounded && groundedLastFrame && playerVelocity.y <= 0f)
+        // {
+        //     position = MovementFunctions.StayOnGround(transform.position, capsule.height, capsule.radius, StepHeight, GroundMask, ref stepping);
+        //     Debug.Log(stepping);
+
+        //     rb.MovePosition(position);
+        // }
 
         bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit) && playerVelocity.y <= 0f && Vector3.Dot(playerVelocity.normalized, surfHit.normal) < -0.1f;
 
@@ -432,9 +458,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             }
             else
             {
-                stepFrames = stepFrameTarget;
-
                 groundMove();
+
                 if (RocketJumped)
                 {
                     RocketJumped = false;
@@ -450,7 +475,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 {
                     TrickManager.Instance.StartComboTimer();
                 }
-
             }
         }
 
@@ -541,12 +565,13 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void AutoJump()
     {
-        if ((grounded || groundTimer > 0f) && autojumpInput)
+        if ((grounded || groundTimer > 0f) && autojumpInput && (!surfing && !surfingLastFrame))
         {
-            if (!groundedLastFrame && playerVelocity.y <= 0)
+            if (!groundedLastFrame && playerVelocity.y <= 0 && !stepping)
             {
                 StartCoroutine(bounce());
                 AudioManager.Instance.Land();
+                RocketJumped = false;
             }
 
             pogoTimer = 0f;
@@ -574,9 +599,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                     {
                         TrickManager.Instance.Sync(syncHits);
                     }
-                    else
+                    else if(!RocketJumped)
                     {
                         TrickManager.Instance.AddTrick("RocketJump");
+                        RocketJumped = true;
                     }
                 }
 
@@ -619,7 +645,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             airAcceleration
         );
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);    
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, capsule.height, capsule.radius, GroundMask, grounded);    
     }
 
     public void groundMove()
@@ -652,7 +678,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         playerVelocity = MovementFunctions.AirAccelerate(playerVelocity, wishDir, wishSpeed, surfAcceleration);
 
-        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, CapsuleRadius, GroundMask, grounded);
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, capsule.height, capsule.radius, GroundMask, grounded);
 
         float into = Vector3.Dot(playerVelocity, currentSurfNormal);
         if(into < 0f)
