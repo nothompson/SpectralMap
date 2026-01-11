@@ -1285,6 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcaName: Sounds
   initValue: 0
+  debug: 0
 --- !u!114 &5031906669148759043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1582,6 +1583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcaName: Music
   initValue: 1
+  debug: 0
 --- !u!114 &989393043920761364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,6 +1762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcaName: Master
   initValue: 0.2
+  debug: 0
 --- !u!114 &7608627635981009687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2278,6 +2281,7 @@ GameObject:
   - component: {fileID: 7608103437918931627}
   - component: {fileID: 7608103437918931628}
   - component: {fileID: 4168755037350199269}
+  - component: {fileID: 4696449358686512592}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -2452,6 +2456,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b3a7ef8ec907d4cbbfb55d2d6d9df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4696449358686512592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608103437918931796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4168755037350199269}
+          m_TargetAssemblyTypeName: UIButtonSounds, Assembly-CSharp
+          m_MethodName: OnClickPlaySound
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: click
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7608103437999995705
 GameObject:
   m_ObjectHideFlags: 0

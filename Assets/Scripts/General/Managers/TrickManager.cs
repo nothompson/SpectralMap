@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using TMPro;
 
 public class TrickManager : MonoBehaviour
@@ -47,11 +48,131 @@ public class TrickManager : MonoBehaviour
 
     Coroutine BoredTimer;
 
-    public float boredDur = 3.5f;
+    public float boredDur = 2f;
 
-    private List<string> currentTricks = new List<string>();
     public int maxTricks = 15;
 
+    private Trick active = null;
+    private bool surfing = false;   
+
+    public float pps = 50f;
+    private float accumulatedPoints = 0f;
+    public enum TrickType{
+            rocketjump,
+            pogo,
+            wall,
+            surfing,
+            surfJump,
+            sync,
+            triSync,
+            quadSync,
+            megaSync,
+            bomb,
+            airshot,
+            direct,
+            airAirshot,
+            kill
+        }
+
+    public class Trick
+    {
+        public TrickType Type;
+        public string Display;
+        public int Points;
+        public bool Continuous;
+
+        public Trick(TrickType type, int syncs = 1)
+        {
+            Type = type;
+            TrickData(type);
+            if(syncs > 1) SyncData(syncs);
+        }
+
+        private void TrickData(TrickType type)
+        {
+            switch (type)
+            {
+                case TrickType.airAirshot:
+                    Display = "Air-Airshot";
+                    Points = 350;
+                    Continuous = false;
+                    break;
+
+                case TrickType.airshot:
+                    Display = "Airshot";
+                    Points = 250;
+                    Continuous = false;
+                    break;
+                case TrickType.bomb:
+                    Display = "Bomb";
+                    Points = 200;
+                    Continuous = false;
+                    break;
+                case TrickType.direct:
+                    Display = "Direct";
+                    Points = 100;
+                    Continuous = false;
+                    break;
+                case TrickType.kill:
+                    Display = "Kill";
+                    Points = 500;
+                    Continuous = false;
+                    break;
+
+                case TrickType.pogo:
+                    Display = "Pogo";
+                    Points = 100;
+                    Continuous = false;
+                    break;
+
+                case TrickType.rocketjump:
+                    Display = "Rocket Jump";
+                    Points = 50;
+                    Continuous = false;
+                    break;
+                case TrickType.wall:
+                    Display = "Wall";
+                    Points = 75;
+                    Continuous = false;
+                    break;
+                case TrickType.surfing:
+                    Display = "Surfing";
+                    Points = 1;
+                    Continuous = true;
+                    break;
+            }
+        }
+        private void SyncData(int syncs)
+        {
+            Continuous = false;
+            if(syncs == 2)
+            {
+                Type = TrickType.sync;
+                Display = "Sync";
+                Points = 500;
+            }
+            else if(syncs == 3)
+            {
+                Type = TrickType.triSync;
+                Display = "Tri-Sync";
+                Points = 2500;
+            }
+            else if(syncs == 4)
+            {
+                Type = TrickType.quadSync;
+                Display = "Quad-Sync";
+                Points = 5000;
+            }
+            else if (syncs > 4)
+            {
+                Type = TrickType.megaSync;
+                Display = "Mega-Sync";
+                Points = 10000;
+            }            
+        }
+    }
+
+    private List<Trick> currentTricks = new List<Trick>();
 
     void Awake()
     {
@@ -59,7 +180,6 @@ public class TrickManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitTrickDictionary();
         }
         else
         {
@@ -76,27 +196,7 @@ public class TrickManager : MonoBehaviour
 
     }
 
-    void InitTrickDictionary()
-    {
-        TrickDictionary["BHop"] = 100;
-        TrickDictionary["RocketJump"] = 50;
-        TrickDictionary["Pogo"] = 100;
-        TrickDictionary["Wall"] = 75;
-        TrickDictionary["Surf Shot"] = 100;
-        TrickDictionary["Surf Jump"] = 150;
-        TrickDictionary["Sync"] = 250;
-        TrickDictionary["Tri-Sync"] = 500;
-        TrickDictionary["Quad-Sync"] = 1000;
-        TrickDictionary["Mega-Sync"] = 5000;
-
-        TrickDictionary["Bomb"] = 200;
-        TrickDictionary["Airshot"] = 250;
-        TrickDictionary["Direct"] = 150;
-        TrickDictionary["Air-Airshot"] = 350;
-        TrickDictionary["Kill"] = 500;
-    }
-
-    public void AddTrick(string trick)
+    public void AddTrick(Trick trick)
     {
         if (completed)
         {
@@ -119,12 +219,9 @@ public class TrickManager : MonoBehaviour
         {
             currentTricks.RemoveAt(0);
         }
-        TrickText.input = string.Join("+ ", currentTricks);
+        TrickText.input = string.Join("+ ", currentTricks.Select(ty =>ty.Display));
 
-        if(TrickDictionary.TryGetValue(trick, out int value))
-        {
-            Score += value;
-        }
+        Score += trick.Points;
 
         ScoreText.input = Score.ToString("#,##0") + " x " + TrickCount;
         TrickText.Refresh();
@@ -136,12 +233,12 @@ public class TrickManager : MonoBehaviour
             trickText.rectTransform.localScale = trickTextInitSize;
         }
         trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
-
-        RestartBoredom();
+        if(!surfing) RestartBoredom();
     }
 
     void RestartBoredom()
     {
+        if(surfing) return;
         if(BoredTimer != null)
         {
             StopCoroutine(BoredTimer);
@@ -156,7 +253,7 @@ public class TrickManager : MonoBehaviour
 
         while(t < boredDur)
         {
-            if (!PauseManager.Instance.paused)
+            if (!PauseManager.Instance.paused && !surfing)
             {
                 t += Time.deltaTime;
             }
@@ -262,42 +359,118 @@ public class TrickManager : MonoBehaviour
         ScoreText.Refresh();
         Score = 0;
         TrickCount = 0;
+        accumulatedPoints = 0f;
+        if(surfing) surfing = false;
+        
     }
 
-    public void BHop()
-    {
-        AddTrick("BHop");
-    }
     public void RocketJump()
     {
-        AddTrick("RocketJump");
+        Trick trick = new Trick(TrickType.rocketjump);
+        AddTrick(trick);
     }
     public void Pogo()
     {
-        AddTrick("Pogo");
+        Trick trick = new Trick(TrickType.pogo);
+        AddTrick(trick);
     }
     public void Wall()
     {
-        AddTrick("Wall");
+        Trick trick = new Trick(TrickType.wall);
+        AddTrick(trick);
     }
 
     public void Sync(int syncs)
     {
-        if(syncs == 2)
+        Trick trick = new Trick(TrickType.sync, syncs);
+        AddTrick(trick);
+    }
+
+    public void Bomb()
+    {
+        Trick trick = new Trick(TrickType.bomb);
+        AddTrick(trick);
+    }
+
+    public void Direct()
+    {
+        Trick trick = new Trick(TrickType.direct);
+        AddTrick(trick);
+    }
+
+    public void Airshot()
+    {
+        Trick trick = new Trick(TrickType.airshot);
+        AddTrick(trick);
+    }
+
+    public void AirAirshot()
+    {
+        Trick trick = new Trick(TrickType.airAirshot);
+        AddTrick(trick);
+    }
+
+    public void Kill()
+    {
+        Trick trick = new Trick(TrickType.kill);
+        AddTrick(trick);
+    }
+
+    public void Update()
+    {
+        if(PauseManager.Instance.paused) return;
+
+        int points;
+
+        if (surfing && active != null)
         {
-            AddTrick("Sync");
+            accumulatedPoints += pps * Time.deltaTime;
+
+            points = Mathf.FloorToInt(accumulatedPoints);
+            if (points > 0)
+            {
+                
+            Score += points;
+            accumulatedPoints -= points;
+            
+            ScoreText.input = Score.ToString("#,##0") + " x " + TrickCount;
+            ScoreText.Refresh();
+            }
         }
-        if(syncs == 3)
+        else
         {
-            AddTrick("Tri-Sync");
+            points  = 0;
         }
-        if(syncs == 4)
-        {
-            AddTrick("Quad-Sync");
+    }
+
+    public void StartSurfing()
+    {
+        if(!surfing){
+            bool last = currentTricks.Count > 0 && currentTricks[currentTricks.Count - 1].Type == TrickType.surfing;
+
+            if (last)
+            {
+                active = currentTricks[currentTricks.Count - 1];
+                surfing = true;
+            }
+            else
+            {
+                Trick trick = new Trick(TrickType.surfing);
+                AddTrick(trick);
+                active = trick;
+                surfing = true;
+            }
         }
-        if(syncs > 4)
-        {
-            AddTrick("Mega-Sync");
+    }
+
+    public void StopSurfing()
+    {
+      if(surfing){
+            active = null;
+            surfing = false;
+            accumulatedPoints = 0f;
+
+            RestartBoredom();
         }
     }
 

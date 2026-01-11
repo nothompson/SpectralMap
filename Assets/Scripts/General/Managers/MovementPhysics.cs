@@ -117,19 +117,15 @@
                 return velocity;
 
             }
-            public static Vector3 GroundMovement(Vector3 velocity, Transform main, float fmove, float smove, float speed, float accel)
+            public static Vector3 GroundMovement(Vector3 velocity, Transform main, float fmove, float smove, float speed, float accel, Vector3 groundNormal)
             {
+
                 Vector3 wishDir = new Vector3(smove, 0, fmove);
                 wishDir = main.TransformDirection(wishDir);
-                wishDir.Normalize();
+                wishDir = Vector3.ProjectOnPlane(wishDir, groundNormal).normalized;
 
                 float wishSpeed = wishDir.magnitude;
                 wishSpeed *= speed;
-
-                if(velocity.y < 0)
-                {
-                    velocity.y = 0;
-                }
 
                 velocity = Accelerate(velocity, wishDir, wishSpeed, accel);
 
@@ -142,50 +138,17 @@
                 top = position + Vector3.up * (height - radius);
             }
 
-            public static Vector3 StayOnGround(Vector3 position,float height, float radius, float step, LayerMask ground, ref bool stepping)
-        {
-            stepping = false;
-            Vector3 upoffset = Vector3.up * 0.1f;
-            Vector3 starting = position + upoffset;
-
-            GetCapsule(starting, height, radius, out var upbottom, out var uptop);
-
-            bool upsweep = Physics.CapsuleCast(upbottom, uptop, radius, Vector3.up, out RaycastHit uphit, 0.05f, ground, QueryTriggerInteraction.Ignore);
-
-            if(upsweep) starting += Vector3.up * uphit.distance;
-
-            GetCapsule(starting, height, radius, out var downbottom, out var downtop);
-
-            bool downsweep = Physics.CapsuleCast(downbottom, downtop, radius, Vector3.down, out RaycastHit downhit, step, ground, QueryTriggerInteraction.Ignore);
-
-            if (downsweep)
-            {
-                if(downhit.normal.y >= 0.7f)
-                {
-                    float delta = Mathf.Abs(position.y - downhit.point.y);
-
-                    if(delta >= 0.03f)
-                    {
-                        Debug.Log("pushing down");
-                        stepping = true;
-                        position.y = downhit.point.y;
-                    }
-                }
-            }
-    
-            return position;
-
-        }
-
             public static bool GroundedCheck(
                 Transform GroundCheck,
                 float GroundDistance,
                 LayerMask GroundMask,
                 ref Vector3 velocity,
                 ref float groundTimer,
-                float coyoteTime
+                float coyoteTime, ref Vector3 groundNormal
                 )
             {
+
+                groundNormal = Vector3.up;
                 bool grounded = false;
                 //test to see if touching any collisions given ground mask
                 bool sphereGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
@@ -197,10 +160,15 @@
 
                 float slopeAngle = 0f;
 
+
                 if (rayGrounded)
                 {
                     //if Raycast hits we can get normal, otherwise just assume its flat
                     slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+                    if (slopeAngle <= SlopeLimit)
+                    {
+                        groundNormal = hit.normal;
+                    }
                 }
 
                 bool ground = (sphereGrounded || rayGrounded) && slopeAngle <= SlopeLimit;
@@ -208,11 +176,6 @@
                 if (ground)
                 {
                     grounded = true;
-
-                    if(velocity.y <= 0f)
-                    {
-                        velocity.y =- 2f;
-                    }
 
                     //"coyote time" allows a buffer period after leaving collider to still jump
                     groundTimer = coyoteTime;
@@ -242,7 +205,7 @@
             public static bool CanSurf(RaycastHit hit)
             {
                     float upDot = Vector3.Dot(hit.normal, Vector3.up);
-                    return upDot < 0.7f && upDot > 0.05f;
+                    return upDot < 0.9f && upDot > 0.05f;
             }
 
             public static void ClipVelocity(Vector3 velocity, Vector3 normal, ref Vector3 clipped, float overbounce = 1f)
@@ -284,7 +247,7 @@
                 Vector3 end = pos + velocity * timeLeft;
 
                 if(!Physics.CapsuleCast(
-                    bottom,
+                    bottom, 
                     top,
                     rad,
                     velocity.normalized,

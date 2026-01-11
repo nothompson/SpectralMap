@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7545854854764849294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2516562811677287850}
+  - component: {fileID: 1617163233377707324}
+  m_Layer: 0
+  m_Name: GibsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2516562811677287850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545854854764849294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1617163233377707324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545854854764849294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35253ad4040d1da4c864a93ffd65ac40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gibs:
+  - {fileID: 6238808163930997019, guid: 1f160b9ecb0d64640a7fa247657b3e6e, type: 3}
+  - {fileID: 6238808163930997019, guid: f70dbe764df1c8045ba30325b776b609, type: 3}
+  - {fileID: 6238808163930997019, guid: acefb6b0ee9eac94bb08646b9e8412ab, type: 3}
+  - {fileID: 6238808163930997019, guid: d1f957736e1394246a396ab6b7c87310, type: 3}
+  - {fileID: 6238808163930997019, guid: 5bbdae5076acf8d4fab601fa19bd60f9, type: 3}
+  - {fileID: 6238808163930997019, guid: 3e4addbfb5d5c8243b171b7dfc096cca, type: 3}
+  - {fileID: 6238808163930997019, guid: 5c6dd0ceed8721d40a7bc34922a3550a, type: 3}
+  - {fileID: 6238808163930997019, guid: 3c9e24c61c74a6b4ea0e2df2762cd69a, type: 3}
+  - {fileID: 6238808163930997019, guid: 985f1dfd930c6db4c86d90bc2ed10e6e, type: 3}
+  - {fileID: 6238808163930997019, guid: fca27ffd9b118d04a87fab2dca4d6f58, type: 3}
+  explosionForce: 10
+  despawnTime: 10
+  surfaceLayers:
+    serializedVersion: 2
+    m_Bits: 896
+  minTimeBetweenDecals: 0.2
+  minTimeFactor: 0.05
+  gibSplat:
+    Guid:
+      Data1: -1891947080
+      Data2: 1311150603
+      Data3: 1709635500
+      Data4: -1594252224
+    Path: event:/General/gibs/spawn

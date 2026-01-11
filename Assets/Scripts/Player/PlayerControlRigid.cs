@@ -58,6 +58,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public float StepHeight = 2f;
 
+    public float SurfRadius = 0.5f;
+    public float SurfDistance = 1f;
+
     Vector3 currentSurfNormal;
     float surfStickTimer = 0f;
 
@@ -68,6 +71,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public RaycastHit surfHit;
 
     public bool stepping;
+
+    public Vector3 groundNormal;
 
     [Header("Camera")]
     public AnimationCurve bounceCurve;
@@ -398,15 +403,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         Vector3 position;
 
-
-        // if(!grounded && groundedLastFrame && playerVelocity.y <= 0f)
-        // {
-        //     position = MovementFunctions.StayOnGround(transform.position, capsule.height, capsule.radius, StepHeight, GroundMask, ref stepping);
-        //     Debug.Log(stepping);
-
-        //     rb.MovePosition(position);
-        // }
-
         bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit) && playerVelocity.y <= 0f && Vector3.Dot(playerVelocity.normalized, surfHit.normal) < -0.1f;
 
         if (!surfing)
@@ -436,13 +432,19 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         {
             grounded = false;
             surfMove();
+            if(!surfingLastFrame){
+                TrickManager.Instance.StartSurfing();
+            }
         }
         else
         {
-            if (surfingLastFrame && playerSpeed > surfBoostThreshold)
+            if (surfingLastFrame)
             {
-                TrickManager.Instance.AddTrick("Surf Jump");
+                TrickManager.Instance.StopSurfing();
+                if(playerSpeed > surfBoostThreshold)
+                {
                 playerVelocity += Vector3.up * surfBoost;
+                }
             }
 
             if (!grounded)
@@ -494,8 +496,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             GroundMask,
             ref playerVelocity,
             ref groundTimer,
-            coyoteTime
+            coyoteTime, ref groundNormal
         );
+
     }
 
     void ResetCheck()
@@ -513,7 +516,15 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void SurfCheck()
     {
-        surfCast = Physics.SphereCast(GroundCheck.position, 0.2f, Vector3.down, out surfHit, GroundDistance + 0.75f, GroundMask);
+        bool cast = Physics.SphereCast(GroundCheck.position, SurfRadius, Vector3.down, out surfHit, SurfDistance, GroundMask);
+        if(cast && surfHit.collider.gameObject.CompareTag("Surfable"))
+        {
+            surfCast = true;
+        }
+        else
+        {
+            surfCast = false;
+        }
     }
 
     void Jump()
@@ -565,7 +576,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     public void AutoJump()
     {
-        if ((grounded || groundTimer > 0f) && autojumpInput && (!surfing && !surfingLastFrame))
+        if ((grounded || groundTimer > 0f) && autojumpInput && (!surfing && !surfingLastFrame && !surfCast))
         {
             if (!groundedLastFrame && playerVelocity.y <= 0 && !stepping)
             {
@@ -601,7 +612,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                     }
                     else if(!RocketJumped)
                     {
-                        TrickManager.Instance.AddTrick("RocketJump");
+                        TrickManager.Instance.RocketJump();
                         RocketJumped = true;
                     }
                 }
@@ -657,8 +668,12 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             YawPivot.transform,
             fmove, smove,
             moveSpeed,
-            runAcceleration
+            runAcceleration, groundNormal
         );
+
+        playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, capsule.height, capsule.radius, GroundMask, grounded); 
+
+        playerVelocity = Vector3.ProjectOnPlane(playerVelocity, groundNormal);
     }
 
     public void surfMove()
@@ -683,7 +698,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         float into = Vector3.Dot(playerVelocity, currentSurfNormal);
         if(into < 0f)
         {
-            playerVelocity -= currentSurfNormal * into * 0.5f;
+            playerVelocity -= currentSurfNormal * into;
         }
 
         playerVelocity.y = Mathf.Max(playerVelocity.y, cachedYVel);

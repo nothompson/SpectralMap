@@ -108,7 +108,7 @@ public class Fireball : MonoBehaviour
 
                     if(playerControl.playerVelocity.y > 20f || playerControl.playerVelocity.y < -20f)
                     {
-                        TrickManager.Instance.AddTrick("Bomb");
+                        TrickManager.Instance.Bomb();
                     }
 
                     if (!e.grounded)
@@ -116,11 +116,11 @@ public class Fireball : MonoBehaviour
                         targetHP.Damage(damage * airshotMultiplier);
                         if (direct)
                         {
-                            TrickManager.Instance.AddTrick("Airshot");
+                            TrickManager.Instance.Airshot();
                         }
                         if(direct && playerControl.RocketJumped)
                         {
-                            TrickManager.Instance.AddTrick("Air-Airshot");
+                            TrickManager.Instance.AirAirshot();
                         }
                     }
                     else
@@ -129,7 +129,7 @@ public class Fireball : MonoBehaviour
                         impact.y *= 2f;
                         if (direct)
                         {
-                            TrickManager.Instance.AddTrick("Direct");
+                            TrickManager.Instance.Direct();
                         }
                     }
 
@@ -143,7 +143,7 @@ public class Fireball : MonoBehaviour
                     
                     if(targetHP.currentHP <= 0f)
                     {
-                        TrickManager.Instance.AddTrick("Kill");
+                        TrickManager.Instance.Kill();
                     }
                 }
             }
@@ -166,12 +166,12 @@ public class Fireball : MonoBehaviour
 
                 if (pc.CanPogo && impactAngle < 40f)
                 {
-                    TrickManager.Instance.AddTrick("Pogo");
+                    TrickManager.Instance.Pogo();
                 }
 
                 if(pc.CanPogo && impactAngle >= 40f && !direct)
                 {
-                    if(!pc.surfing) TrickManager.Instance.AddTrick("Wall");
+                    if(!pc.surfing) TrickManager.Instance.Wall();
                 }
 
                 if(pc.StartSyncTimer)

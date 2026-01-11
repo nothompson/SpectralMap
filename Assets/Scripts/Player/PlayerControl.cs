@@ -247,7 +247,7 @@ public class PlayerControl : MonoBehaviour, IKnockback
 
         if (grounded)
         {
-            groundMove();
+            Debug.Log("ballsack");
         }
         else if (!grounded)
         {
@@ -409,25 +409,6 @@ public class PlayerControl : MonoBehaviour, IKnockback
 
         playerVelocity.y += gravity * Time.deltaTime;
 
-    }
-
-    public void groundMove()
-    {
-        applyFriction(1f);
-
-        playerVelocity = MovementFunctions.GroundMovement(
-            playerVelocity,
-            transform,
-            fmove, smove,
-            moveSpeed,
-            runAcceleration
-        );
-
-        // if (wishJump)
-        // {
-        //     playerVelocity.y = jumpHeight;
-        //     wishJump = false;
-        // }
     }
 
     public void applyFriction(float t)

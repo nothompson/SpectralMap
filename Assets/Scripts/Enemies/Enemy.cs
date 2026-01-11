@@ -94,6 +94,8 @@ public class Enemy : MonoBehaviour, IKnockback
     float initSpeed;
     float airSpeed;
 
+    Vector3 groundNormal;
+
     //audio triggers
 
 
@@ -330,7 +332,7 @@ public class Enemy : MonoBehaviour, IKnockback
             groundMask,
             ref enemyVelocity,
             ref groundTimer,
-            coyoteTime
+            coyoteTime, ref groundNormal
         );
         reset = MovementFunctions.ResetCheck(
             GroundCheck,
