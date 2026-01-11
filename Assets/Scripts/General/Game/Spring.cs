@@ -6,7 +6,7 @@ public class Spring : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
-    public PlayerControl pc;
+    public PlayerControlRigid pc;
 
     [Header("Params")]
     public float k = 0.1f;
@@ -18,7 +18,7 @@ public class Spring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pc = player.GetComponent<PlayerControl>();
+        pc = player.GetComponent<PlayerControlRigid>();
     }
 
     // Update is called once per frame

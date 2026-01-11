@@ -4047,8 +4047,8 @@ MonoBehaviour:
   surfing: 0
   surfingLastFrame: 0
   StepHeight: 0.1
-  SurfRadius: 0.5
-  SurfDistance: 0.9
+  SurfRadius: 0.22
+  SurfDistance: 0.5
   reset: 0
   surfCast: 0
   stepping: 0
@@ -27641,6 +27641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3644955440859295155, guid: 9e3bb14aa337941468c91d20f9efda21, type: 3}
+      propertyPath: playercontrol
+      value: 
+      objectReference: {fileID: 222188155}
     - target: {fileID: 9098805132870037206, guid: 9e3bb14aa337941468c91d20f9efda21, type: 3}
       propertyPath: m_Name
       value: TrickManager

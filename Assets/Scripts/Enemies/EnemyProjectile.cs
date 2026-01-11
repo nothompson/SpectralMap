@@ -6,7 +6,7 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
 {
     [Header("References")]
     public GameObject player;
-    public PlayerControl pc;
+    public PlayerControlRigid pc;
 
     public GameObject enemy;
     public HP playerHealth;
@@ -40,7 +40,7 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
         if (other.gameObject.layer == 3 && other.transform.parent != null)
         {
             player = other.transform.parent.gameObject;
-            pc = other.GetComponentInParent<PlayerControl>();
+            pc = other.GetComponentInParent<PlayerControlRigid>();
             playerHealth = other.GetComponentInParent<HP>();
 
             collided = true;
@@ -98,7 +98,7 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
         Destroy(gameObject, autoTimer);
     }
 
-    public void addKnockback(Vector3 origin)
+    public void AddKnockback(Vector3 origin)
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

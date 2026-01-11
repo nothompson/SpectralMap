@@ -71,6 +71,7 @@ public class PlayerKeyBinds : MonoBehaviour
         if (!context.performed) return;
         
         checkpoint.Reset();
+        TrickManager.Instance.ResetCombo();
 
     }
 

@@ -57,6 +57,7 @@ public class TrickManager : MonoBehaviour
 
     public float pps = 50f;
     private float accumulatedPoints = 0f;
+    public float speed = 0f;
     public enum TrickType{
             rocketjump,
             pogo,
@@ -232,13 +233,14 @@ public class TrickManager : MonoBehaviour
             StopCoroutine(trickAnimation);
             trickText.rectTransform.localScale = trickTextInitSize;
         }
+
+        if(!surfing) StartBoredom();
+
         trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
-        if(!surfing) RestartBoredom();
     }
 
-    void RestartBoredom()
+    void StartBoredom()
     {
-        if(surfing) return;
         if(BoredTimer != null)
         {
             StopCoroutine(BoredTimer);
@@ -284,6 +286,8 @@ public class TrickManager : MonoBehaviour
 
     public IEnumerator CompleteCombo()
     {
+        if (surfing) yield break;
+
         completed = true;
 
         if(ComboTimer != null)
@@ -340,7 +344,7 @@ public class TrickManager : MonoBehaviour
             yield return null;
         }
 
-        if (comboTimerActive)
+        if (comboTimerActive && !surfing)
         {
             StartCoroutine(CompleteCombo());
         }
@@ -352,6 +356,7 @@ public class TrickManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        active = null;
         currentTricks.Clear();
         TrickText.input = string.Empty;
         TrickText.Refresh();
@@ -360,8 +365,6 @@ public class TrickManager : MonoBehaviour
         Score = 0;
         TrickCount = 0;
         accumulatedPoints = 0f;
-        if(surfing) surfing = false;
-        
     }
 
     public void RocketJump()
@@ -418,13 +421,22 @@ public class TrickManager : MonoBehaviour
 
     public void Update()
     {
+        
         if(PauseManager.Instance.paused) return;
 
         int points;
 
         if (surfing && active != null)
         {
-            accumulatedPoints += pps * Time.deltaTime;
+
+            if(ComboTimer != null)
+            {
+                StopCoroutine(ComboTimer);
+                ComboTimer = null;
+                comboTimerActive = false;
+            }
+
+            accumulatedPoints += (pps * speed) * Time.deltaTime;
 
             points = Mathf.FloorToInt(accumulatedPoints);
             if (points > 0)
@@ -446,20 +458,36 @@ public class TrickManager : MonoBehaviour
     public void StartSurfing()
     {
         if(!surfing){
-            bool last = currentTricks.Count > 0 && currentTricks[currentTricks.Count - 1].Type == TrickType.surfing;
 
-            if (last)
+             if(ComboTimer != null)
             {
-                active = currentTricks[currentTricks.Count - 1];
-                surfing = true;
+                StopCoroutine(ComboTimer);
+                ComboTimer = null;
+                comboTimerActive = false;
             }
-            else
+
+            if(scoreAnimation != null)
             {
+                StopCoroutine(scoreAnimation);
+                scoreText.rectTransform.localScale = scoreTextInitSize;
+            }
+
+            StartBoredom();
+
+            // bool last = currentTricks.Count > 0 && currentTricks[currentTricks.Count - 1].Type == TrickType.surfing;
+
+            // if (last)
+            // {
+            //     active = currentTricks[currentTricks.Count - 1];
+            //     surfing = true;
+            // }
+            // else
+            // {
                 Trick trick = new Trick(TrickType.surfing);
                 AddTrick(trick);
                 active = trick;
                 surfing = true;
-            }
+            // }
         }
     }
 
@@ -470,7 +498,7 @@ public class TrickManager : MonoBehaviour
             surfing = false;
             accumulatedPoints = 0f;
 
-            RestartBoredom();
+            StartBoredom();
         }
     }
 

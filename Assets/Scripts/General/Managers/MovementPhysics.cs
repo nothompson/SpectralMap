@@ -122,8 +122,11 @@
 
                 Vector3 wishDir = new Vector3(smove, 0, fmove);
                 wishDir = main.TransformDirection(wishDir);
-                wishDir = Vector3.ProjectOnPlane(wishDir, groundNormal).normalized;
-
+                if(velocity.y <= 0.1f)
+                {
+                    wishDir = Vector3.ProjectOnPlane(wishDir, groundNormal).normalized;
+                }
+    
                 float wishSpeed = wishDir.magnitude;
                 wishSpeed *= speed;
 
@@ -144,7 +147,7 @@
                 LayerMask GroundMask,
                 ref Vector3 velocity,
                 ref float groundTimer,
-                float coyoteTime, ref Vector3 groundNormal
+                float coyoteTime, ref Vector3 groundNormal, out RaycastHit groundhit
                 )
             {
 
@@ -156,7 +159,7 @@
                 //raycast to find normals of surface
                 //in order, 1. check origin point of ray, 2. choose which component of vector to test, 3. out will be filled with data of raycast if hit (how we get normals)
                 //4. maximum distance of ray, and 5. what to check ray against
-                bool rayGrounded = Physics.Raycast(GroundCheck.position, Vector3.down, out RaycastHit hit, GroundDistance, GroundMask);
+                bool rayGrounded = Physics.Raycast(GroundCheck.position, Vector3.down, out groundhit, GroundDistance, GroundMask);
 
                 float slopeAngle = 0f;
 
@@ -164,21 +167,23 @@
                 if (rayGrounded)
                 {
                     //if Raycast hits we can get normal, otherwise just assume its flat
-                    slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-                    if (slopeAngle <= SlopeLimit)
+                    slopeAngle = Vector3.Angle(groundhit.normal, Vector3.up);
+                    if (slopeAngle <= SlopeLimit && !CanSurf(groundhit))
                     {
-                        groundNormal = hit.normal;
+                        groundNormal = groundhit.normal;
                     }
                 }
 
-                bool ground = (sphereGrounded || rayGrounded) && slopeAngle <= SlopeLimit;
+                bool ground = (sphereGrounded || rayGrounded) && slopeAngle <= SlopeLimit && !CanSurf(groundhit);
 
                 if (ground)
                 {
-                    grounded = true;
-
-                    //"coyote time" allows a buffer period after leaving collider to still jump
-                    groundTimer = coyoteTime;
+                    if (!CanSurf(groundhit))
+                    {
+                        grounded = true;
+                        //"coyote time" allows a buffer period after leaving collider to still jump
+                        groundTimer = coyoteTime;
+                    }
                 }
                 else
                 {
@@ -205,7 +210,7 @@
             public static bool CanSurf(RaycastHit hit)
             {
                     float upDot = Vector3.Dot(hit.normal, Vector3.up);
-                    return upDot < 0.9f && upDot > 0.05f;
+                    return upDot < 0.75f && upDot > 0.1f;
             }
 
             public static void ClipVelocity(Vector3 velocity, Vector3 normal, ref Vector3 clipped, float overbounce = 1f)
@@ -315,8 +320,14 @@
                     }
                     else
                     {
-
-                        velocity *= 0.5f;
+                            if (!grounded)
+                            {
+                                velocity = Vector3.ProjectOnPlane(velocity, planes[0]);
+                            }
+                            else
+                            {
+                                velocity *= 0.5f;   
+                            }
                         // velocity = Vector3.zero;
                     }
                     break;

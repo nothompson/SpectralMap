@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IKnockback
 {
-    void addKnockback(Vector3 force);
+    void AddKnockback(Vector3 force);
 }

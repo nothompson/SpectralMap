@@ -332,7 +332,7 @@ public class Enemy : MonoBehaviour, IKnockback
             groundMask,
             ref enemyVelocity,
             ref groundTimer,
-            coyoteTime, ref groundNormal
+            coyoteTime, ref groundNormal, out RaycastHit groundhit
         );
         reset = MovementFunctions.ResetCheck(
             GroundCheck,
@@ -346,7 +346,7 @@ public class Enemy : MonoBehaviour, IKnockback
         }
     }
 
-    public void addKnockback(Vector3 force)
+    public void AddKnockback(Vector3 force)
     {
         impact += force;
     }

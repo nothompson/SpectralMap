@@ -47,7 +47,7 @@ public class Windblast : MonoBehaviour
 
                     force.y *= 0.15f;
 
-                    knockback.addKnockback(force);
+                    knockback.AddKnockback(force);
                 }
             }
 
@@ -58,7 +58,7 @@ public class Windblast : MonoBehaviour
                 if (knockback != null)
                 {
 
-                    knockback.addKnockback(attackPoint.position);
+                    knockback.AddKnockback(attackPoint.position);
                 }
             }
 

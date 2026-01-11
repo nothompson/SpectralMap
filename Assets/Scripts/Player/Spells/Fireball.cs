@@ -125,12 +125,14 @@ public class Fireball : MonoBehaviour
                     }
                     else
                     {
+                        e.grounded = false;
                         targetHP.Damage(damage);
                         impact.y *= 2f;
                         if (direct)
                         {
                             TrickManager.Instance.Direct();
                         }
+
                     }
 
                     if (!e.engage)
@@ -149,12 +151,13 @@ public class Fireball : MonoBehaviour
             }
             if (pc != null)
             {
-        
+
                 if(pc.playerVelocity.y < 0f)
                 {
                     pc.playerVelocity.y = 0f;
                 }
-                pc.playerVelocity += force;
+
+                pc.AddKnockback(force);
 
                 if (!pc.CanPogo && !pc.StartSyncTimer)
                 {
@@ -171,7 +174,7 @@ public class Fireball : MonoBehaviour
 
                 if(pc.CanPogo && impactAngle >= 40f && !direct)
                 {
-                    if(!pc.surfing) TrickManager.Instance.Wall();
+                    TrickManager.Instance.Wall();
                 }
 
                 if(pc.StartSyncTimer)

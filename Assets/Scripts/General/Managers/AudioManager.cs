@@ -60,25 +60,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        InitChecks();
-    }
-
-    private void InitChecks()
-    {
-        if(player != null)
-        {
-            StartCoroutine(CombatCheck());
-            StartCoroutine(ZoneCheck());
-        }
-    }
-
     public void RegisterPlayer(GameObject input)
     {
         player = input;
         pc = player.GetComponent<PlayerControlRigid>();
         hp = player.GetComponent<HP>();
+
+        StopAllCoroutines();
+        StartCoroutine(CombatCheck());
+        StartCoroutine(ZoneCheck());
     }
  
     public void ReInitAudio()
@@ -86,8 +76,6 @@ public class AudioManager : MonoBehaviour
         StopAllCoroutines();
 
         AssignZones();
-
-        InitChecks();
 
         ReInitParams();
     }

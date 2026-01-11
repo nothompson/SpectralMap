@@ -69,11 +69,11 @@ public class Rocket : EnemyProjectile
                 if (reflected)
                 {
 
-                    knockback.addKnockback(force);
+                    knockback.AddKnockback(force);
                     hp.Damage(dmg * 2f);
                 }
                 else
-                    knockback.addKnockback(force);
+                    knockback.AddKnockback(force);
                     hp.Damage(dmg);
             }
         }

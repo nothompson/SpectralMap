@@ -51,7 +51,7 @@ public class MeleeCollider : MonoBehaviour
         }
 
         if(control != null){
-            control.addKnockback(force);
+            control.AddKnockback(force);
         }
 
         yield return new WaitForSeconds(1.0f);
