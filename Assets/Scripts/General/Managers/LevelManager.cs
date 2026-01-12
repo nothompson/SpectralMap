@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,7 +15,7 @@ public class LevelManager: MonoBehaviour
 
     [SerializeField] private Slider _slider;
 
-    public FMODUnity.StudioEventEmitter currentTrack;
+    public FMOD.Studio.EventInstance currentTrack;
 
     public string currentScene;
 
@@ -25,10 +27,10 @@ public class LevelManager: MonoBehaviour
     public class SceneMusic
     {
         public string sceneName;
-        public FMODUnity.StudioEventEmitter sceneTrack;
+        public FMODUnity.EventReference sceneTrack;
     }
 
-    public Dictionary<string, FMODUnity.StudioEventEmitter> MusicDict;
+    public Dictionary<string, FMODUnity.EventReference> MusicDict;
 
     void Awake()
     {
@@ -37,10 +39,10 @@ public class LevelManager: MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            MusicDict = new Dictionary<string, FMODUnity.StudioEventEmitter>();
+            MusicDict = new Dictionary<string, FMODUnity.EventReference>();
             foreach(var i in tracks)
             {
-            if(i.sceneTrack != null)
+            if(!i.sceneTrack.IsNull)
             {
                 MusicDict[i.sceneName] = i.sceneTrack;
             }
@@ -55,6 +57,12 @@ public class LevelManager: MonoBehaviour
     void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
+        StartCoroutine(Setup());
+    }
+    public IEnumerator Setup()
+    {
+        if(AudioManager.Instance != null) yield return StartCoroutine(AudioManager.Instance.Assign());
+
         PlayTrack(currentScene);
     }
 
@@ -75,18 +83,21 @@ public class LevelManager: MonoBehaviour
 
     public IEnumerator LoadMusic(string sceneName)
     {
-        if(currentTrack != null && currentTrack.IsPlaying())
+ 
+        if (currentTrack.isValid())
         {
-            var eventInstance = currentTrack.EventInstance;
-            if (eventInstance.isValid())
-            {
-                eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            }
+            currentTrack.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
         yield return StartCoroutine(Load(sceneName));
 
-        AudioManager.Instance.pause = 0f;
+        yield return null;
+
+        if(AudioManager.Instance != null){
+            AudioManager.Instance.pause = 0f;
+            yield return StartCoroutine(AudioManager.Instance.Init());
+        }
+
 
         PlayTrack(sceneName);
 
@@ -94,22 +105,33 @@ public class LevelManager: MonoBehaviour
 
     private void PlayTrack(string sceneName)
     {
-        if(currentTrack != null)
+        if (currentTrack.isValid())
         {
-            currentTrack.Stop();
-            currentTrack = null;
+            currentTrack.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            currentTrack.release();
         }
 
-        if(MusicDict.TryGetValue(sceneName, out FMODUnity.StudioEventEmitter track))
+        if(MusicDict.TryGetValue(sceneName, out FMODUnity.EventReference track))
         {
-            if(track != null)
+            if(!track.IsNull)
             {
-                currentTrack = track;
+
+
+                currentTrack = FMODUnity.RuntimeManager.CreateInstance(track);
+
+                currentTrack.setCallback(
+                    AudioManager.MusicCallback, 
+                    FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | 
+                    FMOD.Studio.EVENT_CALLBACK_TYPE.STARTED |
+                    FMOD.Studio.EVENT_CALLBACK_TYPE.RESTARTED
+                );
+
                 if(AudioManager.Instance != null)
                 {
-                    AudioManager.Instance.ReInitAudio();
+                    AudioManager.musicInfos[currentTrack] = new AudioManager.MusicInfo();
                 }
-                currentTrack.Play();
+                
+                currentTrack.start();
             }
         }
         currentScene = sceneName;
@@ -141,4 +163,30 @@ public class LevelManager: MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    void OnDestroy()
+    {
+        if (currentTrack.isValid())
+        {
+            AudioManager.musicInfos.Remove(currentTrack);
+            currentTrack.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            currentTrack.release();
+        }
+    }
+
+        void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AudioManager.Instance.ReInitAudio();
+    }
 }
+

@@ -314,9 +314,9 @@
 
                 Vector2 normalized = new Vector2(xnorm,ynorm);
 
-                LevelManager.Instance.currentTrack.SetParameter("xPos", normalized.x);
-                LevelManager.Instance.currentTrack.SetParameter("yPos", normalized.y);
-                LevelManager.Instance.currentTrack.SetParameter("WetDryMusic", deltaSmoothed);
+                LevelManager.Instance.currentTrack.setParameterByName("xPos", normalized.x);
+                LevelManager.Instance.currentTrack.setParameterByName("yPos", normalized.y);
+                LevelManager.Instance.currentTrack.setParameterByName("WetDryMusic", deltaSmoothed);
 
                 UpdateJitter(deltaSmoothed);
 

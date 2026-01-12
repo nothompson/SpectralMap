@@ -168,12 +168,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
     }
 
-    void OnDestroy()
-    {
-        
-        InputManager.Instance.inputs.Player.Jump.performed -= OnJumpPerformed;
-        InputManager.Instance.inputs.Player.Jump.canceled -= OnJumpCanceled;
-    }
+    // void OnDestroy()
+    // {
+    //     InputManager.Instance.inputs.Player.Jump.performed -= OnJumpPerformed;
+    //     InputManager.Instance.inputs.Player.Jump.canceled -= OnJumpCanceled;
+    // }
 
     void SetResting()
     {

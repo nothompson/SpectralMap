@@ -43,6 +43,8 @@ public class Checkpoint : MonoBehaviour
 
     public void Reset()
     {
+        TrickManager.Instance.ResetCombo();
+        
         GibsManager.Instance.Gib(player.transform.position, Random.Range(4,10));
 
         Rigidbody rb = playerControl.rb;

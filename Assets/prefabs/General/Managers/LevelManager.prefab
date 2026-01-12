@@ -211,8 +211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6318267468739494628}
   - component: {fileID: 6318716185237785389}
-  - component: {fileID: 8494397196681818936}
-  - component: {fileID: 9173564496693903306}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -250,75 +248,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loaderCanvas: {fileID: 6318267469105822440}
   _slider: {fileID: 5408331864206613346}
-  currentTrack: {fileID: 0}
   currentScene: 
   tracks:
   - sceneName: MainMenu
-    sceneTrack: {fileID: 8494397196681818936}
+    sceneTrack:
+      Guid:
+        Data1: -1433041408
+        Data2: 1238572590
+        Data3: -2095339124
+        Data4: -1835662977
+      Path: event:/Music/MenuScreen
   - sceneName: SampleScene
-    sceneTrack: {fileID: 9173564496693903306}
---- !u!114 &8494397196681818936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6318267468739494627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1433041408
-      Data2: 1238572590
-      Data3: -2095339124
-      Data4: -1835662977
-    Path: event:/Music/MenuScreen
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &9173564496693903306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6318267468739494627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -101544582
-      Data2: 1233371673
-      Data3: 939843507
-      Data4: 1117318017
-    Path: event:/Music/Track2
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+    sceneTrack:
+      Guid:
+        Data1: -101544582
+        Data2: 1233371673
+        Data3: 939843507
+        Data4: 1117318017
+      Path: event:/Music/Track2
 --- !u!1 &6318267468848847075
 GameObject:
   m_ObjectHideFlags: 0

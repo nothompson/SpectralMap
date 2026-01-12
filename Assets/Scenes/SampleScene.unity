@@ -4036,19 +4036,21 @@ MonoBehaviour:
   pogoTime: 0.5
   syncTime: 0.1
   confused: 0
-  autojump: 1
+  autojumpInput: 0
+  checkjump: 0
   GroundDistance: 0.25
   CapsuleRadius: 0.2
   coyoteTime: 0.25
   surfBoost: 10
   surfBoostThreshold: 25
+  surfingThreshold: 15
   grounded: 0
   groundedLastFrame: 0
   surfing: 0
   surfingLastFrame: 0
   StepHeight: 0.1
   SurfRadius: 0.22
-  SurfDistance: 0.5
+  SurfDistance: 0.75
   reset: 0
   surfCast: 0
   stepping: 0
