@@ -58,6 +58,9 @@ public class TrickManager : MonoBehaviour
     public float pps = 50f;
     private float accumulatedPoints = 0f;
     public float speed = 0f;
+
+    public GameObject Clock;
+
     public enum TrickType{
             rocketjump,
             pogo,
@@ -327,6 +330,7 @@ public class TrickManager : MonoBehaviour
         if(Score > 0 && !completed && !comboTimerActive)
         {
             ComboTimer = StartCoroutine(CompleteComboTimer());
+            Clock.SetActive(true);
         }
     }
 
@@ -347,6 +351,7 @@ public class TrickManager : MonoBehaviour
         if (comboTimerActive && !surfing)
         {
             StartCoroutine(CompleteCombo());
+            Clock.SetActive(false);
         }
 
         comboTimerActive = false;

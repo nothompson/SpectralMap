@@ -17,11 +17,6 @@ public class MagicManagement : MonoBehaviour
 
     public bool justUsed = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        magicRegen();
-    }
     public void magicRegen()
     {
         if (justUsed && regenTimer > 0)

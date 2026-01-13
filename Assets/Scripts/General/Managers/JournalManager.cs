@@ -90,7 +90,7 @@ public class JournalManager : MonoBehaviour
 
     public void PreviousPage()
     {
-        if(leftSide.pageToDisplay < 1)
+        if(leftSide.pageToDisplay <= 1)
         {
             leftSide.pageToDisplay = 1;
             return;

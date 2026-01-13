@@ -14,6 +14,10 @@ public class PlayerKeyBinds : MonoBehaviour
 
     public GameObject PauseMenu;
 
+    private bool reloading = false;
+
+    [SerializeField] ManaUI mana;
+
     void Start()
     {
         playerControl = player.GetComponent<PlayerControlRigid>();
@@ -21,6 +25,8 @@ public class PlayerKeyBinds : MonoBehaviour
 
         InputManager.Instance.inputs.Player.Reset.performed += OnReset;
         InputManager.Instance.inputs.Player.Save.performed += OnSave;
+        InputManager.Instance.inputs.Player.Reload.performed += OnReload;
+        InputManager.Instance.inputs.Player.Fire.performed += OnFire;
     }
 
     // Update is called once per frame
@@ -34,6 +40,8 @@ public class PlayerKeyBinds : MonoBehaviour
         if(InputManager.Instance.inputs!= null){
             InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
             InputManager.Instance.inputs.Player.Save.performed -= OnSave;
+             InputManager.Instance.inputs.Player.Reload.performed -= OnReload;
+              InputManager.Instance.inputs.Player.Fire.performed -= OnFire;
         }
     }
     
@@ -42,7 +50,7 @@ public class PlayerKeyBinds : MonoBehaviour
         //debuging/creative mode
         // bool forceReset = InputManager.Instance.inputs.Player.Reset.triggered;
 
-        bool forceRefill = InputManager.Instance.inputs.Player.Reload.triggered;
+        // bool forceRefill = InputManager.Instance.inputs.Player.Reload.triggered;
 
         bool pause = InputManager.Instance.inputs.Player.Menu.triggered;
 
@@ -60,10 +68,10 @@ public class PlayerKeyBinds : MonoBehaviour
             }
         }
 
-        if (forceRefill)
-        {
-            playerMagic.magicPoints = playerMagic.maximumMagic;
-        }
+        // if (forceRefill)
+        // {
+        //     playerMagic.magicPoints = playerMagic.maximumMagic;
+        // }
     }
 
     public void OnReset(InputAction.CallbackContext context)
@@ -81,5 +89,59 @@ public class PlayerKeyBinds : MonoBehaviour
         checkpoint.updateCheckpoint(player.transform);
 
     }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if(!context.performed) return;
+        if (!HUDManager.Instance.reloading)
+        {
+            HUDManager.Instance.StartReload();
+            HUDManager.Instance.reloading = true;
+        }
+        else
+        {
+            HUDManager.Instance.StopReload();
+            HUDManager.Instance.reloading = false;   
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        
+        if(!HUDManager.Instance.reloading) return;
+
+        bool onbeat = AudioManager.Instance.IsOnBeat();
+
+        if (onbeat)
+        {
+            playerMagic.magicPoints += 25f;
+            if(playerMagic.magicPoints >= playerMagic.maximumMagic)
+            {
+                playerMagic.magicPoints = playerMagic.maximumMagic;
+            }
+        }
+        else
+        {
+            mana.Error();
+            playerMagic.magicPoints -= 5f;
+            if(playerMagic.magicPoints <= 0f)
+            {
+                playerMagic.magicPoints = 0f;
+            }
+        }
+
+    }
+
+        //     bool onbeat = AudioManager.Instance.IsOnBeat();
+
+        // if (onbeat)
+        // {
+        //     Debug.Log("on beat!");  
+        // }
+        // else
+        // {
+        //     Debug.Log("off beat :(");
+        // }
 
 }

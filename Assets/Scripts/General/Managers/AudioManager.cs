@@ -40,6 +40,16 @@
 
         public FMOD.Studio.EventInstance BagInstance;
 
+        [Header("Rhythm")]
+        public bool InBeatWindow;
+        public float BeatWindowSize;
+        public float BeatDur;
+        private float beatTimer = 0f;
+
+        private float OpeningWindow;
+        private float ClosingWindow; 
+        private float Buffer = 0.002f;
+
         public class MusicInfo
         {
             public int bar;
@@ -75,6 +85,15 @@
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void Start()
+        {
+            OnBeat += BeatWindow;
+        }
+        private void OnDestroy()
+        {
+            OnBeat -= BeatWindow;
         }
 
         public void RegisterPlayer(GameObject input)
@@ -128,11 +147,6 @@
         {
             FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instanceptr);
 
-                if(type == FMOD.Studio.EVENT_CALLBACK_TYPE.STARTED || type == FMOD.Studio.EVENT_CALLBACK_TYPE.RESTARTED)
-                {
-                    Debug.Log($"Music {type}");
-                }
-
             if(type == FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT)
             {
 
@@ -144,8 +158,6 @@
                 info.beat = mus.beat;
                 info.tempo = mus.tempo;
                 info.position = mus.position;
-
-                Debug.Log($"Beat data: Bar {mus.bar}, Beat {mus.beat}");
 
                 if(Instance != null)
                 {
@@ -165,16 +177,51 @@
             }
         }
 
+        void BeatWindow(int bar, int beat)
+        {
+            MusicInfo info = GetMusicInfo();
+            if(info != null && info.tempo > 0)
+            {
+                //how many beats per second
+                BeatDur = 60f / info.tempo;
+            }
+
+            OpeningWindow = BeatWindowSize * 0.5f;
+            ClosingWindow = BeatWindowSize * 0.5f;
+
+            beatTimer = Time.unscaledTime;
+        }
+
+        void CheckBeatWindow()
+        {
+            if(beatTimer > 0f && BeatDur > 0f)
+            {
+                float LastBeat = Time.unscaledTime - beatTimer;
+                float NextBeat = BeatDur - LastBeat;
+
+                bool close = LastBeat <= ClosingWindow + Buffer;
+                bool open = NextBeat <= OpeningWindow + Buffer && NextBeat > -1f * Buffer;
+
+                InBeatWindow = close || open;
+            }
+            else
+            {
+                InBeatWindow = false;
+            }
+        }
+
+        public bool IsOnBeat()
+        {
+            return InBeatWindow;
+
+        }
+
 
         void Update()
         {
             ProcessTempo();
 
-            LevelManager.Instance.currentTrack.getPlaybackState(out FMOD.Studio.PLAYBACK_STATE state);
-                if(state == FMOD.Studio.PLAYBACK_STATE.STOPPED)
-                {
-                    Debug.LogWarning("Music track stopped!");
-                }
+            CheckBeatWindow();
 
             ZoneUpdate();
             DrumAndBass();
@@ -196,6 +243,11 @@
                     if(beat == 1)
                     {
                         OnBar?.Invoke(bar);
+                    }
+
+                    if(HUDManager.Instance.reloading && HUDManager.Instance.ReloadSprite != null)
+                    {
+                        StartCoroutine(HUDManager.Instance.Pulse());
                     }
                 }
             }

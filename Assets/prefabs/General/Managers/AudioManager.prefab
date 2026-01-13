@@ -59,4 +59,7 @@ MonoBehaviour:
   musicZoneParam: []
   musicZoneFlag: 
   sounds: {fileID: 11400000, guid: 3a2606b9ebd38ce4184c062532a0b377, type: 2}
+  InBeatWindow: 0
+  BeatWindowSize: 0.25
+  BeatDur: 0
   pause: 0

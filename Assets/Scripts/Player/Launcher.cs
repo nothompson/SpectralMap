@@ -128,13 +128,13 @@ public class Launcher : MonoBehaviour
 
         if (shootTimer <= 0f && shooting && playerMagic.magicPoints >= costToShoot)
         {
-            Shoot();
+            if(!HUDManager.Instance.reloading) Shoot();
         }
 
         punching = InputManager.Instance.inputs.Player.AltFire.triggered;
         if (punching)
-        {
-            Punch();
+        { 
+            if(!HUDManager.Instance.reloading) Punch();
         }
 
         // if (allowInvoke)
@@ -207,11 +207,6 @@ public class Launcher : MonoBehaviour
         playerMagic.justUsed = true;
         playerMagic.regenTimer = playerMagic.magicBufferTime;
 
-        // if (allowInvoke)
-        // {
-        //     Invoke("ResetShot", firingSpeed);
-        //     allowInvoke = false;
-        // }
     }
 
     private void Punch()
@@ -262,11 +257,11 @@ public class Launcher : MonoBehaviour
         SlimehookInstance.GetComponent<Slimehook>().player = player.transform;
     }
 
-    private void ResetShot()
-    {
-        rightHandAnim.SetTrigger("Ready");
-    }
+    //
 
+
+
+    // neither of these are being used
     public IEnumerator Recoil()
     {
         float dur = firingSpeed;
@@ -299,6 +294,5 @@ public class Launcher : MonoBehaviour
 
             blastCanvas.SetActive(false);
         }
-        
     }
 }
