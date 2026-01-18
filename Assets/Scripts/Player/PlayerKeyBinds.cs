@@ -120,15 +120,17 @@ public class PlayerKeyBinds : MonoBehaviour
             {
                 playerMagic.magicPoints = playerMagic.maximumMagic;
             }
+            HUDManager.Instance.StartSuccess();
         }
         else
         {
             mana.Error();
-            playerMagic.magicPoints -= 5f;
+            playerMagic.magicPoints -= 25f;
             if(playerMagic.magicPoints <= 0f)
             {
                 playerMagic.magicPoints = 0f;
             }
+            HUDManager.Instance.StartFailure();
         }
 
     }

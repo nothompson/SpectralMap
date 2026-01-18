@@ -21,6 +21,7 @@ public class SpriteAnimate : MonoBehaviour
     private float _timer;
 
     public bool isPlaying = true;
+    public bool direction = true;
 
     public Coroutine _current; 
 
@@ -43,25 +44,30 @@ public class SpriteAnimate : MonoBehaviour
         if (worldSpace)
         {
             if(sprite!= null)
-                Animate(worldSpace);
+                Animate(worldSpace, direction);
         }
         else
         {
             if(image !=null)
-                Animate(worldSpace);
+                Animate(worldSpace, direction);
         }
     }
 
-    void Animate(bool world)
+    void Animate(bool world, bool increment = true)
     {
         if(isPlaying){
+        
+        int dir = increment ? 1 : -1;
 
         _timer+= Time.unscaledDeltaTime;
         float frameDur = 1f / fps;
         if(_timer >= frameDur)
         {
             _timer -= frameDur;
-            index = (index + 1) % length;
+            index += dir;
+
+            if(index >= length) index = 0;
+            else if(index < 0) index = length - 1;  
                 if (world)
                 {
                     sprite.sprite = sprites[index];

@@ -163,6 +163,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         rb.freezeRotation = true;
 
         AudioManager.Instance.RegisterPlayer(gameObject);
+        TrickManager.Instance.RegisterPlayer(gameObject);
 
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
@@ -484,6 +485,15 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         playerSpeed = rb.linearVelocity.magnitude;
         TrickManager.Instance.speed = playerSpeed;
+
+        if(!grounded && playerSpeed > 25f && playerVelocity.y < -5f)
+        {
+            TrickManager.Instance.StartFalling();
+        }
+        else
+        {
+            TrickManager.Instance.StopFalling();
+        }
     }
 
     void GroundedCheck()
@@ -581,6 +591,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 StartCoroutine(bounce());
                 AudioManager.Instance.Land();
                 didJump = false;
+                TrickManager.Instance.StopFalling();
             }
         }
     }

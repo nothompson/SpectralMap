@@ -1,0 +1,1811 @@
+fileFormatVersion: 2
+guid: e1c7ab79df1a607439c0da4236ee092e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Strata_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b66012cd728374ba95119742c14edb
+      internalID: -1400959707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_1
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4546a19cd950c2b4ebaee9104147c410
+      internalID: -612052885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_2
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ef7be66be21034aa7e6b8fb311b387
+      internalID: -102187538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_3
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f07560d03c3eb5449df036f3725c7e9
+      internalID: 490917257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_4
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71995aa6c9af1394aa3f5ac66d411f51
+      internalID: 1247161403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_5
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b0c8ef2354c2e4a941169f8ca6d45b
+      internalID: 1599052322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_6
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b46e3db58808345af5460ff197cafb
+      internalID: -1640221468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_7
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6054928597853c8498f9dc0ab9cc042f
+      internalID: -666156991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_8
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 6480
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd41071e3913c4a4585d50b51f1a651c
+      internalID: -1560504780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2620720e608a3584f95c0b7c5ac9383d
+      internalID: 136981010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_10
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aca7bd8442c9fdd4193d7c290c593796
+      internalID: 41406451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_11
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d589e02adb728f4681379010fdc2082
+      internalID: -664636511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_12
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f964a47408e970843a125f2997783435
+      internalID: 616085949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_13
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13e319f3c99c6c942b12f9505da96dee
+      internalID: -813709818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_14
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3dd4f608f711143872daa02a7dc787
+      internalID: 1115970046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_15
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fde0f065a5eab74aac7f5f54961a4ad
+      internalID: 671372965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_16
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d570f264f32da448a681a5773cbfcd7
+      internalID: 206347471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_17
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 5670
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9785f80c90052834b947c8fcffd20d8e
+      internalID: 1503621252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abbae072926d7c64297c0781609cff1e
+      internalID: 1384555183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_19
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89efeb6d6986f854ab37bd9deeea6b47
+      internalID: -21008878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_20
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 037eaafd6f35e6e4ab3613194bf5afd7
+      internalID: 1349875280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_21
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d2102193c76cf64b9159a475360cdb0
+      internalID: 128883592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_22
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76618a40f8bf04946846c71a8461b40a
+      internalID: -471748366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_23
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc62e92a05ca4c44bac78b5407e84925
+      internalID: -2049656954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_24
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d63b3fb1a06182541b52bcc23c12baf7
+      internalID: 1727798493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_25
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a0207bd462792548a2a466ba752c157
+      internalID: 2016931928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_26
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 4860
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa4e4ca5ecc6364d90339f00f324e85
+      internalID: 667212415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d0f7552a98a6dd4c9733fda5448a5a1
+      internalID: 1782641374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_28
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb07eca0f9372c140b4959298b64e2bb
+      internalID: 2012945700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_29
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ca69fbe975ad14196fbf07ee3dc41c
+      internalID: -1227299425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_30
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890f4bc51fa1e7141893bccd8f2e4464
+      internalID: 2030325980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_31
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa615d404a9a7f946acd4c512d188ac0
+      internalID: 1205800218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_32
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b744ec8c1a9bf544a49dae78903a3a6
+      internalID: 517180059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_33
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f014c4410b2d504e82f1e9ec6d0ae7e
+      internalID: 1902547771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_34
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a0c784199ba194895788c2d8f52a78
+      internalID: 629186086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_35
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 4050
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d652358c7983a7d4bb52df0dc69d1179
+      internalID: -1388482955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3490767588bc4e449d6e4d7b90a0ba8
+      internalID: 1538961411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_37
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c66ae7b521763ff449fdb6081561121f
+      internalID: 2045322315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_38
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaabf9e8b11ca1f4dbc16d402de7ebf2
+      internalID: -813397098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_39
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a6f32d2e2ca7846b10b7951e7fbecb
+      internalID: -1074722972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_40
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590e6c31b6c108c47aa5e269ca0db3a8
+      internalID: 1604740541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_41
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66214f2223d280345acda97cc101a398
+      internalID: 2117588905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_42
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814c0a710bdc6204abd237e43363621e
+      internalID: -1965012967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_43
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a88985ab43436048aa0ec91206cf116
+      internalID: -658859226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_44
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 3240
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dcc15d29f4affe4a96b79ca544978d8
+      internalID: -1461533556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1188fdc61fa350c438e19855de19d245
+      internalID: -375407522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_46
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf85b2446b0a5f49912c6828174c426
+      internalID: 1927208877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_47
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee217b1618ae7449803588b7bc207da
+      internalID: -91011039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_48
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb2e30eb94023842b12996906c044b1
+      internalID: 152008018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_49
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd258d0bdd42554ba8f9afc083665f4
+      internalID: 1652358115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_50
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd58902536b6ec5449ea536c613d7440
+      internalID: -1673420690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_51
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d092fd7d157dea4d85462e7535a8e52
+      internalID: 273833309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_52
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06609c8e1e9f13f4db0ab0f2c39bf933
+      internalID: -754896052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_53
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 2430
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 429f94cc7ef849045b1505e0aedf8e73
+      internalID: -679699504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d6a6b1619bb2d4d8e166d6d0d3eaa0
+      internalID: -1294483951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_55
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c7f8689e079c5449e00c7e79012b32
+      internalID: -754831387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_56
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e84c537b0c1af748a49472d0fc027ce
+      internalID: -1859803413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_57
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d033c4a0e91f54fa5f7911e756970c
+      internalID: -901598757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_58
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c62a3a41a532547a9c0c5cd54dc6c0
+      internalID: 929747103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_59
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4adc78049c4d19948aa7ba38b0795e66
+      internalID: -1061133546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_60
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4dbbd05186f9e4ea7b800d28b5e32d
+      internalID: -1781716162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_61
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62334ab07729ba5439cfd0857d7ebee2
+      internalID: 1446786057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_62
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 1620
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728e94682ff3c88488302fa3fe73a7ce
+      internalID: 548843446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898139be5c44adf4381a702dd675ff71
+      internalID: -1566829569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_64
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c0644ea1843fc408eb0df686a10590
+      internalID: 504569498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_65
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cece0761e772f24498e5649f26d87b3
+      internalID: -27662297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_66
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 840364c9f1c9ff74e954ec082fddceea
+      internalID: -360955101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_67
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8dadbfaa0fc3784ca82e75f9cbfd0f0
+      internalID: -630157504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_68
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffde1ab4f92a4bc4e876a8ff5f6d5e67
+      internalID: 493738559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_69
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b283d9b94723f004f9e60a88e276bb53
+      internalID: 1172788782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_70
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82fa1776ffd64b046bd27b3d0ac2077c
+      internalID: 1728614329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_71
+      rect:
+        serializedVersion: 2
+        x: 4816
+        y: 810
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4bbbd7634c460948bd95365adfc8c7c
+      internalID: 2079678478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strata_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 602
+        height: 810
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13441e413c199094aa4cd65e6118fbf2
+      internalID: -905764342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d11f62351a0089549863721c4e7532bd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":602.0,"y":810.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Strata_0: -1400959707
+      Strata_1: -612052885
+      Strata_10: 41406451
+      Strata_11: -664636511
+      Strata_12: 616085949
+      Strata_13: -813709818
+      Strata_14: 1115970046
+      Strata_15: 671372965
+      Strata_16: 206347471
+      Strata_17: 1503621252
+      Strata_18: 1384555183
+      Strata_19: -21008878
+      Strata_2: -102187538
+      Strata_20: 1349875280
+      Strata_21: 128883592
+      Strata_22: -471748366
+      Strata_23: -2049656954
+      Strata_24: 1727798493
+      Strata_25: 2016931928
+      Strata_26: 667212415
+      Strata_27: 1782641374
+      Strata_28: 2012945700
+      Strata_29: -1227299425
+      Strata_3: 490917257
+      Strata_30: 2030325980
+      Strata_31: 1205800218
+      Strata_32: 517180059
+      Strata_33: 1902547771
+      Strata_34: 629186086
+      Strata_35: -1388482955
+      Strata_36: 1538961411
+      Strata_37: 2045322315
+      Strata_38: -813397098
+      Strata_39: -1074722972
+      Strata_4: 1247161403
+      Strata_40: 1604740541
+      Strata_41: 2117588905
+      Strata_42: -1965012967
+      Strata_43: -658859226
+      Strata_44: -1461533556
+      Strata_45: -375407522
+      Strata_46: 1927208877
+      Strata_47: -91011039
+      Strata_48: 152008018
+      Strata_49: 1652358115
+      Strata_5: 1599052322
+      Strata_50: -1673420690
+      Strata_51: 273833309
+      Strata_52: -754896052
+      Strata_53: -679699504
+      Strata_54: -1294483951
+      Strata_55: -754831387
+      Strata_56: -1859803413
+      Strata_57: -901598757
+      Strata_58: 929747103
+      Strata_59: -1061133546
+      Strata_6: -1640221468
+      Strata_60: -1781716162
+      Strata_61: 1446786057
+      Strata_62: 548843446
+      Strata_63: -1566829569
+      Strata_64: 504569498
+      Strata_65: -27662297
+      Strata_66: -360955101
+      Strata_67: -630157504
+      Strata_68: 493738559
+      Strata_69: 1172788782
+      Strata_7: -666156991
+      Strata_70: 1728614329
+      Strata_71: 2079678478
+      Strata_72: -905764342
+      Strata_8: -1560504780
+      Strata_9: 136981010
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

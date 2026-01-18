@@ -7,6 +7,7 @@ using TMPro;
 public class TrickManager : MonoBehaviour
 {
     public static TrickManager Instance;
+    public PlayerControlRigid pc;
 
     public Dictionary<string, int> TrickDictionary = new Dictionary<string, int>();
 
@@ -33,6 +34,8 @@ public class TrickManager : MonoBehaviour
 
     private float scoreAnimationDur = 0.66f;
 
+    private float FallingDur = 0.5f;
+
     Coroutine trickAnimation;
 
     Coroutine scoreAnimation;
@@ -48,24 +51,36 @@ public class TrickManager : MonoBehaviour
 
     Coroutine BoredTimer;
 
+    Coroutine BoredomRoutine;
+    Coroutine FallingTimerRoutine;
+
     public float boredDur = 2f;
+    public float boredCheckDur;
 
     public int maxTricks = 15;
 
     private Trick active = null;
     private bool surfing = false;   
+    private bool falling = false;   
 
     public float pps = 50f;
     private float accumulatedPoints = 0f;
     public float speed = 0f;
 
     public GameObject Clock;
+    public SpriteAnimate ClockAnimation;
+
+    public RectTransform smallHand;
+    public RectTransform bigHand;
+
+    Coroutine ClockReset;
 
     public enum TrickType{
             rocketjump,
             pogo,
             wall,
             surfing,
+            freefall,
             surfJump,
             sync,
             triSync,
@@ -141,6 +156,11 @@ public class TrickManager : MonoBehaviour
                     break;
                 case TrickType.surfing:
                     Display = "Surfing";
+                    Points = 2;
+                    Continuous = true;
+                    break;
+                case TrickType.freefall:
+                    Display = "Flying";
                     Points = 1;
                     Continuous = true;
                     break;
@@ -200,6 +220,11 @@ public class TrickManager : MonoBehaviour
 
     }
 
+    public void RegisterPlayer(GameObject player)
+    {
+        pc = player.GetComponent<PlayerControlRigid>();
+    }
+
     public void AddTrick(Trick trick)
     {
         if (completed)
@@ -237,9 +262,22 @@ public class TrickManager : MonoBehaviour
             trickText.rectTransform.localScale = trickTextInitSize;
         }
 
-        if(!surfing) StartBoredom();
+        if(ClockReset != null)
+        {
+            StopCoroutine(ClockReset);
+            ClockReset = null;
+        }
+
+        if(ClockAnimation != null)
+        {
+            ClockReset = StartCoroutine(ResetClock());
+        }
+
+        if(!surfing && !falling) StartBoredom();
 
         trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
+
+        if(trick.Type != TrickType.freefall) StopFalling();
     }
 
     void StartBoredom()
@@ -249,23 +287,118 @@ public class TrickManager : MonoBehaviour
             StopCoroutine(BoredTimer);
             BoredTimer = null;
         }
-        BoredTimer = StartCoroutine(Boredom());
+        if(BoredomRoutine != null)
+        {
+            StopCoroutine(BoredomRoutine);
+            BoredomRoutine = null;
+        }
+
+        BoredTimer = StartCoroutine(BoredomTimer());
+    }
+
+    IEnumerator BoredomTimer()
+    {
+        float t = 0f;
+
+        while(t < boredCheckDur)
+        {
+            if(!PauseManager.Instance.paused) t += Time.deltaTime;
+            yield return null;
+        }
+
+        BoredomRoutine = StartCoroutine(Boredom());
     }
 
     IEnumerator Boredom()
     {
         float t = 0f;
 
+        Clock.SetActive(true);
+
+        int frames = ClockAnimation.sprites.Length;
+        if(frames == 0)
+        {
+            StartComboTimer();
+            yield break;
+        }
+     
+        ClockAnimation.fps = Mathf.FloorToInt(ClockAnimation.sprites.Length / boredDur);
+        ClockAnimation.direction = false;
+
         while(t < boredDur)
         {
-            if (!PauseManager.Instance.paused && !surfing)
+            if (!PauseManager.Instance.paused && !surfing && !falling && speed < 35f)
             {
                 t += Time.deltaTime;
+                float time = Mathf.Clamp01(t / boredDur);
+                float f = (1f - time) * (frames - 1);
+                int index = Mathf.RoundToInt(f);
+
+                index = Mathf.Clamp(index, 0, frames - 1);
+
+                ClockAnimation.index = index;
+                ClockAnimation.image.sprite = ClockAnimation.sprites[index];
+
+                float bigSpeed = t * -100f;
+                float smallSpeed = t * -300f;
+
+                var smallRot = smallHand.localEulerAngles;
+                smallRot.z = smallSpeed;
+                smallHand.localEulerAngles = smallRot;
+
+                var bigRot = bigHand.localEulerAngles;
+                bigRot.z = bigSpeed;
+                bigHand.localEulerAngles = bigRot;
+
             }
         yield return null;
         }
 
+        ClockAnimation.index = 0;
+        ClockAnimation.image.sprite = ClockAnimation.sprites[0];
+
         StartComboTimer();
+
+        BoredomRoutine = null;
+    }
+
+    IEnumerator ResetClock()
+    {
+        int frames = ClockAnimation.sprites.Length;
+        if(frames == 0) yield break;
+
+        int start = Mathf.Clamp(ClockAnimation.index, 0, frames - 1);
+        int target = frames - 1;
+        float t = 0f;
+        float dur = boredCheckDur;
+        Vector3 startingRotSmall = smallHand.localEulerAngles;
+        Vector3 startingRotBig = bigHand.localEulerAngles;
+
+        while(t < dur)
+        {
+            t += Time.deltaTime;
+            float time = Mathf.Clamp01(t / dur);
+            float f = Mathf.Lerp(start, target, time);
+            int index = Mathf.RoundToInt(f);
+            index = Mathf.Clamp(index, 0, frames - 1);
+            ClockAnimation.index = index;
+            ClockAnimation.image.sprite = ClockAnimation.sprites[index];
+
+    
+                var smallRot = smallHand.localEulerAngles;
+                smallRot.z = Mathf.Lerp(startingRotSmall.z, 0, time);
+                smallHand.localEulerAngles = smallRot;
+
+                var bigRot = bigHand.localEulerAngles;
+                bigRot.z = Mathf.Lerp(startingRotBig.z, 0, time);
+                bigHand.localEulerAngles = bigRot;
+
+            yield return null;
+        }
+        ClockAnimation.index = target;
+        ClockAnimation.image.sprite = ClockAnimation.sprites[target];
+        ClockReset = null;
+        Clock.SetActive(false);
     }
 
     IEnumerator AnimateText(RectTransform rect, Vector3 initSize, float duration, AnimationCurve curve)
@@ -329,8 +462,13 @@ public class TrickManager : MonoBehaviour
     {
         if(Score > 0 && !completed && !comboTimerActive)
         {
+            if(ComboTimer != null)
+            {
+                StopCoroutine(ComboTimer);
+                ComboTimer = null;
+            }
             ComboTimer = StartCoroutine(CompleteComboTimer());
-            Clock.SetActive(true);
+            Clock.SetActive(false);
         }
     }
 
@@ -351,7 +489,6 @@ public class TrickManager : MonoBehaviour
         if (comboTimerActive && !surfing)
         {
             StartCoroutine(CompleteCombo());
-            Clock.SetActive(false);
         }
 
         comboTimerActive = false;
@@ -370,6 +507,9 @@ public class TrickManager : MonoBehaviour
         Score = 0;
         TrickCount = 0;
         accumulatedPoints = 0f;
+        ClockAnimation.isPlaying = false;
+        ClockAnimation.index = ClockAnimation.index = ClockAnimation.sprites.Length - 1;
+
     }
 
     public void RocketJump()
@@ -431,7 +571,7 @@ public class TrickManager : MonoBehaviour
 
         int points;
 
-        if (surfing && active != null)
+        if ((surfing || falling) && active != null)
         {
 
             if(ComboTimer != null)
@@ -501,6 +641,68 @@ public class TrickManager : MonoBehaviour
       if(surfing){
             active = null;
             surfing = false;
+            accumulatedPoints = 0f;
+
+            StartBoredom();
+        }
+    }
+
+    public void StartFalling()
+    {
+        if(!falling){
+            if(ComboTimer != null)
+            {
+                StopCoroutine(ComboTimer);
+                ComboTimer = null;
+                comboTimerActive = false;
+            }
+
+            if(scoreAnimation != null)
+            {
+                StopCoroutine(scoreAnimation);
+                scoreText.rectTransform.localScale = scoreTextInitSize;
+            }
+
+            StartFallingTimer();
+            }
+    }
+
+    void StartFallingTimer()
+    {
+        if(FallingTimerRoutine != null)
+        {
+            StopCoroutine(FallingTimerRoutine);
+            FallingTimerRoutine = null;
+        }
+        FallingTimerRoutine = StartCoroutine(FallingTimer());
+    }
+
+    IEnumerator FallingTimer()
+    {
+        falling = true;
+        float t = 0f;
+        while(t < FallingDur)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        Trick trick = new Trick(TrickType.freefall);
+        AddTrick(trick);
+        active = trick;
+        FallingTimerRoutine = null;
+    }
+
+    public void StopFalling()
+    {
+        if (falling)
+        {
+            if (FallingTimerRoutine != null)
+            {
+                StopCoroutine(FallingTimerRoutine);
+                FallingTimerRoutine = null;
+            }
+            active = null;
+            falling = false;
             accumulatedPoints = 0f;
 
             StartBoredom();
