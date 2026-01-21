@@ -189,6 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146735556279804846}
+  - component: {fileID: 3126286336106046850}
   m_Layer: 5
   m_Name: Clock
   m_TagString: Untagged
@@ -203,9 +204,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2564935457519321638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.054078825, w: 0.9985367}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.72803, y: 0.72803, z: 0.72803}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6426265594457559919}
@@ -214,12 +215,29 @@ RectTransform:
   - {fileID: 3480876661644746624}
   - {fileID: 2039695203511264851}
   m_Father: {fileID: 5539914672347050256}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.2}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: -118}
+  m_AnchoredPosition: {x: -89.5, y: -83.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3126286336106046850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564935457519321638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82c073cf124373449a6a95a26b53281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIJitter
+  speed: 10
+  chaos: 1
+  randx: 12.02
+  randy: 0.45
+  init: 1
 --- !u!1 &2924449523432112867
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,14 +421,14 @@ RectTransform:
   m_GameObject: {fileID: 5799124617245042147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.17, y: 1.11, z: 1.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 146735556279804846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9841, y: 4.4982}
+  m_AnchoredPosition: {x: 2.21, y: 4.4982}
   m_SizeDelta: {x: 90.0318, y: 91.0036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2342501298283882315
@@ -1125,12 +1143,45 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ClockCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.87624395
+      value: 1.0080396
+      inSlope: 1.9024882
+      outSlope: 1.9024882
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   completed: 0
   completeCombo: 0
   comboTimerDur: 0.15
   comboTimerActive: 0
   comboTimerElapsed: 0
-  boredDur: 3
+  boredDur: 2
   boredCheckDur: 2
   maxTricks: 4
   pps: 1
@@ -1139,3 +1190,4 @@ MonoBehaviour:
   ClockAnimation: {fileID: 1898465214112983154}
   smallHand: {fileID: 3480876661644746624}
   bigHand: {fileID: 39797005789911072}
+  transitionDur: 0.25

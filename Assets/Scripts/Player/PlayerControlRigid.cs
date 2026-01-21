@@ -486,7 +486,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         playerSpeed = rb.linearVelocity.magnitude;
         TrickManager.Instance.speed = playerSpeed;
 
-        if(!grounded && playerSpeed > 25f && playerVelocity.y < -5f)
+        if(!grounded && playerSpeed > 25f && playerVelocity.y < -15f)
         {
             TrickManager.Instance.StartFalling();
         }

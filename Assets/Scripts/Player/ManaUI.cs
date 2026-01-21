@@ -21,7 +21,7 @@ public class ManaUI : SpriteUI
 
     void Update()
     {
-        Calculate(mm.magicPoints, mm.maximumMagic, 1f, 8f, 5f, true);
+        Calculate(mm.magicPoints, mm.maximumMagic, 1f, 8f, 5f, false);
     }
 
     public void Error()

@@ -14,6 +14,8 @@ public class SpriteAnimate : MonoBehaviour
     
     public Image image;
 
+    [SerializeField] Material material = null;
+
     public SpriteRenderer sprite;
     public bool worldSpace = false;
     private int length;
@@ -36,8 +38,6 @@ public class SpriteAnimate : MonoBehaviour
         index = startingIndex;
         _timer = 0f;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if(length < 1) return;
@@ -68,7 +68,12 @@ public class SpriteAnimate : MonoBehaviour
 
             if(index >= length) index = 0;
             else if(index < 0) index = length - 1;  
-                if (world)
+
+                if(material != null)
+                {
+                    material.SetTexture("_Input", sprites[index].texture);
+                }
+                else if (world)
                 {
                     sprite.sprite = sprites[index];
                 }
@@ -83,7 +88,16 @@ public class SpriteAnimate : MonoBehaviour
     {
         isPlaying = false;
         index = Mathf.Clamp(frame, 0, length - 1);
+
+           if(material != null)
+                {
+                    material.SetTexture("_Input", sprites[index].texture);
+                }
+        else
+        {
         image.sprite = sprites[index];
+            
+        }
     }
 
     public void Play()

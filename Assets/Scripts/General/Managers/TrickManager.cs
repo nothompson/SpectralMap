@@ -27,6 +27,8 @@ public class TrickManager : MonoBehaviour
     public AnimationCurve addTrickAnimation;
     public AnimationCurve completeComboAnimation; 
 
+    [SerializeField] private AnimationCurve ClockCurve;
+
     private Vector3 trickTextInitSize;
     private Vector3 scoreTextInitSize;
 
@@ -74,6 +76,12 @@ public class TrickManager : MonoBehaviour
     public RectTransform bigHand;
 
     Coroutine ClockReset;
+
+    Coroutine ClockTransition;
+
+    private bool clockActive = false;
+
+    [SerializeField] private float transitionDur;
 
     public enum TrickType{
             rocketjump,
@@ -145,7 +153,7 @@ public class TrickManager : MonoBehaviour
                     break;
 
                 case TrickType.rocketjump:
-                    Display = "Rocket Jump";
+                    Display = "Blast Jump";
                     Points = 50;
                     Continuous = false;
                     break;
@@ -160,7 +168,7 @@ public class TrickManager : MonoBehaviour
                     Continuous = true;
                     break;
                 case TrickType.freefall:
-                    Display = "Flying";
+                    Display = "Free Falling";
                     Points = 1;
                     Continuous = true;
                     break;
@@ -262,13 +270,11 @@ public class TrickManager : MonoBehaviour
             trickText.rectTransform.localScale = trickTextInitSize;
         }
 
-        if(ClockReset != null)
+        if(clockActive && ClockReset != null)
         {
             StopCoroutine(ClockReset);
-            ClockReset = null;
         }
-
-        if(ClockAnimation != null)
+        if (clockActive && !surfing && !falling)
         {
             ClockReset = StartCoroutine(ResetClock());
         }
@@ -278,6 +284,53 @@ public class TrickManager : MonoBehaviour
         trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
 
         if(trick.Type != TrickType.freefall) StopFalling();
+    }
+
+    public void StartTransition(bool intro)
+    {
+        if(ClockTransition != null)
+        {
+            StopCoroutine(ClockTransition);
+            ClockTransition = null;
+        }
+        StartCoroutine(Transition(intro));
+    }
+
+    IEnumerator Transition(bool intro)
+    {
+        float t = 0f;
+        Vector3 target = intro ? Vector3.one : Vector3.zero;
+        RectTransform clockRect = Clock.GetComponent<RectTransform>();
+        Vector3 starting;
+
+        if (intro)
+        {
+            Clock.SetActive(true);
+            clockRect.localScale = Vector3.zero;
+            starting = Vector3.one;
+        }
+        else
+        {
+            starting = clockRect.localScale;
+        }
+
+        
+        while(t < transitionDur)
+        {
+            t += Time.deltaTime;
+            float time = t / transitionDur;
+            float elapsed = intro ? time : 1f - time;
+            float value = ClockCurve.Evaluate(elapsed);
+
+            clockRect.localScale = starting * value;
+            yield return null;
+        }
+        clockRect.localScale = target;
+        if (!intro)
+        {
+            Clock.SetActive(false);
+        }
+
     }
 
     void StartBoredom()
@@ -293,6 +346,8 @@ public class TrickManager : MonoBehaviour
             BoredomRoutine = null;
         }
 
+        if(Score <= 0 || completed) return;
+
         BoredTimer = StartCoroutine(BoredomTimer());
     }
 
@@ -302,8 +357,13 @@ public class TrickManager : MonoBehaviour
 
         while(t < boredCheckDur)
         {
-            if(!PauseManager.Instance.paused) t += Time.deltaTime;
+            if(!PauseManager.Instance.paused && !falling && !surfing) t += Time.deltaTime;
             yield return null;
+        }
+
+        if(!clockActive){
+            StartTransition(true);
+            clockActive = true;
         }
 
         BoredomRoutine = StartCoroutine(Boredom());
@@ -311,23 +371,28 @@ public class TrickManager : MonoBehaviour
 
     IEnumerator Boredom()
     {
+        if(ClockReset != null)
+        {
+            StopCoroutine(ClockReset);
+            ClockReset = null;
+        }
         float t = 0f;
-
-        Clock.SetActive(true);
-
+        
         int frames = ClockAnimation.sprites.Length;
         if(frames == 0)
         {
             StartComboTimer();
             yield break;
         }
-     
+
         ClockAnimation.fps = Mathf.FloorToInt(ClockAnimation.sprites.Length / boredDur);
         ClockAnimation.direction = false;
 
+        Vector3 starting = bigHand.localEulerAngles;
+
         while(t < boredDur)
         {
-            if (!PauseManager.Instance.paused && !surfing && !falling && speed < 35f)
+            if (!PauseManager.Instance.paused && !surfing && !falling)
             {
                 t += Time.deltaTime;
                 float time = Mathf.Clamp01(t / boredDur);
@@ -340,16 +405,20 @@ public class TrickManager : MonoBehaviour
                 ClockAnimation.image.sprite = ClockAnimation.sprites[index];
 
                 float bigSpeed = t * -100f;
-                float smallSpeed = t * -300f;
+                float smallSpeed = t * -500f;
 
-                var smallRot = smallHand.localEulerAngles;
+                Vector3 smallRot = smallHand.localEulerAngles;
                 smallRot.z = smallSpeed;
                 smallHand.localEulerAngles = smallRot;
 
-                var bigRot = bigHand.localEulerAngles;
-                bigRot.z = bigSpeed;
+                Vector3 bigRot = bigHand.localEulerAngles;
+                bigRot.z = Mathf.Lerp(starting.z, -360f, time);
                 bigHand.localEulerAngles = bigRot;
 
+            }
+            if (!clockActive)
+            {
+                yield break;
             }
         yield return null;
         }
@@ -364,6 +433,16 @@ public class TrickManager : MonoBehaviour
 
     IEnumerator ResetClock()
     {
+        if(BoredomRoutine != null)
+        {
+            StopCoroutine(BoredomRoutine);
+            BoredomRoutine = null;
+        }
+        if(BoredTimer != null)
+        {
+            StopCoroutine(BoredTimer);
+            BoredTimer = null;
+        }
         int frames = ClockAnimation.sprites.Length;
         if(frames == 0) yield break;
 
@@ -371,34 +450,53 @@ public class TrickManager : MonoBehaviour
         int target = frames - 1;
         float t = 0f;
         float dur = boredCheckDur;
-        Vector3 startingRotSmall = smallHand.localEulerAngles;
-        Vector3 startingRotBig = bigHand.localEulerAngles;
+
+        float startSmall = smallHand.localEulerAngles.z;
+        if(startSmall > 180f) startSmall -= 360f;
+
+        float startBig = bigHand.localEulerAngles.z;
+        if(startBig > 180f) startBig -= 360f;
+
+        if(startSmall > 0f) startSmall -= 360f; 
+        if(startBig > 0f) startBig -= 360f;
 
         while(t < dur)
         {
             t += Time.deltaTime;
             float time = Mathf.Clamp01(t / dur);
+            
             float f = Mathf.Lerp(start, target, time);
             int index = Mathf.RoundToInt(f);
             index = Mathf.Clamp(index, 0, frames - 1);
             ClockAnimation.index = index;
             ClockAnimation.image.sprite = ClockAnimation.sprites[index];
 
-    
-                var smallRot = smallHand.localEulerAngles;
-                smallRot.z = Mathf.Lerp(startingRotSmall.z, 0, time);
-                smallHand.localEulerAngles = smallRot;
+            float smallZ = Mathf.Lerp(startSmall, 0f, time);
+            float bigZ = Mathf.Lerp(startBig, 0f, time);
 
-                var bigRot = bigHand.localEulerAngles;
-                bigRot.z = Mathf.Lerp(startingRotBig.z, 0, time);
-                bigHand.localEulerAngles = bigRot;
+            Vector3 smallRot = smallHand.localEulerAngles;
+            smallRot.z = smallZ;
+            smallHand.localEulerAngles = smallRot;
+
+            Vector3 bigRot = bigHand.localEulerAngles;
+            bigRot.z = bigZ;
+            bigHand.localEulerAngles = bigRot;
 
             yield return null;
         }
+
         ClockAnimation.index = target;
         ClockAnimation.image.sprite = ClockAnimation.sprites[target];
+
+        Vector3 small = smallHand.localEulerAngles;
+        small.z = 0f;
+        smallHand.localEulerAngles = small;
+
+        Vector3 big = bigHand.localEulerAngles;
+        big.z = 0f;
+        bigHand.localEulerAngles = big;
+
         ClockReset = null;
-        Clock.SetActive(false);
     }
 
     IEnumerator AnimateText(RectTransform rect, Vector3 initSize, float duration, AnimationCurve curve)
@@ -431,6 +529,23 @@ public class TrickManager : MonoBehaviour
             StopCoroutine(ComboTimer);
             ComboTimer = null;
             comboTimerActive = false;
+        }
+
+        if (ClockReset != null)
+        {
+            StopCoroutine(ClockReset);
+            ClockReset = null;
+        }
+
+        if(BoredTimer != null)
+        {
+            StopCoroutine(BoredTimer);
+            BoredTimer = null;
+        }
+        if(BoredomRoutine != null)
+        {
+            StopCoroutine(BoredomRoutine);
+            BoredomRoutine = null;
         }
 
         if(Score == 0)
@@ -467,8 +582,8 @@ public class TrickManager : MonoBehaviour
                 StopCoroutine(ComboTimer);
                 ComboTimer = null;
             }
+            
             ComboTimer = StartCoroutine(CompleteComboTimer());
-            Clock.SetActive(false);
         }
     }
 
@@ -507,8 +622,26 @@ public class TrickManager : MonoBehaviour
         Score = 0;
         TrickCount = 0;
         accumulatedPoints = 0f;
-        ClockAnimation.isPlaying = false;
-        ClockAnimation.index = ClockAnimation.index = ClockAnimation.sprites.Length - 1;
+        
+        clockActive = false;
+        StartTransition(false);
+
+        if (ClockReset != null)
+        {
+            StopCoroutine(ClockReset);
+            ClockReset = null;
+        }
+
+        if(BoredTimer != null)
+        {
+            StopCoroutine(BoredTimer);
+            BoredTimer = null;
+        }
+        if(BoredomRoutine != null)
+        {
+            StopCoroutine(BoredomRoutine);
+            BoredomRoutine = null;
+        }
 
     }
 
@@ -611,28 +744,28 @@ public class TrickManager : MonoBehaviour
                 comboTimerActive = false;
             }
 
+            if(BoredTimer != null)
+            {
+                StopCoroutine(BoredTimer);
+                BoredTimer = null;
+            }
+
+            if(BoredomRoutine != null)
+            {
+                StopCoroutine(BoredomRoutine);
+                BoredomRoutine = null;
+            }
+
             if(scoreAnimation != null)
             {
                 StopCoroutine(scoreAnimation);
                 scoreText.rectTransform.localScale = scoreTextInitSize;
             }
 
-            StartBoredom();
-
-            // bool last = currentTricks.Count > 0 && currentTricks[currentTricks.Count - 1].Type == TrickType.surfing;
-
-            // if (last)
-            // {
-            //     active = currentTricks[currentTricks.Count - 1];
-            //     surfing = true;
-            // }
-            // else
-            // {
-                Trick trick = new Trick(TrickType.surfing);
-                AddTrick(trick);
-                active = trick;
-                surfing = true;
-            // }
+            Trick trick = new Trick(TrickType.surfing);
+            AddTrick(trick);
+            active = trick;
+            surfing = true;
         }
     }
 

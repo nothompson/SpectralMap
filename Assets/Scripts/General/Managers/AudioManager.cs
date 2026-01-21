@@ -14,6 +14,7 @@
         public PlayerControlRigid pc;
         public HP hp;
         public LayerMask enemyMask;
+        public UIPulse heartbeat;
 
         [Header("Parameters")]
         [SerializeField] float zonecheckdel = 1f;
@@ -101,6 +102,7 @@
             player = input;
             pc = player.GetComponent<PlayerControlRigid>();
             hp = player.GetComponent<HP>();
+            heartbeat = player.GetComponentInChildren<UIPulse>();
 
             StopAllCoroutines();
             StartCoroutine(CombatCheck());
@@ -245,10 +247,38 @@
                         OnBar?.Invoke(bar);
                     }
 
+                    if(pc.playerSpeed >= 40f)
+                    {
+                        if(heartbeat != null)
+                            {
+                                StartCoroutine(heartbeat.Pulse(BeatDur * 0.95f));
+                            }
+                    }
+                    if(pc.playerSpeed < 40f && pc.playerSpeed >= 15f){
+                        if(beat == 1 || beat == 3)
+                        {
+                            if(heartbeat != null)
+                            {
+                                StartCoroutine(heartbeat.Pulse(BeatDur * 1.95f));
+                            }
+                        }
+                    }
+                    if(pc.playerSpeed < 15f)
+                    {
+                        if(beat == 1)
+                        {
+                            if(heartbeat != null)
+                                {
+                                    StartCoroutine(heartbeat.Pulse(BeatDur * 3.95f));
+                                }
+                        }
+                    }
+
                     if(HUDManager.Instance.reloading && HUDManager.Instance.ReloadSprite != null)
                     {
                         StartCoroutine(HUDManager.Instance.Pulse());
                     }
+
                 }
             }
         }

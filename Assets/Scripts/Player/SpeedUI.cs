@@ -20,8 +20,6 @@ public class SpeedUI : SpriteUI
     {
         float speedmult = pc.playerSpeed * 0.075f;
 
-        heartAnim.SetFloat("SpeedMultiplier", speedmult + 1f);
-
-        Calculate(pc.playerSpeed, 35f, 0.8f, 30, 5, false, cap: false);
+        Calculate(pc.playerSpeed, 55f, 0.8f, 30, 5, false, cap: false);
     }
 }

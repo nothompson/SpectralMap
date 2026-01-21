@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: spectralshell
-  m_Shader: {fileID: -6465566751694194690, guid: fd9c1e86dc31dda4dba81a6c147ae978, type: 3}
+  m_Name: spectraljuice
+  m_Shader: {fileID: -6465566751694194690, guid: 8d754f1fb142f2c498bb158db49dd768, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -43,8 +43,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _FlowMapTime_77b622cc036842388b0b3918db7079d8_PhaseOffsetMask_835282005_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 2fe31a8312ab8524ebd8601be367f0c8, type: 3}
+    - _Input:
+        m_Texture: {fileID: 2800000, guid: 1540e8beabe064d429f5941081db6de6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -61,18 +61,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_1e58f1f74e52465e8a7f8a98149d9e64_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UVDistortion_9db49abe19d14c47a775d5a977d8afa7_NoiseMap_647888222_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 3c89d7d0187353648bba6fd24de4c4b1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _input:
-        m_Texture: {fileID: 2800000, guid: 05854d8052ccff44a8407f8c112e69f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -101,13 +89,9 @@ Material:
     - _UIMaskSoftnessY: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _bps: 2.3333333
-    - _distortion: 0.025
-    - _flow: 0.15
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RandCoord: {r: 0.86840534, g: 0.5569856, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
