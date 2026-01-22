@@ -195,10 +195,17 @@ public class Fireball : MonoBehaviour
         var emitParams = new ParticleSystem.EmitParams();
         emitParams.position = transform.position;
 
-        ProjectileParticleManager.Instance.fireballExplode.Emit(emitParams, 5);
+        // ProjectileParticleManager.Instance.fireballExplode.Emit(emitParams, 5);
+        // Debug.Log(ProjectileParticleManager.Instance.fireballExplode);
+
+        var ps = ProjectileParticleManager.Instance.fireballExplode;
+        ps.transform.position = transform.position;
+        ps.Simulate(0f, true, true);
+        ps.Emit(5);
+        ps.Play();
     
         //destroy on explosion
-        ProjectileParticleManager.Instance.Delete(this);
+        // ProjectileParticleManager.Instance.Delete(this);
         Destroy(gameObject);
     }
 

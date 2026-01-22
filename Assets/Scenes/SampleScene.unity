@@ -14021,7 +14021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &981439370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29186,10 +29186,6 @@ PrefabInstance:
     - target: {fileID: 4553791830091970133, guid: bf0dbc09ede15334284d8d5664ac65a0, type: 3}
       propertyPath: m_Name
       value: ProjectileParticleManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5415268686513744993, guid: bf0dbc09ede15334284d8d5664ac65a0, type: 3}
-      propertyPath: TrailModule.enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6398036041775523115, guid: bf0dbc09ede15334284d8d5664ac65a0, type: 3}
       propertyPath: m_Materials.Array.size
