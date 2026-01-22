@@ -33,15 +33,17 @@ public class PauseManager : MonoBehaviour
     private float strengthDelay = 2f;
     private float closeDelay = 0.25f;
 
-    private float hudIntroDelay = 0.35f;
+    private float hudIntroDelay = 0.25f;
 
-    private float hudIntroIncrement = 0.05f;
+    private float hudIntroIncrement = 0.025f;
 
     private float hudOutroDelay = 0.25f;
 
     private float hudOutroIncrement = 0.025f;
 
     public Material pauseMaterial;
+
+    Coroutine IntroRoutine;
 
     void Awake()
     {
@@ -74,7 +76,7 @@ public class PauseManager : MonoBehaviour
         AudioManager.Instance.pause = 1f;
         Time.timeScale = 0f;
         StartCoroutine(ScreenShot());
-        StartCoroutine(HudIntro());
+        IntroRoutine = StartCoroutine(HudIntro());
     }
 
     public void Unpause()
@@ -188,15 +190,23 @@ public class PauseManager : MonoBehaviour
 
     public IEnumerator Close()
     {
+        if(IntroRoutine != null) StopCoroutine(IntroRoutine);
         StartCoroutine(CloseBackground());
 
         if(SettingsMenu.Instance != null)
         {
-            SettingsMenu.Instance.canvas.SetActive(false);
+            SettingsMenu.Instance.SubContainer.SetActive(false);
+            SettingsMenu.Instance.Container.SetActive(false);
         }
         if(JournalManager.Instance != null)
         {
+            JournalManager.Instance.SubContainer.SetActive(false);
             JournalManager.Instance.Container.SetActive(false);
+        }
+        if(InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.SubContainer.SetActive(false);
+            InventoryManager.Instance.Container.SetActive(false);
         }
 
         ExitOptions.SetActive(false);

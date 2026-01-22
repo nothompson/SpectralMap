@@ -3,32 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    public static SettingsMenu Instance;
+    public static InventoryManager Instance;
     public GameObject Container;
     public GameObject SubContainer;
-    public GameObject master; 
 
-    public SpriteAnimate configSprite;
+    public SpriteAnimate bagSprite;
 
     [SerializeField] private AnimationCurve transitionCurve;
 
     public bool animating = false;
-
     Coroutine transitionRoutine;
-
-    private Slider masterSlider;
-    public Slider sensitivitySlider; 
-
-    public float mouseSensitivity; 
-
-
-    private FMOD.Studio.VCA vca;
-
-
-    
-
     void Awake()
     {
         if(Instance == null)
@@ -41,33 +27,22 @@ public class SettingsMenu : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
-    {
-        masterSlider = master.GetComponent<Slider>();
-
-        SetSensitivity(sensitivitySlider.value);
-
-        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
-
-        vca.setVolume(masterSlider.value);
-    }
-
+    
     public void Open()
     {
         if(animating) return;
-        
-        if((JournalManager.Instance != null && JournalManager.Instance.animating) || (InventoryManager.Instance != null && InventoryManager.Instance.animating)) return;
+
+        if(JournalManager.Instance.animating || SettingsMenu.Instance.animating) return;
 
         SubContainer.SetActive(false);
 
         Container.SetActive(true);
 
-        configSprite.index = configSprite.sprites.Length - 1;
+        bagSprite.index = bagSprite.sprites.Length - 1;
 
         StartTransition(true);
 
-        StartCoroutine(configSprite.AnimateToTarget(0, null, () =>
+        StartCoroutine(bagSprite.AnimateToTarget(0, null, () =>
         {
             SubContainer.SetActive(true);
             animating = false;
@@ -79,22 +54,17 @@ public class SettingsMenu : MonoBehaviour
     {
         if(animating) return;
 
-        configSprite.index = 0;
+        bagSprite.index = 0;
 
         StartTransition(false);
 
         SubContainer.SetActive(false);
-        StartCoroutine(configSprite.AnimateToTarget(configSprite.sprites.Length - 1, null, () =>
+        StartCoroutine(bagSprite.AnimateToTarget(bagSprite.sprites.Length - 1, null, () =>
         {
             Container.SetActive(false);
             animating = false;
         }));
         animating = true;
-    }
-
-    public void SetSensitivity(float value)
-    {
-        mouseSensitivity = value;
     }
 
     public void StartTransition(bool intro)
@@ -137,5 +107,4 @@ public class SettingsMenu : MonoBehaviour
         rect.localScale = target;
         transitionRoutine = null;
     }
-    
 }

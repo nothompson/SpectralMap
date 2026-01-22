@@ -24,7 +24,8 @@ public class JournalManager : MonoBehaviour
     private SpriteText rightPageNumber;
 
     Coroutine transitionRoutine;
-    bool opening = false;
+
+    public bool animating = false;
 
     void Awake()
     {
@@ -51,32 +52,43 @@ public class JournalManager : MonoBehaviour
 
     public void Open()
     {
-        if(opening) return;
+        if(animating) return;
 
-        opening = true;
+        if(SettingsMenu.Instance.animating || InventoryManager.Instance.animating) return;
+
+        SubContainer.SetActive(false);
 
         Container.SetActive(true);
 
-        StartCoroutine(Transition(true));
+        journalSprite.index = journalSprite.sprites.Length - 1;
+
+        StartTransition(true);
 
         StartCoroutine(journalSprite.AnimateToTarget(0, null, () =>
         {
+            animating = false;
             SubContainer.SetActive(true);
-            opening = false;
         }));
+        animating = true;
         
         AudioManager.Instance.JournalOpen();
     }
 
     public void Close()
     {
-        StartCoroutine(Transition(false));
+        if(animating) return;
+
+        journalSprite.index = 0;
+
+        StartTransition(false);
 
         SubContainer.SetActive(false);
         StartCoroutine(journalSprite.AnimateToTarget(journalSprite.sprites.Length - 1, null, () =>
         {
             Container.SetActive(false);
+            animating = false;
         }));
+        animating = true;
         AudioManager.Instance.JournalClose();
     }
 
@@ -88,21 +100,6 @@ public class JournalManager : MonoBehaviour
         leftText.Refresh();
         rightText.Refresh();
     }
-
-    // private void OnValidate()
-    // {
-    //     UpdatePagination();
-
-    //     if(leftSide.text == content) return;
-
-    //     SetupContent();
-    // }
-
-    // private void SetupConent()
-    // {
-    //     leftSide.text = content;
-    //     rightSide.text = content;
-    // }
 
     private void UpdatePagination()
     {

@@ -17,6 +17,7 @@ public class UIPulse : MonoBehaviour
 
     public IEnumerator Pulse(float dur)
     {
+        if(rect == null) yield break;
         float t = 0f;
         Vector3 start = scale;
         Vector3 target = start;

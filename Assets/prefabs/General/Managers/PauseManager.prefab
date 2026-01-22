@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 179146662105382954}
   - component: {fileID: 1890700636431230470}
   - component: {fileID: 4804370346215844175}
-  - component: {fileID: 9017273138845807888}
+  - component: {fileID: 3573033180626082451}
   m_Layer: 3
   m_Name: Bodybag
   m_TagString: Untagged
@@ -103,10 +103,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1890700636431230470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +171,23 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &9017273138845807888
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3573033180626082451}
+          m_TargetAssemblyTypeName: InventoryTriggerButton, Assembly-CSharp
+          m_MethodName: TriggerInventoryOpen
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &3573033180626082451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,9 +196,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 79464628876020411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab0219ca5a56d0439f01f1bf4642ed8, type: 3}
+  m_Script: {fileID: 11500000, guid: 98966c89bb1361e49ac9db731366abe1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BodybagTriggerButton
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryTriggerButton
 --- !u!1 &192791926586678794
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,10 +530,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &7829710027270129144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,10 +744,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &6305955669563827116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,10 +1706,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 12
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &2804438974310253666
 MonoBehaviour:
   m_ObjectHideFlags: 0

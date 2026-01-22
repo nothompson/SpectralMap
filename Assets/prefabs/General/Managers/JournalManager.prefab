@@ -676,6 +676,7 @@ MonoBehaviour:
   rightSide: {fileID: 3481067806028793049}
   leftPagination: {fileID: 6368820740157960494}
   rightPagination: {fileID: 7542145548745350337}
+  animating: 0
 --- !u!1 &2362929291768906919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,10 +1653,10 @@ RectTransform:
   - {fileID: 4807763672634218685}
   m_Father: {fileID: 3593274907922276576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8074523950766254745
 GameObject:
@@ -1692,8 +1693,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.749878, y: -5.3500366}
-  m_SizeDelta: {x: 1724.2998, y: 965.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7572372792391785974
 CanvasRenderer:
@@ -1766,7 +1767,7 @@ MonoBehaviour:
   worldSpace: 0
   index: 0
   isPlaying: 0
-  direction: 0
+  direction: 1
 --- !u!1 &8100195822378963511
 GameObject:
   m_ObjectHideFlags: 0

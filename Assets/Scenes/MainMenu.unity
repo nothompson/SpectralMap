@@ -180,10 +180,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &70039078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,10 +486,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &216745807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,10 +1066,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &570659745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,10 +1212,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &615299968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,10 +1342,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &623669240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,10 +1471,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &630642957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,10 +1668,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &799251085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2009,10 +2023,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &877397458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,10 +2144,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &947193785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,10 +2265,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &977832968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2755,10 +2775,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1094201419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3038,10 +3060,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1212419316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,10 +3165,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1342836220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3405,10 +3431,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1455511714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3542,10 +3570,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1585116074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3685,10 +3715,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 12
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1585934020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3927,10 +3959,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1679878574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4112,10 +4146,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 12
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1716607666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4239,10 +4275,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 12
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1746182494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4477,10 +4515,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1774474984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4615,10 +4655,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1797143362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4815,10 +4857,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &1940628745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5094,10 +5138,12 @@ MonoBehaviour:
   startingIndex: 0
   fps: 30
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
   index: 0
   isPlaying: 0
+  direction: 1
 --- !u!114 &2022126959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5491,6 +5537,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1595381327825823291, guid: 926ae84ee74b96e4b9f215c342058abf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5383486404072716238, guid: 926ae84ee74b96e4b9f215c342058abf, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.34343433
@@ -5573,7 +5623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608103436900354524, guid: 926ae84ee74b96e4b9f215c342058abf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7608103437509142989, guid: 926ae84ee74b96e4b9f215c342058abf, type: 3}
       propertyPath: m_AnchorMax.x

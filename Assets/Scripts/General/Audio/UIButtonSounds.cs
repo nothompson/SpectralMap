@@ -35,7 +35,7 @@ public class UIButtonSounds : MonoBehaviour
         if(AudioManager.Instance == null) return;
 
         if (AudioManager.Instance.ConfigInstance.isValid()){
-            if(!SettingsMenu.Instance.canvas.activeInHierarchy){
+            if(!SettingsMenu.Instance.Container.activeInHierarchy){
                 AudioManager.Instance.ConfigInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 AudioManager.Instance.ConfigInstance.release();
             }
