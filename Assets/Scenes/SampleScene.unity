@@ -28374,6 +28374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JournalManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2033752296205762107, guid: daedc499742ec014cb036ca2ac252269, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3347881903892308434, guid: daedc499742ec014cb036ca2ac252269, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -28413,6 +28417,14 @@ PrefabInstance:
     - target: {fileID: 3347881903892308434, guid: daedc499742ec014cb036ca2ac252269, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785052813889568061, guid: daedc499742ec014cb036ca2ac252269, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782183978317238291, guid: daedc499742ec014cb036ca2ac252269, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

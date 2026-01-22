@@ -7,7 +7,10 @@ using TMPro;
 public class JournalManager : MonoBehaviour
 {
     public static JournalManager Instance;
-    public GameObject canvas;
+    public GameObject Container;
+    public GameObject SubContainer;
+    public SpriteAnimate journalSprite;
+    [SerializeField] private AnimationCurve transitionCurve;
 
     public TMP_Text leftSide;
     public TMP_Text rightSide;
@@ -19,6 +22,9 @@ public class JournalManager : MonoBehaviour
     private SpriteText rightText; 
     private SpriteText leftPageNumber;
     private SpriteText rightPageNumber;
+
+    Coroutine transitionRoutine;
+    bool opening = false;
 
     void Awake()
     {
@@ -45,13 +51,32 @@ public class JournalManager : MonoBehaviour
 
     public void Open()
     {
-        canvas.SetActive(true);
+        if(opening) return;
+
+        opening = true;
+
+        Container.SetActive(true);
+
+        StartCoroutine(Transition(true));
+
+        StartCoroutine(journalSprite.AnimateToTarget(0, null, () =>
+        {
+            SubContainer.SetActive(true);
+            opening = false;
+        }));
+        
         AudioManager.Instance.JournalOpen();
     }
 
     public void Close()
     {
-        canvas.SetActive(false);
+        StartCoroutine(Transition(false));
+
+        SubContainer.SetActive(false);
+        StartCoroutine(journalSprite.AnimateToTarget(journalSprite.sprites.Length - 1, null, () =>
+        {
+            Container.SetActive(false);
+        }));
         AudioManager.Instance.JournalClose();
     }
 
@@ -130,5 +155,46 @@ public class JournalManager : MonoBehaviour
         AudioManager.Instance.JournalNext();
 
         UpdatePagination();
+    }
+
+    public void StartTransition(bool intro)
+    {
+        if(transitionRoutine != null) {
+            StopCoroutine(transitionRoutine);
+            transitionRoutine = null;
+            }
+        transitionRoutine = StartCoroutine(Transition(intro));
+    }
+
+    IEnumerator Transition(bool intro)
+    {
+        float t = 0f;
+        float dur = 0.5f;
+
+        Vector3 target = intro ? Vector3.one : Vector3.zero;
+        RectTransform rect = Container.GetComponent<RectTransform>();
+        Vector3 starting;
+
+        if (intro)
+        {
+            rect.localScale = Vector3.zero;
+            starting = Vector3.one;
+        }
+        else
+        {
+            starting = rect.localScale;
+        }
+        while(t < dur)
+        {
+            t += Time.unscaledDeltaTime;
+            float time = Mathf.Clamp01(t / dur);
+            float elapsed = intro ? time : 1f - time;
+            float value = transitionCurve.Evaluate(elapsed);
+
+            rect.localScale = starting * value;
+            yield return null;
+        }
+        rect.localScale = target;
+        transitionRoutine = null;
     }
 }

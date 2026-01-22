@@ -38,8 +38,6 @@ public class UIHoverJuice : MonoBehaviour
         Vector3 target = scale;
         bool rand = Random.Range(0f, 1f) > 0.5f;
 
-        Debug.Log(rand);
-
         float targetRotation = rand ? -1f * rotation * Random.Range(0.75f, 1.25f) : rotation * Random.Range(0.75f, 1.25f);
 
 

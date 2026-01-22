@@ -196,7 +196,7 @@ public class PauseManager : MonoBehaviour
         }
         if(JournalManager.Instance != null)
         {
-            JournalManager.Instance.canvas.SetActive(false);
+            JournalManager.Instance.Container.SetActive(false);
         }
 
         ExitOptions.SetActive(false);

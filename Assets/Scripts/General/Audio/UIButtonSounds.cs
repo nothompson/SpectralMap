@@ -42,7 +42,7 @@ public class UIButtonSounds : MonoBehaviour
             
         }
 
-        if (exitType == "journal" &&  !JournalManager.Instance.canvas.activeInHierarchy)
+        if (exitType == "journal" &&  !JournalManager.Instance.Container.activeInHierarchy)
             AudioManager.Instance.JournalClose();
     }
 }

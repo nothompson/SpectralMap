@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 6e257523662df3247b5d275462229d3f
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 77d0e6cc5ef8a722d16bec79f679b6bd
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -111,10 +111,9 @@ MonoBehaviour:
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
-  m_ActivePlayerDataBuilderIndex: 3
+  m_ActivePlayerDataBuilderIndex: 2
   m_DataBuilders:
   - {fileID: 11400000, guid: 4e36ff7ac34bc3348b367fa15182eeb2, type: 2}
-  - {fileID: 11400000, guid: 11ee33281af973849859a56706a2b3f3, type: 2}
   - {fileID: 11400000, guid: 5030f059561deab48a7281b00f35dc51, type: 2}
   - {fileID: 11400000, guid: 3ab00471e3edfa14583b0aa144833fec, type: 2}
   m_ActiveProfileId: 06fc5805826dec44d956830fcd5d6b82
