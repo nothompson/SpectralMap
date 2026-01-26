@@ -7,6 +7,11 @@ using TMPro;
 public class JournalManager : MonoBehaviour
 {
     public static JournalManager Instance;
+
+    public List<JournalEntry> AllEntries;
+
+    private Dictionary<string, JournalEntry> EntryFromID;
+
     public GameObject Container;
     public GameObject SubContainer;
     public SpriteAnimate journalSprite;
@@ -47,7 +52,25 @@ public class JournalManager : MonoBehaviour
 
         rightPageNumber = rightPagination.GetComponent<SpriteText>();
 
+        AssignEntries();
+
         UpdatePagination();
+
+    }
+
+    void AssignEntries()
+    {
+        EntryFromID = new Dictionary<string, JournalEntry>();
+        foreach(var entry in AllEntries)
+        {
+            if(entry != null && !string.IsNullOrEmpty(entry.ID))
+            {
+                if (!EntryFromID.ContainsKey(entry.ID))
+                {
+                    EntryFromID.Add(entry.ID,entry);
+                }
+            } 
+        }
     }
 
     public void Open()

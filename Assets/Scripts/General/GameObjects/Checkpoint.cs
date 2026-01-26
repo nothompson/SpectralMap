@@ -43,6 +43,16 @@ public class Checkpoint : MonoBehaviour
 
     public void Reset()
     {
+        StartCoroutine(ResetRoutine());
+
+    }
+
+    IEnumerator ResetRoutine()
+    {
+        ResetManager.Instance.StartReset();
+
+        yield return new WaitForEndOfFrame();
+
         TrickManager.Instance.ResetCombo();
         
         GibsManager.Instance.Gib(player.transform.position, Random.Range(4,10));
@@ -61,6 +71,5 @@ public class Checkpoint : MonoBehaviour
         playerControl.playerVelocity = Vector3.zero;
 
         magicManagement.magicPoints = magicManagement.maximumMagic;
-
     }
 }

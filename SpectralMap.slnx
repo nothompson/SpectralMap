@@ -1,9 +1,9 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.ProBuilder.csproj" />
   <Project Path="Unity.ProBuilder.Poly2Tri.csproj" />
   <Project Path="Unity.ProBuilder.Csg.csproj" />
   <Project Path="Unity.ProBuilder.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="FMODUnityEditor.csproj" />
   <Project Path="FMODUnity.csproj" />

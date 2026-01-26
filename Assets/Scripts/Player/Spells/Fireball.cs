@@ -189,23 +189,21 @@ public class Fireball : MonoBehaviour
             }
         }
 
-        ProjectileParticleManager.Instance.fireballExplosionSmoke.transform.position = transform.position;
 
-        ProjectileParticleManager.Instance.fireballExplosionSmoke.Play();
-        var emitParams = new ParticleSystem.EmitParams();
-        emitParams.position = transform.position;
 
         // ProjectileParticleManager.Instance.fireballExplode.Emit(emitParams, 5);
         // Debug.Log(ProjectileParticleManager.Instance.fireballExplode);
 
         var ps = ProjectileParticleManager.Instance.fireballExplode;
         ps.transform.position = transform.position;
-        ps.Simulate(0f, true, true);
+        // ps.Simulate(0f, true, true); 
         ps.Emit(5);
         ps.Play();
     
+        ProjectileParticleManager.Instance.fireballExplosionSmoke.Play();
+        
         //destroy on explosion
-        // ProjectileParticleManager.Instance.Delete(this);
+        ProjectileParticleManager.Instance.Delete(this);
         Destroy(gameObject);
     }
 

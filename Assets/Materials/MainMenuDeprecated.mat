@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenu
+  m_Name: MainMenuDeprecated
   m_Shader: {fileID: -6465566751694194690, guid: af33ef9cc125e9a4d8f00d52acc2192b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,6 +43,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FlowMapTime_ae2e1d2446d84b92a74c219c73e921a2_PhaseOffsetMask_835282005_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2fe31a8312ab8524ebd8601be367f0c8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -60,7 +64,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 9aaabf22917751142bcd49577fd13cbd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 765c1dc8f55d73b498c5afc288789999, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UVDistortion_aa0b532900814ab895ee162c15f2ce6c_NoiseMap_647888222_Texture2D:
+        m_Texture: {fileID: 2800000, guid: fad4fb6ba663cef499a2920adfc23ca5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -82,11 +90,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TwirlStrength: -0.3189063
+    - _TwirlStrength: -4
     - _UVSec: 0
-    - _Voronoi: 0.33407158
-    - _Y: -0.6148654
-    - _YStrength: 0.042035792
+    - _Voronoi: 0.32914034
+    - _Y: -1
+    - _YStrength: 0.03957017
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

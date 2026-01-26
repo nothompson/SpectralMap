@@ -103,9 +103,14 @@ public class HP : MonoBehaviour
     public IEnumerator DamageFlash(GameObject damaged)
     {
         SkinnedMeshRenderer skin = damaged.GetComponentInChildren<SkinnedMeshRenderer>();
+        if(!skin) yield break;
+
         Material mat = skin.material;
 
+        if(!mat.HasProperty("_EmissionColor")) yield break;
+
             mat.EnableKeyword("_EMISSION");
+            mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
 
             Color emissionColor = mat.GetColor("_EmissionColor");
             

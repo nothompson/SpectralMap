@@ -47,6 +47,42 @@
 
         private int titlefinished = 0;
 
+        private float blendSmoothed = 0f;
+
+        private float blendLerp = 0.25f;
+
+        private float blendvel;
+
+        // private float directionSpeed = 0.2f;
+
+        private float directionSeed;
+
+        private Vector2 currentDirection;
+        private Vector2 targetDirection;
+        private Vector2 directionVelocity;
+
+        [SerializeField] private float BaseDirectionSpeed;
+        [SerializeField] private float BaseDistortStrength = 0.05f;
+        [SerializeField] private float BaseDistortSpeed = 0.1f;
+        [SerializeField] private float BaseFlowStrength = 0.5f;
+        [SerializeField] private float BaseFlowSpeed = 0.1f;
+        [SerializeField] private float BasePhaseStrength = 1f;
+
+        [SerializeField] private float TargetDirectionSpeed;
+        [SerializeField] private float TargetDistortStrength;
+        [SerializeField] private float TargetDistortSpeed;
+        [SerializeField] private float TargetFlowStrength;
+        [SerializeField] private float TargetFlowSpeed;
+        [SerializeField] private float TargetPhaseStrength;
+        [SerializeField] private float keyDur;
+        [SerializeField] private AnimationCurve KeyAnimation;
+
+        private float distortStrength;
+        private float distortSpeed;
+
+        Coroutine keydistortRoutine;
+
+
         void Start()
         {
             StopAllCoroutines();
@@ -82,6 +118,17 @@
             {
                     PauseManager.Instance.paused = false;
             }
+
+            directionSeed = Random.Range(0f,1000f);
+
+            Vector2 direction = new Vector2(Mathf.PerlinNoise(directionSeed, Time.unscaledTime * BaseDirectionSpeed) - 0.5f, Mathf.PerlinNoise(directionSeed + 100, Time.unscaledTime * BaseDirectionSpeed) - 0.5f);
+
+            direction.Normalize();
+
+            bg.SetVector("_Direction", direction);
+
+            BaseValues();
+            
         }
 
         IEnumerator SpriteIntro()
@@ -225,6 +272,7 @@
         void Update()
         {
             GetMouseData();
+            Background();
             MusicScript.PlayNotes(chime, MusicScript.MajorScale, -9);
             CheckKeyAnimations();
         }
@@ -252,6 +300,7 @@
                 if(Keyboard.current[keys[i]].wasPressedThisFrame)
                 {
                     TriggerSpriteAnimations(i);
+                    StartKeyDistortion();
                 }
             }
         }
@@ -283,45 +332,6 @@
 
         }
 
-
-        void GetMouseData()
-        {
-                Vector2 current = Mouse.current.position.ReadValue();
-
-                float delta = MusicScript.NormalizeForAutomation((current - last).magnitude, 0f, 50f);
-
-                deltaSmoothed = Mathf.Lerp(deltaSmoothed, delta, deltaLerp * Time.deltaTime);
-
-                last = current;
-
-                float xnorm = MusicScript.NormalizeForAutomation(current.x, 0f, Screen.width);
-                float ynorm = MusicScript.NormalizeForAutomation(current.y, 0f, Screen.height);
-
-                float voronoi = (deltaSmoothed * 2f) + 0.25f;
-
-                float bipolarY = (2f * ynorm) - 1f;
-
-                float xTriangle = Mathf.Abs(2f* (xnorm - Mathf.Floor(xnorm + 0.5f)));
-                float bipolarX = (8f * xnorm) - 4f;
-
-                bg.SetFloat("_Voronoi", voronoi); 
-
-                bg.SetFloat("_TwirlStrength", bipolarX);
-
-                bg.SetFloat("_YStrength", deltaSmoothed);
-
-                bg.SetFloat("_Y", bipolarY);
-
-                Vector2 normalized = new Vector2(xnorm,ynorm);
-
-                LevelManager.Instance.currentTrack.setParameterByName("xPos", normalized.x);
-                LevelManager.Instance.currentTrack.setParameterByName("yPos", normalized.y);
-                LevelManager.Instance.currentTrack.setParameterByName("WetDryMusic", deltaSmoothed);
-
-                UpdateJitter(deltaSmoothed);
-
-        }
-
         void UpdateJitter(float input)
         {
             float chaos = 0.5f + input * 5f;
@@ -341,5 +351,108 @@
             {
                 TrickManager.Instance.ResetCombo();
             }
+        }
+
+        void GetMouseData()
+        {
+                Vector2 current = Mouse.current.position.ReadValue();
+
+                float delta = MusicScript.NormalizeForAutomation((current - last).magnitude, 0f, 50f);
+
+                deltaSmoothed = Mathf.Lerp(deltaSmoothed, delta, deltaLerp * Time.deltaTime);
+
+                last = current;
+
+                float xnorm = MusicScript.NormalizeForAutomation(current.x, 0f, Screen.width);
+                float ynorm = MusicScript.NormalizeForAutomation(current.y, 0f, Screen.height);
+
+                float voronoi = (deltaSmoothed * 2f) + 0.25f;
+
+                float bipolarY = (2f * ynorm) - 1f;
+
+                float dirx = ((1f - xnorm) * 2) - 1f;
+                float diry = ((1f - ynorm) * 2) - 1f;
+
+                Vector2 bip = new Vector2(dirx,diry);
+
+                // currentDirection = Vector2.SmoothDamp(currentDirection, bip, ref directionVelocity, Time.deltaTime * BaseDirectionSpeed);
+
+                float xTriangle = Mathf.Abs(2f* (xnorm - Mathf.Floor(xnorm + 0.5f)));
+                float bipolarX = (8f * xnorm) - 4f;
+
+                Vector2 normalized = new Vector2(xnorm,ynorm);
+
+                // bg.SetVector("_Direction", currentDirection);
+
+                LevelManager.Instance.currentTrack.setParameterByName("xPos", normalized.x);
+                LevelManager.Instance.currentTrack.setParameterByName("yPos", normalized.y);
+                LevelManager.Instance.currentTrack.setParameterByName("WetDryMusic", deltaSmoothed);
+
+                UpdateJitter(deltaSmoothed);
+
+        }
+
+        void Background()
+        {
+
+            // Vector2 direction = new Vector2(Mathf.PerlinNoise(directionSeed, Time.unscaledTime * BaseDirectionSpeed) - 0.5f, Mathf.PerlinNoise(directionSeed + 100, Time.unscaledTime * BaseDirectionSpeed) - 0.5f);
+
+            // direction.Normalize();
+
+            // targetDirection = direction * BaseDirectionSpeed;
+
+            // currentDirection = Vector2.SmoothDamp(currentDirection, targetDirection, ref directionVelocity, Time.deltaTime * BaseDirectionSpeed);
+
+            // bg.SetVector("_Direction", currentDirection);
+
+            float blend = Mathf.PerlinNoise(Time.unscaledTime * 0.1f, 2f);
+
+            blendSmoothed = Mathf.SmoothDamp(blendSmoothed, blend, ref blendvel, blendLerp * Time.deltaTime);
+
+            bg.SetFloat("_Blend", blendSmoothed);
+
+            bg.SetFloat("_DistortStrength", BaseDistortStrength + distortStrength);
+
+            bg.SetFloat("_DistortSpeed", BaseDistortSpeed + distortSpeed);
+
+        }
+
+        void StartKeyDistortion()
+        {
+            if(keydistortRoutine != null){
+                StopCoroutine(keydistortRoutine);
+                BaseValues();
+            }
+            keydistortRoutine = StartCoroutine(KeyDistortion());
+        }
+
+        IEnumerator KeyDistortion()
+        {
+            float t = 0f;
+
+            float newSeed = Random.Range(0f,1000f);
+
+            while(t < keyDur)
+            {
+                t += Time.deltaTime;
+                float time = t / keyDur;
+                float value = KeyAnimation.Evaluate(time);
+
+                distortStrength = TargetDistortStrength * value;
+                distortSpeed = TargetDistortSpeed * value;
+
+                yield return null;
+            }
+
+            keydistortRoutine = null;
+        }
+
+        void BaseValues()
+        {
+                bg.SetFloat("_DistortStrength", BaseDistortStrength);
+                bg.SetFloat("_DistortSpeed", BaseDistortSpeed);
+                bg.SetFloat("_FlowStrength", BaseFlowStrength);
+                bg.SetFloat("_FlowSpeed", BaseFlowSpeed);
+                bg.SetFloat("_PhaseStrength", BasePhaseStrength);
         }
     }

@@ -73,6 +73,7 @@ public class SettingsMenu : MonoBehaviour
             animating = false;
         }));
         animating = true;
+        AudioManager.Instance.StartConfigHover();
     }
 
     public void Close()

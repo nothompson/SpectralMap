@@ -26,7 +26,7 @@ public class PlayerKeyBinds : MonoBehaviour
         InputManager.Instance.inputs.Player.Reset.performed += OnReset;
         InputManager.Instance.inputs.Player.Save.performed += OnSave;
         InputManager.Instance.inputs.Player.Reload.performed += OnReload;
-        InputManager.Instance.inputs.Player.Fire.performed += OnFire;
+        InputManager.Instance.inputs.Player.AltFire.performed += OnAltFire;
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class PlayerKeyBinds : MonoBehaviour
             InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
             InputManager.Instance.inputs.Player.Save.performed -= OnSave;
              InputManager.Instance.inputs.Player.Reload.performed -= OnReload;
-              InputManager.Instance.inputs.Player.Fire.performed -= OnFire;
+              InputManager.Instance.inputs.Player.AltFire.performed -= OnAltFire;
         }
     }
     
@@ -66,6 +66,11 @@ public class PlayerKeyBinds : MonoBehaviour
                 PauseManager.Instance.Unpause();
                 playerControl.paused = false;
             }
+
+            if (SettingsMenu.Instance.Container.activeInHierarchy)
+            {
+                SettingsMenu.Instance.Close();
+            }
         }
 
         // if (forceRefill)
@@ -77,6 +82,8 @@ public class PlayerKeyBinds : MonoBehaviour
     public void OnReset(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        if(PauseManager.Instance.paused) return;
         
         checkpoint.Reset();
 
@@ -85,6 +92,8 @@ public class PlayerKeyBinds : MonoBehaviour
     public void OnSave(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        if(PauseManager.Instance.paused) return;
         
         checkpoint.updateCheckpoint(player.transform);
 
@@ -93,23 +102,29 @@ public class PlayerKeyBinds : MonoBehaviour
     public void OnReload(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
-        if (!HUDManager.Instance.reloading)
+
+        if(PauseManager.Instance.paused) return;
+
+        if (!ReloadManager.Instance.reloading)
         {
-            HUDManager.Instance.StartReload();
-            HUDManager.Instance.reloading = true;
+            if(playerMagic.magicPoints >= playerMagic.maximumMagic) return;
+            ReloadManager.Instance.StartReload();
+            ReloadManager.Instance.reloading = true;
         }
         else
         {
-            HUDManager.Instance.StopReload();
-            HUDManager.Instance.reloading = false;   
+            ReloadManager.Instance.StopReload();
+            ReloadManager.Instance.reloading = false;   
         }
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnAltFire(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         
-        if(!HUDManager.Instance.reloading) return;
+        if(!ReloadManager.Instance.reloading) return;
+
+        if(PauseManager.Instance.paused) return;
 
         bool onbeat = AudioManager.Instance.IsOnBeat();
 
@@ -119,31 +134,19 @@ public class PlayerKeyBinds : MonoBehaviour
             if(playerMagic.magicPoints >= playerMagic.maximumMagic)
             {
                 playerMagic.magicPoints = playerMagic.maximumMagic;
+                ReloadManager.Instance.StopReload();
             }
-            HUDManager.Instance.StartSuccess();
+            ReloadManager.Instance.StartSuccess();
         }
         else
         {
-            mana.Error();
             playerMagic.magicPoints -= 25f;
             if(playerMagic.magicPoints <= 0f)
             {
                 playerMagic.magicPoints = 0f;
             }
-            HUDManager.Instance.StartFailure();
+            ReloadManager.Instance.StartFailure();
         }
-
     }
-
-        //     bool onbeat = AudioManager.Instance.IsOnBeat();
-
-        // if (onbeat)
-        // {
-        //     Debug.Log("on beat!");  
-        // }
-        // else
-        // {
-        //     Debug.Log("off beat :(");
-        // }
 
 }

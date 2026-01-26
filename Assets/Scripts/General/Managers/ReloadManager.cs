@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class HUDManager : MonoBehaviour
+public class ReloadManager : MonoBehaviour
 {
-    public static HUDManager Instance; 
+    public static ReloadManager Instance; 
     public GameObject ReloadSprite;
     public GameObject Container;
     public GameObject Player;
@@ -80,6 +80,12 @@ public class HUDManager : MonoBehaviour
     {
         StopScaling();
         transitionRoutine = StartCoroutine(Transition(false));
+        StartCoroutine(Stopping());
+    }
+    IEnumerator Stopping()
+    {
+        yield return null;
+        reloading = false;
     }
 
     public IEnumerator Transition(bool intro)
@@ -123,6 +129,8 @@ public class HUDManager : MonoBehaviour
 
         bool which = rand > 0.5f;
         float targetRotation = which ? -1f * MaxRotation * Random.Range(0.75f,1.25f) : MaxRotation * Random.Range(0.75f,1.25f);
+
+        AudioManager.Instance.UIClick();
 
         while(t < dur)
         {

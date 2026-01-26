@@ -64,8 +64,15 @@ public class UIHoverJuice : MonoBehaviour
             StopCoroutine(hoverRoutine);
             hoverRoutine = null;
         }
+    }
 
-
+    void OnDisable()
+    {
+        if(rect != null)
+        {
+            rect.localScale = scale;
+            rect.localEulerAngles = rot;
+        }
     }
 
 

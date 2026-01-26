@@ -274,9 +274,9 @@
                         }
                     }
 
-                    if(HUDManager.Instance.reloading && HUDManager.Instance.ReloadSprite != null)
+                    if(ReloadManager.Instance.reloading && ReloadManager.Instance.ReloadSprite != null)
                     {
-                        StartCoroutine(HUDManager.Instance.Pulse());
+                        StartCoroutine(ReloadManager.Instance.Pulse());
                     }
 
                 }

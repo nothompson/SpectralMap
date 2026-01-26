@@ -128,13 +128,14 @@ public class Launcher : MonoBehaviour
 
         if (shootTimer <= 0f && shooting && playerMagic.magicPoints >= costToShoot)
         {
-            if(!HUDManager.Instance.reloading) Shoot();
+            if(ReloadManager.Instance.reloading) ReloadManager.Instance.StopReload();
+            Shoot();
         }
 
         punching = InputManager.Instance.inputs.Player.AltFire.triggered;
         if (punching)
         { 
-            if(!HUDManager.Instance.reloading) Punch();
+            if(!ReloadManager.Instance.reloading) Punch();
         }
 
         // if (allowInvoke)

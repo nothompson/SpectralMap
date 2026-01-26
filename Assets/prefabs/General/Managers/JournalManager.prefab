@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba75d049487c5a947b30c77e647f996f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllEntries: []
   Container: {fileID: 6873929228782166892}
   SubContainer: {fileID: 5785052813889568061}
   journalSprite: {fileID: 2033752296205762107}
