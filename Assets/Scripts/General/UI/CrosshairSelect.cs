@@ -10,7 +10,6 @@ public class CrosshairSelect : MonoBehaviour
     public Image TargetImage;
     public Sprite[] Crosshairs;
     public Slider slider;
-
     private Sprite currentCrosshair;
 
     void Awake()
@@ -30,6 +29,7 @@ public class CrosshairSelect : MonoBehaviour
     void UpdateDisplay()
     {
         TargetImage.sprite = currentCrosshair;
+        CrosshairManager.Instance.crosshairImage.sprite = currentCrosshair;
     }
 
 }
