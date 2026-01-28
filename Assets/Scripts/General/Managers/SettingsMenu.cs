@@ -5,29 +5,44 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Containers")]
     public static SettingsMenu Instance;
     public GameObject Container;
     public GameObject SubContainer;
-    public GameObject master; 
 
+    [Header("Visuals")]
+    [SerializeField] private AnimationCurve transitionCurve;
     public SpriteAnimate configSprite;
 
-    [SerializeField] private AnimationCurve transitionCurve;
-
     public bool animating = false;
-
     Coroutine transitionRoutine;
-
-    private Slider masterSlider;
-    public Slider sensitivitySlider; 
-
-    public float mouseSensitivity; 
-
-
+    [Header("Audio")]
+    public Slider masterVolume; 
+    public Slider musicVolume; 
+    public Slider soundsVolume; 
     private FMOD.Studio.VCA vca;
 
+    [Header("Gameplay")]
+    public Slider sensitivitySlider; 
+    public float mouseSensitivity;
+    public Slider fovSlider; 
 
-    
+    [Header("Video")]
+    public Slider Window;
+    public Slider Resolution;
+    public ApplyResolution apply;
+
+    [Header("Crosshair")]
+    public Slider crosshairIndex;
+    public Slider crosshairRed;
+    public Slider crosshairGreen;
+    public Slider crosshairBlue;
+    public Slider crosshairAlpha;
+    public Slider crosshairScale;
+    public Slider crosshairRotation;
+
+    public static GameSettingsData SettingsData;
+
 
     void Awake()
     {
@@ -40,17 +55,29 @@ public class SettingsMenu : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
-        masterSlider = master.GetComponent<Slider>();
+        SettingsData = GameSettings.Load();
 
-        SetSensitivity(sensitivitySlider.value);
+        sensitivitySlider.value = SettingsData.sensitivity;
+        mouseSensitivity = SettingsData.sensitivity;
 
-        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
+        var master = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
 
-        vca.setVolume(masterSlider.value);
+        master.setVolume(SettingsData.masterVolume);
+        masterVolume.value = SettingsData.masterVolume;
+
+        var music = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+
+        music.setVolume(SettingsData.musicVolume);
+        musicVolume.value = SettingsData.musicVolume;
+
+        var sounds = FMODUnity.RuntimeManager.GetVCA("vca:/Sounds");
+
+        sounds.setVolume(SettingsData.soundsVolume);
+        soundsVolume.value = SettingsData.soundsVolume;
+
+        FOVSettings.CurrentFOV = SettingsData.fov;
+
     }
 
     public void Open()
@@ -91,11 +118,15 @@ public class SettingsMenu : MonoBehaviour
             animating = false;
         }));
         animating = true;
+
+        StartCoroutine(apply.Deactivate());
     }
 
     public void SetSensitivity(float value)
     {
         mouseSensitivity = value;
+            SettingsData.sensitivity = value;
+            GameSettings.Save(SettingsData);
     }
 
     public void StartTransition(bool intro)

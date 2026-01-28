@@ -25,6 +25,7 @@
         {
             yield return null;
             RefreshBinding();
+            SaveBinding();
         }
 
         public void StartRebind()
@@ -52,6 +53,7 @@
 
                     targetAction.Enable();
                     RefreshBinding();
+                    SaveBinding();
                 })
                 .OnCancel(operation =>
                 {
@@ -87,25 +89,32 @@
         return 0;
         }
 
-       void RefreshBinding()
-    {
-        if(targetAction == null || text == null) return;
+        void RefreshBinding()
+        {
+            if(targetAction == null || text == null) return;
 
-        int bindingIndex = FindTargetBindingIndex();
-        var binding = targetAction.bindings[bindingIndex];
+            int bindingIndex = FindTargetBindingIndex();
+            var binding = targetAction.bindings[bindingIndex];
 
-        string path = string.IsNullOrEmpty(binding.overridePath) ? binding.effectivePath : binding.overridePath;
+            string path = string.IsNullOrEmpty(binding.overridePath) ? binding.effectivePath : binding.overridePath;
 
-        string display;
+            string display;
 
-        if(path.Contains("leftButton")) display = "M1";
-        else if(path.Contains("rightButton")) display = "M2";
-        else if(path.Contains("middleButton")) display = "M3";
-        else display = targetAction.GetBindingDisplayString(bindingIndex);
+            if(path.Contains("leftButton")) display = "M1";
+            else if(path.Contains("rightButton")) display = "M2";
+            else if(path.Contains("middleButton")) display = "M3";
+            else display = targetAction.GetBindingDisplayString(bindingIndex);
 
-        text.input = display;
-        text.Refresh();
-    }
+            text.input = display;
+            text.Refresh();
+
+        }
+
+        void SaveBinding()
+        {
+            SettingsMenu.SettingsData.inputBindings = InputManager.Instance.inputs.SaveBindingOverridesAsJson();
+            GameSettings.Save(SettingsMenu.SettingsData);
+        }
 
         public void StopRebind()
         {

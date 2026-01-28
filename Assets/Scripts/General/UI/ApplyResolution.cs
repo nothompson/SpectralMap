@@ -14,13 +14,26 @@ public class ApplyResolution : MonoBehaviour
     public void Apply()
     {
         var res = ResolutionOptions.pendingResolution;
-        Screen.SetResolution(res.width,res.height,ResolutionOptions.pendingWindow, res.refreshRateRatio);
+        var win = ResolutionOptions.pendingWindow;
+        Screen.SetResolution(res.width,res.height,win, res.refreshRateRatio);
+
+        if(win == FullScreenMode.Windowed)
+        {
+            res.width = Screen.width;
+            res.height = Screen.height;
+        }
+
+        SettingsMenu.SettingsData.resolution = res;
+
+        SettingsMenu.SettingsData.windowType = win;
+
         StartCoroutine(Deactivate());
     }
 
-    IEnumerator Deactivate()
+    public IEnumerator Deactivate()
     {
         yield return null;
+        GameSettings.Save(SettingsMenu.SettingsData);
         gameObject.SetActive(false);
     }
 

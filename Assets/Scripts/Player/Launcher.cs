@@ -91,8 +91,11 @@ public class Launcher : MonoBehaviour
 
     private void soundUpdate()
     {
+        if(player.paused) return;
+        
         float normalizedMagic = playerMagic.magicPoints / playerMagic.maximumMagic;
         fireSound.SetParameter("WetDryRocket", 1.0f - normalizedMagic);
+
         
         //error sound if out of magic
         if (readyToShoot && InputManager.Instance.inputs.Player.Fire.IsPressed() && playerMagic.magicPoints < costToShoot)

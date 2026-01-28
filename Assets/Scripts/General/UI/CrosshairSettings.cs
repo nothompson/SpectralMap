@@ -16,6 +16,8 @@ public class CrosshairSettings : MonoBehaviour
 
     public Slider Scale;
 
+    public Slider Rotation;
+
     private Image crosshairImage;
     private RectTransform crosshairRect;
 
@@ -23,16 +25,46 @@ public class CrosshairSettings : MonoBehaviour
     {
         crosshairImage = Crosshair.GetComponent<Image>();
         crosshairRect = Crosshair.GetComponent<RectTransform>();
+
+        crosshairImage.color = SettingsMenu.SettingsData.crosshairColor;
+        Red.value = SettingsMenu.SettingsData.crosshairColor.r;
+        Green.value = SettingsMenu.SettingsData.crosshairColor.g;
+        Blue.value = SettingsMenu.SettingsData.crosshairColor.b;
+        Alpha.value = SettingsMenu.SettingsData.crosshairColor.a;
+        
+        crosshairRect.localScale = SettingsMenu.SettingsData.crosshairScale;
+        Scale.value = SettingsMenu.SettingsData.crosshairScale.x;
+       
+        crosshairRect.localEulerAngles = SettingsMenu.SettingsData.crosshairRotation;
+        Rotation.value = SettingsMenu.SettingsData.crosshairRotation.z;
+    
     }
     public void ChangeColor()
     {
-        crosshairImage.color = new Color(Red.value, Green.value, Blue.value, Alpha.value);
-        CrosshairManager.Instance.crosshairImage.color = new Color(Red.value, Green.value, Blue.value, Alpha.value);
+        if(crosshairImage == null) return;
+        Color color = new Color(Red.value, Green.value, Blue.value, Alpha.value);
+        crosshairImage.color = color;
+        CrosshairManager.Instance.crosshairImage.color = color;
+        SettingsMenu.SettingsData.crosshairColor = color;
+        GameSettings.Save(SettingsMenu.SettingsData);
     }
 
     public void ChangeScale()
     {
-        crosshairRect.localScale = new Vector3(Scale.value,Scale.value,Scale.value);
-        CrosshairManager.Instance.crosshairRect.localScale = new Vector3(Scale.value,Scale.value,Scale.value);
+        if(crosshairRect == null) return;
+        Vector3 scale = new Vector3(Scale.value,Scale.value,Scale.value);
+        crosshairRect.localScale = scale;
+        CrosshairManager.Instance.crosshairRect.localScale = scale;
+        SettingsMenu.SettingsData.crosshairScale = scale;
+        GameSettings.Save(SettingsMenu.SettingsData);
+    }
+    public void ChangeRotation()
+    {
+        Vector3 rotation = new Vector3(0f,0f,Rotation.value);
+        if(crosshairRect == null) return;
+        crosshairRect.localEulerAngles = rotation;
+        CrosshairManager.Instance.crosshairRect.localEulerAngles = rotation;
+        SettingsMenu.SettingsData.crosshairRotation = rotation;
+        GameSettings.Save(SettingsMenu.SettingsData);
     }
 }

@@ -164,9 +164,17 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         AudioManager.Instance.RegisterPlayer(gameObject);
         TrickManager.Instance.RegisterPlayer(gameObject);
+        CrosshairManager.Instance.Activate();
 
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
+    }
+
+
+
+    void OnDisable()
+    {
+        CrosshairManager.Instance.Activate();
     }
 
     // void OnDestroy()
@@ -248,6 +256,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
+        Camera.main.fieldOfView = FOVSettings.CurrentFOV;
 
         if (!paused)
         {

@@ -6,16 +6,14 @@ using UnityEngine.UI;
 public class VCA : MonoBehaviour
 {
 
-    private FMOD.Studio.VCA vca;
+    public FMOD.Studio.VCA vca;
 
     public string vcaName;
-    public float initValue;
-
     private Slider slider;
 
     public bool debug = false;
 
-    void Awake()
+    void Start()
     {
         vca = FMODUnity.RuntimeManager.GetVCA("vca:/" + vcaName);
         slider = GetComponent<Slider>();
@@ -24,6 +22,24 @@ public class VCA : MonoBehaviour
     public void SetVolume(float value)
     {
         vca.setVolume(value);
+
+        if(SettingsMenu.SettingsData != null)
+        {
+            if(vcaName == "Master")
+            {
+                SettingsMenu.SettingsData.masterVolume = value;
+            }
+            else if(vcaName == "Music")
+            {
+                SettingsMenu.SettingsData.musicVolume = value;
+            }
+            else if(vcaName == "Sounds")
+            {
+                SettingsMenu.SettingsData.soundsVolume = value;
+            }
+
+            GameSettings.Save(SettingsMenu.SettingsData);
+        }
     }
 
 
