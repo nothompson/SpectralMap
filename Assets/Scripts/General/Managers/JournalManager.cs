@@ -1,16 +1,14 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class JournalManager : MonoBehaviour
 {
     public static JournalManager Instance;
-
-    public List<JournalEntry> AllEntries;
-
-    private Dictionary<string, JournalEntry> EntryFromID;
 
     public GameObject Container;
     public GameObject SubContainer;
@@ -32,6 +30,10 @@ public class JournalManager : MonoBehaviour
 
     public bool animating = false;
 
+    private JournalEntry[] allEntries;
+
+    public Dictionary<string, HashSet<int>> AddedEntries;
+
     void Awake()
     {
         if(Instance == null)
@@ -52,25 +54,100 @@ public class JournalManager : MonoBehaviour
 
         rightPageNumber = rightPagination.GetComponent<SpriteText>();
 
-        AssignEntries();
+        LoadAllJournalEntries();
 
-        UpdatePagination();
+        TrackAddedEntries();
 
+        LoadJournal();
     }
 
-    void AssignEntries()
+    void LoadAllJournalEntries()
     {
-        EntryFromID = new Dictionary<string, JournalEntry>();
-        foreach(var entry in AllEntries)
+        allEntries = Resources.LoadAll<JournalEntry>("JournalEntries");
+    }
+    
+    void TrackAddedEntries()
+    {
+        AddedEntries = new Dictionary<string, HashSet<int>>();
+    }
+
+    public void AddJournalEntry(string ID, int index)
+    {
+        JournalEntry entry = allEntries.FirstOrDefault(j => j.ID == ID);
+        if(entry == null) return;
+
+        if(!AddedEntries.ContainsKey(ID)) AddedEntries[ID] = new HashSet<int>();
+
+        if(!AddedEntries[ID].Add(index)) return;
+        
+        AddText(entry.Logs[index]);
+        UpdatePagination();
+
+        FeedManager.Instance.AddToFeed("Your Journal Has Been Updated");
+
+        SaveJournal();
+    }
+
+    void SaveJournal()
+    {
+        JournalSaveData data = new JournalSaveData();
+
+        foreach(var log in AddedEntries)
         {
-            if(entry != null && !string.IsNullOrEmpty(entry.ID))
-            {
-                if (!EntryFromID.ContainsKey(entry.ID))
-                {
-                    EntryFromID.Add(entry.ID,entry);
-                }
-            } 
+            JournalRecord record = new JournalRecord();
+            record.ID = log.Key;
+            record.addedEntries = log.Value.ToList();
+            data.Records.Add(record);
         }
+
+        string savedJson = JsonUtility.ToJson(data,true);
+        File.WriteAllText(GetSavePath(),savedJson);
+    }
+
+    void LoadJournal()
+    {
+        string filePath = GetSavePath();
+        if(!File.Exists(filePath)) return;
+
+        string jsonInput = File.ReadAllText(filePath);
+        JournalSaveData data = JsonUtility.FromJson<JournalSaveData>(jsonInput);
+        AddedEntries.Clear();
+        SetText("");
+        foreach(var record in data.Records)
+        {
+            if(string.IsNullOrEmpty(record.ID)) continue;
+            AddedEntries[record.ID] = new HashSet<int>(record.addedEntries);
+            JournalEntry entry = allEntries.FirstOrDefault(j => j.ID == record.ID);
+            if(entry == null) continue;
+
+            foreach(int index in record.addedEntries.OrderBy(i => i))
+            {
+                if(index >= 0 && index < entry.Logs.Count)
+                {
+                    AddText(entry.Logs[index]);
+                }
+            }
+        }
+
+        UpdatePagination();
+    }
+
+    public bool HasJournalEntry(string id, int index)
+    {
+        if(!AddedEntries.ContainsKey(id)) return false;
+
+        return AddedEntries[id].Contains(index);
+    }
+
+    void SetText(string input)
+    {
+        leftText.input = input;
+        rightText.input = input;
+    }
+
+    string GetSavePath()
+    {
+        return Path.Combine(Application.persistentDataPath, "Journal.json");
     }
 
     public void Open()

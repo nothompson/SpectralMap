@@ -5,27 +5,69 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCDialogue", menuName = "NPC/NPCDialogue")]
 public class NPCDialogue : ScriptableObject
 {
-    [TextArea(3,10)]
-    public string[] dialogue;
+    public List<DialogueProgression> dialogues;
     public float speed;
     public bool reset;
-    public bool repeat;
     public FMODUnity.EventReference soundbank;
-    public bool AddToJournal;
-    public int indexToAddEntry;
-    [TextArea(3,10)]
-    public string TextToJournal;
-    public bool added;
-    public void JournalEntry()
+
+    public DialogueProgression GetCurrentDialogue(string npcID)
     {
-        if (AddToJournal && JournalManager.Instance != null && !added)
+        if(DialogueManager.Instance == null || dialogues == null || dialogues.Count < 1) return null;
+
+        int prog = DialogueManager.Instance.GetProgress(npcID);
+
+        prog = Mathf.Clamp(prog,0,dialogues.Count - 1);
+
+        for(int i = prog; i < dialogues.Count; i++)
         {
-            FeedManager.Instance.AddToFeed("Your Journal Has Been Updated");
-            JournalManager.Instance.AddText(TextToJournal);
+            DialogueProgression dialogue = dialogues[i];
+
+            bool requirements = !dialogue.requiresJournalEntry || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex));
+
+            if(requirements) return dialogue;
         }
-        else
+
+        for(int i = 0; i< dialogues.Count; i++)
         {
-            Debug.Log("failed journal entry");
+            DialogueProgression dialogue = dialogues[i];
+
+            bool requirements = !dialogue.requiresJournalEntry || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex));
+
+            if(requirements) return dialogue;
+        }
+        return null;
+    }
+
+    public void CompleteDialogue(string npcID, DialogueProgression currentDialogue)
+    {
+        if(currentDialogue == null || DialogueManager.Instance == null) return;
+
+        int prog = DialogueManager.Instance.GetProgress(npcID);
+        int next = Mathf.Clamp(prog + 1, 0, dialogues.Count - 1);
+        if(next >= dialogues.Count) return;
+
+        DialogueProgression nextDialogue = dialogues[next];
+
+        if(!nextDialogue.requiresJournalEntry){
+            if (currentDialogue.advance)
+            {
+                DialogueManager.Instance.AdvanceProgress(npcID, dialogues);
+            }
+            return;
+
+        }
+
+        if(JournalManager.Instance != null && JournalManager.Instance.HasJournalEntry(nextDialogue.prereqId, nextDialogue.prereqIndex))
+        {
+            DialogueManager.Instance.AdvanceProgress(npcID, dialogues);
         }
     }
+
+    public void AddJournalEntry(DialogueProgression dialogue)
+    {
+        if(dialogue == null || !dialogue.addToJournal || JournalManager.Instance == null) return;
+
+        JournalManager.Instance.AddJournalEntry(dialogue.journalID,dialogue.journalIndex);
+    }
+
 }

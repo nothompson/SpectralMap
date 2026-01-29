@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
   m_Name: NPCDialogue2
   m_EditorClassIdentifier: 
-  dialogue:
-  - WOOOOO!!!!
-  - OHHYEAHHHH!!!
-  - WOOHOOOO!!!!!!
-  - WOOOYEAAAAA!!!!
-  - YEEAAAAAAAAAAA
+  ID: 
+  dialogues: []
   speed: 35
   reset: 0
   repeat: 1
@@ -28,3 +24,4 @@ MonoBehaviour:
       Data3: 66904505
       Data4: 1700788327
     Path: event:/NPCs/GhostDialogue
+  indexToAddEntry: 0

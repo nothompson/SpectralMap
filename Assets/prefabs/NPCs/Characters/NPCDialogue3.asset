@@ -12,15 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
   m_Name: NPCDialogue3
   m_EditorClassIdentifier: 
-  dialogue:
-  - ah, that look on your face!
-  - a fresh container of flesh and slime
-  - 'and postulating a healthy spectra too '
-  - may your harmonic content be sublime...
-  - and may bognus guide your cycle!
+  dialogues:
+  - lines:
+    - yoooo
+    - im trying my best okay
+    - im daniel btw
+    - that last dude is gone forever
+    - do u guys have bug milk here
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    addToJournal: 1
+    journalID: intro
+    journalIndex: 3
+    advance: 0
+    lineIndexToAddJournalEntry: 4
+    repeat: 0
+  - lines:
+    - holyy shit really
+    - man thats crazy
+    requiresJournalEntry: 1
+    prereqId: intro
+    prereqIndex: 2
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    advance: 0
+    lineIndexToAddJournalEntry: 0
+    repeat: 1
   speed: 35
   reset: 0
-  repeat: 0
   soundbank:
     Guid:
       Data1: 1227433301
@@ -28,8 +49,3 @@ MonoBehaviour:
       Data3: 66904505
       Data4: 1700788327
     Path: event:/NPCs/GhostDialogue
-  AddToJournal: 1
-  indexToAddEntry: 4
-  TextToJournal: A fragment told me about flesh, slime, and spectra. they mentioned
-    someone or something named bognus
-  added: 0

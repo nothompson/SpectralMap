@@ -21,14 +21,16 @@ public class InputManager : MonoBehaviour
         }
 
         inputs = new InputSystem_Actions();
+        inputs.Player.Enable();
 
-        if (!string.IsNullOrEmpty(SettingsMenu.SettingsData.inputBindings))
+    }
+
+    void Start()
+    {
+        if (SettingsMenu.Instance != null && SettingsMenu.SettingsData != null && !string.IsNullOrEmpty(SettingsMenu.SettingsData.inputBindings))
         {
             inputs.LoadBindingOverridesFromJson(SettingsMenu.SettingsData.inputBindings);
         }
-        inputs.Player.Enable();
-
-
     }
 
     void OnDestroy()

@@ -9,6 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string npcID;
 
     [System.Serializable]
     public class PartConfig
@@ -78,7 +79,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public NPCDialogue dialogueData;
 
-    int index = 0;
+    private DialogueProgression currentDialogue;
 
     private List<string> currentWords = new List<string>();
     private List<AsyncOperationHandle<GameObject>> loadedParts = new();
@@ -109,11 +110,6 @@ public class NPC : MonoBehaviour, IInteractable
         meshJitter.rotation = headRotation;
 
         ableToSeePlayer = true;
-
-        if (dialogueData.AddToJournal)
-        {
-            dialogueData.added = false;
-        }
     }
 
     private void RefreshMeshJitter()
@@ -302,6 +298,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void OnInteract(GameObject player)
     {
+        int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
+
         //references from interactor(player)
         PlayerControlRigid pcr = player.GetComponent<PlayerControlRigid>();
         if(!fov.canSeePlayer || pcr.paused) return;
@@ -321,32 +319,49 @@ public class NPC : MonoBehaviour, IInteractable
         {
             StopCoroutine(textboxAnimation);
         }
+        DialogueProgression next = dialogueData.GetCurrentDialogue(npcID);
+
+        if(currentDialogue != next) {
+            currentDialogue = next;
+            DialogueManager.Instance.ResetLineIndex(npcID);
+            dialogue.fullTextShown = false;
+            }
+       
         //if typing, interact again to skip typewriting
         if (dialogue.isTyping)
         {
             dialogue.ShowText(this);
             return;
-        }
+        }   
         //if full text is shown and interact, go to next line(if any)
-        else if (dialogue.fullTextShown && dialogueData.dialogue.Length > 0)
+        if (dialogue.fullTextShown)
         {
-            if(index < dialogueData.dialogue.Length - 1){
-                index++;
-            //if repeat, then cycle back to first line
-            if(dialogueData.repeat){
-                if(index >= dialogueData.dialogue.Length)
-                {
-                    index = 0;
-                }
-            }
-            }
-            else
+            dialogueIndex++;
+
+            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
             {
-                //otherwise, clamp to last line
-                if(index >= dialogueData.dialogue.Length)
+                dialogueData.AddJournalEntry(currentDialogue);
+            }
+            if(dialogueIndex >= currentDialogue.lines.Length)
+            {
+                dialogueData.CompleteDialogue(npcID, currentDialogue);
+
+                currentDialogue = dialogueData.GetCurrentDialogue(npcID);
+
+                if (currentDialogue.repeat)
                 {
-                    index = dialogueData.dialogue.Length - 1;
+                    dialogueIndex = 0;
+                    DialogueManager.Instance.ResetLineIndex(npcID);
                 }
+                else
+                {
+                    dialogueIndex = currentDialogue.lines.Length - 1;
+                    DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
+                }
+                
+            }
+            else{
+                DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
             }
         }
         //open hud 
@@ -358,12 +373,6 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
         Image image = hudbox.GetComponent<Image>();
-
-        if (dialogueData.AddToJournal && index == dialogueData.indexToAddEntry && !dialogueData.added)
-        {
-            dialogueData.JournalEntry();
-            dialogueData.added = true;
-        }
     }
 
     public InteractionType GetInteractionType()
@@ -393,19 +402,20 @@ public class NPC : MonoBehaviour, IInteractable
                 StopCoroutine(Speak);
                 Speak = null;
             }
-            if(dialogueData.reset){
-                index = 0;
-            }
-            else 
-            {
-                if(dialogue.fullTextShown)
-                    index+=1;
-                if(index >= dialogueData.dialogue.Length)
-                {
-                    index = dialogueData.dialogue.Length - 1;
-                }
-            }
-            dialogue.fullTextShown = false;
+            // int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
+            // if(dialogueData.reset){
+            //     dialogueIndex = 0;
+            //     DialogueManager.Instance.ResetLineIndex(npcID);
+            // }
+            // if(currentDialogue == null) return;
+            // else 
+            // {
+            //     if(dialogueIndex >= currentDialogue.lines.Length)
+            //     {
+            //         dialogueIndex = currentDialogue.lines.Length - 1;
+            //         DialogueManager.Instance.SetLineIndex(npcID,dialogueIndex);
+            //     }
+            // }
 
         }
 
@@ -455,21 +465,28 @@ public class NPC : MonoBehaviour, IInteractable
         //clear previous typing
         if(dialogue.typing != null)
         {
-        dialogue.StopTypewriter(this);
+            dialogue.StopTypewriter(this);
         }
         if (Speak != null)
         {
             StopCoroutine(Speak);
             Speak = null;
         }
-        //get line from index
-        dialogue.input = dialogueData.dialogue[index];
+        int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
 
-        GetWords(dialogueData.dialogue[index]);
+        dialogueIndex = Mathf.Clamp(dialogueIndex, 0, currentDialogue.lines.Length - 1);
+        DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
+
+        //get line from index
+        dialogue.input = currentDialogue.lines[dialogueIndex];
+
+        GetWords(dialogue.input);
         //start typing
         dialogue.StartTypewriter(this, dialogueData.speed);
 
         Speak = StartCoroutine(SayWords());
+
+        dialogue.fullTextShown = false;
 
     }
 
