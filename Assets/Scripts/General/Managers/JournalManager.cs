@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public class JournalManager : MonoBehaviour
 {
@@ -111,13 +112,18 @@ public class JournalManager : MonoBehaviour
 
         string jsonInput = File.ReadAllText(filePath);
         JournalSaveData data = JsonUtility.FromJson<JournalSaveData>(jsonInput);
+
         AddedEntries.Clear();
+
         SetText("");
+
         foreach(var record in data.Records)
         {
             if(string.IsNullOrEmpty(record.ID)) continue;
+            
             AddedEntries[record.ID] = new HashSet<int>(record.addedEntries);
             JournalEntry entry = allEntries.FirstOrDefault(j => j.ID == record.ID);
+            
             if(entry == null) continue;
 
             foreach(int index in record.addedEntries.OrderBy(i => i))
@@ -132,6 +138,48 @@ public class JournalManager : MonoBehaviour
         UpdatePagination();
     }
 
+    public void SearchEntries(string input)
+    {
+        string filePath = GetSavePath();
+        if(!File.Exists(filePath)) return;
+
+        string jsonInput = File.ReadAllText(filePath);
+        JournalSaveData data = JsonUtility.FromJson<JournalSaveData>(jsonInput);
+
+        AddedEntries.Clear();
+
+        SetText("");
+
+        Regex regex = new Regex(input, RegexOptions.IgnoreCase);
+
+        foreach(var record in data.Records)
+        {
+            if(string.IsNullOrEmpty(record.ID)) continue;
+            
+            AddedEntries[record.ID] = new HashSet<int>(record.addedEntries);
+            JournalEntry entry = allEntries.FirstOrDefault(j => j.ID == record.ID);
+            
+            if(entry == null) continue;
+
+            foreach(int index in record.addedEntries.OrderBy(i => i))
+            {
+                if(index >= 0 && index < entry.Logs.Count)
+                {
+                    if(regex.IsMatch(entry.Logs[index]))
+                    {
+                        AddText(entry.Logs[index]);
+                    }
+                }
+            }
+        }
+        UpdatePagination();
+    }
+
+    public void ClearSearch()
+    {
+        LoadJournal();
+    }
+
     public bool HasJournalEntry(string id, int index)
     {
         if(!AddedEntries.ContainsKey(id)) return false;
@@ -143,6 +191,9 @@ public class JournalManager : MonoBehaviour
     {
         leftText.input = input;
         rightText.input = input;
+
+        leftText.Refresh();
+        rightText.Refresh();
     }
 
     string GetSavePath()
@@ -191,6 +242,7 @@ public class JournalManager : MonoBehaviour
         animating = true;
         AudioManager.Instance.JournalClose();
     }
+
 
     public void AddText(string input)
     {
