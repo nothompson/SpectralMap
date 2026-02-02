@@ -527,6 +527,19 @@
             FMODUnity.RuntimeManager.PlayOneShot(sounds.playerHurt);
         }
 
+        public void ReloadSuccess()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.ReloadSuccess);
+        }
+        public void ReloadFailure()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.ReloadFailure);
+        }
+        public void ReloadTick()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.ReloadTick);
+        }
+
         public void UIOpen()
         {
             FMODUnity.RuntimeManager.PlayOneShot(sounds.UIOpen);

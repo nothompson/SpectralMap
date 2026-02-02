@@ -9,6 +9,7 @@ public class ReloadManager : MonoBehaviour
     public GameObject ReloadSprite;
     public GameObject Container;
     public GameObject Player;
+    private Light ShellLight;
     [SerializeField] private AnimationCurve PulseCurve;
     [SerializeField] private AnimationCurve RotationCurve;
     [SerializeField] private AnimationCurve TransitionCurve;
@@ -39,6 +40,13 @@ public class ReloadManager : MonoBehaviour
     Coroutine successRoutine;
     Coroutine failRoutine;
     Coroutine transitionRoutine;
+
+    private float BaseIntensity;
+    [SerializeField] private float TargetIntensity;
+    private float BaseRange;
+    [SerializeField] private float TargetRange;
+
+    private Color BaseLightColor;
        void Awake()
     {
         if(Instance == null)
@@ -64,9 +72,29 @@ public class ReloadManager : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if(ShellLight == null) return;
+        ProjectileParticleManager.Instance.ReloadPulse.transform.position = ShellLight.transform.position;
+    }
+
+    public void RegisterPlayer(GameObject player)
+    {
+        Player = player;
+        GameObject go = Player.transform.Find("YawPivot/Camera/overlay/SpectralShellLight")?.gameObject;
+        ShellLight = go.GetComponent<Light>();
+        
+        BaseIntensity = ShellLight.intensity;
+        BaseRange = ShellLight.range;
+        BaseLightColor = ShellLight.color;
+    }
+
     public void StartReload()
     {
         Container.SetActive(true);
+        ShellLight.gameObject.SetActive(true);
+        // ShellLight.intensity = 0f;
+
         float beat = AudioManager.Instance.BeatDur;
         bps = 1f/beat;
 
@@ -111,7 +139,11 @@ public class ReloadManager : MonoBehaviour
 
         containerRect.localScale = target;
 
-        if(!intro) Container.SetActive(false);
+        if(!intro) 
+        {
+            Container.SetActive(false);
+            ShellLight.gameObject.SetActive(false);
+        }
 
         transitionRoutine = null;
     }
@@ -130,7 +162,10 @@ public class ReloadManager : MonoBehaviour
         bool which = rand > 0.5f;
         float targetRotation = which ? -1f * MaxRotation * Random.Range(0.75f,1.25f) : MaxRotation * Random.Range(0.75f,1.25f);
 
-        AudioManager.Instance.UIClick();
+        AudioManager.Instance.ReloadTick();
+
+        ProjectileParticleManager.Instance.ReloadPulse.Emit(20);
+        ProjectileParticleManager.Instance.ReloadPulse.Play();
 
         while(t < dur)
         {
@@ -142,6 +177,8 @@ public class ReloadManager : MonoBehaviour
             rect.localScale = startScale * pulse;
 
             rect.localEulerAngles = new Vector3(0f,0f, startRot.z + (targetRotation * rotation));
+
+            ShellLight.intensity = BaseIntensity  + (TargetIntensity * rotation);
 
             mat.SetFloat("_distortion", baseMelt + (targetMelt * rotation));
             mat.SetFloat("_bps", bps);
@@ -155,6 +192,7 @@ public class ReloadManager : MonoBehaviour
 
     public void StartSuccess()
     {
+        AudioManager.Instance.ReloadSuccess();
         if(successRoutine != null)
         {
             StopCoroutine(successRoutine);
@@ -168,6 +206,7 @@ public class ReloadManager : MonoBehaviour
 
   public void StartFailure()
     {
+        AudioManager.Instance.ReloadFailure();
         if(successRoutine != null)
         {
             StopCoroutine(successRoutine);
@@ -189,6 +228,8 @@ public class ReloadManager : MonoBehaviour
             float time = t / failDur;
             Color target = Color.Lerp(baseColor, successColor, time);
             mat.SetColor("_Color", target);
+            Color lightTarget = Color.Lerp(BaseLightColor, successColor, time);
+            ShellLight.color = lightTarget;
             yield return null;
         }
         yield return new WaitForSeconds(0.05f);
@@ -199,9 +240,12 @@ public class ReloadManager : MonoBehaviour
             float time = t / failDur;
             Color target = Color.Lerp(successColor, baseColor, time);
             mat.SetColor("_Color", target);
+            Color lightTarget = Color.Lerp(successColor, BaseLightColor, time);
+            ShellLight.color = lightTarget;
             yield return null;
         }
         mat.SetColor("_Color", baseColor);
+        ShellLight.color = BaseLightColor;
     }
 
     IEnumerator Failure()
@@ -214,6 +258,10 @@ public class ReloadManager : MonoBehaviour
             float time = t / failDur;
             Color target = Color.Lerp(baseColor, failColor, time);
             mat.SetColor("_Color", target);
+
+            Color lightTarget = Color.Lerp(BaseLightColor, failColor, time);
+            ShellLight.color = lightTarget;
+
             yield return null;
         }
         yield return new WaitForSeconds(0.05f);
@@ -224,9 +272,14 @@ public class ReloadManager : MonoBehaviour
             float time = t / failDur;
             Color target = Color.Lerp(failColor, baseColor, time);
             mat.SetColor("_Color", target);
+
+            Color lightTarget = Color.Lerp(failColor, BaseLightColor, time);
+            ShellLight.color = lightTarget;
+
             yield return null;
         }
         mat.SetColor("_Color", baseColor);
+        ShellLight.color = BaseLightColor;
     }
 
     public void OnDisable()
@@ -243,6 +296,7 @@ public class ReloadManager : MonoBehaviour
     {
         rect.localScale = scale;
         rect.localEulerAngles = rot;
+        ShellLight.intensity = BaseIntensity;
         if(mat!=null)
         {
             mat.SetFloat("_distortion", baseMelt);

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fa65ccc5a07874b8bf66c5d2918822, type: 3}
+  m_Name: TestItem 1
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  ID: testitem2
+  Name: smalljorts
+  Description: 'super small jorts never fittign you or anyone too small to fit these
+    jorts are small '
+  ItemDisplay: {fileID: 802865923, guid: c2f50d26901c3a245bfb974adee6fa64, type: 3}
+  AnimationSprites:
+  - {fileID: 802865923, guid: c2f50d26901c3a245bfb974adee6fa64, type: 3}
+  AnimationDirection: 0
+  AnimationFPS: 24
+  PositionOnGrid: {x: 0, y: 0}
+  IsInInventory: 1

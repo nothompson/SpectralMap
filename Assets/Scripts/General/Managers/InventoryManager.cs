@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
 
 
     public Item[] AllItems;
-    private DraggableItem[] AllDraggableItems;
+
     [SerializeField] private DraggableItem draggableItemPrefab;
 
     private Dictionary<string, Item> ItemLookup = new();
@@ -52,8 +52,6 @@ public class InventoryManager : MonoBehaviour
 
         LoadAllItems();
 
-        InitGrid();
-
     }
 
     void InitGrid()
@@ -78,12 +76,13 @@ public class InventoryManager : MonoBehaviour
     }
 
     void Start()
-    {
-        AllDraggableItems = GetComponentsInChildren<DraggableItem>(true);
+    {        
+        InitGrid();
 
         LoadInventory();    
 
         AddItem("testitem", new Vector2Int(3,3));
+        AddItem("testitem2", new Vector2Int(0,0));
     }
     
     public void Open()

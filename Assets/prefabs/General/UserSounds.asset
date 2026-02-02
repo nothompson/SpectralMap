@@ -26,6 +26,27 @@ MonoBehaviour:
       Data3: -1784308849
       Data4: -286377636
     Path: event:/Player/playerHurt
+  ReloadSuccess:
+    Guid:
+      Data1: 1736609649
+      Data2: 1109328365
+      Data3: 1271988874
+      Data4: 1673319384
+    Path: event:/Player/ReloadSuccess
+  ReloadFailure:
+    Guid:
+      Data1: -702365742
+      Data2: 1285096836
+      Data3: -128557392
+      Data4: 1850690922
+    Path: event:/Player/ReloadFailure
+  ReloadTick:
+    Guid:
+      Data1: 841852053
+      Data2: 1200512869
+      Data3: -1844587087
+      Data4: 1226955934
+    Path: event:/Player/ReloadTick
   UIOpen:
     Guid:
       Data1: -113060921

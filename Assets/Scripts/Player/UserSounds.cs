@@ -9,6 +9,11 @@ public class UserSounds : ScriptableObject
 
     public FMODUnity.EventReference playerHurt;
 
+    public FMODUnity.EventReference ReloadSuccess;
+
+    public FMODUnity.EventReference ReloadFailure;
+    public FMODUnity.EventReference ReloadTick;
+
     public FMODUnity.EventReference UIOpen;
 
     public FMODUnity.EventReference UIClose;

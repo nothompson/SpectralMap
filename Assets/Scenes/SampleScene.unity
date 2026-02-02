@@ -3866,8 +3866,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222188144}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 18.6, y: 0, z: -17.79}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.13, y: -3.7, z: -22.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3875,7 +3875,7 @@ Transform:
   - {fileID: 1580853355}
   - {fileID: 2051309704}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &222188152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15444,7 +15444,7 @@ GameObject:
   - component: {fileID: 1185274581}
   - component: {fileID: 1185274582}
   m_Layer: 3
-  m_Name: Point Light
+  m_Name: SpectralShellLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15458,8 +15458,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185274580}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06394803, y: -0.01596701, z: 0.0010245478, w: 0.997825}
-  m_LocalPosition: {x: -0.016, y: -1.0333276, z: 2.466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.007, y: -1.009, z: 1.582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15475,9 +15475,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.57547164, g: 0.6446702, b: 1, a: 1}
-  m_Intensity: 10.66
-  m_Range: 1.1438274
+  m_Color: {r: 0.24213827, g: 0.3614316, b: 1, a: 1}
+  m_Intensity: 0.5
+  m_Range: 1.25
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -22613,7 +22613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711076715}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29502,6 +29502,18 @@ PrefabInstance:
     - target: {fileID: 882810638055909793, guid: 50da03a6516215a4bb06982a18740ee5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130281622596865524, guid: 50da03a6516215a4bb06982a18740ee5, type: 3}
+      propertyPath: successColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130281622596865524, guid: 50da03a6516215a4bb06982a18740ee5, type: 3}
+      propertyPath: successColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130281622596865524, guid: 50da03a6516215a4bb06982a18740ee5, type: 3}
+      propertyPath: successColor.r
+      value: 0.22912085
       objectReference: {fileID: 0}
     - target: {fileID: 6654286019982348275, guid: 50da03a6516215a4bb06982a18740ee5, type: 3}
       propertyPath: m_Name

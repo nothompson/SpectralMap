@@ -12,6 +12,8 @@ public class ProjectileParticleManager : MonoBehaviour
 
     public ParticleSystem fireballExplode;
 
+    public ParticleSystem ReloadPulse;
+
     public HashSet<Fireball> activeFireballs = new HashSet<Fireball>();
 
     private ParticleSystem.EmitParams smokeParams;

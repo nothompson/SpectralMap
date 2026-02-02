@@ -24,11 +24,18 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     private bool Dragging = false;
     private bool Hovering = false;
 
+    private UIHoverJuice hover;
+    
+    private Coroutine Wait;
+    private int waitID = 0;
+    private bool waiting = false;
+
     protected virtual void Awake()
     {
         image = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
         ParentCanvas = GetComponentInParent<Canvas>();
+        hover = GetComponent<UIHoverJuice>();
         HideDisplay();
     }
 
@@ -39,14 +46,25 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     public void OnPointerEnter(PointerEventData input)
     {
         Hovering = true;
+        hover.StartHover(true);
         ShowDisplay();
+        AudioManager.Instance.UIClick();
     }
     public void OnPointerExit(PointerEventData input)
     {
         if(!Dragging) {
             Hovering = false;
+            hover.StartHover(false);
             HideDisplay();
         }
+    }
+
+    IEnumerator WaitToHide()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        Debug.Log("half second is up, hiding display");
+        HideDisplay();
+        Wait = null;
     }
 
     public void ShowDisplay()
@@ -61,6 +79,12 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
         else
         {
             InventoryManager.Instance.ItemToDisplay.sprite = ItemData.ItemDisplay;
+            InventoryManager.Instance.DisplayAnimate.sprites = null;
+            InventoryManager.Instance.DisplayAnimate.length = 0;
+            InventoryManager.Instance.DisplayAnimate.direction = true;
+            InventoryManager.Instance.DisplayAnimate.fps = 0;
+            InventoryManager.Instance.DisplayAnimate.isPlaying = false;
+
         }
 
         InventoryManager.Instance.DescriptionText.input = ItemData.Description;
@@ -75,6 +99,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     public void HideDisplay()
     {
+        Debug.Log("hiding!");
         InventoryManager.Instance.ItemToDisplay.color = new Color(1f,1f,1f,0f);
         InventoryManager.Instance.Display.SetActive(false);
 

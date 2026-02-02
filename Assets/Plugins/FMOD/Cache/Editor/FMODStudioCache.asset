@@ -1389,7 +1389,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Weapon Sounds.bank
   Name: Weapon Sounds
   StudioPath: bank:/Weapon Sounds
-  lastModified: 639002050991810251
+  lastModified: 639056326849523236
   FileSizes:
   - Name: Desktop
     Value: 198208
@@ -1433,10 +1433,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639031604128267945
+  lastModified: 639056326848978777
   FileSizes:
   - Name: Desktop
-    Value: 4378
+    Value: 4518
   Exists: 1
 --- !u!114 &-5199385024163790057
 MonoBehaviour:
@@ -1621,6 +1621,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4778391819720883213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/ReloadSuccess
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/ReloadSuccess
+  Guid:
+    Data1: 1736609649
+    Data2: 1109328365
+    Data3: 1271988874
+    Data4: 1673319384
+  Banks:
+  - {fileID: 7111660592915182222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1050
 --- !u!114 &-4712530787532596992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,7 +1690,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639031604128152177
+  lastModified: 639056326848968768
   FileSizes:
   - Name: Desktop
     Value: 3652
@@ -2002,6 +2029,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 852544
   Exists: 1
+--- !u!114 &-3658718638612253228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/ReloadTick
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/ReloadTick
+  Guid:
+    Data1: 841852053
+    Data2: 1200512869
+    Data3: -1844587087
+    Data4: 1226955934
+  Banks:
+  - {fileID: 7111660592915182222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 168
 --- !u!114 &-3574333134262347250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3245,6 +3299,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 27458240
   Exists: 1
+--- !u!114 &-229082119551794605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/ReloadFailure
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/ReloadFailure
+  Guid:
+    Data1: -702365742
+    Data2: 1285096836
+    Data3: -128557392
+    Data4: 1850690922
+  Banks:
+  - {fileID: 7111660592915182222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 800
 --- !u!114 &-213326925162061955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3392,6 +3473,9 @@ MonoBehaviour:
   - {fileID: 5782251518727520049}
   - {fileID: 6795750042644677130}
   - {fileID: -7003164223233605669}
+  - {fileID: -4778391819720883213}
+  - {fileID: -3658718638612253228}
+  - {fileID: -229082119551794605}
   EditorParameters:
   - {fileID: 5939900623978048996}
   MasterBanks:
@@ -3399,7 +3483,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5218457811764894937}
   cacheVersion: 131849
-  cacheTime: 639037479226371210
+  cacheTime: 639056326849523236
   SerializableEventsDict:
   - key: event:/Enemies/fleshGrunt/Step
     index: 0
@@ -3487,6 +3571,12 @@ MonoBehaviour:
     index: 41
   - key: event:/Player/RocketFire
     index: 42
+  - key: event:/Player/ReloadSuccess
+    index: 43
+  - key: event:/Player/ReloadTick
+    index: 44
+  - key: event:/Player/ReloadFailure
+    index: 45
 --- !u!114 &130800245406359910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6014,10 +6104,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/MagicManagement.bank
   Name: MagicManagement
   StudioPath: bank:/MagicManagement
-  lastModified: 639002050982340131
+  lastModified: 639056326848918513
   FileSizes:
   - Name: Desktop
-    Value: 17984
+    Value: 314752
   Exists: 1
 --- !u!114 &7201422431700273016
 MonoBehaviour:
