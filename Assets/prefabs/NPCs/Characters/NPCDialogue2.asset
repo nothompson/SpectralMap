@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
   m_Name: NPCDialogue2
   m_EditorClassIdentifier: 
-  ID: 
-  dialogues: []
+  dialogues:
+  - lines:
+    - 
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    addToJournal: 1
+    journalID: 
+    journalIndex: 0
+    advance: 0
+    lineIndexToAddJournalEntry: 0
+    repeat: 0
   speed: 35
   reset: 0
-  repeat: 1
   soundbank:
     Guid:
       Data1: 1227433301
@@ -24,4 +33,3 @@ MonoBehaviour:
       Data3: 66904505
       Data4: 1700788327
     Path: event:/NPCs/GhostDialogue
-  indexToAddEntry: 0

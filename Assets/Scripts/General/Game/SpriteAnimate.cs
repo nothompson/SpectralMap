@@ -18,7 +18,7 @@ public class SpriteAnimate : MonoBehaviour
 
     public SpriteRenderer sprite;
     public bool worldSpace = false;
-    private int length;
+    public int length;
     public int index;
     private float _timer;
 
@@ -67,8 +67,7 @@ public class SpriteAnimate : MonoBehaviour
             index += dir;
 
             if(index >= length) index = 0;
-            else if(index < 0) index = length - 1;  
-
+            else if(index < 0) index = length - 1;
                 if(material != null)
                 {
                     material.SetTexture("_Input", sprites[index].texture);
@@ -96,7 +95,6 @@ public class SpriteAnimate : MonoBehaviour
         else
         {
         image.sprite = sprites[index];
-            
         }
     }
 

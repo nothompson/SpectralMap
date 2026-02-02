@@ -70,7 +70,7 @@ public class Fireball : MonoBehaviour
 
             impact.Play();
 
-            bool direct = layer == LayerMask.NameToLayer("Enemy");
+            bool direct = layer == LayerMask.NameToLayer("Enemy") || layer == LayerMask.NameToLayer("NPC");
 
             Explode(direct);
 
@@ -91,6 +91,7 @@ public class Fireball : MonoBehaviour
         {
             HP targetHP = hit.GetComponentInParent<HP>();
             Enemy e = hit.GetComponentInParent<Enemy>();
+            NPC npc = hit.GetComponentInParent<NPC>();
             PlayerControlRigid pc = hit.GetComponentInParent<PlayerControlRigid>();
             Rigidbody rb = hit.attachedRigidbody;
 
@@ -180,6 +181,15 @@ public class Fireball : MonoBehaviour
                 if(pc.StartSyncTimer)
                 {
                     pc.syncHits++;
+                }
+            }
+
+            if(npc != null)
+            {
+                if (direct)
+                {
+                    damagedHP.Add(targetHP);
+                    targetHP.Damage(targetHP.maxHP);
                 }
             }
 

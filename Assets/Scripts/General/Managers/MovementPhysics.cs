@@ -207,6 +207,22 @@
                 return rayGrounded;
             }
 
+            public static class CollisionHandler
+            {
+                public static bool ResetCollision(MonoBehaviour target, Collision collision, LayerMask resetMask)
+                {
+                    bool reset;
+                    int layer = collision.gameObject.layer;
+                    if(((1<<layer) & resetMask.value) != 0)
+                    {
+                        reset = true;
+                    }
+                    else reset = false;
+
+                    return reset;
+                }
+            }
+
             public static bool CanSurf(RaycastHit hit)
             {
                     float upDot = Vector3.Dot(hit.normal, Vector3.up);

@@ -52,17 +52,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMask:
     serializedVersion: 2
-    m_Bits: 526344
+    m_Bits: 2623496
   groundMask:
     serializedVersion: 2
     m_Bits: 128
   ignoreLayers:
   - serializedVersion: 2
-    m_Bits: 2097152
+    m_Bits: 512
   - serializedVersion: 2
     m_Bits: 64
-  - serializedVersion: 2
-    m_Bits: 512
   player: {fileID: 0}
   playerHP: {fileID: 0}
   impact: {fileID: 3742114166126770601}

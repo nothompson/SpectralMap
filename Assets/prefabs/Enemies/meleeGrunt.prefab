@@ -926,7 +926,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 75
+  dead: 0
   type: 2
+  minGibs: 5
+  maxGibs: 10
+  damageFlashEnable: 1
   targetFlashValue: 0.5
   flashDur: 0.5
   FlashCurve:

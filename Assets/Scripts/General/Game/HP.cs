@@ -5,12 +5,21 @@ using UnityEngine;
 public class HP : MonoBehaviour
 {
 
+    [Header("Health Stats")]
     public float currentHP;
     public float maxHP;
-
+    [Header("State")]
+    public string characterID;
+    public bool dead = false;
     [Range(1, 2)]
     public int type;
+
+    [Header("Gibs")]
+    [SerializeField] private int minGibs;
+    [SerializeField] private int maxGibs;
+
     [Header("Damage Flash")]
+    [SerializeField] private bool damageFlashEnable;
     [SerializeField] private float targetFlashValue;
     [SerializeField] private float flashDur;
     [SerializeField] private AnimationCurve FlashCurve;
@@ -24,6 +33,30 @@ public class HP : MonoBehaviour
             maxHP = 100f;
         }
         currentHP = maxHP;
+
+        AssignID();
+    }
+
+    void AssignID()
+    {
+        NPC npc = GetComponentInParent<NPC>();
+        if(npc != null)
+        {
+            characterID = npc.npcID;
+        }
+
+        Enemy enemy = GetComponentInParent<Enemy>();
+        if(enemy != null)
+        {
+            if(!string.IsNullOrEmpty(enemy.EnemyID)){
+            characterID = enemy.EnemyID;
+            }
+        }
+    }
+
+    void Update()
+    {
+        Death();
     }
 
     public void Damage(float dmg)
@@ -56,25 +89,22 @@ public class HP : MonoBehaviour
         }
     }
 
-    public IEnumerator DeathRoutine()
+    public void Death()
     {
-        float del = 0.25f;
-        WaitForSeconds wait = new WaitForSeconds(del);
-        while (true)
+        if(type == 2){
+        if(currentHP <= 0f)
         {
-            yield return wait;
-            DeathCheck();
-        }
-    }
-
-    public void DeathCheck()
-    {
-        if (currentHP <= 0)
-        {
-            if (type == 2)
+            if (!dead)
             {
+                dead = true;
+                GibsManager.Instance.Gib(transform.position, Random.Range(minGibs,maxGibs));
+                    if (!string.IsNullOrEmpty(characterID))
+                    {
+                        DeathManager.Instance.SetDead(characterID);
+                    }
                 Destroy(gameObject);
             }
+        }
         }
     }
 
@@ -94,6 +124,7 @@ public class HP : MonoBehaviour
     
     public void StartFlash(GameObject damaged)
     {
+        if(!damageFlashEnable) return;
         if(flashRoutine != null)
             StopCoroutine(flashRoutine);
 

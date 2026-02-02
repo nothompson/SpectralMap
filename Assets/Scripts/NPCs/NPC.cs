@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string npcID;
+    [SerializeField] public string npcID;
 
     [System.Serializable]
     public class PartConfig
@@ -96,8 +96,17 @@ public class NPC : MonoBehaviour, IInteractable
 
     bool playerHasInteracted = false;
 
+    public void Awake()
+    {
+    }
+
     public async void Start()
     {
+        if (DeathManager.Instance.CheckIfDead(npcID))
+        {
+            Destroy(gameObject);
+            return;
+        }
         ableToSeePlayer = false;
         await LoadRandomParts();
         headRotation = head.transform.localRotation;

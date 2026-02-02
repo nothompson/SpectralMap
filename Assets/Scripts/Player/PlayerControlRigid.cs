@@ -521,16 +521,16 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        reset = MovementFunctions.CollisionHandler.ResetCollision(this, collision, resetMask);
+    }
+
     void ResetCheck()
     {
-        reset = MovementFunctions.ResetCheck(
-            GroundCheck,
-            GroundDistance,
-            resetMask
-        );
-
         if(reset){
             currentCheckpoint.Reset();
+            reset = false;
         }
     }
 

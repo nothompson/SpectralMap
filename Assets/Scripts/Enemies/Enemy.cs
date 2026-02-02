@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour, IKnockback
     public Animator fbx; 
 
     [Header("General")]
+    [SerializeField] public string EnemyID;
     [Range(1, 2)]
     public int attackType;
     public bool support;
@@ -96,8 +97,13 @@ public class Enemy : MonoBehaviour, IKnockback
 
     Vector3 groundNormal;
 
+    bool reset; 
+
     //audio triggers
 
+    public void Awake()
+    {
+    }
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -112,6 +118,11 @@ public class Enemy : MonoBehaviour, IKnockback
 
     void Init()
     {
+        if (!string.IsNullOrEmpty(EnemyID) && DeathManager.Instance.CheckIfDead(EnemyID))
+        {
+            Destroy(gameObject);
+        }
+
         cooldown = dodgeCooldown;
 
         newRad = fov.radius * 2f;
@@ -174,7 +185,6 @@ public class Enemy : MonoBehaviour, IKnockback
     public virtual void Update()
     {
         DodgeCooldown();
-        Death();
     }
 
     public virtual void FixedUpdate()
@@ -323,9 +333,12 @@ public class Enemy : MonoBehaviour, IKnockback
         // Debug.Log("x: " + transform.localRotation.x + " " + "y: " + transform.localRotation.y + " " + "z: " + transform.localRotation.z);
 
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        reset = MovementFunctions.CollisionHandler.ResetCollision(this, collision, resetMask);
+    }
     public void GroundedCheck()
     {
-        bool reset; 
         grounded = MovementFunctions.GroundedCheck(
             GroundCheck,
             GroundDistance,
@@ -334,15 +347,17 @@ public class Enemy : MonoBehaviour, IKnockback
             ref groundTimer,
             coyoteTime, ref groundNormal, out RaycastHit groundhit
         );
-        reset = MovementFunctions.ResetCheck(
-            GroundCheck,
-            GroundDistance,
-            resetMask
-        );
+
+        // reset = MovementFunctions.ResetCheck(
+        //     GroundCheck,
+        //     GroundDistance,
+        //     resetMask
+        // );
 
         if (reset)
         {
             hp.Damage(hp.currentHP);
+            reset = false;
         }
     }
 
@@ -616,17 +631,5 @@ public class Enemy : MonoBehaviour, IKnockback
         beginAttacking = false;
     }
 
-    public virtual void Death()
-    {
-        if(hp.currentHP <= 0f)
-        {
-            if (!dead)
-            {
-                dead = true;
-                GibsManager.Instance.Gib(transform.position, Random.Range(minGibs,maxGibs));
-                Destroy(gameObject);
-            }
-        }
-    }
     #endregion
 }

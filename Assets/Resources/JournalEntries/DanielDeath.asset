@@ -10,14 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a967f9fc29d404444b7cdc21ff8306a7, type: 3}
-  m_Name: JournalEntry
+  m_Name: DanielDeath
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntry
-  ID: intro
+  ID: danieldeath
   Logs:
-  - grains of sand
-  - wash my skin with liquid metal
-  - gain speed by airstrafing. turn slowly in the horizontal direction you're moving
-    in. holding jump is recommended.
-  - killing fragments and other dimensional transgressions only further pollute the
-    spectrum
-  - 'it used to be so easy '
+  - I killed daniel.

@@ -237,7 +237,7 @@ GameObject:
   m_Layer: 21
   m_Name: NPC
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 2973eb35617c45348a7b6f9733316906, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcc29f0cec3bd4282021be25681192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcID: 
   parts:
   - partName: Head
     addressableKeys:

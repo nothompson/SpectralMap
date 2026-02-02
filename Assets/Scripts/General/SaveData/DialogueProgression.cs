@@ -17,6 +17,4 @@ public class DialogueProgression
     public int lineIndexToAddJournalEntry;
     public bool repeat;
 
-
-
 }
