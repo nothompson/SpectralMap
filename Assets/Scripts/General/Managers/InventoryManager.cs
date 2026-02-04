@@ -3,19 +3,23 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using TMPro;
 using System.IO;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IPointerClickHandler
 {
     public static InventoryManager Instance;
     
     [SerializeField] private GameObject Grid;
     [SerializeField] public GameObject Display;
-     [SerializeField] public Image ItemToDisplay;
+    [SerializeField] public Image ItemToDisplay;
     [SerializeField] public SpriteAnimate DisplayAnimate;
     [SerializeField] public SpriteText TitleText;
     [SerializeField] public SpriteText DescriptionText;
+    [SerializeField] public GameObject OptionsMenu;
 
     public GameObject Container;
     public GameObject SubContainer;
@@ -26,6 +30,8 @@ public class InventoryManager : MonoBehaviour
 
 
     public Item[] AllItems;
+
+    private DraggableItem[] ObjectsInInventory;
 
     [SerializeField] private DraggableItem draggableItemPrefab;
 
@@ -38,6 +44,8 @@ public class InventoryManager : MonoBehaviour
 
     public bool animating = false;
     Coroutine transitionRoutine;
+
+    [HideInInspector] public bool CurrentlyDragging = false;
     void Awake()
     {
         if(Instance == null)
@@ -206,6 +214,9 @@ public class InventoryManager : MonoBehaviour
 
         slot.SetItem(ItemToAdd);
 
+        FeedManager.Instance.AddToFeed($"{item.Name} added to bodybag");
+        EventManager.Instance.OnAddItem(itemID);
+
         SaveInventory();
 
         //update grid positioning stuff
@@ -276,6 +287,8 @@ public class InventoryManager : MonoBehaviour
         item.PositionOnGrid = Vector2Int.zero;
         InventoryItems.Remove(item);
 
+        FeedManager.Instance.AddToFeed($"{item.Name} removed from bodybag");
+
         SaveInventory();
 
     }
@@ -300,7 +313,31 @@ public class InventoryManager : MonoBehaviour
 
             slot.SetItem(draggedItem);
         }
+
+        ObjectsInInventory = Grid.GetComponentsInChildren<DraggableItem>();
     }
+
+    public void OnPointerClick(PointerEventData input)
+    {
+        if(input.pointerCurrentRaycast.gameObject == OptionsMenu) {Debug.Log("bals"); return;};
+        OptionsMenu.SetActive(false);
+        foreach(var obj in ObjectsInInventory)
+        {
+            obj.HideDisplay();
+        }
+    }
+
+    public void Update()
+    {
+        foreach(var obj in ObjectsInInventory)
+        {
+            if (obj.Dragging)
+            {
+                CurrentlyDragging = true;
+            }
+        }
+    }
+
 
     public void DisplayItemDescription()
     {

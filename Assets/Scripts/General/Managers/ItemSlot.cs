@@ -22,6 +22,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     public void SetItem(DraggableItem item)
     {
         CurrentItem = item;
+        item.Slot = this;
         item.transform.SetParent(transform, false);
         item.rect.localPosition = Vector3.zero;
     }
@@ -34,13 +35,34 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData input)
     {
-        if(CurrentItem != null) return;
-
         DraggableItem item = input.pointerDrag.GetComponent<DraggableItem>();
         if(item == null) return;
 
-        item.CommitDrop(GridPosition, this);
+        ItemSlot slot = item.Slot;
 
+        if(CurrentItem == null){
+            item.CommitDrop(GridPosition, this);
+        }
+        else
+        {
+            DraggableItem other = CurrentItem;
+
+            if(other == item || slot == null) return;
+
+            slot.Clear();
+            Clear();
+
+            slot.SetItem(other);
+            this.SetItem(item);
+
+            item.Slot = this;
+            other.Slot = slot;
+
+            item.ItemData.PositionOnGrid = this.GridPosition;
+            other.ItemData.PositionOnGrid = slot.GridPosition;
+        }
+
+        InventoryManager.Instance.SaveInventory();  
     }
 
 

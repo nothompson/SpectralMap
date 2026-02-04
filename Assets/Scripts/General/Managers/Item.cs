@@ -17,6 +17,9 @@ public class Item : ScriptableObject
     public int AnimationFPS;
     public Vector2Int PositionOnGrid;
     public bool IsInInventory;
+    public bool Usable;
+    public bool Equippable;
+    public int QuickBind;
 }
 
 [Serializable]

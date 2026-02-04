@@ -95,6 +95,20 @@ public class DialogueManager : MonoBehaviour
         SaveProgress();
     }
 
+    public void SetProgress(string npcID, int targetIndex, bool resetLine = true)
+    {
+        if(string.IsNullOrEmpty(npcID)) return;
+
+        progress[npcID] = Mathf.Max(0,targetIndex);
+
+        if (resetLine)
+        {
+            npcDialogueIndex[npcID] = 0;
+        }
+
+        SaveProgress();
+    }
+
     public int GetLineIndex(string npcID)
     {
         return npcDialogueIndex.TryGetValue(npcID, out int index) ? index : 0;

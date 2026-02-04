@@ -19,6 +19,8 @@ public class TrickManager : MonoBehaviour
 
     public int Score = 0;
 
+    public int FinalScore = 0;
+
     public float ResetTime = 1f;
 
     private SpriteText TrickText;
@@ -66,7 +68,8 @@ public class TrickManager : MonoBehaviour
     private bool falling = false;   
 
     public float pps = 50f;
-    private float accumulatedPoints = 0f;
+    public float accumulatedPoints = 0f;
+    public int storedPoints;
     public float speed = 0f;
 
     public GameObject Clock;
@@ -107,7 +110,6 @@ public class TrickManager : MonoBehaviour
         public string Display;
         public int Points;
         public bool Continuous;
-
         public Trick(TrickType type, int syncs = 1)
         {
             Type = type;
@@ -204,7 +206,9 @@ public class TrickManager : MonoBehaviour
         }
     }
 
-    private List<Trick> currentTricks = new List<Trick>();
+    public List<Trick> currentTricks = new List<Trick>();
+
+    public List<Trick> trickHistory = new List<Trick>();
 
     void Awake()
     {
@@ -250,12 +254,16 @@ public class TrickManager : MonoBehaviour
         }
 
         TrickCount++;
+        trickHistory.Add(trick);
+
         currentTricks.Add(trick);
+
 
         if(currentTricks.Count > maxTricks)
         {
             currentTricks.RemoveAt(0);
         }
+
         TrickText.input = string.Join("+ ", currentTricks.Select(ty =>ty.Display));
 
         Score += trick.Points;
@@ -554,8 +562,8 @@ public class TrickManager : MonoBehaviour
             ScoreText.Refresh();
             yield break;
         }
-        
-        ScoreText.input = (Score * TrickCount).ToString("#,##0");
+        FinalScore = Score * TrickCount;
+        ScoreText.input = FinalScore.ToString("#,##0");
         ScoreText.Refresh();
 
         if(scoreAnimation != null)
@@ -615,13 +623,16 @@ public class TrickManager : MonoBehaviour
     {
         active = null;
         currentTricks.Clear();
+        trickHistory.Clear();
         TrickText.input = string.Empty;
         TrickText.Refresh();
         ScoreText.input = string.Empty;
         ScoreText.Refresh();
         Score = 0;
         TrickCount = 0;
+        FinalScore = 0;
         accumulatedPoints = 0f;
+        storedPoints = 0;
         
         clockActive = false;
         StartTransition(false);
@@ -722,6 +733,8 @@ public class TrickManager : MonoBehaviour
                 
             Score += points;
             accumulatedPoints -= points;
+
+            storedPoints += points;
             
             ScoreText.input = Score.ToString("#,##0") + " x " + TrickCount;
             ScoreText.Refresh();

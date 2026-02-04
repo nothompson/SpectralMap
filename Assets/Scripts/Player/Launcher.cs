@@ -15,6 +15,7 @@ public class Launcher : MonoBehaviour
     public Transform hand;
     public ManaUI mana;
     public GameObject blastCanvas;
+    public GameObject BlastAnchor;
 
     [Header("Spell Prefabs")]
     public GameObject Fireball;
@@ -52,6 +53,8 @@ public class Launcher : MonoBehaviour
 
     Vector3 restingPos;
 
+    private ParticleSystem.EmitParams blastParams;
+
     [Header("Debugging")]
     public int spell; 
     public float autoDestroyTimer = 10f;
@@ -70,6 +73,8 @@ public class Launcher : MonoBehaviour
 
         restingPos = hand.localPosition;
 
+        blastParams = new ParticleSystem.EmitParams();
+
     }
 
     void Update()
@@ -82,11 +87,14 @@ public class Launcher : MonoBehaviour
             shootTimer -= Time.deltaTime;
         }
 
-              if(shootTimer <= 0f && cooldown)
+            if(shootTimer <= 0f && cooldown)
             {
                 cooldown = false;
                 // rightHandAnim.SetTrigger("Ready");
             }
+
+        blastParams.velocity = BlastAnchor.transform.forward;
+        ProjectileParticleManager.Instance.FireballBlast.transform.position = BlastAnchor.transform.position;
     }
 
     private void soundUpdate()
@@ -231,6 +239,11 @@ public class Launcher : MonoBehaviour
         fireSound.Play();
         //if shot out to space, clear up instantiated objects after a timer
         Destroy(rocketInstance, autoDestroyTimer);
+
+
+        ProjectileParticleManager.Instance.FireballBlast.Emit(blastParams, 50);
+        ProjectileParticleManager.Instance.FireballBlast.Play();
+
     }
 
     private void ShootWindblast(Transform attackPoint)

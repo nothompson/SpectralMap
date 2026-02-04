@@ -76,8 +76,6 @@ public class FeedManager : MonoBehaviour
         outputs.Add(new FeedEntry(input,DecayTime));
 
         BuildFeed();
-
-        AudioManager.Instance.JournalEntry();
     }
 
     public void BuildFeed()

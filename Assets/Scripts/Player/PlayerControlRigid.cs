@@ -166,6 +166,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         TrickManager.Instance.RegisterPlayer(gameObject);
         CrosshairManager.Instance.Activate();
         ReloadManager.Instance.RegisterPlayer(gameObject);
+        EventManager.Instance.RegisterPlayer(gameObject);
 
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;

@@ -79,7 +79,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public NPCDialogue dialogueData;
 
-    private DialogueProgression currentDialogue;
+    public DialogueProgression currentDialogue;
 
     private List<string> currentWords = new List<string>();
     private List<AsyncOperationHandle<GameObject>> loadedParts = new();
@@ -328,6 +328,7 @@ public class NPC : MonoBehaviour, IInteractable
         {
             StopCoroutine(textboxAnimation);
         }
+        
         DialogueProgression next = dialogueData.GetCurrentDialogue(npcID);
 
         if(currentDialogue != next) {
@@ -336,21 +337,24 @@ public class NPC : MonoBehaviour, IInteractable
             dialogue.fullTextShown = false;
             }
        
+               
+            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
+            {
+                dialogueData.AddJournalEntry(currentDialogue);
+            }
+            
         //if typing, interact again to skip typewriting
         if (dialogue.isTyping)
         {
             dialogue.ShowText(this);
             return;
         }   
+
         //if full text is shown and interact, go to next line(if any)
         if (dialogue.fullTextShown)
         {
             dialogueIndex++;
 
-            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
-            {
-                dialogueData.AddJournalEntry(currentDialogue);
-            }
             if(dialogueIndex >= currentDialogue.lines.Length)
             {
                 dialogueData.CompleteDialogue(npcID, currentDialogue);

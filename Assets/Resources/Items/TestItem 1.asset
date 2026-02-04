@@ -23,3 +23,6 @@ MonoBehaviour:
   AnimationFPS: 24
   PositionOnGrid: {x: 0, y: 0}
   IsInInventory: 1
+  Usable: 0
+  Equippable: 0
+  QuickBind: 0

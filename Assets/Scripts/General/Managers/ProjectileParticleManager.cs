@@ -13,6 +13,7 @@ public class ProjectileParticleManager : MonoBehaviour
     public ParticleSystem fireballExplode;
 
     public ParticleSystem ReloadPulse;
+    public ParticleSystem FireballBlast;
 
     public HashSet<Fireball> activeFireballs = new HashSet<Fireball>();
 

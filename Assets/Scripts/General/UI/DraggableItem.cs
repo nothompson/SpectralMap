@@ -10,7 +10,7 @@ using System.IO;
 
 
 public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
-IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Item ItemData;
     public RectTransform rect;
@@ -19,16 +19,19 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     [HideInInspector] public Transform draggedParent;
     public Image image;
-    private ItemSlot Slot;
+    public ItemSlot Slot;
 
-    private bool Dragging = false;
-    private bool Hovering = false;
+    public bool Dragging = false;
+    public bool Hovering = false;
 
     private UIHoverJuice hover;
     
     private Coroutine Wait;
     private int waitID = 0;
     private bool waiting = false;
+    public bool OptionsMenuActive = false;
+
+    private Vector2 OptionsMenuAnchor;
 
     protected virtual void Awake()
     {
@@ -45,6 +48,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     }
     public void OnPointerEnter(PointerEventData input)
     {
+        if(InventoryManager.Instance.CurrentlyDragging) return;
         Hovering = true;
         hover.StartHover(true);
         ShowDisplay();
@@ -52,6 +56,8 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     }
     public void OnPointerExit(PointerEventData input)
     {
+        if(InventoryManager.Instance.CurrentlyDragging) return;
+        
         if(!Dragging) {
             Hovering = false;
             hover.StartHover(false);
@@ -59,16 +65,20 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
         }
     }
 
-    IEnumerator WaitToHide()
+    public void OnPointerClick(PointerEventData input)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-        Debug.Log("half second is up, hiding display");
-        HideDisplay();
-        Wait = null;
+        if(InventoryManager.Instance.OptionsMenu.activeInHierarchy) InventoryManager.Instance.OptionsMenu.SetActive(false);
+
+        if(input.button != PointerEventData.InputButton.Right) return;
+        
+        RectTransform optionRect = InventoryManager.Instance.OptionsMenu.GetComponent<RectTransform>();
+        optionRect.position = input.position;
+        InventoryManager.Instance.OptionsMenu.SetActive(true);
+        OptionsMenuActive = true;
     }
 
     public void ShowDisplay()
-    {
+    {   
         if(ItemData.AnimationSprites.Length > 1){
         InventoryManager.Instance.DisplayAnimate.sprites = ItemData.AnimationSprites;
         InventoryManager.Instance.DisplayAnimate.direction = ItemData.AnimationDirection;
@@ -99,7 +109,8 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     public void HideDisplay()
     {
-        Debug.Log("hiding!");
+        if(InventoryManager.Instance.OptionsMenu.activeInHierarchy) return;
+
         InventoryManager.Instance.ItemToDisplay.color = new Color(1f,1f,1f,0f);
         InventoryManager.Instance.Display.SetActive(false);
 
@@ -127,6 +138,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     public virtual void OnBeginDrag(PointerEventData input)
     {
+        if(InventoryManager.Instance.OptionsMenu.activeInHierarchy) InventoryManager.Instance.OptionsMenu.SetActive(false);
         Dragging = true;
         Slot = GetComponentInParent<ItemSlot>();
         Slot?.Clear();
@@ -146,6 +158,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     public virtual void OnEndDrag(PointerEventData input)
     {
         Dragging = false;
+        InventoryManager.Instance.CurrentlyDragging = false;
         image.raycastTarget = true;
 
         if(transform.parent == ParentCanvas.transform && Slot != null)

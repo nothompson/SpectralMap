@@ -84,9 +84,15 @@ public class JournalManager : MonoBehaviour
         AddText(entry.Logs[index]);
         UpdatePagination();
 
-        FeedManager.Instance.AddToFeed("Your Journal Has Been Updated");
+        UpdateFeed();
 
         SaveJournal();
+    }
+
+    void UpdateFeed()
+    {
+        FeedManager.Instance.AddToFeed("Your Journal Has Been Updated");
+        AudioManager.Instance.JournalEntry();
     }
 
     void SaveJournal()
