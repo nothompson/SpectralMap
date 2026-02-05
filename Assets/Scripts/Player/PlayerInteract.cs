@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
             RaycastHit hit;
-            bool ableToInteract = Physics.Raycast(ray, out hit, dist, targetMask); // 5 units distance, adjust as needed
+            bool ableToInteract = Physics.Raycast(ray, out hit, dist, targetMask);
             if (ableToInteract)
             {
                 var interactable = hit.collider.GetComponentInParent<IInteractable>();

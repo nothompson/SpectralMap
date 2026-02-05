@@ -1234,6 +1234,7 @@ MonoBehaviour:
   draggableItemPrefab: {fileID: 7176029695745321357, guid: 8ebf35f486803c8499f9743ab75ac0ea, type: 3}
   InventoryItems: []
   animating: 0
+  CurrentlyDragging: 0
 --- !u!1 &3109218874031746860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,7 +2531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3628385635765138188
 RectTransform:
   m_ObjectHideFlags: 0

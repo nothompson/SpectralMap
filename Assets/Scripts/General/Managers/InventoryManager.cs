@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private DraggableItem draggableItemPrefab;
 
-    private Dictionary<string, Item> ItemLookup = new();
+    public Dictionary<string, Item> ItemLookup = new();
     public List <Item> InventoryItems = new();
 
     private Vector2Int DefaultGridPosition = new Vector2Int(0,0);
@@ -87,10 +87,7 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     {        
         InitGrid();
 
-        LoadInventory();    
-
-        AddItem("testitem", new Vector2Int(3,3));
-        AddItem("testitem2", new Vector2Int(0,0));
+        LoadInventory();
     }
     
     public void Open()
@@ -174,6 +171,18 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         transitionRoutine = null;
     }
 
+    public bool HasItem(string itemID)
+    {
+        if(!ItemLookup.TryGetValue(itemID, out var item))
+        {
+            //invalid id
+            Debug.Log("invalid id");
+            return false;
+        }
+
+        return InventoryItems.Contains(item);
+    }
+
     public void AddItem(string itemID, Vector2Int GridPosition)
     {
         //pickup, event, npc interaction, etc
@@ -231,14 +240,14 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         {
             if(!item.IsInInventory) continue;
 
-            ItemData d = new ItemData
+            ItemData i = new ItemData
             {
                 ID = item.ID,
                 IsInInventory = item.IsInInventory,
                 PositionOnGrid = item.PositionOnGrid
             };
 
-            data.InventoryItems.Add(d);
+            data.InventoryItems.Add(i);
         }
 
         string json = JsonUtility.ToJson(data, true);

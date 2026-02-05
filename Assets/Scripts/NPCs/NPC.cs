@@ -342,7 +342,12 @@ public class NPC : MonoBehaviour, IInteractable
             {
                 dialogueData.AddJournalEntry(currentDialogue);
             }
-            
+
+            if(dialogueIndex == currentDialogue.lineIndexToAddItem && currentDialogue.addItem)
+            {
+                dialogueData.AddItem(currentDialogue);
+            }
+
         //if typing, interact again to skip typewriting
         if (dialogue.isTyping)
         {

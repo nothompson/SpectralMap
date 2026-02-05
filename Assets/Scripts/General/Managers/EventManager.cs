@@ -36,6 +36,7 @@ public class EventManager : MonoBehaviour
         switch (CharacterID)
         {
             case "daniel":
+                SpectrumManager.Instance.PolluteSpectrum(5);                
                 JournalManager.Instance.AddJournalEntry("danieldeath",0);  
                 break;
             case "BigJerry":
@@ -164,12 +165,11 @@ public class EventManager : MonoBehaviour
             //     DialogueManager.Instance.SetProgress("daniel", 1);
             // }
 
-            TrickManager.TrickType[] tricks = new[]{TrickManager.TrickType.pogo, TrickManager.TrickType.rocketjump, TrickManager.TrickType.pogo};
-
-            if (OnSuccessiveTricks(TrickManager.TrickType.pogo,7))
+            if (InventoryManager.Instance.HasItem("testitem"))
             {
                 JournalManager.Instance.AddJournalEntry("danielspeed",1);
                 DialogueManager.Instance.SetProgress("daniel", 1);
+                DoorManager.Instance.OpenDoorRemotely("switchdoor");
             }
         }
     }

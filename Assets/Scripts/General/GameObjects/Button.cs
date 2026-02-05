@@ -11,8 +11,6 @@ public class Button : MonoBehaviour, IInteractable
         beep.Play();
 
         LevelManager.Instance.LoadScene("MainMenu");
-
-
     }
 
     public void ExitInteract()

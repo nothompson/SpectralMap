@@ -94,7 +94,13 @@ public class SpriteAnimate : MonoBehaviour
                 }
         else
         {
-        image.sprite = sprites[index];
+            if (worldSpace)
+            {
+                sprite.sprite = sprites[index];
+            }
+            else{
+                image.sprite = sprites[index];
+                }
         }
     }
 

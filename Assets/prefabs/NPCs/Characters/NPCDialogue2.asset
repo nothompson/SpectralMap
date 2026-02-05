@@ -15,29 +15,37 @@ MonoBehaviour:
   dialogues:
   - lines:
     - you're nothing to me
-    - it's never going to be this easy again
-    - whats it to ya
     requiresJournalEntry: 0
     prereqId: 
     prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
     addToJournal: 1
     journalID: danielspeed
     journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
     advance: 0
-    lineIndexToAddJournalEntry: 1
     repeat: 0
   - lines:
     - yooo good shit bro
     - realy awesome stuff man
     - i think i'm in love with you
-    requiresJournalEntry: 1
-    prereqId: danielspeed
+    requiresJournalEntry: 0
+    prereqId: 
     prereqIndex: 1
+    requiresItem: 1
+    requiredItemID: testitem
     addToJournal: 0
     journalID: 
     journalIndex: 0
-    advance: 0
     lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 0
     repeat: 1
   speed: 35
   reset: 0

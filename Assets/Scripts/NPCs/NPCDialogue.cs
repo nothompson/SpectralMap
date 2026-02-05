@@ -22,7 +22,9 @@ public class NPCDialogue : ScriptableObject
         {
             DialogueProgression dialogue = dialogues[i];
 
-            bool requirements = !dialogue.requiresJournalEntry || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex));
+            bool requirements = !dialogue.requiresJournalEntry || !dialogue.requiresItem 
+            || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex))
+            || (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(dialogue.requiredItemID));
 
             if(requirements) return dialogue;
         }
@@ -31,7 +33,9 @@ public class NPCDialogue : ScriptableObject
         {
             DialogueProgression dialogue = dialogues[i];
 
-            bool requirements = !dialogue.requiresJournalEntry || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex));
+            bool requirements = !dialogue.requiresJournalEntry || !dialogue.requiresItem 
+            || (JournalManager.Instance != null &&  JournalManager.Instance.HasJournalEntry(dialogue.prereqId,dialogue.prereqIndex))
+            || (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(dialogue.requiredItemID));
 
             if(requirements) return dialogue;
         }
@@ -48,7 +52,7 @@ public class NPCDialogue : ScriptableObject
 
         DialogueProgression nextDialogue = dialogues[next];
 
-        if(!nextDialogue.requiresJournalEntry){
+        if(!nextDialogue.requiresJournalEntry && !nextDialogue.requiresItem){
             if (currentDialogue.advance)
             {
                 DialogueManager.Instance.AdvanceProgress(npcID, dialogues);
@@ -57,7 +61,9 @@ public class NPCDialogue : ScriptableObject
 
         }
 
-        if(JournalManager.Instance != null && JournalManager.Instance.HasJournalEntry(nextDialogue.prereqId, nextDialogue.prereqIndex))
+        if((JournalManager.Instance != null
+        && JournalManager.Instance.HasJournalEntry(nextDialogue.prereqId, nextDialogue.prereqIndex)) 
+        || (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(nextDialogue.requiredItemID)))
         {
             DialogueManager.Instance.AdvanceProgress(npcID, dialogues);
         }
@@ -68,6 +74,13 @@ public class NPCDialogue : ScriptableObject
         if(dialogue == null || !dialogue.addToJournal || JournalManager.Instance == null) return;
 
         JournalManager.Instance.AddJournalEntry(dialogue.journalID,dialogue.journalIndex);
+    }
+
+    public void AddItem(DialogueProgression dialogue)
+    {
+        if(dialogue == null || !dialogue.addItem || InventoryManager.Instance == null) return;
+
+        InventoryManager.Instance.AddItem(dialogue.itemToAddID,new Vector2Int(0,0));
     }
 
 }

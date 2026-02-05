@@ -776,6 +776,7 @@ MonoBehaviour:
   material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
+  length: 0
   index: 0
   isPlaying: 1
   direction: 1
@@ -2870,6 +2871,7 @@ MonoBehaviour:
   material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
+  length: 0
   index: 0
   isPlaying: 0
   direction: 1

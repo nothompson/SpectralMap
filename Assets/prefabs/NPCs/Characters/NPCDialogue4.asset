@@ -20,11 +20,16 @@ MonoBehaviour:
     requiresJournalEntry: 0
     prereqId: 
     prereqIndex: 0
-    addToJournal: 1
-    journalID: intro
-    journalIndex: 2
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 1
+    itemToAddID: testitem
+    lineIndexToAddItem: 1
     advance: 0
-    lineIndexToAddJournalEntry: 1
     repeat: 1
   speed: 35
   reset: 0
