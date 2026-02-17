@@ -17,6 +17,11 @@ public class SpectrumManager : MonoBehaviour
     public Image image;
     public SpriteAnimate Animation;
     public AnimationCurve transitionCurve;
+
+    private bool SpectrumActive;
+
+    
+
     Coroutine Transition;
     Coroutine Change;
 
@@ -39,6 +44,19 @@ public class SpectrumManager : MonoBehaviour
         LoadSpectrum();
     }
 
+    public void StartTransition()
+    {
+        if(Transition != null)
+        {
+            StopCoroutine(Transition);
+            Transition = null;
+        }
+
+        // StartCoroutine();
+    }
+
+
+
     public void PolluteSpectrum(int x)
     {
         PollutantLevel += x;
@@ -55,8 +73,6 @@ public class SpectrumManager : MonoBehaviour
         SaveSpectrum();
     }
 
-
-
     public void LoadSpectrum()
     {
         if(!File.Exists(GetSavePath())) return;
@@ -65,7 +81,6 @@ public class SpectrumManager : MonoBehaviour
         SpectrumSaveData data = JsonUtility.FromJson<SpectrumSaveData>(json);
         
         PollutantLevel = data.PollutantLevels;
-
     }
 
     public void SaveSpectrum()

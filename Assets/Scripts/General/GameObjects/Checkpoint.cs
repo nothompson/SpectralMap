@@ -6,6 +6,8 @@ public class Checkpoint : MonoBehaviour
 {
     public GameObject player;
     PlayerControlRigid playerControl;
+
+    Grapple grapple;
     MagicManagement magicManagement;
 
     public Vector3 newPosition;
@@ -16,6 +18,7 @@ public class Checkpoint : MonoBehaviour
     {
         playerControl = player.GetComponent<PlayerControlRigid>();
         magicManagement = player.GetComponent<MagicManagement>();
+        grapple = player.GetComponentInChildren<Grapple>();
 
         newPosition = new Vector3(0f,0f,0f);
     }
@@ -52,6 +55,8 @@ public class Checkpoint : MonoBehaviour
         ResetManager.Instance.StartReset();
 
         yield return new WaitForEndOfFrame();
+
+        grapple.Release();
 
         TrickManager.Instance.ResetCombo();
         

@@ -16,6 +16,7 @@ public class Launcher : MonoBehaviour
     public ManaUI mana;
     public GameObject blastCanvas;
     public GameObject BlastAnchor;
+    public Grapple grapple;
 
     [Header("Spell Prefabs")]
     public GameObject Fireball;
@@ -146,7 +147,7 @@ public class Launcher : MonoBehaviour
         punching = InputManager.Instance.inputs.Player.AltFire.triggered;
         if (punching)
         { 
-            if(!ReloadManager.Instance.reloading) Punch();
+            if(!ReloadManager.Instance.reloading) TryGrapple();
         }
 
         // if (allowInvoke)
@@ -221,9 +222,16 @@ public class Launcher : MonoBehaviour
 
     }
 
-    private void Punch()
+    private void TryGrapple()
     {
-        leftHandAnim.SetTrigger("Punch");
+        if(!grapple.grappleActive){
+            leftHandAnim.SetTrigger("Fire");
+            grapple.TryGrapple();
+        }
+        else
+        {
+            grapple.Release();
+        }
     }
 
     private void ShootFireball(Transform attackPoint)

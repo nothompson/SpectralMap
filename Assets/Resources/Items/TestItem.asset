@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: testitem
-  Name: 'The Biggest Googa '
-  Description: holysmokes its googa. this lit ass freakin larry gives you 1 billion
-    dollars lol
+  Name: intestinal key
+  Description: needed to enter a secret door
   ItemDisplay: {fileID: 21300000, guid: 49a394464a42402469eac30f8af78633, type: 3}
   AnimationSprites:
   - {fileID: 1866853044, guid: f34b537736cd76548b05a7ba1b341272, type: 3}
