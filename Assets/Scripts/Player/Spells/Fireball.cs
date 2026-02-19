@@ -32,6 +32,8 @@ public class Fireball : MonoBehaviour
     public float forceMultiplier = 1f;
     private Rigidbody rb;
 
+    public bool grappled;
+
     float impactAngle;
 
     private PlayerControlRigid playerControl;
@@ -49,10 +51,20 @@ public class Fireball : MonoBehaviour
         ProjectileParticleManager.Instance.Register(this);
 
     }
+
+    void Update()
+    {
+        if (grappled)
+        {
+            Destroy(gameObject, 2f);
+        }
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
+
+        Debug.Log(other);
         int layer = other.layer;
 
         if (GameFunctions.FilterLayers(layer, ignoreLayers))

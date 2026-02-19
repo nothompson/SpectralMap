@@ -147,7 +147,7 @@ public class Launcher : MonoBehaviour
         punching = InputManager.Instance.inputs.Player.AltFire.triggered;
         if (punching)
         { 
-            if(!ReloadManager.Instance.reloading) TryGrapple();
+            if(!ReloadManager.Instance.reloading) TryGrapple(); 
         }
 
         // if (allowInvoke)
@@ -226,7 +226,7 @@ public class Launcher : MonoBehaviour
     {
         if(!grapple.grappleActive){
             leftHandAnim.SetTrigger("Fire");
-            grapple.TryGrapple();
+            grapple.TryGrapple(attackPoint);
         }
         else
         {

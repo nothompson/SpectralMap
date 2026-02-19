@@ -362,6 +362,19 @@
             return velocity;
         }
 
+        public static void Slamming(ref Vector3 velocity, Collision collision)
+        {
+            foreach(ContactPoint contact in collision.contacts)
+            {
+                float into = Vector3.Dot(velocity, contact.normal);
+
+                if(into < 0f)
+                {
+                    velocity -= contact.normal * into;
+                }
+            }
+        }
+
             public static void ApplyVelocity(Vector3 velocity, ref Rigidbody rb)
             {
                 rb.linearVelocity = velocity;

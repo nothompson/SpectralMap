@@ -528,6 +528,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         reset = MovementFunctions.CollisionHandler.ResetCollision(this, collision, resetMask);
     }
 
+    void OnCollisionStay(Collision collision)
+    {
+        MovementFunctions.Slamming(ref playerVelocity, collision);
+    }
+
     void ResetCheck()
     {
         if(reset){
