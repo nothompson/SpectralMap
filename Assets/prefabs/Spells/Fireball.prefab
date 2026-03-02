@@ -66,12 +66,13 @@ MonoBehaviour:
   impact: {fileID: 3742114166126770601}
   damage: 0
   damageMultiplier: 1
-  airshotMultiplier: 3
-  maximumDamage: 100
+  airshotMultiplier: 2
+  maximumDamage: 50
   speed: 20
   explosionRadius: 4
   explosionForce: 17
   forceMultiplier: 1
+  grappled: 0
 --- !u!65 &8223916693453603549
 BoxCollider:
   m_ObjectHideFlags: 0

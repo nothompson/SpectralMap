@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,12 +7,16 @@ using TMPro;
 public class DamageManager : MonoBehaviour
 {
     public static DamageManager Instance; 
+    public GameObject BloodCanvas;
+    public GameObject VeinCanvas;
 
-    [SerializeField] private float targetFlashValue;
-    [SerializeField] private float flashDur;
-    [SerializeField] private AnimationCurve FlashCurve;
-    
-    private Coroutine flashRoutine;
+    public Image Blood;
+    public Image Vein;
+
+    [SerializeField] private AnimationCurve BloodCurve;
+    [SerializeField] private float BloodDur;
+    [SerializeField] private AnimationCurve VeinCurve;
+    [SerializeField] private float VeinDur;
 
     void Awake()
     {
@@ -24,43 +29,13 @@ public class DamageManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Blood = BloodCanvas.GetComponentInChildren<Image>();
+        Vein = VeinCanvas.GetComponentInChildren<Image>();
+
+        BloodCanvas.SetActive(false);
+        VeinCanvas.SetActive(false);
     }
 
-    public void StartFlash(GameObject damaged)
-    {
-        if(flashRoutine != null)
-            StopCoroutine(flashRoutine);
 
-        flashRoutine = StartCoroutine(DamageFlash(damaged));
-    }
-
-    public IEnumerator DamageFlash(GameObject damaged)
-    {
-        SkinnedMeshRenderer skin = damaged.GetComponentInChildren<SkinnedMeshRenderer>();
-        Material mat = skin.material;
-
-            mat.EnableKeyword("_EMISSION");
-
-            Color emissionColor = mat.GetColor("_EmissionColor");
-            
-            float t = 0f;
-
-            while(t < flashDur)
-            {
-                t += Time.deltaTime;
-
-                float elapsed = Mathf.Clamp01(t / flashDur);
-                float value = FlashCurve.Evaluate(elapsed);
-
-                emissionColor.r = targetFlashValue * value;
-                emissionColor.g = targetFlashValue * value;
-                emissionColor.b = targetFlashValue * value;
-
-                mat.SetColor("_EmissionColor", emissionColor);
-                
-                yield return null; 
-            }
-    }
-
-    
 }

@@ -103,19 +103,24 @@ public class Fireball : MonoBehaviour
         {
             HP targetHP = hit.GetComponentInParent<HP>();
             Enemy e = hit.GetComponentInParent<Enemy>();
+            // Debug.Log(e);
             NPC npc = hit.GetComponentInParent<NPC>();
             PlayerControlRigid pc = hit.GetComponentInParent<PlayerControlRigid>();
             Rigidbody rb = hit.attachedRigidbody;
 
 
-            Vector3 force = GameFunctions.ExplosionForce(hit, transform.position, explosionRadius, explosionForce);
-            damage = GameFunctions.CalculateForceDamage(force, maximumDamage, damageMultiplier);
+            Vector3 targetForce = GameFunctions.TargetedExplosionForce(hit, transform.position, explosionRadius, explosionForce);
+
+            Vector3 selfForce = GameFunctions.SelfExplosionForce(hit, transform.position, explosionRadius, explosionForce);
+
+            damage = GameFunctions.CalculateForceDamage(hit, transform.position, explosionRadius, maximumDamage, damageMultiplier, direct);
+
 
             if (targetHP != null && !damagedHP.Contains(targetHP) && targetHP != playerHP)
             {
                 if (e != null)
                 {
-                    Vector3 impact = force;
+                    Vector3 impact = targetForce;
 
                     damagedHP.Add(targetHP);
 
@@ -126,7 +131,8 @@ public class Fireball : MonoBehaviour
 
                     if (!e.grounded)
                     {
-                        targetHP.Damage(damage * airshotMultiplier);
+                        float airdamage = direct ? damage * airshotMultiplier : damage;
+                         Debug.Log("damage: " + airdamage);
                         if (direct)
                         {
                             TrickManager.Instance.Airshot();
@@ -135,12 +141,16 @@ public class Fireball : MonoBehaviour
                         {
                             TrickManager.Instance.AirAirshot();
                         }
+                        targetHP.Damage(airdamage);
                     }
                     else
                     {
                         e.grounded = false;
                         targetHP.Damage(damage);
-                        impact.y *= 2f;
+                        Debug.Log("damage: " + damage);
+                        impact.y += explosionForce;
+                        impact.x *= 2f;
+                        impact.z *= 2f;
                         if (direct)
                         {
                             TrickManager.Instance.Direct();
@@ -170,7 +180,7 @@ public class Fireball : MonoBehaviour
                     pc.playerVelocity.y = 0f;
                 }
 
-                pc.AddKnockback(force);
+                pc.AddKnockback(selfForce);
 
                 if (!pc.CanPogo && !pc.StartSyncTimer)
                 {
@@ -207,7 +217,7 @@ public class Fireball : MonoBehaviour
 
             if (rb != null)
             {
-                GameFunctions.ApplyForceToRigidbody(ref rb, e, force);
+                GameFunctions.ApplyForceToRigidbody(ref rb, e, targetForce);
             }
         }
 

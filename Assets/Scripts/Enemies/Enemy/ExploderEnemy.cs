@@ -133,9 +133,9 @@ public class ExploderEnemy : Enemy
             HP targetHP = hit.GetComponentInParent<HP>();
             Enemy e = hit.GetComponentInParent<Enemy>();
             PlayerControlRigid p = hit.GetComponentInParent<PlayerControlRigid>();
-            Vector3 force = GameFunctions.ExplosionForce(hit, transform.position, explosionRadius, explosionForce);
+            Vector3 force = GameFunctions.TargetedExplosionForce(hit, transform.position, explosionRadius, explosionForce);
 
-            float damage = GameFunctions.CalculateForceDamage(force, maximumDamage, damageMultiplier);
+            float damage = GameFunctions.CalculateForceDamage(hit, p.transform.position, explosionRadius, maximumDamage, damageMultiplier);
 
             Rigidbody rb = hit.attachedRigidbody;
             GameFunctions.ApplyForceToRigidbody(ref rb, e, force);

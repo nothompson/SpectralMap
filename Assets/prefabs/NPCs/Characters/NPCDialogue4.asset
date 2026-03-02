@@ -29,8 +29,24 @@ MonoBehaviour:
     addItem: 1
     itemToAddID: testitem
     lineIndexToAddItem: 1
+    advance: 1
+    repeat: 0
+  - lines:
+    - oh well yes yes quite good quite good right o
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
     advance: 0
-    repeat: 1
+    repeat: 0
   speed: 35
   reset: 0
   soundbank:

@@ -18,7 +18,7 @@ public class MeshJitter : MonoBehaviour
 
     private bool waiting = true;
 
-    void Start()
+    void OnEnable()
     {
         position = transform.localPosition;
         scale = transform.localScale;
@@ -27,6 +27,11 @@ public class MeshJitter : MonoBehaviour
         
         seed = new Vector3(Random.Range(0f,1000f), Random.Range(0f,1000f), Random.Range(0f,1000f));
         StartCoroutine(Jitter());
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     public void UpdateBaseValues()

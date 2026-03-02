@@ -14,6 +14,7 @@ public class Grapple : MonoBehaviour
     public bool grappleActive; 
     public bool grappleFired => projectile != null;
     public Transform anchor;
+    public GrapplePooling Pool;
 
     [Header("Settings")]
     public GameObject Segment;
@@ -31,7 +32,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] private float releaseDur;
     private int releasePointCount = 0;
     private float releaseProgress = 0f;
-    private bool releasing = false;
+    public bool releasing = false;
 
     public GameObject proj;
     [SerializeField] public float projectileSpeed;
@@ -52,6 +53,12 @@ public class Grapple : MonoBehaviour
 
     private SphereCollider probe;
     private GrappleProjectile projectile;
+    private Transform headSegment = null;
+
+    private HashSet<Transform> activeSegments = new();
+
+    private Vector3 headNormal;
+    private Quaternion headRotation;
 
     struct RopePoint
     {
@@ -69,6 +76,93 @@ public class Grapple : MonoBehaviour
         }
     }
 
+    void AddSegment()
+    {
+        Transform t = Pool.GetSegmentTransform();
+        activeSegments.Add(t);
+        segments.Add(t);
+    }
+
+    void ActivateHead()
+    {
+        if(headSegment != null) return;
+        headSegment = Pool.GetHeadTransform();
+        segments.Add(headSegment);
+    }
+
+    void ReturnLast()
+    {
+        if(segments.Count == 0) return;
+
+        Transform t = segments[^1];
+        segments.RemoveAt(segments.Count - 1);
+
+        if(t == headSegment)
+        {
+            Pool.ReturnHeadTransform(t);
+            headSegment = null;
+        }
+        else if(activeSegments.Contains(t))
+        {
+            activeSegments.Remove(t);
+            Pool.ReturnSegmentTransform(t);
+        }
+    }
+
+    void PromoteLastToHead()
+    {
+        if(segments.Count == 0) return;
+
+        if(segments[^1] == headSegment) return;
+
+        if(headSegment != null)
+        {
+            Pool.ReturnHeadTransform(headSegment);
+            headSegment = null;
+        }
+
+        Transform last = segments[^1];
+
+        if(activeSegments.Contains(last)){
+            activeSegments.Remove(last);
+            Pool.ReturnSegmentTransform(last);
+        }
+        headSegment = Pool.GetHeadTransform();
+        segments[^1] = headSegment;
+    }
+
+    void ClearAllSegments()
+    {
+        if(headSegment != null)
+        {
+            segments.Remove(headSegment);
+            Pool.ReturnHeadTransform(headSegment);
+            headSegment = null;
+        }
+
+        foreach(Transform t in segments)
+        {
+            if (activeSegments.Contains(t))
+            {
+                activeSegments.Remove(t);
+                Pool.ReturnSegmentTransform(t);
+            }
+        }
+        segments.Clear();
+        activeSegments.Clear();
+    }
+
+    // void GrappleHead()
+    // {
+    //     if(segments.Count == 0) return;
+    //     if (!headSegmentActive)
+    //     {
+    //         Pool.ReturnSegmentTransform(segments[^1]);
+    //         segments[^1] = Pool.GetHeadTransform();
+    //         headSegmentActive = true;
+    //     }
+    // }
+
     void Awake()
     {
             GameObject probeObj = new GameObject("probe");
@@ -85,6 +179,7 @@ public class Grapple : MonoBehaviour
         {
             Destroy(probe.gameObject);
         }
+        Pool.ClearPool();
     }
 
     void FixedUpdate()
@@ -108,18 +203,18 @@ public class Grapple : MonoBehaviour
                 {
                     points.RemoveAt(points.Count - 1);
                     renderPositions.RemoveAt(renderPositions.Count - 1);
+                    if(segments.Count >= points.Count) ReturnLast();
+                    if(segments.Count > 0)
+                    {
+                        PromoteLastToHead();
+                    }
                 }
-                if(segments.Count > 0)
-                {
-                    Destroy(segments[^1].gameObject);
-                    segments.RemoveAt(segments.Count - 1);
-                }
+                else break;
             }
 
             if(releaseProgress >= 1f || points.Count <= 1)
             {
-                foreach(var seg in segments) Destroy(seg.gameObject);
-                segments.Clear();
+                ClearAllSegments();
                 points.Clear();
                 renderPositions.Clear();
                 releasing = false;
@@ -137,7 +232,7 @@ public class Grapple : MonoBehaviour
                 SimulateReleasing(anchor.position);
             }
 
-        return;
+            return;
         }
 
         if (grappleFired)
@@ -180,15 +275,20 @@ public class Grapple : MonoBehaviour
 
     }
 
-    public void TryGrapple(Transform attackPoint)
+    public void TryGrapple(Transform attackPoint, ref bool success)
     {
-        if(grappleActive || grappleFired) return;
+        if(grappleActive || grappleFired || releasing)
+        {
+            success = false;
+            return;
+        }
 
         Vector3 dir = playerCam.transform.forward;
 
         Vector3 from = attackPoint.position;
 
         Shoot(from, dir);
+        success = true;
 
     }
 
@@ -225,22 +325,12 @@ public class Grapple : MonoBehaviour
             projectile = null;
         }
 
-        // foreach(var seg in segments)
-        // {
-        //     Destroy(seg.gameObject);
-        // }
-
         releasing = true;
         releaseProgress = 0f;
-        releasePointCount = points.Count;  
-        
-
-        // segments.Clear();
-        // points.Clear();
-        // renderPositions.Clear();
+        releasePointCount = points.Count; 
     }
 
-    public void OnProjectileHit(Transform target, Vector3 hitPoint, float distance)
+    public void OnProjectileHit(Transform target, Vector3 hitPoint, float distance, Vector3 normal)
     {
         projectile = null;
 
@@ -254,7 +344,8 @@ public class Grapple : MonoBehaviour
 
         targetLength = distance * resolution;
 
-        // InitializeRope();
+        headNormal = normal;
+        headRotation = Quaternion.LookRotation(-normal, Vector3.up);
 
         TransitionToFinal();
 
@@ -269,15 +360,12 @@ public class Grapple : MonoBehaviour
 
     void Shoot(Vector3 pos, Vector3 dir)
     {
-        // points.Add(new RopePoint(anchor.position, true));
-        // renderPositions.Add(anchor.position);
         releasing = false;
         releaseProgress = 0f;
         grappleActive = false;
         grappleTarget = null;
 
-        foreach(var s in segments) Destroy(s.gameObject);
-        segments.Clear();
+        ClearAllSegments();
         points.Clear();
         renderPositions.Clear();
 
@@ -314,9 +402,7 @@ public class Grapple : MonoBehaviour
 
             if(points.Count >= 2)
             {
-                var s = Instantiate(Segment, transform).transform;
-                s.rotation = Random.rotation;
-                segments.Add(s);
+                AddSegment();
             }
         }
 
@@ -326,9 +412,12 @@ public class Grapple : MonoBehaviour
             renderPositions.RemoveAt(renderPositions.Count - 1);
             if(segments.Count > 0)
             {
-                Destroy(segments[^1].gameObject);
-                segments.RemoveAt(segments.Count - 1);
+                ReturnLast();
             }
+        }
+        if(segments.Count > 0)
+        {
+            PromoteLastToHead();
         }
 
         RopePoint anchorPoint = points[0];
@@ -364,6 +453,11 @@ public class Grapple : MonoBehaviour
             RopePoint p = points[i];
             p.renderPosition = p.position;
             points[i] = p;
+        }
+
+        if(headSegment != null && projectile != null)
+        {
+            headRotation = Quaternion.LookRotation(projectile.velocity.normalized, Vector3.up);
         }
     }
 
@@ -406,17 +500,15 @@ public class Grapple : MonoBehaviour
 
     void ClearGrapple()
     {
-        foreach(var seg in segments) Destroy(seg.gameObject);
-        segments.Clear();
+        ClearAllSegments();
         points.Clear();
         renderPositions.Clear();
     }
 
     void InitializeRope()
     {
-        foreach(var seg in segments) Destroy(seg.gameObject);
+        ClearAllSegments();
         points.Clear();
-        segments.Clear();
         renderPositions.Clear();
 
         int segmentCount = Mathf.CeilToInt(grappleLength / segmentSpacing);
@@ -432,9 +524,9 @@ public class Grapple : MonoBehaviour
 
             if(i < segmentCount)
             {
-                Transform segment = Instantiate(Segment, transform).transform;
-                segments.Add(segment);
-                segments[i].rotation = Random.rotation;
+                bool isLast = (i == segmentCount - 1);
+                if(isLast) ActivateHead();
+                else AddSegment();
             }
             
         }
@@ -452,8 +544,16 @@ public class Grapple : MonoBehaviour
         }
         while(segments.Count > targetSegments)
         {
-            Destroy(segments[^1].gameObject);
-            segments.RemoveAt(segments.Count - 1);
+            ReturnLast();
+        }
+
+        if(segments.Count == 0)
+        {
+            ActivateHead();
+        }
+        else 
+        {
+            PromoteLastToHead();
         }
 
         // Vector3 dir = (grapplePoint - anchor.position).normalized;
@@ -638,34 +738,39 @@ void SolveCollisions()
             Vector3 mid = (a + b) * 0.5f;
 
             segments[i].position = mid;
-        }
-    }
 
-    void UpdateLength()
-    {
-        int wishCount = Mathf.Max(1, Mathf.CeilToInt(grappleLength / segmentSpacing));
-
-        int segmentCount = points.Count - 1;    
-
-        if(wishCount == segmentCount) return;
-
-        if(wishCount < segmentCount)
-        {
-            int remove = segmentCount - wishCount;
-
-            for(int i = 0; i < remove; i++)
+            if(segments[i] == headSegment)
             {
-                if(segments.Count > 0)
-                {
-                    Destroy(segments[^1].gameObject);
-                    segments.RemoveAt(segments.Count - 1);
-                }
-
-                if(points.Count > 2)
-                {
-                    points.RemoveAt(points.Count - 2);
-                }
+                segments[i].rotation = headRotation;
             }
         }
     }
+
+    // void UpdateLength()
+    // {
+    //     int wishCount = Mathf.Max(1, Mathf.CeilToInt(grappleLength / segmentSpacing));
+
+    //     int segmentCount = points.Count - 1;    
+
+    //     if(wishCount == segmentCount) return;
+
+    //     if(wishCount < segmentCount)
+    //     {
+    //         int remove = segmentCount - wishCount;
+
+    //         for(int i = 0; i < remove; i++)
+    //         {
+    //             if(segments.Count > 0)
+    //             {
+    //                 Pool.ReturnSegmentTransform(segments[^1]);
+    //                 segments.RemoveAt(segments.Count - 1);
+    //             }
+
+    //             if(points.Count > 2)
+    //             {
+    //                 points.RemoveAt(points.Count - 2);
+    //             }
+    //         }
+    //     }
+    // }
 }

@@ -816,6 +816,8 @@ GameObject:
   - component: {fileID: 6360269517544316395}
   - component: {fileID: 1929380409514286334}
   - component: {fileID: 1508291465598114109}
+  - component: {fileID: 177008435920386441}
+  - component: {fileID: 348202328296368427}
   m_Layer: 11
   m_Name: meleeGrunt
   m_TagString: Enemy
@@ -874,7 +876,9 @@ MonoBehaviour:
   fov: {fileID: 5536796893043216120}
   hp: {fileID: 5536796893043216121}
   fbx: {fileID: 0}
-  attackType: 1
+  EnemyID: 
+  Personality: 0
+  Behaviors: []
   support: 0
   attackDistance: 2
   minVariance: 1
@@ -885,18 +889,21 @@ MonoBehaviour:
   friction: 5
   airSpeedFactor: 0.5
   deacelleration: 10
-  jumpHeight: 6
+  jumpHeight: 8
   knockbackResistance: 0.1
   GroundDistance: 0.4
   dodgeCooldown: 1
-  dodgeSpeed: 10
+  dodgeSpeed: 15
   attackingCooldown: 0.75
   damage: 10
   damageMultiplier: 1
-  forceMultiplier: 5
+  forceMultiplier: 1
   projSpeedMultiplier: 1
   minGibs: 5
   maxGibs: 10
+  movementChaos: 8
+  chaosFrequency: 0.5
+  chaosBlend: 0.3
   grounded: 0
   airTimer: 0
   engage: 0
@@ -912,6 +919,9 @@ MonoBehaviour:
   jumpAcross: 0
   nearLedge: 0
   dead: 0
+  newRad: 0
+  oldRad: 0
+  pendingAttack: {fileID: 0}
 --- !u!114 &5536796893043216121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,7 +935,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 75
+  maxHP: 100
+  characterID: 
   dead: 0
   type: 2
   minGibs: 5
@@ -1055,6 +1066,47 @@ MonoBehaviour:
   hp: {fileID: 5536796893043216121}
   script: {fileID: 5536796893043216123}
   bank: {fileID: 11400000, guid: 8cc55cc9001bc91499b5e93641c41ad8, type: 2}
+--- !u!114 &177008435920386441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536796893043212549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907934122238b204bb9f39fbc87385b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
+  AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  Range: 2
+  Cooldown: 0.75
+  Damage: 10
+  Force: 2
+  AttackPoint: {fileID: 5536796892424308439}
+  Owner: {fileID: 0}
+  HitBoxLife: 0.3
+--- !u!114 &348202328296368427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536796893043212549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d200e42f4f3c10e42a7a7766d0bde9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedBehavior
+  AttackPrefab: {fileID: 8812009374192403409, guid: 64f6959dc625c1141b4e5f0e12ac0cf0, type: 3}
+  Range: 25
+  Cooldown: 2
+  Damage: 25
+  Force: 5
+  AttackPoint: {fileID: 5536796892424308439}
+  Owner: {fileID: 0}
+  ProjectileSpeed: 1
+  AutoTimer: 10
 --- !u!1 &5749409566630096111
 GameObject:
   m_ObjectHideFlags: 0

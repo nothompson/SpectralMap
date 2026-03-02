@@ -79,6 +79,8 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     public void ShowDisplay()
     {   
+        if(Dragging) return;
+
         if(ItemData.AnimationSprites.Length > 1){
         InventoryManager.Instance.DisplayAnimate.sprites = ItemData.AnimationSprites;
         InventoryManager.Instance.DisplayAnimate.direction = ItemData.AnimationDirection;
@@ -89,18 +91,16 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
         else
         {
             InventoryManager.Instance.ItemToDisplay.sprite = ItemData.ItemDisplay;
-            InventoryManager.Instance.DisplayAnimate.sprites = null;
-            InventoryManager.Instance.DisplayAnimate.length = 0;
-            InventoryManager.Instance.DisplayAnimate.direction = true;
-            InventoryManager.Instance.DisplayAnimate.fps = 0;
             InventoryManager.Instance.DisplayAnimate.isPlaying = false;
 
         }
 
-        InventoryManager.Instance.DescriptionText.input = ItemData.Description;
-        InventoryManager.Instance.DescriptionText.Refresh();
+        Debug.Log("showing display");
 
+        InventoryManager.Instance.DescriptionText.input = ItemData.Description;
         InventoryManager.Instance.TitleText.input = ItemData.Name;
+
+        InventoryManager.Instance.DescriptionText.Refresh();
         InventoryManager.Instance.TitleText.Refresh();
 
         InventoryManager.Instance.Display.SetActive(true);

@@ -5,7 +5,27 @@ namespace GamePhysics
 {
     public static class GameFunctions
     {
-        public static Vector3 ExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce)
+        public static Vector3 TargetedExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce)
+        {
+            //get angle of explosion from target
+            // Vector3 dir = (hit.transform.position - position).normalized;
+            Vector3 closestPoint = hit.ClosestPoint(position);
+            Vector3 dir = (closestPoint - position).normalized;
+            float dist = Vector3.Distance(closestPoint, position);
+
+            //distance from explosion radius origin to target origin
+            // float dist = Vector3.Distance(hit.transform.position, position);
+
+            //inversely proportional magnitude (so target gets blasted away from explosions instead of the direction they were shot)
+            float inverse = Mathf.Max(0.2f, 1.0f - Mathf.Clamp01(dist / explosionRadius));
+
+            //calculate force 
+            Vector3 force = dir * explosionForce * inverse;
+
+            return force;
+        }
+
+        public static Vector3 SelfExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce)
         {
             //get angle of explosion from target
             Vector3 dir = (hit.transform.position - position).normalized;
@@ -19,23 +39,28 @@ namespace GamePhysics
             //calculate force 
             Vector3 force = dir * explosionForce * inverse;
 
-            // force.y += 1.0f * inverse;
-
             return force;
         }
 
-        public static float CalculateForceDamage(Vector3 force, float maximumDamage, float damageMultiplier)
+        public static float CalculateForceDamage(Collider hit, Vector3 position, float explosionRadius, float maximumDamage, float damageMultiplier, bool direct = false)
         {
-            float dmg;
+            if(direct) return maximumDamage * damageMultiplier;
 
-            float mag = force.magnitude;
-            float norm = Mathf.Clamp(mag, 0f, maximumDamage) / maximumDamage;
-            float pow = Mathf.Pow(norm, 2f);
-            dmg = pow * maximumDamage;
+            Vector3 closestPoint = hit.ClosestPoint(position);
+            float dist = Vector3.Distance(closestPoint, position);
+            float falloff = 1f - Mathf.Clamp01(dist / explosionRadius);
+            float damage = maximumDamage * damageMultiplier * falloff;
 
-            float final = dmg * damageMultiplier;
+            // float dmg;
 
-            return final;
+            // float mag = force.magnitude;
+            // float norm = Mathf.Clamp(mag, 0f, maximumDamage) / maximumDamage;
+            // float pow = Mathf.Pow(norm, 2f);
+            // dmg = pow * maximumDamage;
+
+            // float final = dmg * damageMultiplier;
+
+            return damage;
         }
         
         public static void ApplyForceToRigidbody(ref Rigidbody rb, Enemy e, Vector3 force)

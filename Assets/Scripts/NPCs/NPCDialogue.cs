@@ -78,9 +78,13 @@ public class NPCDialogue : ScriptableObject
 
     public void AddItem(DialogueProgression dialogue)
     {
-        if(dialogue == null || !dialogue.addItem || InventoryManager.Instance == null) return;
+        if(dialogue == null || !dialogue.addItem || InventoryManager.Instance == null) {
+            Debug.Log("tried to add item but failed");
+            return;
+        }
 
         InventoryManager.Instance.AddItem(dialogue.itemToAddID,new Vector2Int(0,0));
+        Debug.Log("added item");
     }
 
 }

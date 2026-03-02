@@ -5,7 +5,7 @@ using UnityEngine;
 using MovementPhysics;
 
 #region Init
-public class Enemy : MonoBehaviour, IKnockback
+public class Enemy : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody rb;
@@ -33,8 +33,12 @@ public class Enemy : MonoBehaviour, IKnockback
 
     [Header("General")]
     [SerializeField] public string EnemyID;
-    [Range(1, 2)]
-    public int attackType;
+
+    [SerializeField] public PersonalityType Personality;
+
+    [HideInInspector] public AttackBehavior[] Behaviors;
+
+
     public bool support;
     public float attackDistance;
     public float minVariance = 1f;
@@ -63,6 +67,11 @@ public class Enemy : MonoBehaviour, IKnockback
     public int minGibs = 5;
     public int maxGibs = 20;
 
+    [SerializeField] public float movementChaos = 2.5f;
+    [SerializeField] public float chaosFrequency = 0.6f;
+    [Range(0f,1f)]
+    [SerializeField] public float chaosBlend = 0.6f;
+
     [Header("State")]
     public bool grounded;
     public float airTimer;
@@ -85,8 +94,8 @@ public class Enemy : MonoBehaviour, IKnockback
     float coyoteTime = 0.1f;
     float groundTimer = 0f;
     bool behind;
-    float newRad;
-    float oldRad;
+    [HideInInspector] public float newRad;
+    [HideInInspector] public float oldRad;
     float newDist;
     float oldDist;
     Vector3 pickupPosition;
@@ -99,7 +108,25 @@ public class Enemy : MonoBehaviour, IKnockback
 
     bool reset; 
 
-    //audio triggers
+    [HideInInspector] public float noiseOffset;
+
+    [HideInInspector] public AttackBehavior pendingAttack;
+
+    private float MaxRange;
+    private float MinRange;
+
+    private float preferredRange;
+
+    AttackBehavior MaxRangeAttack;
+    AttackBehavior MinRangeAttack;
+
+
+    public enum PersonalityType
+    {
+        Reckless,
+        Tactical,
+        Cowardly
+    }
 
     public void Awake()
     {
@@ -134,9 +161,55 @@ public class Enemy : MonoBehaviour, IKnockback
         initSpeed = moveSpeed;
         airSpeed = moveSpeed * airSpeedFactor;
 
-        // moveVelocity = new Vector3(0, 0, 0);
-        // knockVelocity = new Vector3(0, 0, 0);
+        noiseOffset = Random.Range(0f,100f);
 
+        GetBehavior();
+
+        preferredRange = GetPreferredRange();
+
+    }
+
+    void GetBehavior()
+    {
+        Behaviors = GetComponents<AttackBehavior>();
+
+        MaxRangeAttack = Behaviors[0];
+        MinRangeAttack = Behaviors[0];
+        foreach(AttackBehavior b in Behaviors)
+        {
+            b.InitBehavior(gameObject, attackPoint);
+
+            if(b.Range < MinRangeAttack.Range) MinRangeAttack = b;
+            if(b.Range > MaxRangeAttack.Range) MaxRangeAttack = b;
+        }
+
+        MaxRange = MaxRangeAttack.Range;
+
+        MinRange = MinRangeAttack.Range;
+    }
+
+    float GetPreferredRange()
+    {
+        switch (Personality)
+        {
+            case PersonalityType.Reckless:
+                return MinRange;
+
+            case PersonalityType.Tactical:
+                return GetAverageRange();
+            
+            case PersonalityType.Cowardly:
+            default:
+                return MaxRange;
+        }
+    }
+
+    float GetAverageRange()
+    {
+        float sum = 0f;
+        foreach(AttackBehavior b in Behaviors) sum += b.Range;
+        float avg = sum / Behaviors.Length;
+        return avg;
     }
 
     void Variance()
@@ -156,7 +229,7 @@ public class Enemy : MonoBehaviour, IKnockback
         damageMultiplier *= rand;
     }
 
-    void References()
+    public virtual void References()
     {
         GameObject playerRef = GameObject.FindWithTag("Player");
         if (playerRef != null)
@@ -172,7 +245,7 @@ public class Enemy : MonoBehaviour, IKnockback
         fbx = GetComponentInChildren<Animator>();
     }
     
-    void Routines()
+    public virtual void Routines()
     {
         StartCoroutine(DodgeRoutine());
         StartCoroutine(Leap());
@@ -193,7 +266,7 @@ public class Enemy : MonoBehaviour, IKnockback
         MovementFunctions.ApplyVelocity(enemyVelocity, ref rb);
     }
 
-    void CalculateVelocity()
+    public virtual void CalculateVelocity()
     {
         Movement();
         Targeting();
@@ -224,10 +297,10 @@ public class Enemy : MonoBehaviour, IKnockback
         else if (engage && memory > 0)
         {
             fov.radius = newRad;
-            if (attackType == 2)
-            {
-                attackDistance = newDist;
-            }
+            // if (attackType == 2)
+            // {
+            //     attackDistance = newDist;
+            // }
 
             memory -= Time.fixedDeltaTime;
             TargetSpotted(player.position);
@@ -236,15 +309,16 @@ public class Enemy : MonoBehaviour, IKnockback
                 fov.radius = oldRad;
                 engage = false;
                 memory = 0;
-                if (attackType == 2)
-                {
-                    attackDistance = oldDist;
-                }
+                // if (attackType == 2)
+                // {
+                //     attackDistance = oldDist;
+                // }
             }
         }
         if (!engage)
         {
-             fbx.SetTrigger("stopped");
+            if(fbx == null) return;
+            fbx.SetTrigger("stopped");
         }
     }
 
@@ -259,19 +333,42 @@ public class Enemy : MonoBehaviour, IKnockback
         {
             LookTowards(direction);
         }
-        if ((distance > attackDistance && !attacking && !nearLedge) || (jumpAcross && !critical))
+
+        if ((distance > preferredRange && !nearLedge) || (jumpAcross && !critical))
         {
             MoveTowards(direction);
         }
 
-        if (distance <= attackDistance && !attacking)
+        if (distance <= MaxRange && !attacking)
         {
             Attack();
         }
-        if (distance <= attackDistance * 0.25)
+
+        float fleeDist = GetAverageRange() * 0.5f;
+        switch (Personality)
         {
-            Flee(attackDistance * 0.5f, attackDistance);
+            case PersonalityType.Cowardly:
+                if(distance <= fleeDist)
+                {
+                    Flee(fleeDist * 0.25f, fleeDist);
+                }
+                break;
+            case PersonalityType.Tactical:
+                if(distance <= fleeDist && hp.Critical())
+                {
+                    Flee(fleeDist * 0.25f, fleeDist);
+                }
+                break;
+            case PersonalityType.Reckless:
+            default:
+                break;
         }
+
+        // if (distance <= attackDistance * 0.25)
+        // {
+        //     Flee(attackDistance * 0.5f, attackDistance);
+        // }
+
     }
 
     public void LookTowards(Vector3 direction)
@@ -288,18 +385,24 @@ public class Enemy : MonoBehaviour, IKnockback
 
         attackPoint.localRotation = Quaternion.Inverse(transform.rotation) * desiredAttackRotation;
     }
-    
-    public void LookClamp()
-    {
-        
-    }
 
     public void MoveTowards(Vector3 direction)
     {
-        fbx.SetTrigger("moving");
-        Vector3 wishDir = new Vector3(direction.x, 0, direction.z).normalized;
+        float noise = Mathf.PerlinNoise(Time.time * chaosFrequency + noiseOffset, 0f);
+        float bipolar = (noise * 2f - 1f) * movementChaos;
+
+        Vector3 flattened = new Vector3(direction.x, 0f, direction.z).normalized;
+        Vector3 horiz = Vector3.Cross(Vector3.up, flattened);
+
+        Vector3 chaosDir = (flattened + horiz * bipolar).normalized;
+
+        Vector3 wishDir = Vector3.Lerp(flattened, chaosDir, chaosBlend).normalized;
+
         float wishSpeed = moveSpeed;
         enemyVelocity = MovementFunctions.Accelerate(enemyVelocity, wishDir, wishSpeed, 10f);
+
+        if(fbx == null) return;
+        fbx.SetTrigger("moving");
     }
 
     #endregion
@@ -327,6 +430,7 @@ public class Enemy : MonoBehaviour, IKnockback
 
         if (enemymovement < 1f)
         {
+            if(fbx == null) return;
             fbx.SetTrigger("stopped");
         }
 
@@ -348,22 +452,11 @@ public class Enemy : MonoBehaviour, IKnockback
             coyoteTime, ref groundNormal, out RaycastHit groundhit
         );
 
-        // reset = MovementFunctions.ResetCheck(
-        //     GroundCheck,
-        //     GroundDistance,
-        //     resetMask
-        // );
-
         if (reset)
         {
             hp.Damage(hp.currentHP);
             reset = false;
         }
-    }
-
-    public void AddKnockback(Vector3 force)
-    {
-        impact += force;
     }
 
     public void applyFriction(float t)
@@ -414,8 +507,8 @@ public class Enemy : MonoBehaviour, IKnockback
 
             if (infront || behind)
             {
-                fbx.SetTrigger("stopped");
                 nearLedge = true;
+                if(fbx != null) fbx.SetTrigger("stopped");
             }
             else
             {
@@ -432,8 +525,9 @@ public class Enemy : MonoBehaviour, IKnockback
             }
             else if (infront && distance <= 5f)
             {
-                fbx.SetTrigger("moving");
                 jumpAcross = true;
+                if(fbx == null) return;
+                fbx.SetTrigger("moving");
             }
         }
     }
@@ -453,26 +547,54 @@ public class Enemy : MonoBehaviour, IKnockback
 
     public void Dodge()
     {
+        if(dodged || !fov.canSeePlayer || !grounded) return;
+
         Collider[] dodgeDetection = Physics.OverlapSphere(transform.position + transform.forward * 1.5f, 7.5f, projectileMask);
-        if (dodgeDetection.Length != 0 && !dodged)
+        if (dodgeDetection.Length == 0) return;
+
+        Collider closest = null;
+        float closestDist = float.MaxValue;
+        foreach(Collider c in dodgeDetection)
         {
-            if (fov.canSeePlayer && grounded)
+            float d = Vector3.Distance(transform.position, c.transform.position);
+            if(d < closestDist)
             {
-                Vector3 directionFromPlayer = (player.position - transform.position).normalized;
-                directionFromPlayer.y = 0;
-
-                Vector3 dodgeDirection = Vector3.Cross(Vector3.up, directionFromPlayer).normalized;
-
-                if (Random.value > 0.5f)
-                {
-                    dodgeDirection *= -1f;
-                }
-
-                enemyVelocity += dodgeDirection * dodgeSpeed;
-
-                dodged = true;
+                closestDist = d;
+                closest = c;
             }
         }
+        if(closest == null) return;
+
+        Vector3 toProjectile = (closest.transform.position - transform.position);
+        toProjectile.y = 0f;
+        float offset = Vector3.Dot(toProjectile, transform.right);
+
+        Vector3 toProjectileDir = toProjectile.normalized;
+        float forward = Vector3.Dot(toProjectileDir, transform.forward);
+
+        if(forward < 0.25f) return;
+
+        float centerThreshold = 0.25f;
+
+        if(Mathf.Abs(offset) <= centerThreshold * toProjectile.magnitude)
+        {
+            if(Random.value < 0.4f)
+            {
+                enemyVelocity.y = jumpHeight;
+            }
+            else
+            {
+                Vector3 dodgeDir = Random.value > 0.5f ? transform.right : -transform.right;
+                enemyVelocity += dodgeDir * dodgeSpeed;
+            }
+        }
+        else
+        {
+            Vector3 dodgeDir = offset > 0f ? -transform.right : transform.right;
+            enemyVelocity += dodgeDir * dodgeSpeed;
+        }
+        
+        dodged = true;
     }
 
     public void Blast(Vector3 force)
@@ -524,21 +646,20 @@ public class Enemy : MonoBehaviour, IKnockback
     #region Disengage
     public void Flee(float min, float max)
     {
-        fbx.SetTrigger("moving");
         Vector3 fleeDir = (player.position - transform.position).normalized;
         distanceFromPlayer = Vector3.Distance(transform.position, player.position);
         fleeDir.y = Mathf.Clamp(fleeDir.y, -0.2f, 0.25f);
         if (!nearLedge) {
-            if (distanceFromPlayer <= min)
-            {
-                LookTowards(fleeDir * 1f);
-                MoveTowards(fleeDir * -1f);
-            }
-            else if (distanceFromPlayer > min && distanceFromPlayer < max)
-            {
-                LookTowards(fleeDir * -1f);
-                MoveTowards(fleeDir * -1f);
-            }
+            // if (distanceFromPlayer <= min)
+            // {
+            //     LookTowards(fleeDir * 1f);
+            // }
+            MoveTowards(fleeDir * -1f);
+            // else if (distanceFromPlayer > min && distanceFromPlayer < max)
+            // {
+            //     LookTowards(fleeDir * -1f);
+            //     MoveTowards(fleeDir * -1f);
+            // }
         }
     }
 
@@ -610,23 +731,45 @@ public class Enemy : MonoBehaviour, IKnockback
 
     public virtual void Attack()
     {
-        if (fov.canSeePlayer && !attacking)
+        if(!fov.canSeePlayer || attacking || pendingAttack != null)  return;
+
+        AttackBehavior bestChoice = null;
+
+        float bestRange = float.MaxValue;
+
+        foreach(AttackBehavior b in Behaviors)
         {
-            beginAttacking = true;
-            fbx.SetTrigger("attacking");
+            if(b.Ready(distance) && b.Range < bestRange)
+            {
+                bestChoice = b;
+                bestRange = b.Range;
+            }
         }
+
+        if(bestChoice == null) return;
+
+        beginAttacking = true;
+        pendingAttack = bestChoice;
+
+        if(fbx == null) return;
+        fbx.SetTrigger("attacking");
+
     }
 
     public virtual void OnAttack()
     {
+        if(pendingAttack == null) return;
+
         attacking = true;
-        StartCoroutine(AttackCooldown());
-        AttackManager.am.ChooseAttack(gameObject, attackType, attackPrefab, attackPoint, attackingCooldown, damage, forceMultiplier, projSpeedMultiplier);
+        float cooldown = pendingAttack.Begin();
+        pendingAttack = null;
+        StartCoroutine(AttackCooldown(cooldown));
+
     }
 
-    public virtual IEnumerator AttackCooldown()
+    public virtual IEnumerator AttackCooldown(float cooldown)
     {
-        yield return new WaitForSeconds(attackingCooldown);
+        yield return new WaitForSeconds(cooldown);
         attacking = false;
         beginAttacking = false;
     }

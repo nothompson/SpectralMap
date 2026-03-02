@@ -26,13 +26,10 @@ public class MeleeCollider : MonoBehaviour
 
                 Vector3 dir = (hits[0].transform.position - transform.position).normalized;
 
-                //distance from explosion radius origin to player origin
                 float dist = Vector3.Distance(hits[0].transform.position, transform.position);
 
-                //inversely proportional magnitude (so player gets blasted away from rockets instead of the direction they were shot)
                 float inverse = 1.0f - Mathf.Clamp01(dist / range);
-
-                //calculate force 
+                
                 Vector3 force = dir * damage * forceMultiplier * inverse;
 
                 collided = true;

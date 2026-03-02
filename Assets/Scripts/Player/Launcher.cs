@@ -37,6 +37,8 @@ public class Launcher : MonoBehaviour
 
     public AnimationCurve recoil;
 
+    private bool grappleSuccess;
+
     [Header("Fireball")]
     public float fireballSpeed;
     float firingSpeed;
@@ -46,7 +48,7 @@ public class Launcher : MonoBehaviour
 
     float shootTimer = 0f;
 
-    bool punching;
+    bool grappling;
 
     bool fireball, wind, slime, slimeOn, slimeOff;
 
@@ -107,7 +109,7 @@ public class Launcher : MonoBehaviour
 
         
         //error sound if out of magic
-        if (readyToShoot && InputManager.Instance.inputs.Player.Fire.IsPressed() && playerMagic.magicPoints < costToShoot)
+        if (readyToShoot && InputManager.Instance.inputs.Player.Fire.IsPressed() && playerMagic.magicPoints < 10f * costMultiplier)
         {
             errorCooldown -= Time.deltaTime;
             if(errorCooldown <=0){
@@ -117,11 +119,17 @@ public class Launcher : MonoBehaviour
             }
         }
         
-        if(readyToShoot && InputManager.Instance.inputs.Player.Fire.triggered && playerMagic.magicPoints < costToShoot)
+        if(readyToShoot && InputManager.Instance.inputs.Player.Fire.triggered && playerMagic.magicPoints < 10f * costMultiplier)
         {
             mana.Error();
             cantShootYet.Play();
         }
+
+        // if(grappling && playerMagic.magicPoints < costToShoot && !grapple.grappleActive && !grapple.releasing)
+        // {
+        //     mana.Error();
+        //     cantShootYet.Play();
+        // }
     }
 
     private void MyInput()
@@ -138,14 +146,14 @@ public class Launcher : MonoBehaviour
                 shooting = false;
             }
 
-        if (shootTimer <= 0f && shooting && playerMagic.magicPoints >= costToShoot)
+        if (shootTimer <= 0f && shooting && playerMagic.magicPoints >= 10f * costMultiplier)
         {
             if(ReloadManager.Instance.reloading) ReloadManager.Instance.StopReload();
             Shoot();
         }
 
-        punching = InputManager.Instance.inputs.Player.AltFire.triggered;
-        if (punching)
+        grappling = InputManager.Instance.inputs.Player.AltFire.triggered;
+        if (grappling)
         { 
             if(!ReloadManager.Instance.reloading) TryGrapple(); 
         }
@@ -182,8 +190,8 @@ public class Launcher : MonoBehaviour
         }
         if (spell == 2)
         {
-            firingSpeed = 1.5f / shootMultiplier;
-            costToShoot = 33f * costMultiplier;
+            firingSpeed = 0.66f / shootMultiplier;
+            costToShoot = 20f * costMultiplier;
         }
         if (spell == 3) {
             firingSpeed = 3f / shootMultiplier;
@@ -201,22 +209,13 @@ public class Launcher : MonoBehaviour
         shootTimer = firingSpeed;
         //raycast to see where rocket will land
         rightHandAnim.SetTrigger("Fire");
-        if (spell == 1)
-        {
-            ShootFireball(attackPoint);
-        }
-        if (spell == 2)
-        {
-            ShootWindblast(attackPoint);
-        }
-        if (spell == 3)
-        {
-            ShootSlimeHook(attackPoint);
-        }
+        
+        ShootFireball(attackPoint);
+
         //create rocket at the point of attacking
 
         //magic drain
-        playerMagic.magicPoints -= costToShoot;
+        playerMagic.magicPoints -= 10f * costMultiplier;
         playerMagic.justUsed = true;
         playerMagic.regenTimer = playerMagic.magicBufferTime;
 
@@ -225,8 +224,19 @@ public class Launcher : MonoBehaviour
     private void TryGrapple()
     {
         if(!grapple.grappleActive){
-            leftHandAnim.SetTrigger("Fire");
-            grapple.TryGrapple(attackPoint);
+            if(playerMagic.magicPoints >= 20f * costMultiplier){
+            grapple.TryGrapple(attackPoint, ref grappleSuccess);
+            if (grappleSuccess)
+            {
+                leftHandAnim.SetTrigger("Fire");
+                playerMagic.magicPoints -= 20f * costMultiplier;
+            }
+            }
+            else
+            {
+                mana.Error();
+                cantShootYet.Play();
+            }
         }
         else
         {

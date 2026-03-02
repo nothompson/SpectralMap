@@ -82,15 +82,15 @@ public class DoorManager : MonoBehaviour
 
     public void LoadDoorProgress()
     {
-        if(!File.Exists(GetSavePath())) return;
-
-        string json = File.ReadAllText(GetSavePath());
-        DoorDataBase data = JsonUtility.FromJson<DoorDataBase>(json);
-
         foreach(var d in AllDoors)
         {
             d.Opened = false;
         }
+
+        if(!File.Exists(GetSavePath())) return;
+
+        string json = File.ReadAllText(GetSavePath());
+        DoorDataBase data = JsonUtility.FromJson<DoorDataBase>(json);
 
         foreach(var d in data.Doors)
         {

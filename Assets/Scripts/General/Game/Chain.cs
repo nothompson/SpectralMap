@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using MovementPhysics;
 
 public class Chain : MonoBehaviour
 {
@@ -12,10 +13,31 @@ public class Chain : MonoBehaviour
 
     public float Strength;
 
-    void FixedUpdate()
+    public float Damping;
+
+    public Vector3 headVelocity;
+
+    void Start()
     {
         if(Segments == null || Segments.Length < 2) return;
 
+        foreach(Rigidbody s in Segments)
+        {
+            s.transform.SetParent(null);
+        }
+
+        //start at 1 since 0 is head
+        for (int i = 1; i < Segments.Length; i++)
+        {
+            Segments[i].rotation = Random.rotation;
+        }
+
+    }
+
+    void FixedUpdate() 
+    {
+        if(Segments == null || Segments.Length < 2) return;
+        
         //start at 1 since 0 is head
         for (int i = 1; i < Segments.Length; i++)
         {
@@ -33,16 +55,21 @@ public class Chain : MonoBehaviour
             
             Vector3 target = prevPosition - dirNorm * Distance;
 
-            Vector3 toTarget = target - curPosition;
-            Vector3 wishVel = toTarget / Time.fixedDeltaTime;
-            Vector3 velChange = wishVel - cur.linearVelocity;
+            Vector3 correction = target - curPosition;
 
-            cur.AddForce(velChange * Strength, ForceMode.Acceleration);
+            cur.AddForce(correction * Strength, ForceMode.Acceleration);
+            cur.linearVelocity *= (1f - Damping * Time.fixedDeltaTime);
 
-            Quaternion targetRot = Quaternion.LookRotation(dirNorm, Vector3.up);
+            Quaternion segmentRot = Quaternion.LookRotation(dirNorm, Vector3.up);
 
-            cur.MoveRotation(Quaternion.Slerp(cur.rotation,targetRot,Strength* Time.fixedDeltaTime));
+            cur.MoveRotation(Quaternion.Slerp(cur.rotation, segmentRot, Strength * Time.fixedDeltaTime));
+
+            cur.position = Vector3.Lerp(curPosition, target, Strength);
 
         }
     }
+
+    public Rigidbody Head => Segments[0];
+    public Vector3 HeadPosition => Segments[0].position;
+
 }

@@ -41,7 +41,6 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     private Vector2Int DefaultGridPosition = new Vector2Int(0,0);
     private Vector2Int NextAvailableGridPosition;
 
-
     public bool animating = false;
     Coroutine transitionRoutine;
 
@@ -202,10 +201,13 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
             InventoryItems.Add(item);
         }
 
-        if(!GridManager.Instance.TryGetSlot(GridPosition, out var slot))
+        if(!GridManager.Instance.TryGetSlot(GridPosition, out var slot) || slot.CurrentItem != null)
         {
-            Debug.Log("No available slot at given position");
-            return;
+            if(!GridManager.Instance.GetNextAvailableSpot(out slot))
+            {   
+                return;
+            }
+            GridPosition = slot.GridPosition;
         }
 
         DraggableItem ItemToAdd = Instantiate(draggableItemPrefab, slot.transform);
@@ -257,7 +259,18 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     }
     public void LoadInventory()
     {
-        if(!File.Exists(GetSavePath())) return;
+        foreach(var item in AllItems)
+        {
+            item.IsInInventory = false;
+            item.PositionOnGrid = Vector2Int.zero;
+        }
+
+        InventoryItems.Clear();
+
+        if(!File.Exists(GetSavePath())) {
+            RefreshInventory();
+            return;
+            }
 
         string json = File.ReadAllText(GetSavePath());
         InventoryData data = JsonUtility.FromJson<InventoryData>(json);
@@ -295,6 +308,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         item.IsInInventory = false;
         item.PositionOnGrid = Vector2Int.zero;
         InventoryItems.Remove(item);
+
+        RefreshInventory();
 
         FeedManager.Instance.AddToFeed($"{item.Name} removed from bodybag");
 
@@ -338,6 +353,7 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
 
     public void Update()
     {
+        if(ObjectsInInventory == null) return;
         foreach(var obj in ObjectsInInventory)
         {
             if (obj.Dragging)

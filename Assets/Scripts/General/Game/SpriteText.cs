@@ -80,6 +80,14 @@ public class SpriteText : MonoBehaviour
         target = GetComponent<TMP_Text>();
     }
 
+    void OnEnable()
+    {
+        if(target == null)
+        {
+            target = GetComponent<TMP_Text>();
+        }
+    }
+
     void Start()
     {
         if (target == null)
@@ -136,9 +144,11 @@ public class SpriteText : MonoBehaviour
     public void Refresh(string colorHex = null)
     {
         //ususally called on update 
-        if (target != null){
-            target.text = Convert(input, colorHex);
-            }
+        if (target == null) target = GetComponent<TMP_Text>();
+
+        if(target == null) return;
+
+        target.text = Convert(input, colorHex);
     }
 
     public IEnumerator Typewriter(float cps = 5, string colorHex = null)

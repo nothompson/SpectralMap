@@ -14,7 +14,7 @@ public class GrappleProjectile : MonoBehaviour
     private float segmentSpacing;
     private float collisionRadius;
     private float maxDistance;
-    private Vector3 velocity;
+    public Vector3 velocity;
     private float steerStrength;
     private float distanceTravelled = 0f;
     private float distanceSinceLastSegment = 0f;
@@ -37,11 +37,6 @@ public class GrappleProjectile : MonoBehaviour
         steerStrength = grapple.steerStrength;
 
         velocity = direction.normalized * speed;
-
-        // rb = GetComponent<Rigidbody>();
-
-        // rb.linearVelocity = velocity;
-
     }
 
     void FixedUpdate()
@@ -51,6 +46,7 @@ public class GrappleProjectile : MonoBehaviour
         velocity = Vector3.Lerp(velocity, wishVel, steerStrength * Time.fixedDeltaTime);
         velocity = velocity.normalized * speed;
         }
+
         float step = speed * Time.fixedDeltaTime;
         
         transform.position += velocity * Time.fixedDeltaTime;
@@ -58,7 +54,16 @@ public class GrappleProjectile : MonoBehaviour
         Vector3 from = player != null ? player.position : transform.position;
 
         distanceTravelled = Vector3.Distance(from, transform.position);
-    
+
+        if(Physics.SphereCast(transform.position, collisionRadius, velocity.normalized,
+        out RaycastHit hit, step, targetMask, QueryTriggerInteraction.Ignore))
+        {
+            grapple.OnProjectileHit(hit.collider.transform, hit.point, hit.distance + distanceTravelled, hit.normal);
+
+            Destroy(gameObject);
+            return;
+            
+        }
 
         if(distanceTravelled >= maxDistance)
         {
@@ -68,14 +73,6 @@ public class GrappleProjectile : MonoBehaviour
             }
         }
 
-
-        if(Physics.SphereCast(transform.position, collisionRadius, velocity.normalized,
-        out RaycastHit hit, step, targetMask, QueryTriggerInteraction.Ignore))
-        {
-            grapple.OnProjectileHit(hit.collider.transform, hit.point, hit.distance + distanceTravelled);
-
-            Destroy(gameObject);
-        }
 
     }
 

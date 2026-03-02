@@ -98,16 +98,16 @@ public class EffectManager : MonoBehaviour
                 if (e == null) return;
                 player = false;
                 hp = target.GetComponent<HP>();
-                if (e.attackType < 2)
-                {
-                    GameObject meleeRef = e.attackPrefab;
-                    melee = meleeRef.GetComponent<MeleeCollider>();
-                }
-                else
-                {
-                    GameObject projRef = e.attackPrefab;
-                    projectile = projRef.GetComponent<EnemyProjectile>();
-                }
+                // if (e.attackType < 2)
+                // {
+                //     GameObject meleeRef = e.attackPrefab;
+                //     melee = meleeRef.GetComponent<MeleeCollider>();
+                // }
+                // else
+                // {
+                //     GameObject projRef = e.attackPrefab;
+                //     projectile = projRef.GetComponent<EnemyProjectile>();
+                // }
 
                 //copy of initial parameters 
                 speed = e.moveSpeed;

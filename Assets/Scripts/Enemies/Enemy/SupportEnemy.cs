@@ -79,9 +79,9 @@ public class SupportEnemy : Enemy
 
     public override void Attack()
     {
-        if (allyFound && fov.playerInRange)
-        {
-            AttackManager.am.ChooseAttack(gameObject, attackType, attackPrefab, attackPoint, attackingCooldown, damage, forceMultiplier, projSpeedMultiplier);
-        }
+        // if (allyFound && fov.playerInRange)
+        // {
+        //     AttackManager.am.ChooseAttack(gameObject, attackType, attackPrefab, attackPoint, attackingCooldown, damage, forceMultiplier, projSpeedMultiplier);
+        // }
     }
 }
