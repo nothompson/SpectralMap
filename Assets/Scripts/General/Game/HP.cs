@@ -11,8 +11,14 @@ public class HP : MonoBehaviour
     [Header("State")]
     public string characterID;
     public bool dead = false;
-    [Range(1, 2)]
-    public int type;
+    public ObjectType type;
+
+    public enum ObjectType
+    {
+        Player,
+        Enemy,
+        NPC
+    }
 
     [Header("Gibs")]
     [SerializeField] private int minGibs;
@@ -62,14 +68,15 @@ public class HP : MonoBehaviour
     public void Damage(float dmg)
     {
         currentHP -= dmg;
-        if(type == 1){
+        if(type == ObjectType.Player){
             PlayerControlRigid pc = GetComponentInParent<PlayerControlRigid>();
             AudioManager.Instance.Hurt();
-            float mult = dmg * 0.05f;
+            float mult = dmg * 0.1f;
             // Debug.Log(dmg);
             pc.applyShake(1f, mult);
+            DamageManager.Instance.PlayDamageOverlay(dmg * 0.025f);
         }
-        else
+        else if(type == ObjectType.Enemy)
         {
             StartFlash(gameObject);
             EnemyAudio ea = GetComponentInParent<EnemyAudio>();
@@ -91,7 +98,7 @@ public class HP : MonoBehaviour
 
     public void Death()
     {
-        if(type == 2){
+        if(type == ObjectType.Enemy || type == ObjectType.NPC){
         if(currentHP <= 0f)
         {
             if (!dead)

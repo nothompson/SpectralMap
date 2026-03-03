@@ -921,6 +921,7 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  noiseOffset: 0
   pendingAttack: {fileID: 0}
 --- !u!114 &5536796893043216121
 MonoBehaviour:
@@ -938,7 +939,7 @@ MonoBehaviour:
   maxHP: 100
   characterID: 
   dead: 0
-  type: 2
+  type: 1
   minGibs: 5
   maxGibs: 10
   damageFlashEnable: 1

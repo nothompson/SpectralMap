@@ -32,6 +32,10 @@ public class SpriteAnimate : MonoBehaviour
         image = GetComponent<Image>();
 
         sprite = GetComponent<SpriteRenderer>();
+        if(sprite == null)
+        {
+            sprite = GetComponentInChildren<SpriteRenderer>();
+        }
 
         length = sprites.Length; 
 
