@@ -32,7 +32,7 @@ public class UIJitter : MonoBehaviour
 
     void LateUpdate()
     {
-        
+        if(!enabled) return;
         float x = Mathf.PerlinNoise(Time.unscaledTime * 10f, randx) - 0.5f;
         float y = Mathf.PerlinNoise(Time.unscaledTime * 10f, randy) - 0.5f;
 
@@ -45,5 +45,11 @@ public class UIJitter : MonoBehaviour
     {
         placement = rectTransform.anchoredPosition;
         enabled = true;
+    }
+
+        public void DisableJitter()
+    {
+        placement = rectTransform.anchoredPosition;
+        enabled = false;
     }
 }

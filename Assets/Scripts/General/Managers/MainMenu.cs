@@ -36,6 +36,10 @@
 
         public AnimationCurve positionCurve;
 
+        public AnimationCurve outroScaleCurve;
+
+        public AnimationCurve outroPositionCurve;
+
         public float introDur;
 
         public float introSpread;
@@ -44,6 +48,8 @@
 
         public bool introPlaying = false;
         public bool queueLoad = false;
+
+        public bool OrganIsPlayable = true;
 
         private int titlefinished = 0;
 
@@ -77,6 +83,15 @@
         [SerializeField] private float keyDur;
         [SerializeField] private AnimationCurve KeyAnimation;
 
+
+        [HideInInspector] public RectTransform[] spriteRects;
+         [HideInInspector] public Vector3[] spriteBaseScales;
+         [HideInInspector] public RectTransform[] bRects;
+         [HideInInspector] public Vector3[] buttonBasePositions;
+
+         [HideInInspector] public bool spriteIntroComplete = false;
+        
+
         private float distortStrength;
         private float distortSpeed;
 
@@ -85,6 +100,8 @@
 
         void Start()
         {
+            spriteIntroComplete = false;
+            
             StopAllCoroutines();
 
             DisableTricks();
@@ -137,6 +154,7 @@
             if(letterAnimations != null && letterAnimations.Length > 0)
             {
                 StartCoroutine(AnimateTitle());
+                AudioManager.Instance.RisingTexture();
             }
 
             var rects = new RectTransform[sprites.Length];
@@ -160,8 +178,13 @@
                 rects[i].localScale = Vector3.zero;
 
                 float bipolar = Random.value * 2f - 1f;
-                spriteOffset[i] = bipolar * introSpread;
+                float rand = Random.value;
+                spriteOffset[i] = rand * introSpread;
             }
+
+            spriteRects = rects;
+            spriteBaseScales = baseScales;
+
 
             for(int i = 0; i < buttons.Length; i++)
             {
@@ -175,12 +198,18 @@
                 buttonRects[i].anchoredPosition = new Vector2(buttonRects[i].anchoredPosition.x, -400f);
                 
                 float bipolar = Random.value * 2f - 1f;
-                buttonOffset[i] = bipolar * introSpread;
+                float rand = Random.value;
+                buttonOffset[i] = rand * introSpread;
             }
+            bRects = buttonRects;
+            buttonBasePositions = basePositions;
 
+            var spriteSoundPlayed = new bool[sprites.Length];
+            var buttonSoundPlayed = new bool[buttons.Length];
+            
             float t = 0f;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
 
             title.SetActive(true);
 
@@ -199,6 +228,12 @@
                     float curveValue = scaleCurve.Evaluate(time);
 
                     rects[i].localScale = baseScales[i] * curveValue;
+
+                    if(!spriteSoundPlayed[i] && curveValue >= 0.8f)
+                    {
+                        spriteSoundPlayed[i] = true;
+                        AudioManager.Instance.Pop();
+                    }
                 }
 
                 for(int i = 0; i < buttonRects.Length; i++)
@@ -212,6 +247,13 @@
                     float curveValue = positionCurve.Evaluate(time);
 
                     buttonRects[i].anchoredPosition = basePositions[i] * curveValue;
+
+                    if(!buttonSoundPlayed[i] && curveValue <= 1.5f)
+                    {
+                        buttonSoundPlayed[i] = true;
+                        AudioManager.Instance.WindSlice();
+                    }
+
                 }
             yield return null;
             }
@@ -234,10 +276,13 @@
                     jitter.EnableJitter();
             }
 
+            spriteIntroComplete = true;
+
         }
 
         public IEnumerator AnimateTitle()
         {
+            yield return new WaitForSeconds(0.25f);
             introPlaying = true;
             titlefinished = 0;
 
@@ -269,12 +314,23 @@
             titlefinished++;
         }
 
+        public void DisableJitter()
+    {
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            if(buttons[i] == null) continue;
+            UIJitter jit = buttons[i].GetComponent<UIJitter>();
+            if(jit != null) jit.DisableJitter();
+        }
+    }
+
         void Update()
         {
             GetMouseData();
             Background();
-            MusicScript.PlayNotes(chime, MusicScript.MajorScale, -9);
-            CheckKeyAnimations();
+            if(!OrganIsPlayable) return;
+                MusicScript.PlayNotes(chime, MusicScript.MajorScale, -9);
+                CheckKeyAnimations();
         }
 
         void SetupDefaultKeys()

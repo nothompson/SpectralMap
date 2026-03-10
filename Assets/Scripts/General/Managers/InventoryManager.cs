@@ -56,9 +56,6 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         {
             Destroy(gameObject);
         }
-
-        LoadAllItems();
-
     }
 
     void InitGrid()
@@ -86,6 +83,12 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     {        
         InitGrid();
 
+    }
+
+    public void OnSaveChange()
+    {
+        
+        LoadAllItems();
         LoadInventory();
     }
     
@@ -390,6 +393,6 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "Inventory.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "Inventory.json");
     }
 }

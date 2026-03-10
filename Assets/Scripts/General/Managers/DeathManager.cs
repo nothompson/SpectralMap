@@ -10,6 +10,7 @@ public class DeathManager : MonoBehaviour
 {
     public static DeathManager Instance;
     private Dictionary<string,bool> deathLog = new();
+    private NamedEntity[] AllNames;
     void Awake()
     {
         if(Instance == null)
@@ -21,6 +22,33 @@ public class DeathManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void LoadAllNames()
+    {
+        AllNames = Resources.LoadAll<NamedEntity>("Names");
+    }
+
+    void InitDeathLog()
+    {
+        if(AllNames == null) return;
+
+        foreach(var name in AllNames)
+        {
+            if(string.IsNullOrEmpty(name.Name)) continue;
+
+            if (!deathLog.ContainsKey(name.Name))
+            {
+                deathLog[name.Name] = false;
+            }
+        }
+    }
+
+    public void OnSaveChange()
+    {
+        deathLog.Clear();
+        LoadAllNames();
+        InitDeathLog();
         Load();
     }
 
@@ -85,6 +113,6 @@ public class DeathManager : MonoBehaviour
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "DeathLog.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "DeathLog.json");
     }
 }

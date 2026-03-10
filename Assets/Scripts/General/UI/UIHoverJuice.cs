@@ -15,6 +15,8 @@ public class UIHoverJuice : MonoBehaviour
     RectTransform rect;
     Vector3 scale;
     Vector3 rot;
+
+    public bool disabled = false;
     public void Start()
     {
         rect = gameObject.GetComponent<RectTransform>();
@@ -22,8 +24,15 @@ public class UIHoverJuice : MonoBehaviour
         rot = rect.localEulerAngles;
     }
 
+    public void ReInit()
+    {
+        scale = rect.localScale;
+        rot = rect.localEulerAngles;
+    }
+
     public void StartHover(bool intro)
     {
+        if(disabled) return;
         ResetRoutines();
         hoverRoutine = StartCoroutine(Hover(intro));
     }

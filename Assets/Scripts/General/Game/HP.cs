@@ -70,11 +70,13 @@ public class HP : MonoBehaviour
         currentHP -= dmg;
         if(type == ObjectType.Player){
             PlayerControlRigid pc = GetComponentInParent<PlayerControlRigid>();
+            Profile profile = GetComponentInChildren<Profile>();
             AudioManager.Instance.Hurt();
             float mult = dmg * 0.1f;
             // Debug.Log(dmg);
             pc.applyShake(1f, mult);
             DamageManager.Instance.PlayDamageOverlay(dmg * 0.025f);
+            profile.TriggerHurt();
         }
         else if(type == ObjectType.Enemy)
         {

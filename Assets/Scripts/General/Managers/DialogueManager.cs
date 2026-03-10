@@ -25,8 +25,6 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        LoadProgress();
-
     }
 
     public void SaveProgress()
@@ -127,7 +125,7 @@ public class DialogueManager : MonoBehaviour
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "Dialogue.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "Dialogue.json");
     }
 
 

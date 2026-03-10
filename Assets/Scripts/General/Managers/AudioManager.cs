@@ -556,6 +556,37 @@
             FMODUnity.RuntimeManager.PlayOneShot(sounds.UIClick);
         }
 
+        public void Type()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.Typing);
+        }
+
+        public void Pop()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.Pop);
+        }
+
+         public void Apop()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.Apop);
+        }
+
+        public void WindSlice()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.WindSlice);
+        }
+
+        public void RisingTexture()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.RisingTexture);
+        }
+
+           public void TransitionTexture()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.TransitionTexture);
+        }
+
+
         public void StartConfigHover()
         {
             ConfigInstance = FMODUnity.RuntimeManager.CreateInstance(sounds.ConfigHover);

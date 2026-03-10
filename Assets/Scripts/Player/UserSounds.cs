@@ -41,5 +41,18 @@ public class UserSounds : ScriptableObject
 
     public FMODUnity.EventReference BodybagClose;
 
+    public FMODUnity.EventReference Typing;
+
+    public FMODUnity.EventReference Pop;
+
+    public FMODUnity.EventReference Apop;
+
+    public FMODUnity.EventReference WindSlice;
+
+    public FMODUnity.EventReference RisingTexture;
+
+    public FMODUnity.EventReference TransitionTexture;
+
+
     
 }

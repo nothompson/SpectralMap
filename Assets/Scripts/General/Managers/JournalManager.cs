@@ -54,11 +54,13 @@ public class JournalManager : MonoBehaviour
         leftPageNumber = leftPagination.GetComponent<SpriteText>();
 
         rightPageNumber = rightPagination.GetComponent<SpriteText>();
+    }
 
+    public void OnSaveChange()
+    {
         LoadAllJournalEntries();
-
         TrackAddedEntries();
-
+        ClearJournal();
         LoadJournal();
     }
 
@@ -113,6 +115,9 @@ public class JournalManager : MonoBehaviour
 
     void LoadJournal()
     {
+        ClearJournal();
+        AddedEntries = new Dictionary<string, HashSet<int>>();
+        UpdatePagination();
         string filePath = GetSavePath();
         if(!File.Exists(filePath)) return;
 
@@ -121,7 +126,6 @@ public class JournalManager : MonoBehaviour
 
         AddedEntries.Clear();
 
-        SetText("");
 
         foreach(var record in data.Records)
         {
@@ -141,11 +145,11 @@ public class JournalManager : MonoBehaviour
             }
         }
 
-        UpdatePagination();
     }
 
     public void SearchEntries(string input)
     {
+        SetText("");
         string filePath = GetSavePath();
         if(!File.Exists(filePath)) return;
 
@@ -154,7 +158,6 @@ public class JournalManager : MonoBehaviour
 
         AddedEntries.Clear();
 
-        SetText("");
 
         Regex regex = new Regex(input, RegexOptions.IgnoreCase);
 
@@ -186,6 +189,21 @@ public class JournalManager : MonoBehaviour
         LoadJournal();
     }
 
+    public void ClearJournal()
+    {
+        leftText.input = "";
+        rightText.input = "";
+
+        leftText.Refresh();
+        rightText.Refresh();
+
+          leftSide.text = "";
+        rightSide.text = "";
+        leftSide.ForceMeshUpdate();
+        rightSide.ForceMeshUpdate();
+        
+    }
+
     public bool HasJournalEntry(string id, int index)
     {
         if(!AddedEntries.ContainsKey(id)) return false;
@@ -204,7 +222,7 @@ public class JournalManager : MonoBehaviour
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "Journal.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "Journal.json");
     }
 
     public void Open()

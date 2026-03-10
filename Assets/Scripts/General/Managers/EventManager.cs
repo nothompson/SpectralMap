@@ -39,9 +39,6 @@ public class EventManager : MonoBehaviour
                 SpectrumManager.Instance.PolluteSpectrum(5);                
                 JournalManager.Instance.AddJournalEntry("danieldeath",0);  
                 break;
-            case "BigJerry":
-                Debug.Log("killed big jerry");
-                break;; 
         }
     }
 

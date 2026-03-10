@@ -272,6 +272,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   jiggleDur: 0.15
   rotation: 5
+  disabled: 0
 --- !u!114 &2257866943982114479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +535,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   jiggleDur: 0.15
   rotation: 10
+  disabled: 0
 --- !u!114 &4344848479807594269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,6 +919,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: JournalSearch, Assembly-CSharp
         m_MethodName: Search
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Type
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2017,6 +2031,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   jiggleDur: 0.15
   rotation: 5
+  disabled: 0
 --- !u!114 &1645631903752793257
 MonoBehaviour:
   m_ObjectHideFlags: 0

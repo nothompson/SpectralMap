@@ -7,6 +7,8 @@ using MovementPhysics;
 #region Init
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] NamedEntity NamedEntity;
+
     [Header("References")]
     public Rigidbody rb;
 
@@ -130,6 +132,10 @@ public class Enemy : MonoBehaviour
 
     public void Awake()
     {
+        if(NamedEntity != null)
+        {
+            EnemyID = NamedEntity.Name;
+        }
     }
 
     // Start is called before the first frame update

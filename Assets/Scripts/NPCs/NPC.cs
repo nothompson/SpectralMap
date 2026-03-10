@@ -9,7 +9,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] public string npcID;
+    [SerializeField] public NamedEntity NamedEntity;
+    public string npcID;
 
     [System.Serializable]
     public class PartConfig
@@ -98,6 +99,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Awake()
     {
+        npcID = NamedEntity.Name;
     }
 
     public async void Start()

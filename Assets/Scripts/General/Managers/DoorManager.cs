@@ -31,9 +31,12 @@ public class DoorManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void OnSaveChange()
+    {
         LoadAllDoors();
         LoadDoorProgress();
-
     }
 
     public void RegisterDoor(Door door)
@@ -115,6 +118,6 @@ public class DoorManager : MonoBehaviour
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "Doors.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "Doors.json");
     }
 }

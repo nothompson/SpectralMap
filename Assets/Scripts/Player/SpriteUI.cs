@@ -39,7 +39,7 @@ public class SpriteUI : MonoBehaviour
 
         float normal = up ? 1f - (current / max) : (current / max); 
 
-        int index = Mathf.FloorToInt(normal * (spriteSize - 1));
+        int index = Mathf.FloorToInt(normal * (spriteSize));
 
         if(cap){
             if(current > max){

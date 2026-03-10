@@ -138,3 +138,45 @@ MonoBehaviour:
       Data3: 1913458340
       Data4: -2104667085
     Path: event:/General/UI/BodybagClose
+  Typing:
+    Guid:
+      Data1: 51454336
+      Data2: 1169572821
+      Data3: -1419105089
+      Data4: 1250746769
+    Path: event:/General/UI/Typing
+  Pop:
+    Guid:
+      Data1: -745428438
+      Data2: 1341691237
+      Data3: 1024306365
+      Data4: -859885938
+    Path: event:/General/UI/Pop
+  Apop:
+    Guid:
+      Data1: -1000802293
+      Data2: 1111785109
+      Data3: 1595352502
+      Data4: -914604261
+    Path: event:/General/UI/Apop
+  WindSlice:
+    Guid:
+      Data1: 888776010
+      Data2: 1198499547
+      Data3: 1245577
+      Data4: -386318667
+    Path: event:/General/UI/WindSlice
+  RisingTexture:
+    Guid:
+      Data1: 1457268743
+      Data2: 1297326084
+      Data3: 1665611958
+      Data4: 1096151249
+    Path: event:/General/UI/RisingTexture
+  TransitionTexture:
+    Guid:
+      Data1: -80609120
+      Data2: 1153757597
+      Data3: 1206889864
+      Data4: 1335964618
+    Path: event:/General/UI/TransitionTexture

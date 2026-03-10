@@ -1077,6 +1077,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1714
+--- !u!114 &-6072175407245936804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/Apop
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/Apop
+  Guid:
+    Data1: -1000802293
+    Data2: 1111785109
+    Data3: 1595352502
+    Data4: -914604261
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120
 --- !u!114 &-6046847085362730961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,10 +1460,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639056326848978777
+  lastModified: 639086860112670938
   FileSizes:
   - Name: Desktop
-    Value: 4518
+    Value: 4766
   Exists: 1
 --- !u!114 &-5199385024163790057
 MonoBehaviour:
@@ -1690,7 +1717,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639056326848968768
+  lastModified: 639086860112660877
   FileSizes:
   - Name: Desktop
     Value: 3652
@@ -2155,6 +2182,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-3165008116427887738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/Pop
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/Pop
+  Guid:
+    Data1: -745428438
+    Data2: 1341691237
+    Data3: 1024306365
+    Data4: -859885938
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &-3135476954836587860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2662,6 +2716,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2139026344628169981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/RisingTexture
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/RisingTexture
+  Guid:
+    Data1: 1457268743
+    Data2: 1297326084
+    Data3: 1665611958
+    Data4: 1096151249
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &-2112538100247348493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,6 +3194,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-1066901612682230306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/TransitionTexture
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/TransitionTexture
+  Guid:
+    Data1: -80609120
+    Data2: 1153757597
+    Data3: 1206889864
+    Data4: 1335964618
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &-976385541103546443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3476,6 +3584,12 @@ MonoBehaviour:
   - {fileID: -4778391819720883213}
   - {fileID: -3658718638612253228}
   - {fileID: -229082119551794605}
+  - {fileID: 7764033121657813682}
+  - {fileID: -3165008116427887738}
+  - {fileID: 5497346475053931586}
+  - {fileID: -6072175407245936804}
+  - {fileID: -2139026344628169981}
+  - {fileID: -1066901612682230306}
   EditorParameters:
   - {fileID: 5939900623978048996}
   MasterBanks:
@@ -3483,7 +3597,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5218457811764894937}
   cacheVersion: 131849
-  cacheTime: 639056326849523236
+  cacheTime: 639086864807107048
   SerializableEventsDict:
   - key: event:/Enemies/fleshGrunt/Step
     index: 0
@@ -3577,6 +3691,18 @@ MonoBehaviour:
     index: 44
   - key: event:/Player/ReloadFailure
     index: 45
+  - key: event:/General/UI/Typing
+    index: 46
+  - key: event:/General/UI/Pop
+    index: 47
+  - key: event:/General/UI/WindSlice
+    index: 48
+  - key: event:/General/UI/Apop
+    index: 49
+  - key: event:/General/UI/RisingTexture
+    index: 50
+  - key: event:/General/UI/TransitionTexture
+    index: 51
 --- !u!114 &130800245406359910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,10 +4568,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/General.bank
   Name: General
   StudioPath: bank:/General
-  lastModified: 639025538619174763
+  lastModified: 639086864807107048
   FileSizes:
   - Name: Desktop
-    Value: 1329792
+    Value: 2124320
   Exists: 1
 --- !u!114 &2462351514648769995
 MonoBehaviour:
@@ -5513,6 +5639,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &5497346475053931586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/WindSlice
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/WindSlice
+  Guid:
+    Data1: 888776010
+    Data2: 1198499547
+    Data3: 1245577
+    Data4: -386318667
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 466
 --- !u!114 &5664650436778865938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6423,6 +6576,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 843
+--- !u!114 &7764033121657813682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/Typing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/Typing
+  Guid:
+    Data1: 51454336
+    Data2: 1169572821
+    Data3: -1419105089
+    Data4: 1250746769
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200
 --- !u!114 &7799528410499780148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7116,7 +7296,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 639006806649322539
+  lastModified: 639086783214938020
   FileSizes:
   - Name: Desktop
     Value: 357184

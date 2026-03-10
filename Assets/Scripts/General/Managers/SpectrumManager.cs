@@ -36,13 +36,13 @@ public class SpectrumManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SaveSpectrum();
+        // SaveSpectrum();
     }
 
-    void Start()
-    {
-        LoadSpectrum();
-    }
+    // void Start()
+    // {
+    //     LoadSpectrum();
+    // }
 
     public void StartTransition()
     {
@@ -95,7 +95,7 @@ public class SpectrumManager : MonoBehaviour
 
     string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "Spectrum.json");
+        return SaveSystem.GetFilePath(SaveSystem.CurrentSlot, "Spectrum.json");
     }
 
 }
