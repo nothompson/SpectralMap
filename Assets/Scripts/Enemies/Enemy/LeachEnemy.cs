@@ -29,7 +29,6 @@ public class LeachEnemy : Enemy
             player = playerRef.transform;
         
         rb.freezeRotation = true;
-
     }
     
     public override void FixedUpdate()
@@ -56,6 +55,11 @@ public class LeachEnemy : Enemy
         Quaternion targetRot = Quaternion.LookRotation(dir, Vector3.up);
 
         head.MoveRotation(Quaternion.Slerp(head.rotation, targetRot, Body.Strength * Time.fixedDeltaTime));
+
+        if((adjusted - Body.HeadPosition).magnitude <= MaxRange && !attacking)
+        {
+            Behaviors[0].Begin();
+        }
     }
 
     void OnDestroy()

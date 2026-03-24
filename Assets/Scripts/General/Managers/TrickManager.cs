@@ -101,7 +101,10 @@ public class TrickManager : MonoBehaviour
             airshot,
             direct,
             airAirshot,
-            kill
+            kill,
+
+            grapple,
+            grappleJump,
         }
 
     public class Trick
@@ -110,9 +113,11 @@ public class TrickManager : MonoBehaviour
         public string Display;
         public int Points;
         public bool Continuous;
-        public Trick(TrickType type, int syncs = 1)
+        public Trick(TrickType type, int syncs = 1, int customPoints = 0, string customDisplay = null)
         {
             Type = type;
+            if(customPoints > 0) Points = customPoints;
+            if(customDisplay != null) Display = customDisplay;
             TrickData(type);
             if(syncs > 1) SyncData(syncs);
         }
@@ -143,8 +148,6 @@ public class TrickManager : MonoBehaviour
                     Continuous = false;
                     break;
                 case TrickType.kill:
-                    Display = "Kill";
-                    Points = 500;
                     Continuous = false;
                     break;
 
@@ -173,6 +176,17 @@ public class TrickManager : MonoBehaviour
                     Display = "Free Falling";
                     Points = 1;
                     Continuous = true;
+                    break;
+
+                case TrickType.grapple:
+                    Display = "Grapple";
+                    Points = 50;
+                    Continuous = false;
+                    break;
+                case TrickType.grappleJump:
+                    Display = "Grapple Jump";
+                    Points = 100;
+                    Continuous = false;
                     break;
             }
         }
@@ -702,9 +716,20 @@ public class TrickManager : MonoBehaviour
         AddTrick(trick);
     }
 
-    public void Kill()
+    public void Grapple()
     {
-        Trick trick = new Trick(TrickType.kill);
+        Trick trick = new Trick(TrickType.grapple);
+        AddTrick(trick);
+    }
+    public void GrappleJump()
+    {
+        Trick trick = new Trick(TrickType.grappleJump);
+        AddTrick(trick);
+    }
+
+    public void Kill(int enemyPoints, string enemyName)
+    {
+        Trick trick = new Trick(TrickType.kill, customPoints: enemyPoints, customDisplay: enemyName);
         AddTrick(trick);
     }
 

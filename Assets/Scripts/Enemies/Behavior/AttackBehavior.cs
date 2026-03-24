@@ -9,18 +9,24 @@ public abstract class AttackBehavior : MonoBehaviour
     [SerializeField] public float Cooldown;
     [SerializeField] public float Damage;
     [SerializeField] public float Force;
+    [SerializeField] public string AnimationEvent;
+    [SerializeField] public bool Stationary = false;
+
 
     public Transform AttackPoint;
-    public GameObject Owner;
-
-    public void InitBehavior(GameObject enemy, Transform point)
+    [HideInInspector] public GameObject Owner;
+// 
+    public virtual void InitBehavior(GameObject enemy, Transform point)
     {
         Owner = enemy;
 
         AttackPoint = point;
     }
 
-    public abstract bool Ready(float distance);
+    public bool Ready(float distance)
+    {
+        return distance <= Range;
+    }
 
     public abstract float Begin();
 

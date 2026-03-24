@@ -4,11 +4,7 @@ public class SpawnerBehavior : AttackBehavior
 {
     [SerializeField] private int NumberToSpawn;
     [SerializeField] private float SpawnAngle;
- public override bool Ready(float distance)
-    {
-        return distance <= Range;
-    }
-
+    
     public override float Begin()
     {
         for(int i = 0; i < NumberToSpawn; i++)

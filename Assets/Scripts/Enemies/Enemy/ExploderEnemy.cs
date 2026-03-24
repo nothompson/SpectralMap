@@ -30,6 +30,7 @@ public class ExploderEnemy : Enemy
         playerFeet = player.Find("GroundCheck");
         pc = player.GetComponentInParent<PlayerControlRigid>();
         headCollider = gameObject.GetComponentInChildren<BoxCollider>();
+        Debug.Log(playerFeet + " " + pc + " " + headCollider);
     }
     public override void OnAttack()
     {

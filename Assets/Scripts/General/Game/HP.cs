@@ -86,6 +86,7 @@ public class HP : MonoBehaviour
             {
                 ea.Hurt();
             }
+            HitNumberManager.Instance.DisplayHitNumber(dmg, transform);
         }
     }
 
@@ -100,12 +101,42 @@ public class HP : MonoBehaviour
 
     public void Death()
     {
+
         if(type == ObjectType.Enemy || type == ObjectType.NPC){
         if(currentHP <= 0f)
         {
             if (!dead)
             {
                 dead = true;
+
+
+                Enemy e = GetComponentInParent<Enemy>();
+                if(e != null){
+                float roll = Random.Range(0f,1f);
+                Debug.Log(roll);
+                if(roll >= 1.0f - e.ChanceToDropPickup){
+                    float pickup = Random.Range(0f,1f);
+                    if(pickup <= 0.45f)
+                        {    
+                            PickupPool.Instance.Get(transform.position, Pickup.PickupType.Health, 0.5f);
+
+                            Debug.Log("health spawned");
+                        }
+                    else if (pickup <= 0.9f && pickup > 0.45f)
+                        {
+                            PickupPool.Instance.Get(transform.position, Pickup.PickupType.Magic, 0.5f);
+
+                            Debug.Log("Magic spawned");
+                        }
+                    else if (pickup > 0.9f)
+                        {
+                            Debug.Log("pot of greed spawned!");
+                        }
+
+                    Debug.Log(pickup);
+                }
+                }
+
                 GibsManager.Instance.Gib(transform.position, Random.Range(minGibs,maxGibs));
                     if (!string.IsNullOrEmpty(characterID))
                     {

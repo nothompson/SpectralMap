@@ -47,5 +47,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ParticleDecals
+    uniqueID: 1850183665
+    locked: 0
+  - name: SpriteRenderers
+    uniqueID: 3899991207
+    locked: 0
   m_RenderingLayers:
   - Default

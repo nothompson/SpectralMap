@@ -54,6 +54,7 @@ public class SupportEnemy : Enemy
                     float YDist = Mathf.Abs(transform.position.y - a.transform.position.y);
 
                     Enemy e = a.GetComponentInParent<Enemy>();
+                    HP allyHP = a.GetComponentInParent<HP>();
 
                     if (YDist < 5 && dist < distThreshold && e.gameObject != this.gameObject && !e.support)
                     {
@@ -75,13 +76,5 @@ public class SupportEnemy : Enemy
 
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    public override void Attack()
-    {
-        // if (allyFound && fov.playerInRange)
-        // {
-        //     AttackManager.am.ChooseAttack(gameObject, attackType, attackPrefab, attackPoint, attackingCooldown, damage, forceMultiplier, projSpeedMultiplier);
-        // }
     }
 }

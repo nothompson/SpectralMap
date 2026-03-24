@@ -2,88 +2,171 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using MovementPhysics;
+
 public class Pickup : MonoBehaviour
 {
-    public GameObject player;
-    public HP playerHealth;
-    public MagicManagement playerMagic;
-    public LayerMask playerMask;
+    [HideInInspector] public HP playerHealth;
+    [HideInInspector] public MagicManagement playerMagic;
+
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform GroundCheck;
+    [SerializeField] private LayerMask CollisionLayer;
 
     public FMODUnity.StudioEventEmitter pickupSound;
 
-    [Range(1,3)]
-    public int type;
+    private Vector3 groundNormal;
+    private RaycastHit groundHit;
+
+    bool grounded = false;
+
+    private float gt = 0.1f;
+
+    public enum PickupType
+    {
+        Health,
+        Magic,
+        Greed
+    }
+
+    public PickupType Type;
+    
     [Range(0, 1)]
     public float size;
 
-    public float spinSpeed = 5f;
-    void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        playerHealth = player.GetComponent<HP>();
-        playerMagic = player.GetComponent<MagicManagement>();
-    }
+    private float spinSpeed = 80f;
 
     void Update()
     {
+        // transform.Rotate(0f, spinSpeed * Time.deltaTime, 0f);
+
         float spin = Time.deltaTime * spinSpeed;
         Vector3 angle = transform.localEulerAngles;
         angle.y += spin;
         transform.localEulerAngles = new Vector3(angle.x, angle.y, angle.z);
     }
 
+    public void OnSpawn()
+    {
+        transform.localEulerAngles = new Vector3(0f,0f,0f);
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.useGravity = true;
+        grounded = false;
+        gt = 0.1f;
+    }
+
+    void FixedUpdate()
+    {
+        if(grounded) return;
+
+        Vector3 vel = rb.linearVelocity;
+
+        grounded = MovementFunctions.GroundedCheck(GroundCheck, 0.2f, CollisionLayer, ref vel, ref gt, 0.1f, ref groundNormal, out groundHit);
+
+        rb.linearVelocity = vel;
+
+        if (grounded)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.useGravity = false;
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3)
+
+        //     if (type > 2)
+        //     {
+        //         // float roll = Random.Range(0f, 1f);
+        //         EffectManager.effectManager.Boost(player, 20f, 3.0f);
+        //         pickupSound.Play();
+        //         Destroy(gameObject);
+        //     }
+        // }
+
+        if(other.gameObject.layer == 3)
         {
-            if (type == 1 && playerHealth.currentHP < playerHealth.maxHP)
-            {
-                playerHealth.Heal(size);
-                pickupSound.Play();
-                Destroy(gameObject);
-            }
-
-            if (type == 2 && playerMagic.magicPoints < playerMagic.maximumMagic)
-            {
-                float regen = playerMagic.maximumMagic * size;
-                playerMagic.magicPoints += regen;
-                pickupSound.Play();
-                Destroy(gameObject);
-            }
-
-            if (type > 2)
-            {
-                // float roll = Random.Range(0f, 1f);
-                EffectManager.effectManager.Boost(player, 20f, 3.0f);
-                pickupSound.Play();
-                Destroy(gameObject);
-            }
+            HandlePlayer(other);
         }
 
-        if (other.gameObject.layer == 11)
-        {
-            Enemy ai = other.GetComponentInParent<Enemy>();
-            GameObject enemy = ai != null ? ai.gameObject : other.gameObject;
-            HP enemyHealth = other.GetComponentInParent<HP>();
+        // else if (other.gameObject.layer == 11)
+        // {
+        //     HandleEnemy(other);
+        // }
 
-            if (enemyHealth != null)
-            {
-                if (type == 1 && enemyHealth.currentHP < enemyHealth.maxHP)
+        //     if (type > 2)
+        //     {
+        //         // float roll = Random.Range(0f, 1f);
+        //         EffectManager.effectManager.Weak(enemy, 20f, 0.5f);
+        //         Destroy(gameObject);
+        //     }
+        // }
+    }
+
+    private void HandlePlayer(Collider other)
+    {
+
+        playerHealth = other.GetComponentInParent<HP>();
+        playerMagic = other.GetComponentInParent<MagicManagement>();
+
+        Debug.Log(playerHealth);
+        Debug.Log(playerMagic);
+
+        bool consumed = false;
+
+        switch (Type)
+        {
+            case PickupType.Health:
+                if(playerHealth.currentHP < playerHealth.maxHP)
+                {
+                    playerHealth.Heal(size);
+                    consumed = true;
+                };
+                break;
+
+            case PickupType.Magic:
+                if(playerMagic.magicPoints < playerMagic.maximumMagic)
+                {
+                    float regen = playerMagic.maximumMagic * size;
+                    playerMagic.magicPoints += regen;
+
+                    if(playerMagic.magicPoints >= playerMagic.maximumMagic)
+                    {
+                        playerMagic.magicPoints = playerMagic.maximumMagic;
+                    }
+                    consumed = true;
+                }
+                break;
+        }
+
+        if (consumed)
+        {
+            pickupSound.Play();
+            PickupPool.Instance.Return(this);
+        }
+    }
+
+    private void HandleEnemy(Collider other)
+    {
+        Enemy ai = other.GetComponentInParent<Enemy>();
+        HP enemyHP = other.GetComponentInParent<HP>();
+
+        switch (Type)
+        {
+            case PickupType.Health:
+                if(ai != null)
                 {
                     ai.critical = false;
                     ai.engage = true;
-                    enemyHealth.Heal(size);
-                    Destroy(gameObject);
+
+                    if(enemyHP != null && enemyHP.currentHP < enemyHP.maxHP)
+                    {
+                        enemyHP.Heal(size);
+                        PickupPool.Instance.Return(this);
+                    }
                 }
-            }
-            
-            if (type > 2)
-            {
-                // float roll = Random.Range(0f, 1f);
-                EffectManager.effectManager.Weak(enemy, 20f, 0.5f);
-                Destroy(gameObject);
-            }
- 
+                break;
         }
     }
 }

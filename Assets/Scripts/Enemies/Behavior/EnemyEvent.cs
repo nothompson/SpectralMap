@@ -19,6 +19,11 @@ public class EnemyEvent : MonoBehaviour
         enemyAudio.Attack();
     }
 
+    public void EndAttack()
+    {
+        enemy.EndAttack();
+    }
+
     public void Footstep()
     {
         enemyAudio.Footstep();

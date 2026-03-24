@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 2335547494888419022}
   - component: {fileID: 8304575672452613849}
   - component: {fileID: 8801921599838216795}
+  - component: {fileID: 7135994237155882857}
   m_Layer: 11
   m_Name: Leach
   m_TagString: Untagged
@@ -278,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74497f5fbd337642890caacd35906b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeachEnemy
+  NamedEntity: {fileID: 0}
   rb: {fileID: 1307671098746728270}
   player: {fileID: 0}
   launcher: {fileID: 0}
@@ -373,6 +375,31 @@ MonoBehaviour:
     m_Bits: 128
   canSeePlayer: 0
   playerInRange: 0
+--- !u!114 &7135994237155882857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6709704229617115072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce8107b6f7a0a14a84035c44a5442f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplodeBehavior
+  AttackPrefab: {fileID: 0}
+  Range: 3
+  Cooldown: 1
+  Damage: 5
+  Force: 10
+  AnimationEvent: attacking
+  Stationary: 0
+  AttackPoint: {fileID: 0}
+  Owner: {fileID: 0}
+  ExplosionRadius: 4
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2056
 --- !u!1001 &164376525836508952
 PrefabInstance:
   m_ObjectHideFlags: 0

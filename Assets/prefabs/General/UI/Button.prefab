@@ -85,7 +85,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: 09a1fb85498fc714292add6790850356, type: 2}
+  m_spriteAsset: {fileID: 11400000, guid: b11adc24a2fd9e54f84646dbe6887123, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -155,6 +155,7 @@ MonoBehaviour:
   isTyping: 0
   fullTextShown: 0
   init: 1
+  world: 0
 --- !u!1 &1027012023927563885
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,3 +438,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   jiggleDur: 0.15
   rotation: 10
+  disabled: 0

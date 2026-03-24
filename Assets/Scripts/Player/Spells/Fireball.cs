@@ -64,7 +64,7 @@ public class Fireball : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        Debug.Log(other);
+        // Debug.Log(other);
         int layer = other.layer;
 
         if (GameFunctions.FilterLayers(layer, ignoreLayers))
@@ -168,7 +168,7 @@ public class Fireball : MonoBehaviour
                     
                     if(targetHP.currentHP <= 0f)
                     {
-                        TrickManager.Instance.Kill();
+                        TrickManager.Instance.Kill(e.Points, e.Name);
                     }
                 }
             }

@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76601f6e4e26cf4fa8699fb569957ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerEnemy
+  NamedEntity: {fileID: 0}
+  Points: 500
+  Name: jester
   rb: {fileID: 0}
   player: {fileID: 0}
   launcher: {fileID: 0}
@@ -168,6 +171,8 @@ MonoBehaviour:
   oldRad: 0
   noiseOffset: 0
   pendingAttack: {fileID: 0}
+  MaxRange: 0
+  MinRange: 0
   squashAndStretch: {fileID: 4055958244806125390}
 --- !u!114 &3472552370586009759
 MonoBehaviour:
@@ -241,6 +246,8 @@ MonoBehaviour:
   Cooldown: 10
   Damage: 0
   Force: 0
+  AnimationEvent: 
+  Stationary: 0
   AttackPoint: {fileID: 0}
   Owner: {fileID: 0}
   NumberToSpawn: 5

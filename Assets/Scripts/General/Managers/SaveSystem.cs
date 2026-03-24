@@ -27,7 +27,7 @@ public static class SaveSystem
         }
         if(DialogueManager.Instance != null)
         {
-            DialogueManager.Instance.LoadProgress();
+            DialogueManager.Instance.OnSaveChange();
         }
         if(DeathManager.Instance != null)
         {

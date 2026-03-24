@@ -7,10 +7,8 @@ public class RangedBehavior : AttackBehavior
     [SerializeField] private float ProjectileSpeed = 1f;
 
     [SerializeField] private float AutoTimer = 1f;
-    public override bool Ready(float distance)
-    {
-        return distance <= Range;
-    }
+
+    [SerializeField] private float ExplosionRadius = 1f;
 
     public override float Begin()
     {
@@ -34,13 +32,13 @@ public class RangedBehavior : AttackBehavior
         {
             rocket.forceMultiplier = Force;
             rocket.maximumDamage = Damage;
+            rocket.explosionRadius = ExplosionRadius;
         }
 
         if(grenade != null)
         {
             grenade.autoTimer = AutoTimer;
         }
-        Debug.Log("shooting projectile");
 
         return Cooldown;
     }

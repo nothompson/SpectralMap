@@ -5,11 +5,7 @@ using System.Collections.Generic;
 public class MeleeBehavior : AttackBehavior
 {
     [SerializeField] public float HitBoxLife;
-
-    public override bool Ready(float distance)
-    {
-        return distance <= Range;
-    }
+    [SerializeField] public float MeleeRadius;
 
     public override float Begin()
     {
@@ -26,11 +22,9 @@ public class MeleeBehavior : AttackBehavior
         if(melee != null)
         {
             melee.damage = Damage;
-            melee.range = Range;
+            melee.range = MeleeRadius;
             melee.forceMultiplier = Force;
         }
-
-        Debug.Log("melee!");
 
         Destroy(hitbox, HitBoxLife);
         yield break;

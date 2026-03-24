@@ -60,6 +60,8 @@ public class Grapple : MonoBehaviour
     private Vector3 headNormal;
     private Quaternion headRotation;
 
+    private Animator leftHand;
+
     struct RopePoint
     {
         public Vector3 position;
@@ -171,6 +173,12 @@ public class Grapple : MonoBehaviour
             probe.isTrigger = true;
             probe.center = Vector3.zero;
             probe.radius = collisionRadius;
+
+            Launcher launcher = gameObject.GetComponentInParent<Launcher>();
+            if(launcher != null)
+        {
+            leftHand = launcher.leftHandAnim;
+        }
     }
 
     void OnDestroy()
@@ -328,6 +336,11 @@ public class Grapple : MonoBehaviour
         releasing = true;
         releaseProgress = 0f;
         releasePointCount = points.Count; 
+
+        if(playerControl.playerSpeed >= 17.5f)
+        {
+            TrickManager.Instance.GrappleJump();
+        }
     }
 
     public void OnProjectileHit(Transform target, Vector3 hitPoint, float distance, Vector3 normal)
@@ -350,6 +363,12 @@ public class Grapple : MonoBehaviour
         TransitionToFinal();
 
         grappleActive = true;
+
+        if(leftHand == null) return;
+
+        leftHand.SetTrigger("Fire");
+        
+        TrickManager.Instance.Grapple();
     }
 
     public void OnProjectileMiss()

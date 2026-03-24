@@ -8,13 +8,17 @@ using MovementPhysics;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] NamedEntity NamedEntity;
+    [SerializeField] public int Points = 500;
+    [SerializeField] public string Name;
+    [Range(0f,1f)]
+    [SerializeField] public float ChanceToDropPickup;
 
     [Header("References")]
-    public Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
-    public Transform player;
+    [HideInInspector] public Transform player;
 
-    public Launcher launcher;
+    [HideInInspector] public Launcher launcher;
 
     public GameObject attackPrefab;
 
@@ -31,7 +35,7 @@ public class Enemy : MonoBehaviour
 
     public HP hp;
 
-    public Animator fbx; 
+    [HideInInspector] public Animator fbx; 
 
     [Header("General")]
     [SerializeField] public string EnemyID;
@@ -114,13 +118,15 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public AttackBehavior pendingAttack;
 
-    private float MaxRange;
-    private float MinRange;
+    [HideInInspector] public float MaxRange;
+    [HideInInspector] public float MinRange;
 
     private float preferredRange;
 
     AttackBehavior MaxRangeAttack;
     AttackBehavior MinRangeAttack;
+
+    bool stationaryAttack = false;
 
 
     public enum PersonalityType
@@ -323,8 +329,8 @@ public class Enemy : MonoBehaviour
         }
         if (!engage)
         {
-            if(fbx == null) return;
-            fbx.SetTrigger("stopped");
+            // if(fbx == null) return;
+            // fbx.SetTrigger("stopped");
         }
     }
 
@@ -340,7 +346,8 @@ public class Enemy : MonoBehaviour
             LookTowards(direction);
         }
 
-        if ((distance > preferredRange && !nearLedge) || (jumpAcross && !critical))
+        // if ((distance > preferredRange) || (jumpAcross && !critical))
+        if (distance > preferredRange && !stationaryAttack)
         {
             MoveTowards(direction);
         }
@@ -356,7 +363,7 @@ public class Enemy : MonoBehaviour
             case PersonalityType.Cowardly:
                 if(distance <= fleeDist)
                 {
-                    Flee(fleeDist * 0.25f, fleeDist);
+                    Flee(fleeDist * 0.1f, fleeDist);
                 }
                 break;
             case PersonalityType.Tactical:
@@ -406,9 +413,6 @@ public class Enemy : MonoBehaviour
 
         float wishSpeed = moveSpeed;
         enemyVelocity = MovementFunctions.Accelerate(enemyVelocity, wishDir, wishSpeed, 10f);
-
-        if(fbx == null) return;
-        fbx.SetTrigger("moving");
     }
 
     #endregion
@@ -416,8 +420,10 @@ public class Enemy : MonoBehaviour
     #region Movement
     public void Movement()
     {
+ 
+
         GroundedCheck();
-        LedgeCheck();
+        // LedgeCheck();
         if (!grounded)
         {
             // MovementFunctions.ApplyGravity(ref enemyVelocity);
@@ -430,15 +436,23 @@ public class Enemy : MonoBehaviour
             applyFriction(1.0f);
             moveSpeed = initSpeed;
         }
+       float enemymovement = rb.linearVelocity.magnitude;
 
-
-        float enemymovement = rb.linearVelocity.magnitude;
-
-        if (enemymovement < 1f)
+        if (enemymovement < 0.25f)
         {
             if(fbx == null) return;
+            // float log = enemymovement > 0.1f ? enemymovement : 0f;
+            // Debug.Log("stopping: " + log);
             fbx.SetTrigger("stopped");
         }
+        else
+        {
+            if(fbx == null) return;
+            // Debug.Log("moving: " + enemymovement);
+            fbx.SetTrigger("moving");
+        }
+
+     
 
         // Debug.Log("x: " + transform.localRotation.x + " " + "y: " + transform.localRotation.y + " " + "z: " + transform.localRotation.z);
 
@@ -532,8 +546,6 @@ public class Enemy : MonoBehaviour
             else if (infront && distance <= 5f)
             {
                 jumpAcross = true;
-                if(fbx == null) return;
-                fbx.SetTrigger("moving");
             }
         }
     }
@@ -757,8 +769,13 @@ public class Enemy : MonoBehaviour
         beginAttacking = true;
         pendingAttack = bestChoice;
 
+        if (bestChoice.Stationary)
+        {
+            stationaryAttack = true;
+        }
+
         if(fbx == null) return;
-        fbx.SetTrigger("attacking");
+        fbx.SetTrigger(pendingAttack.AnimationEvent);
 
     }
 
@@ -770,7 +787,11 @@ public class Enemy : MonoBehaviour
         float cooldown = pendingAttack.Begin();
         pendingAttack = null;
         StartCoroutine(AttackCooldown(cooldown));
+    }
 
+    public virtual void EndAttack()
+    {
+        stationaryAttack = false;
     }
 
     public virtual IEnumerator AttackCooldown(float cooldown)

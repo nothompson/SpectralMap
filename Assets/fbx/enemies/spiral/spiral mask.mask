@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spiral mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/ArmIKLeft
+    m_Weight: 1
+  - m_Path: Armature/ArmIKRight
+    m_Weight: 1
+  - m_Path: Armature/FootIKLeft
+    m_Weight: 0
+  - m_Path: Armature/FootIKRight
+    m_Weight: 0
+  - m_Path: Armature/HeadIK
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase1/t1_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase2/t2_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase2/t2_1/t2_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase3
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase3/t3_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase3/t3_1/t3_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase4
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase4/t4_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase4/t4_1/t4_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase5
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase5/t5_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase5/t5_1/t5_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase6
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase6/t6_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase6/t6_1/t6_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase7
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase7/t7_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase8
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase8/t8_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase9
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase9/t9_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase9/t9_1/t9_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase10
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase10/t10_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase10/t10_1/t10_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase10/t10_1/t10_2/t10_3
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase11
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase11/t11_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase11/t11_1/t11_2
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase11/t11_1/t11_2/t11_3
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase12
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase12/t12_1
+    m_Weight: 1
+  - m_Path: Armature/HeadIK/TendrilBase12/t12_1/t12_2
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/Head
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left/Arm5Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left/Arm5Left/Arm6Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left/Arm5Left/Arm6Left/Arm7Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left/Arm5Left/Arm6Left/Arm7Left/Arm8Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderLeft/Arm1Left/Arm2Left/Arm3Left/Arm4Left/Arm5Left/Arm6Left/Arm7Left/Arm8Left/Arm9Left
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right/Arm5Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right/Arm5Right/Arm6Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right/Arm5Right/Arm6Right/Arm7Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right/Arm5Right/Arm6Right/Arm7Right/Arm8Right
+    m_Weight: 1
+  - m_Path: Armature/LowerSpine/UpperSpine/Neck/ShoulderRight/Arm1Right/Arm2Right/Arm3Right/Arm4Right/Arm5Right/Arm6Right/Arm7Right/Arm8Right/Arm9Right
+    m_Weight: 1
+  - m_Path: Armature/Tendril11
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK1
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK2
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK3
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK4
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK5
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK6
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK7
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK8
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK9
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK10
+    m_Weight: 1
+  - m_Path: Armature/TendrilIK12
+    m_Weight: 1
+  - m_Path: Armature/ThighLeft
+    m_Weight: 0
+  - m_Path: Armature/ThighLeft/CalfLeft
+    m_Weight: 0
+  - m_Path: Armature/ThighRight
+    m_Weight: 0
+  - m_Path: Armature/ThighRight/CalfRight
+    m_Weight: 0
+  - m_Path: spiral
+    m_Weight: 1

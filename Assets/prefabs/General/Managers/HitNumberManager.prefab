@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4471862d3fb0248ad88752fdd09ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitNumberManager
+  prefab: {fileID: 8386132365156944708, guid: 6e16bb1f10fd7544984079bd2fe6fac5, type: 3}
+  poolSize: 20

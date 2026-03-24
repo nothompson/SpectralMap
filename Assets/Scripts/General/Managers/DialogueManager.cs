@@ -27,6 +27,13 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void OnSaveChange()
+    {
+        progress.Clear();
+        npcDialogueIndex.Clear();
+        LoadProgress();
+    }
+
     public void SaveProgress()
     {
         DialogueSaveData data = new DialogueSaveData();

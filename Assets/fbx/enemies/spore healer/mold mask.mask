@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mold mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Base
+    m_Weight: 1
+  - m_Path: Armature/Base/Heart
+    m_Weight: 0
+  - m_Path: Armature/Base/LowerSpine
+    m_Weight: 0
+  - m_Path: Armature/Base/LowerSpine/UpperSpine
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/Neck
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/Neck/Head
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderLeft
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderLeft/BicepLeft
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderLeft/BicepLeft/ForearmLeft
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderLeft/BicepLeft/ForearmLeft/HandLeft
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderRight
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderRight/BicepRight
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderRight/BicepRight/ForearmRight
+    m_Weight: 1
+  - m_Path: Armature/Base/LowerSpine/UpperSpine/ShoulderRight/BicepRight/ForearmRight/HandRight
+    m_Weight: 1
+  - m_Path: Armature/Base/ThighLeft
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighLeft/KneeLeft
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighLeft/KneeLeft/FootLeft
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighLeft/KneeLeft/FootLeft/Foot2Left
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighRight
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighRight/KneeRight
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighRight/KneeRight/FootRight
+    m_Weight: 0
+  - m_Path: Armature/Base/ThighRight/KneeRight/FootRight/Foot2Right
+    m_Weight: 0
+  - m_Path: Armature/HandLeft.001
+    m_Weight: 1
+  - m_Path: Armature/HandRight.001
+    m_Weight: 1
+  - m_Path: Armature/Head.001
+    m_Weight: 1
+  - m_Path: Armature/HeelIKLeft
+    m_Weight: 1
+  - m_Path: Armature/HeelIKRight
+    m_Weight: 1
+  - m_Path: moldmagi
+    m_Weight: 1

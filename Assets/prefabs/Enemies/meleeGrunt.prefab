@@ -817,7 +817,6 @@ GameObject:
   - component: {fileID: 1929380409514286334}
   - component: {fileID: 1508291465598114109}
   - component: {fileID: 177008435920386441}
-  - component: {fileID: 348202328296368427}
   m_Layer: 11
   m_Name: meleeGrunt
   m_TagString: Enemy
@@ -855,6 +854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3893d01ba0f469745b81ce5e52a0bf09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NamedEntity: {fileID: 0}
+  Points: 200
+  Name: Flesh Husk
+  ChanceToDropPickup: 1
   rb: {fileID: 0}
   player: {fileID: 0}
   launcher: {fileID: 0}
@@ -923,6 +926,8 @@ MonoBehaviour:
   oldRad: 0
   noiseOffset: 0
   pendingAttack: {fileID: 0}
+  MaxRange: 0
+  MinRange: 0
 --- !u!114 &5536796893043216121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1084,30 +1089,12 @@ MonoBehaviour:
   Cooldown: 0.75
   Damage: 10
   Force: 2
+  AnimationEvent: attacking
+  Stationary: 0
   AttackPoint: {fileID: 5536796892424308439}
   Owner: {fileID: 0}
   HitBoxLife: 0.3
---- !u!114 &348202328296368427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5536796893043212549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d200e42f4f3c10e42a7a7766d0bde9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangedBehavior
-  AttackPrefab: {fileID: 8812009374192403409, guid: 64f6959dc625c1141b4e5f0e12ac0cf0, type: 3}
-  Range: 25
-  Cooldown: 2
-  Damage: 25
-  Force: 5
-  AttackPoint: {fileID: 5536796892424308439}
-  Owner: {fileID: 0}
-  ProjectileSpeed: 1
-  AutoTimer: 10
+  MeleeRadius: 2
 --- !u!1 &5749409566630096111
 GameObject:
   m_ObjectHideFlags: 0

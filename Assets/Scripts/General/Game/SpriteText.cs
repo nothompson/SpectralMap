@@ -19,7 +19,9 @@ public class SpriteText : MonoBehaviour
 
     public bool init = false;
 
+    public bool world = false;
     private TMP_Text target;
+    private TextMeshPro alt;
 
     public Dictionary<char,int> charToSpriteIndex = new Dictionary<char, int>()
     {
@@ -59,19 +61,27 @@ public class SpriteText : MonoBehaviour
         {'X', 33},
         {'Y', 34},
         {'Z', 35},
-        {'.', 36},
-        {',', 37},
+        {',', 36},
+        {'.', 37},
         {':', 38},
         {';', 39},
-        {'?', 40},
-        {'!', 41},
-        {'-', 42},
-        {'+', 43},
-        {'>', 44},
-        {'<', 45},
-        {'$', 46},
-        {'\'', 47},
-        {'"', 48},
+        {'(', 40},
+        {')', 41},
+        {'?', 42},
+        {'!', 43},
+        {'-', 44},
+        {'*', 45},
+        {'_', 46},
+        {'#', 47},
+        {'%', 48},
+        {'=', 49},
+        {'+', 50},
+        {'>', 51},
+        {'^', 52},
+        {'<', 53},
+        {'$', 54},
+        {'\'', 55},
+        {'"', 56},
         
     };
 
@@ -86,15 +96,14 @@ public class SpriteText : MonoBehaviour
         {
             target = GetComponent<TMP_Text>();
         }
+        if(alt == null)
+        {
+            alt = GetComponent<TextMeshPro>();
+        }
     }
 
     void Start()
     {
-        if (target == null)
-        {
-            Debug.LogError("TMP_Text target is not assigned on " + gameObject.name);
-        }
-
         if(init == true)
         {
             Refresh();
@@ -135,7 +144,7 @@ public class SpriteText : MonoBehaviour
             //use default font if not found in sprite sheet (WIP)
             else
             {
-                sb.Append(c);
+                sb.Append($"<sprite=33>");
             }
         }
         return sb.ToString();
@@ -145,10 +154,15 @@ public class SpriteText : MonoBehaviour
     {
         //ususally called on update 
         if (target == null) target = GetComponent<TMP_Text>();
+        if (alt == null) alt = GetComponent<TextMeshPro>();
 
-        if(target == null) return;
-
+        if(target != null){
         target.text = Convert(input, colorHex);
+        }
+        else if(alt != null)
+        {
+            alt.text = Convert(input, colorHex);
+        }
     }
 
     public IEnumerator Typewriter(float cps = 5, string colorHex = null)
@@ -167,6 +181,12 @@ public class SpriteText : MonoBehaviour
         {
             string character = input.Substring(0,i);
             target.text = Convert(character, colorHex);
+
+            if(alt != null)
+            {
+                alt.text = Convert(character, colorHex);
+            }
+
             yield return new WaitForSeconds(frameDur);
         }
         isTyping = false;
@@ -198,6 +218,10 @@ public class SpriteText : MonoBehaviour
         if(target != null)
         {
             target.text = Convert(input, colorHex);
+        }
+        else if(alt != null)
+        {
+            alt.text = Convert(input, colorHex);
         }
     }
 }
