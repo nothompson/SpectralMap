@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: bezoar
   Name: Polluted Bezoar
-  Description: 
+  Description: 'indigestible mass of pollutants as a result of a poisoned soul. offers
+    increased damage to accelerate the collapse.  '
   ItemDisplay: {fileID: 749081188, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
   AnimationSprites:
   - {fileID: 749081188, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}

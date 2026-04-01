@@ -89,7 +89,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 0.46527308
+    - _Blend: 0.42397004
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -123,7 +123,7 @@ Material:
     - _Blend: {r: 0.026973307, g: -0.10123363, b: 0, a: 0}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Direction: {r: -0.24258459, g: -0.9701302, b: 0, a: 0}
+    - _Direction: {r: 0.8567662, g: 0.515705, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

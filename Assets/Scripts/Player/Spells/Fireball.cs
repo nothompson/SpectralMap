@@ -23,10 +23,8 @@ public class Fireball : MonoBehaviour
     public float damage;
     public float damageMultiplier = 1f;
     public float airshotMultiplier = 3f;
-
     public float maximumDamage = 100f;
     public float speed;
-
     public float explosionRadius;
     public float explosionForce;
     public float forceMultiplier = 1f;
