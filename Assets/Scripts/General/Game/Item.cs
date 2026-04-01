@@ -20,9 +20,6 @@ public class Item : ScriptableObject
     public Vector2 ImageOffset;
     public Vector2 ImageScale;
     public bool IsInInventory;
-    public bool Usable;
-    public bool Equippable;
-    public int QuickBind;
 }
 
 [Serializable]

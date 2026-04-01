@@ -165,6 +165,7 @@ public class HP : MonoBehaviour
 
                 Enemy e = GetComponentInParent<Enemy>();
                 if(e != null){
+                SpectrumManager.Instance.PurifySpectrum(SpectrumManager.Instance.NPCKill);
                 float roll = Random.Range(0f,1f);
                 Debug.Log(roll);
                 if(roll >= 1.0f - e.ChanceToDropPickup){

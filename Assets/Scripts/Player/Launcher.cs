@@ -251,7 +251,7 @@ public class Launcher : MonoBehaviour
         GameObject rocketInstance = Instantiate(Fireball, attackPoint.position, attackPoint.rotation);
         //pass in references to rocket prefab
         rocketInstance.GetComponent<Fireball>().player = player.transform;
-        rocketInstance.GetComponent<Fireball>().damageMultiplier = damageMultiplier;
+        rocketInstance.GetComponent<Fireball>().damageMultiplier = PlayerManager.Instance.DamageMultiplier;
         rocketInstance.GetComponent<Fireball>().forceMultiplier = forceMultiplier;
         rocketInstance.GetComponent<Fireball>().speed = fireballSpeed;
 

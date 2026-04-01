@@ -81,7 +81,6 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     void Start()
     {        
         InitGrid();
-
     }
 
     public void OnSaveChange()
@@ -232,6 +231,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
 
         SaveInventory();
 
+        PlayerManager.Instance.CheckItems();
+
         //update grid positioning stuff
 
     }
@@ -341,6 +342,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         }
 
         ObjectsInInventory = Grid.GetComponentsInChildren<DraggableItem>();
+
+        PlayerManager.Instance.CheckItems();
     }
 
     public void OnPointerClick(PointerEventData input)

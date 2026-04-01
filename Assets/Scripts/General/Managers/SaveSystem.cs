@@ -20,6 +20,11 @@ public static class SaveSystem
     {
         if(JournalManager.Instance != null)
             JournalManager.Instance.OnSaveChange();
+        
+        if(PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.OnSaveChange();
+        }
 
         if(DoorManager.Instance != null)
         {

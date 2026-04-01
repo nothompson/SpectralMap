@@ -122,6 +122,14 @@ public class SpectrumManager : MonoBehaviour
         }
         EventManager.Instance.OnPurify(PollutantLevel);
         SaveSpectrum();
+
+                if(SpectrumActive && !outroPlaying){
+            StartShake();
+            StartCooldown();
+            return;
+        }
+
+        StartTransition();
     }
 
     public void LoadSpectrum()

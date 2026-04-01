@@ -131,6 +131,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     float smove;
     public bool RocketJumped = false;
     public bool CanPogo = false;
+    public bool CanWall = false;
     public bool Synced = false;
     public bool StartSyncTimer = false;
     public int syncHits = 0;
@@ -469,6 +470,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 if(pogoTimer >= pogoTime)
                 {
                     CanPogo = true;
+                    CanWall = true;
                 }
             }
             else
@@ -481,6 +483,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 if (CanPogo)
                 {
                     CanPogo = false;
+                    CanWall = false;
                 }
 
                 pogoTimer = 0f;
@@ -492,10 +495,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             }
         }
 
-        // if(playerVelocity.y > 0)
-        // {
-        //     CanPogo = false;
-        // }
+        if(playerVelocity.y > 0)
+        {
+            CanPogo = false;
+        }
 
         playerSpeed = rb.linearVelocity.magnitude;
         TrickManager.Instance.speed = playerSpeed;

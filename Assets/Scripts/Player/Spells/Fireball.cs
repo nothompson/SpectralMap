@@ -193,7 +193,7 @@ public class Fireball : MonoBehaviour
                     TrickManager.Instance.Pogo();
                 }
 
-                if(pc.CanPogo && impactAngle >= 40f && !direct)
+                if(pc.CanWall && impactAngle >= 40f && !direct)
                 {
                     TrickManager.Instance.Wall();
                 }
