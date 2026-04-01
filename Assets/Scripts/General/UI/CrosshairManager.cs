@@ -84,4 +84,9 @@ public class CrosshairManager : MonoBehaviour
             Crosshair.SetActive(false);
         }
     }
+
+    public void Deactivate()
+    {
+        Crosshair.SetActive(false);
+    }
 }

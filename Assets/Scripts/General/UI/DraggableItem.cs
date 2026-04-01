@@ -13,6 +13,7 @@ public class DraggableItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Item ItemData;
+    public GameObject container;
     public RectTransform rect;
     protected Canvas ParentCanvas;
     protected static DraggableItem draggedItem; 
@@ -23,9 +24,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     public bool Dragging = false;
     public bool Hovering = false;
-
     private UIHoverJuice hover;
-    
     private Coroutine Wait;
     private int waitID = 0;
     private bool waiting = false;
@@ -33,12 +32,15 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
     private Vector2 OptionsMenuAnchor;
 
+    private Vector3 itemPos;
+
     protected virtual void Awake()
     {
         image = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
         ParentCanvas = GetComponentInParent<Canvas>();
         hover = GetComponent<UIHoverJuice>();
+        itemPos = InventoryManager.Instance.ItemToDisplay.transform.localPosition;
         HideDisplay();
     }
 
@@ -95,6 +97,12 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
 
         }
 
+        // container.transform.localScale = ItemData.ImageScale;
+
+        InventoryManager.Instance.ItemToDisplay.transform.localPosition = new Vector3(itemPos.x + ItemData.ImageOffset.x, itemPos.y + ItemData.ImageOffset.y, itemPos.z);
+
+        InventoryManager.Instance.ItemToDisplay.transform.localScale = new Vector2(ItemData.ImageScale.x, ItemData.ImageScale.y);
+
         Debug.Log("showing display");
 
         InventoryManager.Instance.DescriptionText.input = ItemData.Description;
@@ -111,6 +119,9 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
     {
         if(InventoryManager.Instance.OptionsMenu.activeInHierarchy) return;
 
+         InventoryManager.Instance.ItemToDisplay.transform.localPosition = itemPos;
+
+        InventoryManager.Instance.ItemToDisplay.color = new Color(1f,1f,1f,0f);
         InventoryManager.Instance.ItemToDisplay.color = new Color(1f,1f,1f,0f);
         InventoryManager.Instance.Display.SetActive(false);
 

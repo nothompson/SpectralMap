@@ -820,6 +820,7 @@ public class TrickManager : MonoBehaviour
 
     public void StartFalling()
     {
+        if(surfing) return;
         if(!falling){
             if(ComboTimer != null)
             {

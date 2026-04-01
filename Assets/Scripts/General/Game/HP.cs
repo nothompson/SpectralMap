@@ -67,6 +67,7 @@ public class HP : MonoBehaviour
 
     public void Damage(float dmg)
     {
+        if(dead) return;
         currentHP -= dmg;
         if(type == ObjectType.Player){
             PlayerControlRigid pc = GetComponentInParent<PlayerControlRigid>();
@@ -86,21 +87,73 @@ public class HP : MonoBehaviour
             {
                 ea.Hurt();
             }
-            HitNumberManager.Instance.DisplayHitNumber(dmg, transform);
         }
+
+        HitNumberManager.Instance.DisplayHitNumber(dmg, transform, HitNumber.HitType.Damage);
     }
 
     public void Heal(float heal)
     {
-        currentHP += heal * maxHP;
+        if(dead) return;
+        float x = heal * maxHP;
+        currentHP += x;
         if (currentHP > maxHP)
         {
             currentHP = maxHP;
         }
+        HitNumberManager.Instance.DisplayHitNumber(x, transform, HitNumber.HitType.Heal);
     }
 
     public void Death()
     {
+        if(type == ObjectType.Player)
+        {
+            if(currentHP <= 0f)
+            {
+                if (!dead)
+                {
+                    dead = true;
+
+                    DeathManager.PlayerDead = true;
+
+                    CrosshairManager.Instance.Deactivate();
+
+                    TrickManager.Instance.StopFalling();
+
+                    ReloadManager.Instance.StopReload();
+
+                    DamageManager.Instance.PlayDamageOverlay(0f);
+
+                    TrickManager.Instance.ResetCombo();
+
+                    float cachedforce = GibsManager.Instance.explosionForce;
+                    GibsManager.Instance.explosionForce = 0.125f;
+
+                    List<Transform> gibs = GibsManager.Instance.Gib(transform.position, Random.Range(minGibs,maxGibs), false);
+        
+                    Camera.main.transform.parent = null;
+
+                    Transform overlay = Camera.main.transform.GetChild(0);
+                    foreach(Transform child in overlay)
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+
+                    if(gibs!=null && gibs.Count > 0)
+                    {
+                        GameObject gib = gibs[Random.Range(0, gibs.Count)].gameObject;
+                        gib.transform.localEulerAngles = new Vector3(0f,0f,0f);
+                        if (gib.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                        {
+                            rb.freezeRotation = true;
+                        }
+                        Camera.main.transform.SetParent(gib.transform);
+
+                        GibsManager.Instance.explosionForce = cachedforce;
+                    }
+                }
+            }    
+        }
 
         if(type == ObjectType.Enemy || type == ObjectType.NPC){
         if(currentHP <= 0f)
@@ -136,6 +189,11 @@ public class HP : MonoBehaviour
                     Debug.Log(pickup);
                 }
                 }
+
+                if(type == ObjectType.NPC)
+                    {
+                    SpectrumManager.Instance.PolluteSpectrum(SpectrumManager.Instance.NPCKill);
+                    }
 
                 GibsManager.Instance.Gib(transform.position, Random.Range(minGibs,maxGibs));
                     if (!string.IsNullOrEmpty(characterID))

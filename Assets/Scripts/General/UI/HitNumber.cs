@@ -9,18 +9,39 @@ using System.Text.RegularExpressions;
 
 public class HitNumber : MonoBehaviour
 {
+    public enum HitType
+    {
+        Damage,
+        Heal,
+        Magic
+    }
+    [SerializeField] public HitType Type;
+
     [SerializeField] public TextMeshPro text;
     [SerializeField] public SpriteText spriteText;
     [SerializeField] public float lifespan;
     [SerializeField] public AnimationCurve curve;
+    [SerializeField] public AnimationCurve sizeCurve;
     private float elapsed;
     private Vector3 velocity;
+    
+    private Vector3 baseScale;
 
     public void OnSpawn(float input, Vector3 position)
     {
         elapsed = 0f;
+
+        baseScale = transform.localScale;
+
+        float norm = input / 100f;
+
+        float scaler = sizeCurve.Evaluate(norm);
+
+        transform.localScale = baseScale * scaler;
+
         transform.position = position;
-        spriteText.input = "-" + Mathf.RoundToInt(input).ToString();
+        string append = Type == HitType.Damage ? "-" : "+";
+        spriteText.input = append + Mathf.RoundToInt(input).ToString();
         spriteText.Refresh();
         gameObject.SetActive(true);
         
@@ -37,6 +58,7 @@ public class HitNumber : MonoBehaviour
         if(elapsed >= lifespan)
         {
             HitNumberManager.Instance.ReturnHitNumber(this);
+            transform.localScale = baseScale;
         }
     }
 }

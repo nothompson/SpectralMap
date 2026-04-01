@@ -198,6 +198,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     void Update()
     {
+        if(DeathManager.PlayerDead) return;
         MovementInputs();
         PlayerCamera();
                 
@@ -235,6 +236,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     void FixedUpdate()
     {
+        if(DeathManager.PlayerDead) return;
         CalculateVelocity();
         MovementFunctions.ApplyVelocity(playerVelocity, ref rb);
         currentCheckpoint.saveCheckpoint();
@@ -490,10 +492,10 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             }
         }
 
-        if(playerVelocity.y > 0)
-        {
-            CanPogo = false;
-        }
+        // if(playerVelocity.y > 0)
+        // {
+        //     CanPogo = false;
+        // }
 
         playerSpeed = rb.linearVelocity.magnitude;
         TrickManager.Instance.speed = playerSpeed;

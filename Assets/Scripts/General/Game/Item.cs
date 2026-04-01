@@ -16,6 +16,9 @@ public class Item : ScriptableObject
     public bool AnimationDirection;
     public int AnimationFPS;
     public Vector2Int PositionOnGrid;
+
+    public Vector2 ImageOffset;
+    public Vector2 ImageScale;
     public bool IsInInventory;
     public bool Usable;
     public bool Equippable;

@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 5941549674248488918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115740527198698297}
@@ -82,8 +82,8 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -394976089
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: b11adc24a2fd9e54f84646dbe6887123, type: 2}
+  m_spriteAsset: {fileID: 11400000, guid: 53e186f2ef6a58740bb6acc5cffeb207, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 6989877779812967297}
   - component: {fileID: 6471366571797948207}
   m_Layer: 0
-  m_Name: HitNumber 1
+  m_Name: HitNumberHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0405695af01b8cd40b4d1244142d76cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitNumber
+  Type: 1
   text: {fileID: 646604169343338028}
   spriteText: {fileID: 1336992080204931959}
   lifespan: 1
@@ -282,6 +283,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.2214195
+      outSlope: 0.2214195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1102434
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.9271008
+      outSlope: 0.9271008
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1.5
+      inSlope: 3.609405
+      outSlope: 3.609405
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.050842226
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6471366571797948207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,4 +328,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff9db86f145a854c97eff315f2d3b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
-  type: 0
+  type: 1

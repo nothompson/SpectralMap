@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8801921599838216795}
   - component: {fileID: 7135994237155882857}
   m_Layer: 11
-  m_Name: Leach
+  m_Name: leech
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,6 +280,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeachEnemy
   NamedEntity: {fileID: 0}
+  Points: 20
+  Name: leech
+  ChanceToDropPickup: 0
   rb: {fileID: 1307671098746728270}
   player: {fileID: 0}
   launcher: {fileID: 0}
@@ -348,6 +351,8 @@ MonoBehaviour:
   oldRad: 0
   noiseOffset: 0
   pendingAttack: {fileID: 0}
+  MaxRange: 0
+  MinRange: 0
   Body: {fileID: 5883057430141546203}
   SeekingGracePeriod: 3
   LifeSpan: 10

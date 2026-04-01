@@ -82,6 +82,7 @@ public class Launcher : MonoBehaviour
 
     void Update()
     {
+        if(DeathManager.PlayerDead) return;
         MyInput();
         soundUpdate();
 

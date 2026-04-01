@@ -52,8 +52,9 @@ public class GibsManager : MonoBehaviour
         );
     }
 
-    public void Gib(Vector3 pos, int n)
+    public List<Transform> Gib(Vector3 pos, int n, bool returnAfter = true)
     {
+        List<Transform> spawnedGibs = new List<Transform>();
         for (int i = 0; i < n; i++)
         {
             GameObject gib = pool.Get();
@@ -73,9 +74,15 @@ public class GibsManager : MonoBehaviour
                 ps.Play();
             }
 
+            if(returnAfter){
             StartCoroutine(ReturnAfter(gib, despawnTime));
             }
+
+            spawnedGibs.Add(gib.transform);
+            }
         }
+
+        return spawnedGibs;
     }
 
     

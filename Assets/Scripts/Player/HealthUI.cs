@@ -15,6 +15,6 @@ public class HealthUI : SpriteUI
     
     void Update()
     {
-        Calculate(hp.currentHP, hp.maxHP, 2f, 1f, 10f, true);
+        Calculate(hp.currentHP, hp.maxHP, 2f, 3f, 20f, true);
     }
 }

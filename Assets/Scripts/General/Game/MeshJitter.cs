@@ -8,6 +8,7 @@ public class MeshJitter : MonoBehaviour
     [SerializeField] private float scaleRange;
     [SerializeField] private float rotationRange;
     [SerializeField] private float positionRange = 1f;
+    [SerializeField] private bool lockPosition = false;
 
     private Vector3 seed;
 
@@ -36,10 +37,13 @@ public class MeshJitter : MonoBehaviour
 
     public void UpdateBaseValues()
     {
-        position = transform.localPosition;
+
+
         scale = transform.localScale;
         rotation = transform.localRotation;
         targetRot = rotation;
+        if(lockPosition) return;
+        position = transform.localPosition;
     }
 
     public IEnumerator Jitter()
@@ -76,11 +80,15 @@ public class MeshJitter : MonoBehaviour
 
         Vector3 jitScale = new Vector3(xScale, yScale, yScale);
 
-        transform.localPosition = position + jitPos;
-
+        transform.localScale = scale + jitScale;
         transform.localRotation = rotation * jitRot;
 
-        transform.localScale = scale + jitScale;
+        if(!lockPosition){
+
+        transform.localPosition = position + jitPos;
+        }
+
+
 
         yield return new WaitForSeconds(wait);
         }

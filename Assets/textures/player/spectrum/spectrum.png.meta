@@ -1,0 +1,2041 @@
+fileFormatVersion: 2
+guid: d634585afbb13b54aaf044d5985d1347
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spectrum_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6908a985cfb3049ab8a0c2d4fbcf51
+      internalID: 1760423716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_1
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77758479596ce54ba5ab38c493eeb36
+      internalID: -1490768026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_2
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e495a7b93ba9dc45a10b1cb92a1145f
+      internalID: 1817767596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_3
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b53e0a09a8f0441be7cc08e3e9eb44
+      internalID: -1654482050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_4
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b7dadf2d2b35342bf23420593a8c1a
+      internalID: 1958257756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_5
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821fb2119d0ef7249847277e66417a5c
+      internalID: 1811465442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_6
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9bee3201904a443b189e5965077784
+      internalID: 1817508849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_7
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 595114d45da77e049a1f082f7da6436a
+      internalID: -1762229522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_8
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48faea29011f7a642b321d2eefe0f0dc
+      internalID: -660401840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_9
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 12424
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce78acb4a56ff824088d8904eed7c7f8
+      internalID: 1920506360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2550ad38c2e6d1458702e69ea8de3bf
+      internalID: -527187947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_11
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9019166386e474599580f5d205db04
+      internalID: 1170607619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_12
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0210d656a61462e4b9d4dc7a70cbd482
+      internalID: 1733460354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_13
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a9a5a266a59f54f843e70e0c9aaedf
+      internalID: -309560709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_14
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cffef51eeb6ef6d439b6653aaffd99b6
+      internalID: -1166320129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_15
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccfa1545ee886ab4091a5d543b1256fb
+      internalID: 1958237537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_16
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16407e4b2b438743b60e866257200dc
+      internalID: -591757929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_17
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a5e6d5df4b5a74a91b2a0a7ca22e4d
+      internalID: -1855983893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_18
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29bf3f69c06e51c4aa2329de36c6f4bf
+      internalID: -2065975337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_19
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 10871
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1ebda8fc52c7546bd0e8e314c8f5a0
+      internalID: -1648257372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99aceeb89810a754dba59d13d5de023b
+      internalID: 2045667760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_21
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88f1d9518128ee643b4c5d43a9ae40e0
+      internalID: -28913475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_22
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591b132535bfa86409492c506df47be4
+      internalID: 731581844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_23
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d0978be82876f4d8be16d690617f0f
+      internalID: -1460232894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_24
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c145563bfa249d4690e929a927540a4
+      internalID: -297168991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_25
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c50dc886cfb3bb49a91b8132a866e70
+      internalID: 2053932005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_26
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c293f20bb76f2fb4d9f0996d16ea8d95
+      internalID: 1350953903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_27
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9190908b9c74a740a460386595dd4d1
+      internalID: 846692305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_28
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456e74e56fedb6b499067a9ec51cb217
+      internalID: 774530219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_29
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 9318
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca4836793bc8da488445e774523a71a
+      internalID: 933271134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6109c5e6f94e68a4d8eb70fd8b06893d
+      internalID: -1887904200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_31
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f3e13e4dfb26849955ea03911b24fd
+      internalID: -1445170911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_32
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 258c607e151ce034aa50269114327e72
+      internalID: -526100784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_33
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a66035580236574188ca58bb179ca86
+      internalID: 1970904059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_34
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4773a671cb1c36b4896b1156efff23c9
+      internalID: 303430558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_35
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75bbcbea1ba8c1149857254a5d2fd783
+      internalID: 1174723082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_36
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f6b7a5ea2a74346af2656dc9d65fd1
+      internalID: 2118669052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_37
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8703eadf2bfc04843aa7fbb57ada2dbf
+      internalID: 600278570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_38
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e889177aca00474982c474aa9830d2a
+      internalID: 1357601507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_39
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 7765
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8724450691462c441a2bc4a840a3c8f0
+      internalID: 301388088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a60977c924923419dfe7166901317d
+      internalID: 703471669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_41
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7bcab72c5a8f941b91801cc097b5df
+      internalID: -1099316950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_42
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2616df2a17798c647bfa1bc9ba0a3f5b
+      internalID: -1974705293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_43
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8296ede66f452468b7178120c55b1b
+      internalID: 82291797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_44
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6df759d26d59542b5048625c41476c
+      internalID: 1291054333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_45
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857428f0c79691b4c9ff26fe3be75531
+      internalID: 450212155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_46
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8125f8aca3820e459fbd2114a9b6cf6
+      internalID: -1015864818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_47
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aefcc8951139c8644a974f60fb145326
+      internalID: 1337945320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_48
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed21d5a04b9fb6a4bbe7457f37ba3d91
+      internalID: 503740110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_49
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 6212
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93383fcf47c823444a049bb5f494bd17
+      internalID: 529249898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8816d06017207d46ae99e3f916956d1
+      internalID: 534436331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_51
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf70551cba3cc14cb71c17c4515b90c
+      internalID: 549658166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_52
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7415498b2c63ae478f68d34534a96f4
+      internalID: 369541743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_53
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f62c0a718c0b3a1488cebd16a5eae4c7
+      internalID: -1788159391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_54
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b3ae72d70fe0694db9ac6f5d6c44a28
+      internalID: 1991583222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_55
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e6ac5674b7eb74db946b47109c86d9
+      internalID: -550129104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_56
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b6d171b5fd11948a80b9cb77783fbc
+      internalID: -1771905089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_57
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1946e2937ff36f64a9648a0cb1a19e1a
+      internalID: -591044285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_58
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d403e737c365b07428c5a89143b1ac65
+      internalID: -1148373117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_59
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 4659
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9a85d2f28ca7e4f950e0b932ab74ec
+      internalID: -698447282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f5171b0f19fd74fa3a1a1c666ee0eb
+      internalID: 483275376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_61
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cb81e14ed2d1c4093d813bb6ca12b4
+      internalID: 607705330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_62
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1ec59c7c6ae4d4fbbdb502e0ea7077
+      internalID: -889713091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_63
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3837d8713a312a444bb55f9724190193
+      internalID: 393083714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_64
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb39f21a42613024d984b86f6d412bab
+      internalID: -1948269364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_65
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bba6ef8d67ec3847aeafbfa00edaa05
+      internalID: 1330860675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_66
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5b6a8070f0a3a49b1087246bd49c74
+      internalID: 1657538386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_67
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efd44a60548e7042a47c864e17d3bf9
+      internalID: 1758633881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_68
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28fd02f6bcd7cd4a8380dc75cd0fc82
+      internalID: -694868774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_69
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 3106
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d289057c14083843b5fc6abb82ff0fa
+      internalID: -2033040350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ee5c9dad8ac66489ad31236d665aaa
+      internalID: 1662987016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_71
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45821be3627a0264784ce1b979802002
+      internalID: 737942862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_72
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414723062d0a6e54f86a9c8e1f75a0b0
+      internalID: 1270937196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_73
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327674365669a87409e38f065c928ae2
+      internalID: -1612220441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_74
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5f833fdaea1704ea1b9e8d090e8e2a
+      internalID: 1325530724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_75
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bbd15b962de7c24592cfbb79a1203c1
+      internalID: 2027959467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_76
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdeb68863c2a5cc4380d8ad9701ef600
+      internalID: -67321628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_77
+      rect:
+        serializedVersion: 2
+        x: 3976
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2ace9f6e7035b41959ab4f8bd9a57c
+      internalID: 1572858522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_78
+      rect:
+        serializedVersion: 2
+        x: 4544
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b1b42d99669dda4183d40db6f6e6ad7
+      internalID: -1750936755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_79
+      rect:
+        serializedVersion: 2
+        x: 5112
+        y: 1553
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1203d1dbdb47bd40be75d03c49cbf1c
+      internalID: 897949646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5fd949492ae13408da2b3f234e65aa
+      internalID: -408568415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_81
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 0
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf5ba80d75bca24b833b5fd3bce93b3
+      internalID: -23010700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spectrum_82
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 0
+        width: 568
+        height: 1553
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc216baf69eb7a44b0ed0ae56595529
+      internalID: 1738835666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1cc8c5eb809065840875f720dfffbc53
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":568.0,"y":1553.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      spectrum_0: 1760423716
+      spectrum_1: -1490768026
+      spectrum_10: -527187947
+      spectrum_11: 1170607619
+      spectrum_12: 1733460354
+      spectrum_13: -309560709
+      spectrum_14: -1166320129
+      spectrum_15: 1958237537
+      spectrum_16: -591757929
+      spectrum_17: -1855983893
+      spectrum_18: -2065975337
+      spectrum_19: -1648257372
+      spectrum_2: 1817767596
+      spectrum_20: 2045667760
+      spectrum_21: -28913475
+      spectrum_22: 731581844
+      spectrum_23: -1460232894
+      spectrum_24: -297168991
+      spectrum_25: 2053932005
+      spectrum_26: 1350953903
+      spectrum_27: 846692305
+      spectrum_28: 774530219
+      spectrum_29: 933271134
+      spectrum_3: -1654482050
+      spectrum_30: -1887904200
+      spectrum_31: -1445170911
+      spectrum_32: -526100784
+      spectrum_33: 1970904059
+      spectrum_34: 303430558
+      spectrum_35: 1174723082
+      spectrum_36: 2118669052
+      spectrum_37: 600278570
+      spectrum_38: 1357601507
+      spectrum_39: 301388088
+      spectrum_4: 1958257756
+      spectrum_40: 703471669
+      spectrum_41: -1099316950
+      spectrum_42: -1974705293
+      spectrum_43: 82291797
+      spectrum_44: 1291054333
+      spectrum_45: 450212155
+      spectrum_46: -1015864818
+      spectrum_47: 1337945320
+      spectrum_48: 503740110
+      spectrum_49: 529249898
+      spectrum_5: 1811465442
+      spectrum_50: 534436331
+      spectrum_51: 549658166
+      spectrum_52: 369541743
+      spectrum_53: -1788159391
+      spectrum_54: 1991583222
+      spectrum_55: -550129104
+      spectrum_56: -1771905089
+      spectrum_57: -591044285
+      spectrum_58: -1148373117
+      spectrum_59: -698447282
+      spectrum_6: 1817508849
+      spectrum_60: 483275376
+      spectrum_61: 607705330
+      spectrum_62: -889713091
+      spectrum_63: 393083714
+      spectrum_64: -1948269364
+      spectrum_65: 1330860675
+      spectrum_66: 1657538386
+      spectrum_67: 1758633881
+      spectrum_68: -694868774
+      spectrum_69: -2033040350
+      spectrum_7: -1762229522
+      spectrum_70: 1662987016
+      spectrum_71: 737942862
+      spectrum_72: 1270937196
+      spectrum_73: -1612220441
+      spectrum_74: 1325530724
+      spectrum_75: 2027959467
+      spectrum_76: -67321628
+      spectrum_77: 1572858522
+      spectrum_78: -1750936755
+      spectrum_79: 897949646
+      spectrum_8: -660401840
+      spectrum_80: -408568415
+      spectrum_81: -23010700
+      spectrum_82: 1738835666
+      spectrum_9: 1920506360
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

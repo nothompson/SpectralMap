@@ -37,6 +37,10 @@ public static class SaveSystem
         {
             InventoryManager.Instance.OnSaveChange();
         }
+        if(SpectrumManager.Instance != null)
+        {
+            SpectrumManager.Instance.OnSaveChange();
+        }
     }
     public static string GetFilePath(int slot, string fileName)
     {

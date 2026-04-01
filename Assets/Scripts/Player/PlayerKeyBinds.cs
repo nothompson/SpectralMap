@@ -32,10 +32,11 @@ public class PlayerKeyBinds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(DeathManager.PlayerDead) return;
         keyBinds();
     }
 
-        void OnDisable()
+    public void OnDisable()
     {
         if(InputManager.Instance.inputs!= null){
             InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
@@ -81,6 +82,7 @@ public class PlayerKeyBinds : MonoBehaviour
 
     public void OnReset(InputAction.CallbackContext context)
     {
+        if(DeathManager.PlayerDead) return;
         if (!context.performed) return;
 
         if(PauseManager.Instance.paused) return;
@@ -91,6 +93,7 @@ public class PlayerKeyBinds : MonoBehaviour
 
     public void OnSave(InputAction.CallbackContext context)
     {
+        if(DeathManager.PlayerDead) return;
         if (!context.performed) return;
 
         if(PauseManager.Instance.paused) return;
@@ -101,6 +104,7 @@ public class PlayerKeyBinds : MonoBehaviour
 
     public void OnReload(InputAction.CallbackContext context)
     {
+        if(DeathManager.PlayerDead) return;
         if(!context.performed) return;
 
         if(PauseManager.Instance.paused) return;
@@ -120,6 +124,7 @@ public class PlayerKeyBinds : MonoBehaviour
 
     public void OnAltFire(InputAction.CallbackContext context)
     {
+        if(DeathManager.PlayerDead) return;
         if (!context.performed) return;
         
         if(!ReloadManager.Instance.reloading) return;

@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class SpriteUI : MonoBehaviour
 {
-    [SerializeField] private Sprite[] sprites;
-    private Vector3 placement;
+    [SerializeField] public Sprite[] sprites;
+    [HideInInspector] public Vector3 placement;
     public Image image;
 
     public SpriteText spriteText;
 
-    private RectTransform rect;
+    public RectTransform rect;
 
 
-    private int lastindex = 0;
-    private float lastvalue = 0;
+    public int lastindex = 0;
+    public float lastvalue = 0;
     Coroutine LerpingRoutine;
 
-    [SerializeField] private SpriteAnimate spriteAnimate = null;
+    [SerializeField] public SpriteAnimate spriteAnimate = null;
 
 
     virtual public void Awake()
@@ -39,7 +39,7 @@ public class SpriteUI : MonoBehaviour
 
         float normal = up ? 1f - (current / max) : (current / max); 
 
-        int index = Mathf.FloorToInt(normal * (spriteSize));
+        int index = Mathf.FloorToInt(normal * (spriteSize - 1));
 
         if(cap){
             if(current > max){

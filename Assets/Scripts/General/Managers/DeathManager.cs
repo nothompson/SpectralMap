@@ -9,6 +9,7 @@ using System.IO;
 public class DeathManager : MonoBehaviour
 {
     public static DeathManager Instance;
+    public static bool PlayerDead = false;
     private Dictionary<string,bool> deathLog = new();
     private NamedEntity[] AllNames;
     void Awake()

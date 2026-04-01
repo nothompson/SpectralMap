@@ -269,6 +269,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if(DeathManager.PlayerDead)
+        {
+            engage = false;
+        }
         DodgeCooldown();
     }
 
@@ -300,6 +304,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Targeting()
     {
+        if(DeathManager.PlayerDead) return; 
         if (fov.canSeePlayer && !critical)
         {
             memory = 10f;
@@ -336,6 +341,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void TargetSpotted(Vector3 targetPosition)
     {
+        if(DeathManager.PlayerDead) return;
         distance = Vector3.Distance(transform.position, targetPosition);
         float angle = Vector3.Angle(transform.position, targetPosition);
         Vector3 adjusted = new Vector3(targetPosition.x, targetPosition.y + 0.33f, targetPosition.z);

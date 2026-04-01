@@ -136,6 +136,7 @@ public class Pickup : MonoBehaviour
                         playerMagic.magicPoints = playerMagic.maximumMagic;
                     }
                     consumed = true;
+                    HitNumberManager.Instance.DisplayHitNumber(regen, transform, HitNumber.HitType.Magic);
                 }
                 break;
         }

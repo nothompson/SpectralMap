@@ -8,7 +8,7 @@ public class SpriteAnimate : MonoBehaviour
 
     [SerializeField] public Sprite[] sprites; 
 
-    [SerializeField] private int startingIndex = 0; 
+    [SerializeField] public int startingIndex = 0; 
 
     public int fps = 2;
     
@@ -90,7 +90,7 @@ public class SpriteAnimate : MonoBehaviour
     public void SetFrame(int frame)
     {
         isPlaying = false;
-        index = Mathf.Clamp(frame, 0, length - 1);
+        index = Mathf.Clamp(frame, 0, sprites.Length - 1);
 
            if(material != null)
                 {

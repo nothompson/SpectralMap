@@ -22,6 +22,8 @@ MonoBehaviour:
   AnimationDirection: 0
   AnimationFPS: 24
   PositionOnGrid: {x: 0, y: 0}
+  ImageOffset: {x: 0, y: 0}
+  ImageScale: {x: 1, y: 1}
   IsInInventory: 0
   Usable: 0
   Equippable: 0

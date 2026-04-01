@@ -35,8 +35,7 @@ public class EventManager : MonoBehaviour
         if(string.IsNullOrEmpty(CharacterID)) return;
         switch (CharacterID)
         {
-            case "daniel":
-                SpectrumManager.Instance.PolluteSpectrum(5);                
+            case "daniel":          
                 JournalManager.Instance.AddJournalEntry("danieldeath",0);  
                 break;
         }
@@ -78,6 +77,19 @@ public class EventManager : MonoBehaviour
     public bool OnTrick(TrickManager.TrickType trickType)
     {
         return TrickManager.Instance.currentTricks.Any(ty=> ty.Type == trickType);
+    }
+
+    public void OnPollute(int current)
+    {
+        if(current > SpectrumManager.Instance.MaxPollutantLevel * 0.75f)
+        {
+            InventoryManager.Instance.AddItem("bezoar", new Vector2Int(0,0));
+        }
+    }
+
+    public void OnPurify(int current)
+    {
+        
     }
 
     public bool OnSuccessiveTricks(TrickManager.TrickType trickType, int threshold)
