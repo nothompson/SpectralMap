@@ -88,8 +88,7 @@ public class SpriteAnimate : MonoBehaviour
                 index += dir;
                 if(index >= sprites.Length) index = 0;
                 else if(index < 0) index = sprites.Length - 1;
-            }            
-
+            }
                 if(material != null)
                 {
                     material.SetTexture("_Input", sprites[index].texture);

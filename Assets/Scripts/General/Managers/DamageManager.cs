@@ -18,6 +18,10 @@ public class DamageManager : MonoBehaviour
     public GameObject BloodCanvas;
     public GameObject DeathCanvas;
 
+    public GameObject RetryCanvas;
+    public GameObject TextCanvas;
+    public GameObject QuitCanvas;
+
     public Image Blood;
     public Image Death;
 
@@ -91,6 +95,9 @@ public class DamageManager : MonoBehaviour
             DeathSceneCanvas.SetActive(true);
 
             DeathSceneImg.color = new Color(1f,1f,1f,0f);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         float newtime = BloodDur + damageOffset + deathOffset;

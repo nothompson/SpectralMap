@@ -147,7 +147,8 @@
                 LayerMask GroundMask,
                 ref Vector3 velocity,
                 ref float groundTimer,
-                float coyoteTime, ref Vector3 groundNormal, out RaycastHit groundhit
+                float coyoteTime, ref Vector3 groundNormal, out RaycastHit groundhit,
+                Transform PlayerTransform = null
                 )
             {
 
@@ -183,6 +184,15 @@
                         grounded = true;
                         //"coyote time" allows a buffer period after leaving collider to still jump
                         groundTimer = coyoteTime;
+
+                    if(PlayerTransform != null && groundhit.collider != null && groundhit.collider.CompareTag("MovingPlatform"))
+                    {
+                            MovingPlatform platform = groundhit.collider.GetComponentInParent<MovingPlatform>();
+                            if(platform != null)
+                            {
+                               PlayerTransform.position += platform.PlatformDelta;
+                            }
+                    }
                     }
                 }
                 else
@@ -192,6 +202,10 @@
                     {
                         groundTimer = 0f;
                     }
+                    if(PlayerTransform != null && PlayerTransform.parent != null)
+                {
+                    PlayerTransform.SetParent(null);
+                }
                 }
 
                 return grounded;
@@ -280,8 +294,6 @@
                     pos = end;
                     break;
                 }
-
-
 
                 float traveled = hit.distance / velocity.magnitude;
 

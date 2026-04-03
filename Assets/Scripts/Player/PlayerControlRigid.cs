@@ -521,7 +521,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             GroundMask,
             ref playerVelocity,
             ref groundTimer,
-            coyoteTime, ref groundNormal, out groundHit
+            coyoteTime, ref groundNormal, out groundHit,
+            transform
         );
 
         grounded = check && !surfCast && ignoregroundtimer <= 0f;
