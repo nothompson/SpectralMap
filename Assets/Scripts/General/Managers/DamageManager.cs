@@ -7,11 +7,25 @@ using TMPro;
 public class DamageManager : MonoBehaviour
 {
     public static DamageManager Instance; 
+
+    // [System.Serializable]
+    // public class DeathScene
+    // {
+    //     public Sprite[] sprites;
+    // }
+    // public DeathScene[] DeathScenes;
+
     public GameObject BloodCanvas;
     public GameObject DeathCanvas;
 
     public Image Blood;
     public Image Death;
+
+    public GameObject DeathSceneCanvas;
+
+    [HideInInspector] public Image DeathSceneImg;
+
+    [HideInInspector] public SpriteAnimate DeathSceneAnimate;
 
     [SerializeField] private AnimationCurve BloodCurve;
 
@@ -36,9 +50,13 @@ public class DamageManager : MonoBehaviour
 
         Blood = BloodCanvas.GetComponentInChildren<Image>();
         Death = DeathCanvas.GetComponentInChildren<Image>();
+        DeathSceneImg = DeathSceneCanvas.GetComponentInChildren<Image>();
+
+        DeathSceneAnimate = DeathSceneCanvas.GetComponentInChildren<SpriteAnimate>();
 
         BloodCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
+        DeathSceneCanvas.SetActive(false);
     }
 
     public void PlayDamageOverlay(float dmg)
@@ -65,7 +83,14 @@ public class DamageManager : MonoBehaviour
         {
             deathOffset = 3f;
             Death.color = new Color(1f,1f,1f,0f);
+
+            // DeathSceneAnimate.sprites = DeathScenes[0].sprites;
+
             DeathCanvas.SetActive(true);
+
+            DeathSceneCanvas.SetActive(true);
+
+            DeathSceneImg.color = new Color(1f,1f,1f,0f);
         }
 
         float newtime = BloodDur + damageOffset + deathOffset;
@@ -79,6 +104,9 @@ public class DamageManager : MonoBehaviour
             {
                 fade.a = DeathCurve.Evaluate(time);
                 Death.color = fade;
+
+                fade.a = DeathCurve.Evaluate(time);
+                DeathSceneImg.color = fade;
             }
             else
             {
@@ -88,6 +116,7 @@ public class DamageManager : MonoBehaviour
             Blood.color = fade;
             yield return null;
         }
+
         if(!DeathManager.PlayerDead){
             BloodCanvas.SetActive(false);
         }

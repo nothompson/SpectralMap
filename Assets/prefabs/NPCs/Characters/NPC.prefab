@@ -46,10 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fps: 6
+  fps: 24
   scaleRange: 0.2
   rotationRange: 15
-  positionRange: 0.125
+  positionRange: 0.0625
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fps: 6
+  fps: 24
   scaleRange: 0.2
   rotationRange: 15
-  positionRange: 0.125
+  positionRange: 0.0625
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -272,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcc29f0cec3bd4282021be25681192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NamedEntity: {fileID: 0}
   npcID: 
   parts:
   - partName: Head
@@ -322,6 +327,8 @@ MonoBehaviour:
       colliderHeight: 0
       colliderRadius: 0
       colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
     - addressableKey: Assets/prefabs/NPCs/dress.prefab
       headOffset: {x: 0, y: 0.15, z: 0}
       bodyOffset: {x: 0, y: -0.47, z: 0}
@@ -335,6 +342,8 @@ MonoBehaviour:
       colliderHeight: 0
       colliderRadius: 0
       colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
     - addressableKey: Assets/prefabs/NPCs/prayingcorpse.prefab
       headOffset: {x: 0, y: 0.68, z: -0.15}
       bodyOffset: {x: -0.089, y: -0.698, z: -0.1}
@@ -348,12 +357,14 @@ MonoBehaviour:
       colliderHeight: 0
       colliderRadius: 0
       colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
     - addressableKey: Assets/prefabs/NPCs/Bodies/plant.prefab
       headOffset: {x: 0, y: 1.49, z: -0.58}
       bodyOffset: {x: 0, y: -0.75, z: 0}
       bodyRotation: {x: 0, y: 0, z: 0}
-      leftHandOffset: {x: -1.72, y: -0.491, z: 0.77}
-      rightHandOffset: {x: 1.62, y: -0.372, z: 0.744}
+      leftHandOffset: {x: 0.00856, y: 0.00143, z: 0.00076}
+      rightHandOffset: {x: 0.00856, y: 0.00143, z: 0.00076}
       overrideScale: 1
       headScale: {x: 2, y: 2, z: 2}
       scale: {x: 3.82, y: 3.82, z: 3.82}
@@ -361,6 +372,8 @@ MonoBehaviour:
       colliderHeight: 2.3
       colliderRadius: 1.75
       colliderCenter: {x: 0, y: 0.69, z: 0}
+      leftArmBone: Bone.032
+      rightArmBone: Bone.033
     - addressableKey: Assets/prefabs/NPCs/Bodies/slimegiant.prefab
       headOffset: {x: 0.12, y: 2.758, z: 0.766}
       bodyOffset: {x: 0, y: -0.73, z: 0}
@@ -374,6 +387,8 @@ MonoBehaviour:
       colliderHeight: 6.11
       colliderRadius: 1.36
       colliderCenter: {x: 0, y: 2, z: -0.75}
+      leftArmBone: 
+      rightArmBone: 
     hands: []
     heads: []
   - partName: LeftHand
@@ -415,7 +430,7 @@ MonoBehaviour:
     - addressableKey: Assets/prefabs/NPCs/tentacle.prefab
       rotation: {x: 320.6541, y: 286, z: 268.78235}
       scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0.2, y: 0, z: 0}
+      offsetPosition: {x: 0.22, y: 0, z: 0}
       overridePosition: 0
       position: {x: 0, y: 0, z: 0}
     heads: []
@@ -449,8 +464,8 @@ MonoBehaviour:
       rotation: {x: 0, y: 142.29, z: 0}
       scale: {x: 1, y: 1, z: 1}
       offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 1
-      position: {x: 1.043, y: 0.21, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
     - addressableKey: Assets/prefabs/NPCs/eyeHand.prefab
       rotation: {x: 0, y: 180, z: 0}
       scale: {x: 1, y: 1, z: 1}
@@ -472,13 +487,29 @@ MonoBehaviour:
     - addressableKey: Assets/prefabs/NPCs/Hands/bell.prefab
       rotation: {x: 354.00134, y: 359.99173, z: 339.49518}
       scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0.55, z: 0}
+      offsetPosition: {x: 0, y: 0.5, z: 0}
       overridePosition: 0
       position: {x: 0, y: 0, z: 0}
     heads: []
   head: {fileID: 7317955472801406449}
   fov: {fileID: 448972914210976078}
   dialogueData: {fileID: 11400000, guid: 48a6a26911156df478d3f2f80ec4985f, type: 2}
+  currentDialogue:
+    lines: []
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 0
+    repeat: 0
 --- !u!136 &6268602987876356715
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -575,6 +606,8 @@ MonoBehaviour:
   scaleRange: 0.35
   rotationRange: 15
   positionRange: 0.025
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -686,6 +719,8 @@ MonoBehaviour:
   scaleRange: 0.25
   rotationRange: 2.5
   positionRange: 0
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}

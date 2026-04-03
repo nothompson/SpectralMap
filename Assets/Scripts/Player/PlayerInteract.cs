@@ -13,9 +13,29 @@ public class PlayerInteract : MonoBehaviour
     private IInteractable currentInteract;
     private InteractionType? currentSprite = null;
 
+    [SerializeField] public GameObject hudbox;
+
+    [SerializeField] public GameObject Text;
+
+    [SerializeField] public SpriteAnimate spriteAnimate;
+
+    [SerializeField] public SpriteText dialogue;
+
+    public IEnumerator textboxAnimation;
+
+    public bool playerHasInteracted;
+
+    
+
     void Update()
     {
-        Camera cam = Camera.main;
+        if(currentInteract != null && ((MonoBehaviour)currentInteract) == null)
+        {
+            ClearSprites();
+            currentInteract = null;
+            return;
+        }
+            Camera cam = Camera.main;
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
             RaycastHit hit;
@@ -51,6 +71,68 @@ public class PlayerInteract : MonoBehaviour
             if(InputManager.Instance.inputs.Player.Interact.triggered){
                 currentInteract.OnInteract(gameObject);
             }
+        }
+    }
+
+    public IEnumerator AnimateTextbox(int targetFrame, bool disable = false)
+    {
+        if(spriteAnimate == null) yield break;
+
+        yield return spriteAnimate.AnimateTo(
+            script: this,
+            targetFrame: targetFrame,
+            onFrameChanged: frame =>
+            {
+                if(targetFrame != 0 && frame != targetFrame)
+                {
+                    Text.SetActive(false);
+                }
+            },
+            onTarget: () =>
+            {
+                if(targetFrame != 0) currentInteract?.DisplayDialogue();
+                else if (disable && targetFrame == 0) hudbox.SetActive(false);
+            }
+        );
+    }
+
+    public void OpenDialogue()
+    {
+        hudbox.SetActive(true);
+
+        if(textboxAnimation != null) {StopCoroutine(textboxAnimation); textboxAnimation = null;}
+
+        textboxAnimation = AnimateTextbox(spriteAnimate.sprites.Length - 1);
+        StartCoroutine(textboxAnimation);
+
+        if(AudioManager.Instance != null && !playerHasInteracted)
+        {
+            playerHasInteracted = true;
+            AudioManager.Instance.TextOpen();
+        }
+    }
+
+    public void CloseDialogue()
+    {
+        if(textboxAnimation != null)
+        {
+            StopCoroutine(textboxAnimation);
+            textboxAnimation = null;
+        }
+
+        if(Text != null)
+        {
+            Text.SetActive(false);
+            dialogue?.StopTypewriter(this);
+        }
+
+        textboxAnimation = AnimateTextbox(0, disable: true);
+        StartCoroutine(textboxAnimation);
+
+        if (playerHasInteracted)
+        {
+            playerHasInteracted = false;
+            AudioManager.Instance?.TextClose();
         }
     }
 

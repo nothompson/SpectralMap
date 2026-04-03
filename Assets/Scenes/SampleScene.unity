@@ -4771,6 +4771,7 @@ MonoBehaviour:
   playerSpeed: 0
   RocketJumped: 0
   CanPogo: 0
+  CanWall: 0
   Synced: 0
   StartSyncTimer: 0
   syncHits: 0
@@ -4821,6 +4822,11 @@ MonoBehaviour:
   dist: 3
   speakSprite: {fileID: 1310738241}
   pressSprite: {fileID: 25173965}
+  hudbox: {fileID: 637362056}
+  Text: {fileID: 1777322648}
+  spriteAnimate: {fileID: 637362060}
+  dialogue: {fileID: 1777322650}
+  playerHasInteracted: 0
 --- !u!1 &227568500
 GameObject:
   m_ObjectHideFlags: 0
@@ -11177,6 +11183,7 @@ MonoBehaviour:
   rotationRange: 0
   positionRange: 0.1
   lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -14679,6 +14686,7 @@ MonoBehaviour:
   rotationRange: 2
   positionRange: 0
   lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -16648,6 +16656,67 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &1012571295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 177008435920386441, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: Damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2017009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.962233
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212548, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536796893043212549, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
+      propertyPath: m_Name
+      value: meleeGrunt (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 054b5c0b0fe906b43b354b78f465c0b0, type: 3}
 --- !u!1 &1015262009
 GameObject:
   m_ObjectHideFlags: 0
@@ -17339,6 +17408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5480546311792564259, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6239325195477015448, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.84
@@ -27612,6 +27685,7 @@ MonoBehaviour:
   rotationRange: 0
   positionRange: 0.1
   lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -29689,6 +29763,7 @@ MonoBehaviour:
   rotationRange: 0
   positionRange: 0
   lockPosition: 1
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -31253,6 +31328,7 @@ MonoBehaviour:
   rotationRange: 2
   positionRange: 0
   lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -33187,7 +33263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6239325195477015448, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.34
+      value: -23.64
       objectReference: {fileID: 0}
     - target: {fileID: 6239325195477015448, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33195,7 +33271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6239325195477015448, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.51
+      value: -14.75
       objectReference: {fileID: 0}
     - target: {fileID: 6239325195477015448, guid: 3cca082971015a3499e8d27d8d492d26, type: 3}
       propertyPath: m_LocalRotation.w
@@ -37955,6 +38031,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2536592218360688005, guid: 8fd4f12096604764bb46a3f6987432b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5221015984883182443, guid: 8fd4f12096604764bb46a3f6987432b9, type: 3}
       propertyPath: m_Name
       value: DamageManager
@@ -39523,3 +39603,4 @@ SceneRoots:
   - {fileID: 516722356890885858}
   - {fileID: 2235130107928383537}
   - {fileID: 2078304375}
+  - {fileID: 1012571295}

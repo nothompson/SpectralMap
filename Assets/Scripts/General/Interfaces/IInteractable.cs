@@ -16,6 +16,8 @@ public interface IInteractable
     void ExitInteract();
 
     bool CanInteract();
+
     
     InteractionType GetInteractionType();
+    void DisplayDialogue() { }
 }

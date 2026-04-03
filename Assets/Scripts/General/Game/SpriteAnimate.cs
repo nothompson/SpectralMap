@@ -23,6 +23,8 @@ public class SpriteAnimate : MonoBehaviour
     private float _timer;
 
     public bool isPlaying = true;
+    [SerializeField] public bool pingPong = false;
+    private int pingPongDir;
     public bool direction = true;
 
     public Coroutine _current; 
@@ -41,6 +43,8 @@ public class SpriteAnimate : MonoBehaviour
 
         index = startingIndex;
         _timer = 0f;
+
+        pingPongDir = direction ? 1 : -1;
     }
     void Update()
     {
@@ -67,11 +71,25 @@ public class SpriteAnimate : MonoBehaviour
         float frameDur = 1f / fps;
         if(_timer >= frameDur)
         {
-            _timer -= frameDur;
-            index += dir;
 
-            if(index >= length) index = 0;
-            else if(index < 0) index = length - 1;
+            _timer -= frameDur;
+
+            if(pingPong)
+            {
+                index += pingPongDir;
+                if(index >= sprites.Length || index < 0)
+                    {
+                        pingPongDir*= -1; 
+                        index = Mathf.Clamp(index, 0, sprites.Length - 1);
+                    }
+            }
+            else
+            {
+                index += dir;
+                if(index >= sprites.Length) index = 0;
+                else if(index < 0) index = sprites.Length - 1;
+            }            
+
                 if(material != null)
                 {
                     material.SetTexture("_Input", sprites[index].texture);

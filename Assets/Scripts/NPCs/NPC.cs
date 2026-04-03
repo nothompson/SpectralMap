@@ -52,6 +52,9 @@ public class NPC : MonoBehaviour, IInteractable
         public float colliderHeight;
         public float colliderRadius;
         public Vector3 colliderCenter;
+
+        public string leftArmBone;
+        public string rightArmBone;
     }
     [System.Serializable]
     public class HandConfig
@@ -68,15 +71,6 @@ public class NPC : MonoBehaviour, IInteractable
 
     [SerializeField] GameObject head;
     [SerializeField] FOV fov;
-    private GameObject hudbox;
-
-    private GameObject Text;
-
-    private SpriteAnimate spriteAnimate;
-
-    private SpriteText dialogue;
-
-    public Coroutine textboxAnimation;
 
     public NPCDialogue dialogueData;
 
@@ -85,7 +79,7 @@ public class NPC : MonoBehaviour, IInteractable
     private List<string> currentWords = new List<string>();
     private List<AsyncOperationHandle<GameObject>> loadedParts = new();
 
-    private Coroutine Speak;
+    private IEnumerator Speak;
 
     private MeshJitter meshJitter;
 
@@ -96,6 +90,8 @@ public class NPC : MonoBehaviour, IInteractable
     bool ableToSeePlayer;
 
     bool playerHasInteracted = false;
+
+    private PlayerInteract playerInteract;
 
     public void Awake()
     {
@@ -138,6 +134,7 @@ public class NPC : MonoBehaviour, IInteractable
         string spawnedBodyKey = null;
         string spawnedLeftHand = null;
         string spawnedRightHand = null;
+        GameObject spawnedObject = null;
         foreach(var config in parts)
         {
             if(config.addressableKeys == null || config.addressableKeys.Length < 1) continue;
@@ -172,6 +169,8 @@ public class NPC : MonoBehaviour, IInteractable
 
             GameObject prefab = assetHandle.Result;
             GameObject part = Instantiate(prefab, config.mountPoint.transform);
+
+            if(config.partName == "Body") spawnedObject = part;
 
             MeshFilter filter = part.GetComponent<MeshFilter>();
             MeshRenderer render = part.GetComponent<MeshRenderer>();
@@ -229,10 +228,11 @@ public class NPC : MonoBehaviour, IInteractable
 
 
                         PartConfig leftHandConfig = System.Array.Find(parts, _p=>_p.partName == "LeftHand");
+                        HandConfig leftHandRotation = null;
                         if(leftHandConfig != null)
                         {
                             leftHandConfig.mountPoint.transform.localPosition += bodyOffsets.leftHandOffset;
-                            HandConfig leftHandRotation = System.Array.Find(leftHandConfig.hands, e => e.addressableKey == spawnedLeftHand);
+                            leftHandRotation = System.Array.Find(leftHandConfig.hands, e => e.addressableKey == spawnedLeftHand);
                             if(leftHandRotation != null)
                             {
                                 leftHandConfig.mountPoint.transform.localRotation = Quaternion.Euler(leftHandRotation.rotation);
@@ -250,10 +250,11 @@ public class NPC : MonoBehaviour, IInteractable
                         }
 
                         PartConfig rightHandConfig = System.Array.Find(parts, _p=>_p.partName == "RightHand");
+                        HandConfig rightHandRotation = null;
                         if(rightHandConfig != null)
                         {
                             rightHandConfig.mountPoint.transform.localPosition += bodyOffsets.rightHandOffset;
-                            HandConfig rightHandRotation = System.Array.Find(rightHandConfig.hands, e => e.addressableKey == spawnedRightHand);
+                            rightHandRotation = System.Array.Find(rightHandConfig.hands, e => e.addressableKey == spawnedRightHand);
                             if(rightHandRotation != null)
                             {
                                 rightHandConfig.mountPoint.transform.localRotation = Quaternion.Euler(rightHandRotation.rotation);
@@ -269,9 +270,68 @@ public class NPC : MonoBehaviour, IInteractable
                                 }
                             }
                         }
+
+                    if(spawnedObject != null && bodyOffsets != null)
+                    {
+                        if (!string.IsNullOrEmpty(bodyOffsets.leftArmBone))
+                        {
+                            Transform leftBone = FindBone(spawnedObject.transform, bodyOffsets.leftArmBone);
+                            leftHandConfig = System.Array.Find(parts, p => p.partName == "LeftHand");
+                            if(leftBone != null && leftHandConfig != null)
+                            {
+                                leftHandConfig.mountPoint.transform.SetParent(leftBone, true);
+                                leftHandConfig.mountPoint.transform.localPosition = bodyOffsets.leftHandOffset;
+                                leftHandConfig.mountPoint.transform.position += leftHandRotation.offsetPosition;
+
+                                Debug.Log(leftHandRotation.offsetPosition);
+
+                                MeshJitter lhj = leftHandConfig.mountPoint.GetComponent<MeshJitter>();
+
+                                if(lhj != null)
+                                {
+                                    lhj.parented = true;
+                                    lhj.UpdateBaseValues();
+                                }
+
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(bodyOffsets.rightArmBone))
+                        {
+                            Transform rightBone = FindBone(spawnedObject.transform, bodyOffsets.rightArmBone);
+                            rightHandConfig = System.Array.Find(parts, p => p.partName == "RightHand");
+                            if(rightBone != null && leftHandConfig != null)
+                            {
+                                rightHandConfig.mountPoint.transform.SetParent(rightBone, true);
+                                rightHandConfig.mountPoint.transform.localPosition = bodyOffsets.rightHandOffset;
+                                rightHandConfig.mountPoint.transform.position += rightHandRotation.offsetPosition;
+
+                                MeshJitter rhj = rightHandConfig.mountPoint.GetComponent<MeshJitter>();
+
+                                if(rhj != null)
+                                {
+                                    rhj.parented = true;
+                                    rhj.UpdateBaseValues();
+                                }
+                                
+                            }
+                        }
+
+                    }
                     }
                 }
             }
+    }
+
+    Transform FindBone(Transform root, string boneName)
+    {
+        if(root.name == boneName) return root;
+        foreach(Transform child in root)
+        {
+            Transform result = FindBone(child, boneName);
+            if(result != null) return result;
+        }
+        return null;
     }
 
     public void Update()
@@ -305,6 +365,11 @@ public class NPC : MonoBehaviour, IInteractable
         foreach(var part in loadedParts)
             Addressables.Release(part);
         loadedParts.Clear();
+
+        if(playerInteract != null)
+        {
+            playerInteract.CloseDialogue();
+        }
     }
 
     public void OnInteract(GameObject player)
@@ -315,50 +380,37 @@ public class NPC : MonoBehaviour, IInteractable
         PlayerControlRigid pcr = player.GetComponent<PlayerControlRigid>();
         if(!fov.canSeePlayer || pcr.paused) return;
 
-        hudbox = player.transform.Find("YawPivot/Camera/overlay/Textbox/hudbox")?.gameObject;
+        playerInteract = player.GetComponent<PlayerInteract>();
 
-        Text = hudbox.transform.Find("Text")?.gameObject;
-
-        dialogue = Text.GetComponent<SpriteText>();
-
-        hudbox.SetActive(true);
-
-        spriteAnimate = hudbox.GetComponent<SpriteAnimate>();
-
-        //stop previous opening/closing animation 
-        if(textboxAnimation != null)
-        {
-            StopCoroutine(textboxAnimation);
-        }
+        if(playerInteract == null) return;
         
         DialogueProgression next = dialogueData.GetCurrentDialogue(npcID);
 
         if(currentDialogue != next) {
-            currentDialogue = next;
-            DialogueManager.Instance.ResetLineIndex(npcID);
-            dialogue.fullTextShown = false;
+                currentDialogue = next;
+                DialogueManager.Instance.ResetLineIndex(npcID);
+                playerInteract.dialogue.fullTextShown = false;
             }
-       
-               
-            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
+        
+        if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
             {
                 dialogueData.AddJournalEntry(currentDialogue);
             }
 
-            if(dialogueIndex == currentDialogue.lineIndexToAddItem && currentDialogue.addItem)
+        if(dialogueIndex == currentDialogue.lineIndexToAddItem && currentDialogue.addItem)
             {
                 dialogueData.AddItem(currentDialogue);
             }
 
         //if typing, interact again to skip typewriting
-        if (dialogue.isTyping)
+        if (playerInteract.dialogue.isTyping)
         {
-            dialogue.ShowText(this);
+            playerInteract.dialogue.ShowText(playerInteract);
             return;
         }   
 
         //if full text is shown and interact, go to next line(if any)
-        if (dialogue.fullTextShown)
+        if (playerInteract.dialogue.fullTextShown)
         {
             dialogueIndex++;
 
@@ -384,15 +436,8 @@ public class NPC : MonoBehaviour, IInteractable
                 DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
             }
         }
-        //open hud 
-        textboxAnimation = AnimateTextbox(spriteAnimate, spriteAnimate.sprites.Length - 1);
-        
-        if(AudioManager.Instance != null && !playerHasInteracted){
-            playerHasInteracted = true;
-            AudioManager.Instance.TextOpen();
-        }
 
-        Image image = hudbox.GetComponent<Image>();
+        playerInteract.OpenDialogue();
     }
 
     public InteractionType GetInteractionType()
@@ -407,85 +452,23 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void ExitInteract()
     {
-        //stop previous animation
-        if(textboxAnimation != null)
-        {
-            StopCoroutine(textboxAnimation);
-        }
-
-        //if text has appeared, reset 
-        if(Text != null){
-            Text.SetActive(false);
-            dialogue.StopTypewriter(this);
-            if(Speak != null)
-            {
-                StopCoroutine(Speak);
-                Speak = null;
-            }
-            // int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
-            // if(dialogueData.reset){
-            //     dialogueIndex = 0;
-            //     DialogueManager.Instance.ResetLineIndex(npcID);
-            // }
-            // if(currentDialogue == null) return;
-            // else 
-            // {
-            //     if(dialogueIndex >= currentDialogue.lines.Length)
-            //     {
-            //         dialogueIndex = currentDialogue.lines.Length - 1;
-            //         DialogueManager.Instance.SetLineIndex(npcID,dialogueIndex);
-            //     }
-            // }
-
-        }
-
-        //shrink hud, and disable 
-        textboxAnimation = AnimateTextbox(spriteAnimate, 0, disable: true);
-        if (playerHasInteracted)
-        {
-            playerHasInteracted = false;
-            if(AudioManager.Instance != null){
-                        AudioManager.Instance.TextClose();
-            }
-        }
-    }
-
-    public Coroutine AnimateTextbox(SpriteAnimate sprite, int targetFrame, bool disable = false)
-    {
-        if(sprite == null) return null;
-
-        return sprite.AnimateTo(
-            script: this,
-            targetFrame: targetFrame,
-            onFrameChanged: frame =>
-            {
-                if(targetFrame != 0 && frame!= targetFrame)
-                {
-                    Text.SetActive(false);
-                }
-            },
-            onTarget: () =>
-            {
-                if(targetFrame != 0)
-                {
-                    DisplayDialogue();
-                }
-                else if(disable && targetFrame == 0)
-                {
-                    hudbox.SetActive(false);
-                }
-            }
-        );
+        if(playerInteract == null) return;
+        playerInteract.CloseDialogue();
+        playerInteract = null;
     }
 
     public void DisplayDialogue()
     {
+        if(playerInteract == null) return;
+
         //reached target, now can show text
-        Text.SetActive(true);
+        playerInteract.Text.SetActive(true);
+
+        var dialogue = playerInteract.dialogue;
         //clear previous typing
         if(dialogue.typing != null)
         {
-            dialogue.StopTypewriter(this);
+            dialogue.StopTypewriter(playerInteract);
         }
         if (Speak != null)
         {
@@ -502,9 +485,10 @@ public class NPC : MonoBehaviour, IInteractable
 
         GetWords(dialogue.input);
         //start typing
-        dialogue.StartTypewriter(this, dialogueData.speed);
+        dialogue.StartTypewriter(playerInteract, dialogueData.speed);
 
-        Speak = StartCoroutine(SayWords());
+        Speak = SayWords();
+        StartCoroutine(Speak);
 
         dialogue.fullTextShown = false;
 
