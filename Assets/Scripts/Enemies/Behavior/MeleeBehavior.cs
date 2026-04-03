@@ -7,7 +7,7 @@ public class MeleeBehavior : AttackBehavior
     [SerializeField] public float HitBoxLife;
     [SerializeField] public float MeleeRadius;
 
-    public override float Begin()
+    public override float Fire()
     {
         StartCoroutine(Melee());
         return Cooldown;

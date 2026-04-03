@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    public static EffectManager effectManager;
+    public static EffectManager Instance;
 
     private Dictionary<GameObject, Effect> debuffKey = new Dictionary<GameObject, Effect>();
     private Dictionary<GameObject, Effect> buffKey = new Dictionary<GameObject, Effect>();
     private void Awake()
     {
-        if(effectManager == null)
+        if(Instance == null)
         {
-            effectManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

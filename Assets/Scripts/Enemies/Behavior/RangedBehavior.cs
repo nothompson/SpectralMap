@@ -10,7 +10,7 @@ public class RangedBehavior : AttackBehavior
 
     [SerializeField] private float ExplosionRadius = 1f;
 
-    public override float Begin()
+    public override float Fire()
     {
 
         GameObject hitbox = Instantiate(AttackPrefab, AttackPoint.position, AttackPoint.rotation);
@@ -30,7 +30,7 @@ public class RangedBehavior : AttackBehavior
 
         if(rocket != null)
         {
-            rocket.forceMultiplier = Force;
+            rocket.explosionForce = Force;
             rocket.maximumDamage = Damage;
             rocket.explosionRadius = ExplosionRadius;
         }

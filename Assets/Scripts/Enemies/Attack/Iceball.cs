@@ -10,13 +10,13 @@ public class Iceball : EnemyProjectile
         if (!reflected)
         {
             if (player != null)
-                EffectManager.effectManager.Weak(player, 5f, 0.6f);
+                EffectManager.Instance.Weak(player, 5f, 0.6f);
         }
         else
         {
             if (enemy != null)  
             {
-                EffectManager.effectManager.Weak(enemy, 5f, 0.75f);
+                EffectManager.Instance.Weak(enemy, 5f, 0.75f);
             }
         }
 

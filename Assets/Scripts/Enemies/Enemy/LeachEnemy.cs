@@ -58,7 +58,7 @@ public class LeachEnemy : Enemy
 
         if((adjusted - Body.HeadPosition).magnitude <= MaxRange && !attacking)
         {
-            Behaviors[0].Begin();
+            Behaviors[0].Fire();
         }
     }
 

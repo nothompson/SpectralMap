@@ -20,7 +20,7 @@ public class ExplodeBehavior : AttackBehavior
         if(ownerScript == null) Debug.Log("enemy is null");
         if(ownerHP == null) Debug.Log("HP on enemy is null");
     }
-    public override float Begin()
+    public override float Fire()
     {
         StartCoroutine(Explode());
         return Cooldown;
@@ -41,10 +41,6 @@ public class ExplodeBehavior : AttackBehavior
 
             float damage = GameFunctions.CalculateForceDamage(hit, transform.position, ExplosionRadius, Damage, 1.0f);
 
-            Debug.Log("hp " + ownerHP);
-            Debug.Log("target hp: " + targetHP);
-            Debug.Log("pcr : " + p);
-
             Rigidbody rb = hit.attachedRigidbody;
             GameFunctions.ApplyForceToRigidbody(ref rb, e, force);
 
@@ -63,8 +59,7 @@ public class ExplodeBehavior : AttackBehavior
             }
 
         }
-
-        Debug.Log("exploded!");
+        
         ownerHP.Damage(ownerHP.currentHP);
 
         yield break;

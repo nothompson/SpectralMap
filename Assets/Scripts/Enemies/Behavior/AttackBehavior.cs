@@ -1,4 +1,6 @@
-using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;  
 
 public abstract class AttackBehavior : MonoBehaviour
 {
@@ -12,8 +14,10 @@ public abstract class AttackBehavior : MonoBehaviour
     [SerializeField] public string AnimationEvent;
     [SerializeField] public bool Stationary = false;
 
+    [SerializeField] public bool BurstMode = false;
+    [SerializeField] public int BurstCount = 3;
 
-    public Transform AttackPoint;
+    [SerializeField] public Transform AttackPoint;
     [HideInInspector] public GameObject Owner;
 // 
     public virtual void InitBehavior(GameObject enemy, Transform point)
@@ -28,6 +32,6 @@ public abstract class AttackBehavior : MonoBehaviour
         return distance <= Range;
     }
 
-    public abstract float Begin();
+    public abstract float Fire();
 
 }

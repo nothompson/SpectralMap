@@ -128,6 +128,10 @@ public class Enemy : MonoBehaviour
 
     bool stationaryAttack = false;
 
+    float strafeDir = 0f;
+    float strafeTimer = 0f;
+    float strafeDuration = 0f;
+
 
     public enum PersonalityType
     {
@@ -326,6 +330,8 @@ public class Enemy : MonoBehaviour
                 fov.radius = oldRad;
                 engage = false;
                 memory = 0;
+                strafeDir = 0f;
+                strafeTimer = 0f;
                 // if (attackType == 2)
                 // {
                 //     attackDistance = oldDist;
@@ -356,6 +362,36 @@ public class Enemy : MonoBehaviour
         if (distance > preferredRange && !stationaryAttack)
         {
             MoveTowards(direction);
+        }
+        else if(distance <= preferredRange && !stationaryAttack)
+        {
+            switch (Personality)
+                {
+                    case PersonalityType.Cowardly:
+                        UpdateStrafe();
+                        if(distance < preferredRange * 0.8f)
+                        {
+                            MoveTowards(-direction);
+                        }
+                        break;
+                    case PersonalityType.Tactical:
+                        UpdateStrafe();
+                        if(distance < preferredRange * 0.6f && distance >= MinRange)
+                        {
+                            MoveTowards(direction);
+                        }
+                        break;
+                    case PersonalityType.Reckless:
+                    default:
+                        MoveTowards(direction);
+                        break;
+                }
+        }
+
+        if(strafeDir == 0f)
+        {
+            enemyVelocity.x = Mathf.Lerp(enemyVelocity.x, 0f, Time.fixedDeltaTime * 5f);
+            enemyVelocity.z = Mathf.Lerp(enemyVelocity.z, 0f, Time.fixedDeltaTime * 5f);
         }
 
         if (distance <= MaxRange && !attacking)
@@ -553,6 +589,27 @@ public class Enemy : MonoBehaviour
             {
                 jumpAcross = true;
             }
+        }
+    }
+
+        void UpdateStrafe()
+    {
+        strafeTimer -= Time.fixedDeltaTime;
+        if(strafeTimer <= 0f)
+        {
+            float roll = Random.value;
+            if(roll <= 0.3f) strafeDir = 0f;
+            else if (roll < 0.65f) strafeDir = 1f;
+            else strafeDir = -1f;
+
+            strafeDuration = Random.Range(0.4f,1.2f);
+            strafeTimer = strafeDuration;
+        }
+        if(strafeDir != 0f)
+        {
+            Vector3 right = Vector3.Cross(Vector3.up, new Vector3(transform.forward.x, 0f, transform.forward.z).normalized);
+            Vector3 wishDir = right * strafeDir;
+            enemyVelocity = MovementFunctions.Accelerate(enemyVelocity, wishDir, moveSpeed * 0.70f, 8f);
         }
     }
 
@@ -783,6 +840,19 @@ public class Enemy : MonoBehaviour
         if(fbx == null) return;
         fbx.SetTrigger(pendingAttack.AnimationEvent);
 
+        StartCoroutine(AttackTimeout(bestChoice));
+
+    }
+
+    IEnumerator AttackTimeout(AttackBehavior expected)
+    {
+        yield return new WaitForSeconds(2f);
+        if(pendingAttack == expected)
+        {
+            pendingAttack = null;
+            beginAttacking = false;
+            stationaryAttack = false;
+        }
     }
 
     public virtual void OnAttack()
@@ -790,7 +860,7 @@ public class Enemy : MonoBehaviour
         if(pendingAttack == null) return;
 
         attacking = true;
-        float cooldown = pendingAttack.Begin();
+        float cooldown = pendingAttack.Fire();
         pendingAttack = null;
         StartCoroutine(AttackCooldown(cooldown));
     }

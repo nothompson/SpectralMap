@@ -1,38 +1,12 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using GamePhysics;
 
-public class Rocket : EnemyProjectile
+public class SpiralBlast : Rocket
 {
-    [Header("Explosive Stats")]
-    public float explosionRadius;
-    public float explosionForce;
-    public float maximumDamage;
-    public float damageMultiplier;
-    public float forceMultiplier;
-
-    [HideInInspector] public bool direct = false;
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.layer == 11 || other.gameObject.layer == 24) return;
-
-        if(other.gameObject.layer == 3) direct = true;
-        collided = true;
-        Explode();
-    }
-
-    public override IEnumerator Hit()
-    {
-        if (collided)
-        {
-            Explode();
-        }
-        yield return new WaitForSeconds(0.25f);
-        collided = false;
-    }
-    public virtual void Explode()
+    [SerializeField] public float ConfuseDur = 5f;
+    public override void Explode()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius, targetMask);
         HashSet<HP> damagedHP = new HashSet<HP>();
@@ -51,14 +25,13 @@ public class Rocket : EnemyProjectile
 
             if(targetHP != null && !damagedHP.Contains(targetHP))
             {
-                Debug.Log(p);
                 if (e != null)
                 {
                     e.enemyVelocity += force;
                 }
                 if(p != null)
                 {
-                    Debug.Log("p is not null: " + p );
+                    EffectManager.Instance.Confuse(p.gameObject, ConfuseDur, 1f);
                     p.playerVelocity += force;
                 }
                 damagedHP.Add(targetHP);
@@ -73,12 +46,4 @@ public class Rocket : EnemyProjectile
         }
         Destroy(gameObject);
     }
-
-    void OnDrawGizmosSelected()
-{
-    Gizmos.color = new Color(1f, 0.3f, 0f, 0.3f);
-    Gizmos.DrawSphere(transform.position, explosionRadius);
-    Gizmos.color = new Color(1f, 0.3f, 0f, 1f);
-    Gizmos.DrawWireSphere(transform.position, explosionRadius);
-}
 }

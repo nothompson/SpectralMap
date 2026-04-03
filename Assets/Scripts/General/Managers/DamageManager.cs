@@ -85,8 +85,8 @@ public class DamageManager : MonoBehaviour
 
         if (DeathManager.PlayerDead)
         {
-            deathOffset = 3f;
-            Death.color = new Color(1f,1f,1f,0f);
+            deathOffset = 2f;
+                Death.color = new Color(1f,1f,1f,0f);
 
             // DeathSceneAnimate.sprites = DeathScenes[0].sprites;
 

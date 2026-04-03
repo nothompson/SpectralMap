@@ -5,7 +5,7 @@ public class SpawnerBehavior : AttackBehavior
     [SerializeField] private int NumberToSpawn;
     [SerializeField] private float SpawnAngle;
     
-    public override float Begin()
+    public override float Fire()
     {
         for(int i = 0; i < NumberToSpawn; i++)
         {

@@ -8,12 +8,12 @@ public class BoostSpell : EnemyProjectile
     {
         if (collided && enemy != null)
         {
-            EffectManager.effectManager.Boost(enemy, 10f, 2f);
+            EffectManager.Instance.Boost(enemy, 10f, 2f);
             yield return new WaitForSeconds(0.05f);
         }
         else if (collided && player != null)
         {
-            EffectManager.effectManager.Boost(player, 2f, 1.5f);
+            EffectManager.Instance.Boost(player, 2f, 1.5f);
             yield return new WaitForSeconds(0.05f);
         }
         Destroy(gameObject);

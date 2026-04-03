@@ -9,9 +9,14 @@ public class SupportEnemy : Enemy
     [Header("Support Class")]
     public LayerMask enemyMask;
 
+    public float supportRadius = 45f;
+    public float supportThreshold = 0.75f;
+
     Vector3 allyPosition;
 
     bool allyFound;
+
+    bool hasLowHealthAlly;
     public override void Start()
     {
         support = true;
@@ -21,9 +26,11 @@ public class SupportEnemy : Enemy
 
     public override void Targeting()
     {
+        if(DeathManager.PlayerDead) return;
         if (allyFound)
         {
-            TargetSpotted(allyPosition);
+            Vector3 dir = (allyPosition - transform.position).normalized;
+            LookTowards(dir);
 
         }
         else

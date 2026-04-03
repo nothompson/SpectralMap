@@ -25,16 +25,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749566981420272955}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.40097475, y: 0.20578888, z: 0.2066801, w: 0.8684201}
   m_LocalPosition: {x: 0.005, y: -0.141, z: 0.157}
   m_LocalScale: {x: 0.06313039, y: 0.06313039, z: 0.06313039}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8722142559308874491}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 37.688, y: 41.385, z: 41.465}
 --- !u!212 &3157615935888132514
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50,6 +51,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -71,9 +77,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -1746556448, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -83,7 +91,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6174588026334714930
 MonoBehaviour:
@@ -131,10 +138,14 @@ MonoBehaviour:
   startingIndex: 0
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 1
+  length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
+  direction: 1
 --- !u!1 &8232746001297594433
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +172,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8232746001297594433}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.2767223, y: -0.26612538, z: -0.12757637, w: 0.9145088}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -169,7 +181,6 @@ Transform:
   - {fileID: 1445777069147486325}
   - {fileID: 5408524250241916075}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -35.032, y: -30.545, z: -6.033}
 --- !u!33 &5666827848109985118
 MeshFilter:
@@ -196,6 +207,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -217,9 +233,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &-5536755521245098746
 MonoBehaviour:
@@ -263,16 +281,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122393149735179202}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.27802077, y: 0.40019274, z: 0.10287409, w: 0.8671604}
   m_LocalPosition: {x: 0.188, y: -0.018, z: 0.063}
   m_LocalScale: {x: 0.0630912, y: 0.0630912, z: 0.0630912}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8722142559308874491}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 23.568, y: 55.048, z: 25.94}
 --- !u!212 &5975547656394015603
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -288,6 +307,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -309,9 +333,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -1746556448, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -321,7 +347,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4142128773077396396
 MonoBehaviour:
@@ -369,7 +394,11 @@ MonoBehaviour:
   startingIndex: 2
   fps: 24
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 1
+  length: 0
   index: 8
   isPlaying: 1
+  pingPong: 0
+  direction: 1
