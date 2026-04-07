@@ -54,6 +54,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public float surfingThreshold = 15.0f;
     public bool grounded;
     public bool groundedLastFrame = false;
+    public bool onPlatform = false;
+    public bool onPlatformLastFrame = false;
+    public Vector3 platformVelocity;
     public bool surfing;
     public bool surfingLastFrame = false;
 
@@ -145,6 +148,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     Coroutine fallingRoutine;
 
+    private Vector3 lastGroundCheckPos;
+
     float ignoregroundtimer = 0f;
     float ignoregroundtime = 0.25f;
     
@@ -162,6 +167,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        lastGroundCheckPos = GroundCheck.position;
 
         AudioManager.Instance.RegisterPlayer(gameObject);
         TrickManager.Instance.RegisterPlayer(gameObject);
@@ -209,6 +216,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     void CalculateVelocity()
     {
         groundedLastFrame = grounded;
+        onPlatformLastFrame = onPlatform;
+
         surfingLastFrame = surfing;
 
         if (ignoregroundtimer > 0f)
@@ -522,10 +531,15 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             ref playerVelocity,
             ref groundTimer,
             coyoteTime, ref groundNormal, out groundHit,
-            transform
+            ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform
         );
 
         grounded = check && !surfCast && ignoregroundtimer <= 0f;
+
+        if(!onPlatform && onPlatformLastFrame)
+        {
+            // Debug.Log("just left platform");
+        }
 
     }
 

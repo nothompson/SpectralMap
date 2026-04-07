@@ -13,6 +13,7 @@ public abstract class AttackBehavior : MonoBehaviour
     [SerializeField] public float Force;
     [SerializeField] public string AnimationEvent;
     [SerializeField] public bool Stationary = false;
+    [SerializeField] public bool Support = false;
 
     [SerializeField] public bool BurstMode = false;
     [SerializeField] public int BurstCount = 3;

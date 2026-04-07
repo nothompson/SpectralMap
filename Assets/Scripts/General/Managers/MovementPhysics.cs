@@ -141,14 +141,15 @@
                 top = position + Vector3.up * (height - radius);
             }
 
-            public static bool GroundedCheck(
+              public static bool GroundedCheck(
                 Transform GroundCheck,
                 float GroundDistance,
                 LayerMask GroundMask,
                 ref Vector3 velocity,
                 ref float groundTimer,
                 float coyoteTime, ref Vector3 groundNormal, out RaycastHit groundhit,
-                Transform PlayerTransform = null
+                ref bool onPlatform, ref Vector3 platformVelocity, ref Vector3 lastGroundCheckPos,
+                Transform OwnerTransform = null
                 )
             {
 
@@ -164,7 +165,6 @@
 
                 float slopeAngle = 0f;
 
-
                 if (rayGrounded)
                 {
                     //if Raycast hits we can get normal, otherwise just assume its flat
@@ -175,38 +175,75 @@
                     }
                 }
 
-                bool ground = (sphereGrounded || rayGrounded) && slopeAngle <= SlopeLimit && !CanSurf(groundhit);
+            bool ground = (sphereGrounded || rayGrounded) && slopeAngle <= SlopeLimit && !CanSurf(groundhit);
 
-                if (ground)
-                {
-                    if (!CanSurf(groundhit))
-                    {
-                        grounded = true;
-                        //"coyote time" allows a buffer period after leaving collider to still jump
-                        groundTimer = coyoteTime;
+            if (ground)
+            {
+                grounded    = true;
+                groundTimer = coyoteTime;
 
-                    if(PlayerTransform != null && groundhit.collider != null && groundhit.collider.CompareTag("MovingPlatform"))
-                    {
-                            MovingPlatform platform = groundhit.collider.GetComponentInParent<MovingPlatform>();
-                            if(platform != null)
-                            {
-                               PlayerTransform.position += platform.PlatformDelta;
-                            }
-                    }
-                    }
-                }
-                else
+                //messy moving platform parenting 
+                if (OwnerTransform != null)
                 {
-                    groundTimer -= Time.fixedDeltaTime;
-                    if (groundTimer < 0f)
+                    MovingPlatform platform = null;
+
+                    if (rayGrounded
+                        && groundhit.collider != null
+                        && groundhit.collider.CompareTag("MovingPlatform"))
                     {
-                        groundTimer = 0f;
+                        platform = groundhit.collider.GetComponentInParent<MovingPlatform>();
                     }
-                    if(PlayerTransform != null && PlayerTransform.parent != null)
-                {
-                    PlayerTransform.SetParent(null);
+
+                    if (platform == null)
+                    {
+                        // wide sphere to help with tuneling
+                        Collider[] cols = Physics.OverlapSphere(
+                            GroundCheck.position,
+                            GroundDistance * 2f,
+                            GroundMask);
+
+                        foreach (Collider c in cols)
+                        {
+                            if (!c.CompareTag("MovingPlatform")) continue;
+                            //below feet
+                            if (c.bounds.max.y > OwnerTransform.position.y + GroundDistance) continue;
+                            platform = c.GetComponentInParent<MovingPlatform>();
+                            if (platform != null) break;
+                        }
+                    }
+
+                    if (platform != null)
+                    {
+                        onPlatform = true;
+
+                        // update stored velocity so we can add it on next frame if leaving platform
+                        platformVelocity = platform.PlatformVelocity;
+
+
+                        //positions updated with parent transform
+                        if(OwnerTransform.parent != platform.collider.transform)
+                        {
+                            OwnerTransform.SetParent(platform.collider.transform, true);
+                        }
+                    }
                 }
-                }
+            }
+            else
+            {
+                if (onPlatform){
+                    if(OwnerTransform != null && OwnerTransform.parent != null)
+                    {
+                        OwnerTransform.SetParent(null, true);
+                    }
+                    //dont get extra down y
+                    Vector3 momentum = new Vector3(platformVelocity.x,Mathf.Max(platformVelocity.y, 0f),platformVelocity.z);
+                    velocity += momentum;
+                    }
+
+                onPlatform = false;
+                groundTimer -= Time.fixedDeltaTime;
+                if (groundTimer < 0f) groundTimer = 0f;
+            }
 
                 return grounded;
             }

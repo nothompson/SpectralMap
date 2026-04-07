@@ -6,27 +6,43 @@ public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] public AnimationCurve Curve;
     [SerializeField] public Transform[] Targets;
+    [SerializeField] public bool ConsistentSpeed = true;
     [SerializeField] public float Duration;
-    [SerializeField] public GameObject Collider;
+    [SerializeField] public float[] TargetDuration; 
+    [SerializeField] public GameObject collider;
     [SerializeField] public bool Init;
     [SerializeField] public bool pingPong;
+    [SerializeField] public LayerMask riderMask;
+    [SerializeField] public float MomentumCap;
+
     public Vector3 PlatformDelta;
+    public Vector3 PlatformVelocity;
     public bool Stopped;
 
     private Vector3 lastPos;
     private int index;
     private int pingPongDir = 1;
+    public Rigidbody rb;
+
+    private Collider col;
+    private float surfaceY;
 
     void Start()
     {
-        lastPos = Collider.transform.position;
+        lastPos = collider.transform.position;
+        col = collider.GetComponent<Collider>();
+        surfaceY = col.bounds.max.y;
+        
         if(Init) StartCoroutine(MovingTowardsTarget());
     }
 
     void FixedUpdate()
     {
-        PlatformDelta = Collider.transform.position - lastPos;
-        lastPos = Collider.transform.position;
+        if (Stopped)
+        {
+            PlatformDelta = Vector3.zero;
+            PlatformVelocity = Vector3.zero;
+        }
     }
 
     public IEnumerator MovingTowardsTarget()
@@ -52,17 +68,56 @@ public class MovingPlatform : MonoBehaviour
             Transform to = Targets[nextIndex];
             float t = 0f;
 
-            while(t < Duration)
+            float dur = ConsistentSpeed ? Duration : TargetDuration[index];
+
+            while(t < dur)
             {
-                if(Stopped) yield break;
-                t += Time.deltaTime;
-                float elapsed = Mathf.Clamp01(t / Duration);
-                Collider.transform.position = Vector3.Lerp(from.position, to.position, Curve.Evaluate(elapsed));
+                if (Stopped)
+                {
+                    PlatformDelta = Vector3.zero;
+                    PlatformVelocity = Vector3.zero;
+                    yield break;
+                }
+                t += Time.fixedDeltaTime;
+                float elapsed = Mathf.Clamp01(t / dur);
+                Vector3 next = Vector3.Lerp(from.position, to.position, Curve.Evaluate(elapsed));
+
+                PlatformDelta = next - lastPos;
+                PlatformVelocity = PlatformDelta / Time.fixedDeltaTime;
+
+                if (PlatformVelocity.magnitude > MomentumCap) PlatformVelocity = PlatformVelocity.normalized * MomentumCap;
+
+                lastPos = next;
+
+                collider.transform.position = next;
+                surfaceY = col.bounds.max.y; 
+
+                //avoid tuneling with a larger ttrigger box collider and push up to surface 
+                Collider[] riders = Physics.OverlapBox(col.bounds.center + Vector3.up * 2f, new Vector3(col.bounds.extents.x, 2f, col.bounds.extents.z), collider.transform.rotation, riderMask);
+
+                foreach(Collider rider in riders)
+                {
+                    if(rider.bounds.min.y < surfaceY)
+                    {
+                        rider.transform.position += Vector3.up * (surfaceY - rider.bounds.min.y);
+                    }
+                }
                 yield return new WaitForFixedUpdate();
             }
 
-            Collider.transform.position = to.position;
+            Vector3 final = to.position;
+            PlatformDelta = final - lastPos;
+            PlatformVelocity = PlatformDelta / Time.fixedDeltaTime;
+
+            if (PlatformVelocity.magnitude > MomentumCap) PlatformVelocity = PlatformVelocity.normalized * MomentumCap;
+
+            lastPos = final;
+            collider.transform.position = final;
             index = nextIndex;
+
+            PlatformDelta = Vector3.zero;
+            PlatformVelocity = Vector3.zero;
+            
         }
     }
 }

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5609343845528401974}
   - component: {fileID: 8859318563643726097}
   - component: {fileID: 932387679146551239}
+  - component: {fileID: 1235151977195912119}
   m_Layer: 7
   m_Name: Collider
   m_TagString: MovingPlatform
@@ -143,6 +144,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1235151977195912119
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097743575108655526}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!1 &6091757271431671270
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,10 +275,18 @@ MonoBehaviour:
     m_RotationOrder: 4
   Targets:
   - {fileID: 914488633607889375}
-  - {fileID: 914488633607889375}
+  - {fileID: 8537105978840836590}
+  ConsistentSpeed: 1
   Duration: 5
-  Collider: {fileID: 5097743575108655526}
+  TargetDuration: []
+  collider: {fileID: 5097743575108655526}
   Init: 1
   pingPong: 1
+  riderMask:
+    serializedVersion: 2
+    m_Bits: 2056
+  MomentumCap: 40
   PlatformDelta: {x: 0, y: 0, z: 0}
+  PlatformVelocity: {x: 0, y: 0, z: 0}
   Stopped: 0
+  rb: {fileID: 1235151977195912119}

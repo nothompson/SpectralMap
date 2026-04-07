@@ -894,7 +894,7 @@ MonoBehaviour:
   deacelleration: 10
   jumpHeight: 8
   knockbackResistance: 0.1
-  GroundDistance: 0.4
+  GroundDistance: 0.2
   dodgeCooldown: 1
   dodgeSpeed: 15
   attackingCooldown: 0.75
@@ -924,10 +924,13 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  platformVelocity: {x: 0, y: 0, z: 0}
   noiseOffset: 0
   pendingAttack: {fileID: 0}
   MaxRange: 0
   MinRange: 0
+  preferredRange: 0
+  stationaryAttack: 0
 --- !u!114 &5536796893043216121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,7 +1031,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -1091,6 +1094,9 @@ MonoBehaviour:
   Force: 2
   AnimationEvent: attacking
   Stationary: 0
+  Support: 0
+  BurstMode: 0
+  BurstCount: 3
   AttackPoint: {fileID: 5536796892424308439}
   Owner: {fileID: 0}
   HitBoxLife: 0.3

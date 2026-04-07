@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
     public LayerMask pickupMask;
 
     public Transform attackPoint;
+    private bool onPlatform = false;
 
     public FOV fov;
 
@@ -112,6 +113,10 @@ public class Enemy : MonoBehaviour
 
     Vector3 groundNormal;
 
+    public Vector3 platformVelocity;
+
+    private Vector3 lastGroundCheckPos;
+
     bool reset; 
 
     [HideInInspector] public float noiseOffset;
@@ -121,12 +126,12 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float MaxRange;
     [HideInInspector] public float MinRange;
 
-    private float preferredRange;
+    [HideInInspector] public float preferredRange;
 
     AttackBehavior MaxRangeAttack;
     AttackBehavior MinRangeAttack;
 
-    bool stationaryAttack = false;
+    [HideInInspector] public bool stationaryAttack = false;
 
     float strafeDir = 0f;
     float strafeTimer = 0f;
@@ -182,6 +187,8 @@ public class Enemy : MonoBehaviour
         GetBehavior();
 
         preferredRange = GetPreferredRange();
+
+        lastGroundCheckPos = GroundCheck.position;
 
     }
 
@@ -477,6 +484,10 @@ public class Enemy : MonoBehaviour
         {
             applyFriction(1.0f);
             moveSpeed = initSpeed;
+            if(enemyVelocity.y < 0f)
+            {
+                enemyVelocity.y = 0f;
+            }
         }
        float enemymovement = rb.linearVelocity.magnitude;
 
@@ -511,7 +522,7 @@ public class Enemy : MonoBehaviour
             groundMask,
             ref enemyVelocity,
             ref groundTimer,
-            coyoteTime, ref groundNormal, out RaycastHit groundhit
+            coyoteTime, ref groundNormal, out RaycastHit groundhit, ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform
         );
 
         if (reset)
@@ -844,7 +855,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    IEnumerator AttackTimeout(AttackBehavior expected)
+    public IEnumerator AttackTimeout(AttackBehavior expected)
     {
         yield return new WaitForSeconds(2f);
         if(pendingAttack == expected)

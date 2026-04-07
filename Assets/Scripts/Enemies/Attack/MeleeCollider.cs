@@ -20,7 +20,7 @@ public class MeleeCollider : MonoBehaviour
         if (hits.Length != 0 && !collided)
         {
                 var capsule = hits[0].gameObject;
-                var player = capsule.transform.parent.gameObject;
+                var player = capsule.gameObject;
                 var control = player.GetComponent<PlayerControlRigid>();
                 var playerHP = player.GetComponent<HP>();
 

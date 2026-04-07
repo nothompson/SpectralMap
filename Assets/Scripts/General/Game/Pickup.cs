@@ -17,6 +17,9 @@ public class Pickup : MonoBehaviour
 
     private Vector3 groundNormal;
     private RaycastHit groundHit;
+    private bool onPlatform = false;
+    public Vector3 platformVelocity;
+    private Vector3 lastGroundCheckPos;
 
     bool grounded = false;
 
@@ -54,6 +57,7 @@ public class Pickup : MonoBehaviour
         rb.useGravity = true;
         grounded = false;
         gt = 0.1f;
+        lastGroundCheckPos = GroundCheck.position;
     }
 
     void FixedUpdate()
@@ -62,7 +66,7 @@ public class Pickup : MonoBehaviour
 
         Vector3 vel = rb.linearVelocity;
 
-        grounded = MovementFunctions.GroundedCheck(GroundCheck, 0.2f, CollisionLayer, ref vel, ref gt, 0.1f, ref groundNormal, out groundHit);
+        grounded = MovementFunctions.GroundedCheck(GroundCheck, 0.2f, CollisionLayer, ref vel, ref gt, 0.1f, ref groundNormal, out groundHit, ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform);
 
         rb.linearVelocity = vel;
 

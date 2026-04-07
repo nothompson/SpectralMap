@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6149305629298698646}
   - component: {fileID: 7948292853338292919}
   m_Layer: 11
-  m_Name: Square
+  m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 6542299902449611230}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.013701942, z: -0, w: 0.9999062}
-  m_LocalPosition: {x: -0.0020007791, y: 0.008000016, z: 0.19599918}
-  m_LocalScale: {x: 0.060000002, y: 0.06, z: 0.060000002}
+  m_LocalPosition: {x: -0.002, y: 0.029, z: 0.2}
+  m_LocalScale: {x: 0.120424, y: 0.120424, z: 0.120424}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5146676072425906468}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -580948919, guid: 60d43999c5ad6fc46ad77f63ee5a168e, type: 3}
+  m_Sprite: {fileID: -1184405507, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,12 +105,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
   sprites:
-  - {fileID: -580948919, guid: 60d43999c5ad6fc46ad77f63ee5a168e, type: 3}
-  - {fileID: -230529766, guid: 60d43999c5ad6fc46ad77f63ee5a168e, type: 3}
-  - {fileID: -434239615, guid: 60d43999c5ad6fc46ad77f63ee5a168e, type: 3}
-  - {fileID: 2063363858, guid: 60d43999c5ad6fc46ad77f63ee5a168e, type: 3}
+  - {fileID: -1184405507, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: 1227144481, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: 364257105, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: -100247350, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: 170700794, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: 794028006, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: -1900713529, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: -1832382621, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: 980620167, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: -56750501, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
   startingIndex: 0
-  fps: 6
+  fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
   sprite: {fileID: 0}
@@ -118,6 +124,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 1
+  pingPong: 1
   direction: 1
 --- !u!1 &6709704229617115072
 GameObject:
@@ -353,6 +360,8 @@ MonoBehaviour:
   pendingAttack: {fileID: 0}
   MaxRange: 0
   MinRange: 0
+  preferredRange: 0
+  stationaryAttack: 0
   Body: {fileID: 5883057430141546203}
   SeekingGracePeriod: 3
   LifeSpan: 10
@@ -399,6 +408,9 @@ MonoBehaviour:
   Force: 10
   AnimationEvent: attacking
   Stationary: 0
+  Support: 0
+  BurstMode: 0
+  BurstCount: 3
   AttackPoint: {fileID: 0}
   Owner: {fileID: 0}
   ExplosionRadius: 4
