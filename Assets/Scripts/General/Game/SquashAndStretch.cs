@@ -11,6 +11,8 @@ public class SquashAndStretch : MonoBehaviour
     // [SerializeField] public AnimationCurve VerticalAnimation;
     [SerializeField] public float AnimationDur;
     [SerializeField] public UnityEvent PeakDeviationEvent;
+
+    [SerializeField] public UnityEvent EndEvent;
     [SerializeField] public bool Loop = false;
     private Vector3 InitialScale;
     private float maxDeviation;
@@ -73,5 +75,6 @@ public class SquashAndStretch : MonoBehaviour
         }
         TargetTransform.localScale = InitialScale;
         if(Loop) Play();
+        if(EndEvent != null) EndEvent.Invoke();
     }
 }

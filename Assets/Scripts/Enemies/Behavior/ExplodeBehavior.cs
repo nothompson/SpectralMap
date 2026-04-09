@@ -20,10 +20,10 @@ public class ExplodeBehavior : AttackBehavior
         if(ownerScript == null) Debug.Log("enemy is null");
         if(ownerHP == null) Debug.Log("HP on enemy is null");
     }
-    public override float Fire()
+    public override void Fire()
     {
         StartCoroutine(Explode());
-        return Cooldown;
+        StartCoroutine(CooldownRoutine());
     }
 
     public IEnumerator Explode()

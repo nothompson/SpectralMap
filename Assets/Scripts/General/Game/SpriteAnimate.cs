@@ -9,6 +9,7 @@ public class SpriteAnimate : MonoBehaviour
     [SerializeField] public Sprite[] sprites; 
 
     [SerializeField] public int startingIndex = 0; 
+    [SerializeField] public bool randomStart = false; 
 
     public int fps = 2;
     
@@ -39,7 +40,12 @@ public class SpriteAnimate : MonoBehaviour
             sprite = GetComponentInChildren<SpriteRenderer>();
         }
 
-        length = sprites.Length; 
+        length = sprites.Length;
+
+        if (randomStart)
+        {
+            startingIndex = (int)Random.Range(0, sprites.Length - 1);
+        }
 
         index = startingIndex;
         _timer = 0f;

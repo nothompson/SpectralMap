@@ -5,7 +5,7 @@ public class SpawnerBehavior : AttackBehavior
     [SerializeField] private int NumberToSpawn;
     [SerializeField] private float SpawnAngle;
     
-    public override float Fire()
+    public override void Fire()
     {
         for(int i = 0; i < NumberToSpawn; i++)
         {
@@ -18,7 +18,6 @@ public class SpawnerBehavior : AttackBehavior
                 leach.spawnDir = RandomSpawn(AttackPoint.up, SpawnAngle);
             }
         }
-        return Cooldown;
     }
 
     Vector3 RandomSpawn(Vector3 axis, float degrees)

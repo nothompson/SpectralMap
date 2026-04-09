@@ -10,7 +10,7 @@ public class RangedBehavior : AttackBehavior
 
     [SerializeField] private float ExplosionRadius = 1f;
 
-    public override float Fire()
+    public override void Fire()
     {
 
         GameObject hitbox = Instantiate(AttackPrefab, AttackPoint.position, AttackPoint.rotation);
@@ -40,7 +40,7 @@ public class RangedBehavior : AttackBehavior
             grenade.autoTimer = AutoTimer;
         }
 
-        return Cooldown;
+        StartCoroutine(CooldownRoutine());
     }
     
 

@@ -116,6 +116,7 @@ MonoBehaviour:
   - {fileID: 980620167, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
   - {fileID: -56750501, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
   startingIndex: 0
+  randomStart: 1
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -356,6 +357,7 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  platformVelocity: {x: 0, y: 0, z: 0}
   noiseOffset: 0
   pendingAttack: {fileID: 0}
   MaxRange: 0

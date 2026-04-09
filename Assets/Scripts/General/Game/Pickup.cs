@@ -6,8 +6,8 @@ using MovementPhysics;
 
 public class Pickup : MonoBehaviour
 {
-    [HideInInspector] public HP playerHealth;
-    [HideInInspector] public MagicManagement playerMagic;
+    [HideInInspector] public HP health;
+    [HideInInspector] public MagicManagement magic;
 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform GroundCheck;
@@ -89,9 +89,9 @@ public class Pickup : MonoBehaviour
         //     }
         // }
 
-        if(other.gameObject.layer == 3)
+        if(other.gameObject.layer == 3 || other.gameObject.layer == 11)
         {
-            HandlePlayer(other);
+            HandlePickup(other);
         }
 
         // else if (other.gameObject.layer == 11)
@@ -108,36 +108,35 @@ public class Pickup : MonoBehaviour
         // }
     }
 
-    private void HandlePlayer(Collider other)
+    private void HandlePickup(Collider other)
     {
 
-        playerHealth = other.GetComponentInParent<HP>();
-        playerMagic = other.GetComponentInParent<MagicManagement>();
-
-        Debug.Log(playerHealth);
-        Debug.Log(playerMagic);
+        health = other.GetComponentInParent<HP>();
+        magic = other.GetComponentInParent<MagicManagement>();
 
         bool consumed = false;
 
         switch (Type)
         {
             case PickupType.Health:
-                if(playerHealth.currentHP < playerHealth.maxHP)
+                if(health == null) break;
+                if(health.currentHP < health.maxHP)
                 {
-                    playerHealth.Heal(size);
+                    health.Heal(size);
                     consumed = true;
                 };
                 break;
 
             case PickupType.Magic:
-                if(playerMagic.magicPoints < playerMagic.maximumMagic)
+                if(magic == null) break;
+                if(magic.magicPoints < magic.maximumMagic)
                 {
-                    float regen = playerMagic.maximumMagic * size;
-                    playerMagic.magicPoints += regen;
+                    float regen = magic.maximumMagic * size;
+                    magic.magicPoints += regen;
 
-                    if(playerMagic.magicPoints >= playerMagic.maximumMagic)
+                    if(magic.magicPoints >= magic.maximumMagic)
                     {
-                        playerMagic.magicPoints = playerMagic.maximumMagic;
+                        magic.magicPoints = magic.maximumMagic;
                     }
                     consumed = true;
                     HitNumberManager.Instance.DisplayHitNumber(regen, transform, HitNumber.HitType.Magic);

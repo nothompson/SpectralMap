@@ -32,7 +32,7 @@ public class MovingPlatform : MonoBehaviour
         lastPos = collider.transform.position;
         col = collider.GetComponent<Collider>();
         surfaceY = col.bounds.max.y;
-        
+
         if(Init) StartCoroutine(MovingTowardsTarget());
     }
 
@@ -99,7 +99,14 @@ public class MovingPlatform : MonoBehaviour
                 {
                     if(rider.bounds.min.y < surfaceY)
                     {
-                        rider.transform.position += Vector3.up * (surfaceY - rider.bounds.min.y);
+                        if(rider.transform.parent != null && !rider.transform.parent.CompareTag("MovingPlatform"))
+                        {
+                            rider.transform.parent.position += Vector3.up * (surfaceY - rider.bounds.min.y);
+                        }
+                        else
+                        {  
+                            rider.transform.position += Vector3.up * (surfaceY - rider.bounds.min.y);
+                        }
                     }
                 }
                 yield return new WaitForFixedUpdate();

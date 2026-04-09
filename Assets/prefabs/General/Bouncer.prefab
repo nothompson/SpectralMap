@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2948819562081893726}
   - component: {fileID: 2948819562081893727}
   - component: {fileID: 365087589445552047}
+  - component: {fileID: -6433010687289437244}
   m_Layer: 7
   m_Name: Bouncer
-  m_TagString: Untagged
+  m_TagString: Bouncer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2948819562081893665}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -72.6, y: -38.53, z: -107.19}
   m_LocalScale: {x: 1.7623, y: 1.7623, z: 1.7623}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2948819562081893724
 MeshFilter:
@@ -61,6 +62,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,9 +88,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2948819562081893726
 BoxCollider:
@@ -94,9 +102,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2948819562081893665}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2948819562081893727
@@ -111,16 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8df1292be29f234690f545fa7e9be7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceMask:
-    serializedVersion: 2
-    m_Bits: 128
-  pc: {fileID: 0}
-  playerFeet: {fileID: 0}
   boxCollider: {fileID: 2948819562081893726}
-  bounceHeight: 10
+  bounceHeight: 20
   maxHeight: 30
-  cooldown: 5
+  cooldown: 0.5
+  bounced: 0
   bounce: {fileID: 365087589445552047}
+  Animation: {fileID: -6433010687289437244}
+  cachedVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &365087589445552047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +166,105 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 150
+--- !u!114 &-6433010687289437244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948819562081893665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9182a7f6fd0c43932137f240d5d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashAndStretch
+  TargetTransform: {fileID: 2948819562081893664}
+  Animation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.906161
+      outSlope: -2.906161
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.07917858
+      value: 0.7698943
+      inSlope: -0.8754852
+      outSlope: -0.8754852
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06573174
+    - serializedVersion: 3
+      time: 0.22055294
+      value: 0.8650704
+      inSlope: 2.789146
+      outSlope: 2.789146
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.34883857
+      value: 1.5275737
+      inSlope: -0.03186918
+      outSlope: -0.03186918
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13447034
+      outWeight: 0.16531357
+    - serializedVersion: 3
+      time: 0.8292043
+      value: 1.1622163
+      inSlope: -1.3389051
+      outSlope: -1.3389051
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9399566
+      value: 0.9498789
+      inSlope: -0.54124004
+      outSlope: -0.54124004
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.8347484
+      outSlope: 0.8347484
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AnimationDur: 1
+  PeakDeviationEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2948819562081893727}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: Ready
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Loop: 0

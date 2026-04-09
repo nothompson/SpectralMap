@@ -316,7 +316,10 @@ public class Enemy : MonoBehaviour
     public virtual void Targeting()
     {
         if(DeathManager.PlayerDead) return; 
-        if (fov.canSeePlayer && !critical)
+
+        if(critical) return;
+
+        if (fov.canSeePlayer)
         {
             memory = 10f;
             engage = true;
@@ -355,12 +358,13 @@ public class Enemy : MonoBehaviour
     public virtual void TargetSpotted(Vector3 targetPosition)
     {
         if(DeathManager.PlayerDead) return;
+        if(critical) return;
         distance = Vector3.Distance(transform.position, targetPosition);
         float angle = Vector3.Angle(transform.position, targetPosition);
         Vector3 adjusted = new Vector3(targetPosition.x, targetPosition.y + 0.33f, targetPosition.z);
         Vector3 direction = (adjusted - transform.position).normalized;
 
-        if (direction != Vector3.zero && !critical)
+        if (direction != Vector3.zero)
         {
             LookTowards(direction);
         }
@@ -556,7 +560,7 @@ public class Enemy : MonoBehaviour
         {
             yield return wait;
 
-            if (!attacking && engage && distance > attackDistance || critical)
+            if (!attacking && engage && distance > attackDistance)
             {
                 float chance = Random.value;
                 if ((chance < 0.15 && !nearLedge && grounded) || jumpAcross && grounded)
@@ -759,7 +763,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            if (hp.Critical() || debuffed)
+            if (hp.Critical())
             {
                 Collider[] pickup = Physics.OverlapSphere(transform.position, 20f, pickupMask);
 
@@ -831,6 +835,7 @@ public class Enemy : MonoBehaviour
 
         foreach(AttackBehavior b in Behaviors)
         {
+            if(b.onCooldown) continue;
             if(b.Ready(distance) && b.Range < bestRange)
             {
                 bestChoice = b;
@@ -871,22 +876,25 @@ public class Enemy : MonoBehaviour
         if(pendingAttack == null) return;
 
         attacking = true;
-        float cooldown = pendingAttack.Fire();
+        pendingAttack.Fire();
+        // float cooldown = pendingAttack.Fire();
         pendingAttack = null;
-        StartCoroutine(AttackCooldown(cooldown));
+        // StartCoroutine(AttackCooldown(cooldown));
     }
 
     public virtual void EndAttack()
     {
+        beginAttacking = false;
         stationaryAttack = false;
+        attacking = false;
     }
 
-    public virtual IEnumerator AttackCooldown(float cooldown)
-    {
-        yield return new WaitForSeconds(cooldown);
-        attacking = false;
-        beginAttacking = false;
-    }
+    // public virtual IEnumerator AttackCooldown(float cooldown)
+    // {
+    //     yield return new WaitForSeconds(cooldown);
+    //     attacking = false;
+    //     beginAttacking = false;
+    // }
 
     #endregion
 }

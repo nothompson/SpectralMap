@@ -20,6 +20,7 @@ public abstract class AttackBehavior : MonoBehaviour
 
     [SerializeField] public Transform AttackPoint;
     [HideInInspector] public GameObject Owner;
+    [HideInInspector] public bool onCooldown = false;
 // 
     public virtual void InitBehavior(GameObject enemy, Transform point)
     {
@@ -30,9 +31,24 @@ public abstract class AttackBehavior : MonoBehaviour
 
     public bool Ready(float distance)
     {
+        if(onCooldown) return false;
         return distance <= Range;
     }
 
-    public abstract float Fire();
+    public abstract void Fire();
+
+    public void StartCooldown()
+    {
+        Debug.Log("starting cooldown");
+        StartCoroutine(CooldownRoutine());
+    }
+    public IEnumerator CooldownRoutine()
+    {
+        Debug.Log("on cooldown");
+        onCooldown = true;
+        yield return new WaitForSeconds(Cooldown);
+        onCooldown = false;
+        Debug.Log("off cooldown!");
+    }
 
 }

@@ -187,11 +187,21 @@
                 {
                     MovingPlatform platform = null;
 
+                    Bouncer bouncer = null;
+
                     if (rayGrounded
                         && groundhit.collider != null
                         && groundhit.collider.CompareTag("MovingPlatform"))
                     {
                         platform = groundhit.collider.GetComponentInParent<MovingPlatform>();
+                    }
+
+                    if (rayGrounded
+                        && groundhit.collider != null
+                        && groundhit.collider.CompareTag("Bouncer"))
+                    {
+                        bouncer = groundhit.collider.GetComponentInParent<Bouncer>();
+                        Debug.Log(bouncer);
                     }
 
                     if (platform == null)
@@ -219,12 +229,18 @@
                         // update stored velocity so we can add it on next frame if leaving platform
                         platformVelocity = platform.PlatformVelocity;
 
-
                         //positions updated with parent transform
                         if(OwnerTransform.parent != platform.collider.transform)
                         {
                             OwnerTransform.SetParent(platform.collider.transform, true);
                         }
+                    }
+
+                    if (bouncer != null)
+                    {
+                        grounded = false;
+
+                        bouncer.Bounce(ref velocity);
                     }
                 }
             }

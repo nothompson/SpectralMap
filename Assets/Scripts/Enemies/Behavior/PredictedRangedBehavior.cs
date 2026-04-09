@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PredictedRangedBehavior : AttackBehavior
 {
 
-public override float Fire()
+public override void Fire()
     {
-        return Cooldown;
+        StartCoroutine(CooldownRoutine());
     }
 }

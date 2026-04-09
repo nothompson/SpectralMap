@@ -47,12 +47,16 @@ public class SpawnerEnemy : Enemy
     {
         if(attacking || pendingAttack != null)  return;
 
+        Debug.Log("finding attack");
+
         AttackBehavior bestChoice = null;
 
         float bestRange = float.MaxValue;
 
         foreach(AttackBehavior b in Behaviors)
         {
+            if(b.onCooldown) continue;
+
             if(b.Ready(distance) && b.Range < bestRange)
             {
                 bestChoice = b;
@@ -60,12 +64,16 @@ public class SpawnerEnemy : Enemy
             }
         }
 
+        Debug.Log(bestChoice);
+
         if(bestChoice == null) return;
+
 
         beginAttacking = true;
         pendingAttack = bestChoice;
 
         squashAndStretch.Play();
+        Debug.Log("playing animation");
     }
 
 
