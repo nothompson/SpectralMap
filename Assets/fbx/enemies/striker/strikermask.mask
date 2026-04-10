@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: strikermask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Striker
+    m_Weight: 1
+  - m_Path: Striker/Bone
+    m_Weight: 1
+  - m_Path: Striker/Bone/Bone.001
+    m_Weight: 1
+  - m_Path: Striker/Bone/Bone.001/Bone.002
+    m_Weight: 1
+  - m_Path: Striker/Bone.003
+    m_Weight: 1
+  - m_Path: Striker/CalfLeft.001
+    m_Weight: 0
+  - m_Path: Striker/CalfLeft.002
+    m_Weight: 0
+  - m_Path: Striker/CalfRight.001
+    m_Weight: 0
+  - m_Path: Striker/CalfRight.002
+    m_Weight: 0
+  - m_Path: Striker/ForearmLeft.001
+    m_Weight: 1
+  - m_Path: Striker/ForearmRight.001
+    m_Weight: 1
+  - m_Path: Striker/HipLeft
+    m_Weight: 0
+  - m_Path: Striker/HipLeft/ThighLeft
+    m_Weight: 0
+  - m_Path: Striker/HipLeft/ThighLeft/CalfLeft
+    m_Weight: 0
+  - m_Path: Striker/HipRight
+    m_Weight: 0
+  - m_Path: Striker/HipRight/ThighRight
+    m_Weight: 0
+  - m_Path: Striker/HipRight/ThighRight/CalfRight
+    m_Weight: 0
+  - m_Path: Striker/ShoulderLeft
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Middle0Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Middle0Left/Middle1Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Middle0Left/Middle1Left/Middle2Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Middle0Left/Middle1Left/Middle2Left/Middle3Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pinky0Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pinky0Left/Pinky1Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pinky0Left/Pinky1Left/Pinky2Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pinky0Left/Pinky1Left/Pinky2Left/Pinky3Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pointer0Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pointer0Left/Pointer1Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pointer0Left/Pointer1Left/Pointer2Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Pointer0Left/Pointer1Left/Pointer2Left/Pointer3Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Thumb0Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Thumb0Left/Thumb1Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft/Thumb0Left/Thumb1Left/Thumb2Left
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Middle0Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Middle0Right/Middle1Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Middle0Right/Middle1Right/Middle2Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Middle0Right/Middle1Right/Middle2Right/Middle3Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pinky0Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pinky0Right/Pinky1Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pinky0Right/Pinky1Right/Pinky2Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pinky0Right/Pinky1Right/Pinky2Right/Pinky3Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pointer0Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pointer0Right/Pointer1Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pointer0Right/Pointer1Right/Pointer2Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Pointer0Right/Pointer1Right/Pointer2Right/Pointer3Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Thumb0Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Thumb0Right/Thumb1Right
+    m_Weight: 1
+  - m_Path: Striker/ShoulderRight/BicepRight/ForearmRight/WristRight/Thumb0Right/Thumb1Right/Thumb2Right
+    m_Weight: 1
+  - m_Path: striker_tex
+    m_Weight: 1

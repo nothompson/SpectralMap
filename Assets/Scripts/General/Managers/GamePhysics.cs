@@ -30,6 +30,15 @@ namespace GamePhysics
             //get angle of explosion from target
             Vector3 dir = (hit.transform.position - position).normalized;
 
+            // if(dir.magnitude < 0.01f)
+            // {
+            //     dir = Vector3.up;
+            // }
+            // else
+            // {
+            //     dir.Normalize();
+            // }
+
             //distance from explosion radius origin to target origin
             float dist = Vector3.Distance(hit.transform.position, position);
 

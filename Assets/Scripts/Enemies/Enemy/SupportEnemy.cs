@@ -163,7 +163,7 @@ public class SupportEnemy : Enemy
         Vector3 dir = (allyPosition - attackPoint.position).normalized;
         attackPoint.rotation = Quaternion.LookRotation(dir);
         fbx?.SetTrigger(behavior.AnimationEvent);
-        StartCoroutine(AttackTimeout(behavior));
+        // StartCoroutine(AttackTimeout(behavior));
 
         yield return null;
     }
@@ -191,7 +191,7 @@ public class SupportEnemy : Enemy
         pendingAttack = bestChoice;
         if(bestChoice.Stationary) stationaryAttack = true;
         fbx?.SetTrigger(pendingAttack.AnimationEvent);
-        StartCoroutine(AttackTimeout(bestChoice));
+        // StartCoroutine(AttackTimeout(bestChoice));
     }
 
 }

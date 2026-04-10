@@ -6,18 +6,11 @@ using UnityEngine.UI;
 public class SpectrumUI : SpriteUI
 {
     public bool waiting = true;
-    override public void Awake()
-    {
-        // base.Awake();
-        // SyncToCurrentLevel();
-        Debug.Log("spectrum awake");
-    }
 
     public void OnShow()
     {
         lastvalue = -1f;
         waiting = false;
-        Debug.Log(SpectrumManager.Instance.PollutantLevel);
     }
 
     public void SyncToCurrentLevel()

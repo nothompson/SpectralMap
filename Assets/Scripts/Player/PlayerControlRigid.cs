@@ -152,6 +152,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     float ignoregroundtimer = 0f;
     float ignoregroundtime = 0.25f;
+    public bool ensared = false;
     
 
     //end of class variables
@@ -175,6 +176,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         CrosshairManager.Instance.Activate();
         ReloadManager.Instance.RegisterPlayer(gameObject);
         EventManager.Instance.RegisterPlayer(gameObject);
+        SpectrumManager.Instance.ProfileBackground.SetActive(true);
 
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
@@ -185,6 +187,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     void OnDisable()
     {
         CrosshairManager.Instance.Activate();
+        SpectrumManager.Instance.ProfileBackground.SetActive(false);
     }
 
     // void OnDestroy()
@@ -215,15 +218,17 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     void CalculateVelocity()
     {
+        if(ensared) return;
         groundedLastFrame = grounded;
         onPlatformLastFrame = onPlatform;
 
         surfingLastFrame = surfing;
 
+        playerVelocity += impact;
+        
         if (ignoregroundtimer > 0f)
             ignoregroundtimer -= Time.fixedDeltaTime;
 
-        playerVelocity += impact;
 
         GroundedCheck();
         ResetCheck();
@@ -239,6 +244,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         Movement();
         
         if(!groundedLastFrame) MovementFunctions.FinishGravity(ref playerVelocity);
+
 
         impact = Vector3.zero;
 
@@ -536,11 +542,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         grounded = check && !surfCast && ignoregroundtimer <= 0f;
 
-        if(!onPlatform && onPlatformLastFrame)
-        {
-            // Debug.Log("just left platform");
-        }
-
     }
 
     void OnCollisionEnter(Collision collision)
@@ -679,7 +680,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                     {
                         TrickManager.Instance.Sync(syncHits);
                     }
-                    else if(!RocketJumped)
+                    else if(!RocketJumped && playerSpeed >= 5f)
                     {
                         TrickManager.Instance.RocketJump();
                         RocketJumped = true;
@@ -743,9 +744,9 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, capsule.height, capsule.radius, GroundMask, grounded); 
 
 
-        if(ignoregroundtimer <= 0f){
-        playerVelocity = Vector3.ProjectOnPlane(playerVelocity, groundNormal);
-        }
+        // if(ignoregroundtimer <= 0f){
+        //     playerVelocity = Vector3.ProjectOnPlane(playerVelocity, groundNormal);
+        // }
     }
 
     public void surfMove()

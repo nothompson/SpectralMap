@@ -126,6 +126,8 @@ public class HP : MonoBehaviour
 
                     TrickManager.Instance.ResetCombo();
 
+                    SpectrumManager.Instance.ProfileBackground.SetActive(false);
+
                     float cachedforce = GibsManager.Instance.explosionForce;
                     GibsManager.Instance.explosionForce = 0.125f;
 

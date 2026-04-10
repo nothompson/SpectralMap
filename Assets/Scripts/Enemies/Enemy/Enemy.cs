@@ -18,8 +18,6 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public Transform player;
 
-    [HideInInspector] public Launcher launcher;
-
     public GameObject attackPrefab;
 
     public LayerMask projectileMask;
@@ -258,10 +256,6 @@ public class Enemy : MonoBehaviour
         if (playerRef != null)
             player = playerRef.transform;
 
-        GameObject launcherRef = GameObject.FindWithTag("Launcher");
-        if (launcherRef != null)
-            launcher = launcherRef.GetComponent<Launcher>();
-
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -493,9 +487,9 @@ public class Enemy : MonoBehaviour
                 enemyVelocity.y = 0f;
             }
         }
-       float enemymovement = rb.linearVelocity.magnitude;
+       float enemymovement = enemyVelocity.magnitude;
 
-        if (enemymovement < 0.25f)
+        if (enemymovement < 0.5f)
         {
             if(fbx == null) return;
             // float log = enemymovement > 0.1f ? enemymovement : 0f;
@@ -720,13 +714,6 @@ public class Enemy : MonoBehaviour
         
         // rb.velocity = knock;
 
-
-        if (launcher.spell == 2)
-        {
-            grounded = false;
-            nearLedge = false;
-        }
-
         if (!engage)
         {
             engage = true;
@@ -845,35 +832,54 @@ public class Enemy : MonoBehaviour
 
         if(bestChoice == null) return;
 
+        if(bestChoice is PredictedRangedBehavior predicted)
+        {
+            predicted.StartTracking();
+        }
+
+        foreach (AttackBehavior b in Behaviors)
+        {
+        if (!string.IsNullOrEmpty(b.AnimationEvent))
+            fbx.ResetTrigger(b.AnimationEvent);
+        }
+
         beginAttacking = true;
         pendingAttack = bestChoice;
 
         if (bestChoice.Stationary)
         {
             stationaryAttack = true;
+            enemyVelocity = Vector3.zero;
         }
 
         if(fbx == null) return;
         fbx.SetTrigger(pendingAttack.AnimationEvent);
 
-        StartCoroutine(AttackTimeout(bestChoice));
+        // StartCoroutine(AttackTimeout(bestChoice));
 
     }
 
-    public IEnumerator AttackTimeout(AttackBehavior expected)
-    {
-        yield return new WaitForSeconds(2f);
-        if(pendingAttack == expected)
-        {
-            pendingAttack = null;
-            beginAttacking = false;
-            stationaryAttack = false;
-        }
-    }
+    // public IEnumerator AttackTimeout(AttackBehavior expected)
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     if(pendingAttack == expected)
+    //     {
+    //         pendingAttack = null;
+    //         beginAttacking = false;
+    //         stationaryAttack = false;
+    //     }
+    // }
 
     public virtual void OnAttack()
     {
         if(pendingAttack == null) return;
+
+        if (pendingAttack.onCooldown)
+        {
+            pendingAttack = null;
+            beginAttacking = false;
+            return;
+        }
 
         attacking = true;
         pendingAttack.Fire();

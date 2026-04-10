@@ -19,6 +19,8 @@ public class SpectrumManager : MonoBehaviour
     public GameObject container;
     // private Image image;
     private SpriteAnimate Animation;
+    [SerializeField] public Material Profile;
+    [SerializeField] public GameObject ProfileBackground;
     public AnimationCurve transitionCurve;
 
     public AnimationCurve RotationCurve;
@@ -37,6 +39,11 @@ public class SpectrumManager : MonoBehaviour
     Coroutine CooldownRoutine;
 
     private Vector3 rot;
+
+    private GameObject playerref;
+
+    float lastNormalized;
+    float targetNormalized;
 
     void Awake()
     {
@@ -73,6 +80,10 @@ public class SpectrumManager : MonoBehaviour
 
         Vector3 pl = rt.anchoredPosition;
 
+        
+
+
+
         sprite.rect = rt;
         sprite.image = im;
         sprite.placement = pl;
@@ -89,6 +100,13 @@ public class SpectrumManager : MonoBehaviour
     {
         yield return null;
         sprite.SyncToCurrentLevel();
+        UpdateBackground();
+    }
+
+    void UpdateBackground()
+    {
+        float normal = Mathf.Clamp01((float)PollutantLevel / MaxPollutantLevel);
+        Profile.SetFloat("_Pollution", normal);
     }
 
     public void PolluteSpectrum(int x)
@@ -109,6 +127,7 @@ public class SpectrumManager : MonoBehaviour
             StartCooldown();
             return;
         }
+        
 
         StartTransition();
     }
@@ -121,9 +140,10 @@ public class SpectrumManager : MonoBehaviour
             PollutantLevel = 0;
         }
         EventManager.Instance.OnPurify(PollutantLevel);
+
         SaveSpectrum();
 
-                if(SpectrumActive && !outroPlaying){
+        if(SpectrumActive && !outroPlaying){
             StartShake();
             StartCooldown();
             return;
@@ -239,6 +259,7 @@ public class SpectrumManager : MonoBehaviour
         else
         {
             sprite.OnShow();
+
             StartCooldown();
         }
         outroPlaying = false;

@@ -172,7 +172,6 @@ public class Fireball : MonoBehaviour
             }
             if (pc != null)
             {
-
                 if(pc.playerVelocity.y < 0f)
                 {
                     pc.playerVelocity.y = 0f;
@@ -213,10 +212,11 @@ public class Fireball : MonoBehaviour
                 }
             }
 
-            if (rb != null)
-            {
-                GameFunctions.ApplyForceToRigidbody(ref rb, e, targetForce);
-            }
+            // if (rb != null)
+            // {
+            //     GameFunctions.ApplyForceToRigidbody(ref rb, e, targetForce);
+            //     Debug.Log("force to rigidbody");
+            // }
         }
 
 

@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: sorcermask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Base
+    m_Weight: 0
+  - m_Path: Armature/Base/UpperSpine
+    m_Weight: 1
+  - m_Path: Armature/Base/UpperSpine/Head
+    m_Weight: 1
+  - m_Path: Armature/Base/UpperSpine/Head/Head_end
+    m_Weight: 1
+  - m_Path: Armature/Base/UpperSpine/Head/Head_end/Head_end_end
+    m_Weight: 1
+  - m_Path: Armature/BootLeft.001
+    m_Weight: 0
+  - m_Path: Armature/BootLeft.001/BootLeft.001_end
+    m_Weight: 1
+  - m_Path: Armature/BootLeft.001/BootLeft.001_end/BootLeft.001_end_end
+    m_Weight: 1
+  - m_Path: Armature/BootRight.001
+    m_Weight: 0
+  - m_Path: Armature/BootRight.001/BootRight.001_end
+    m_Weight: 1
+  - m_Path: Armature/BootRight.001/BootRight.001_end/BootRight.001_end_end
+    m_Weight: 1
+  - m_Path: Armature/Head.001
+    m_Weight: 1
+  - m_Path: Armature/Head.001/Head.001_end
+    m_Weight: 1
+  - m_Path: Armature/Head.001/Head.001_end/Head.001_end_end
+    m_Weight: 1
+  - m_Path: Armature/Staff
+    m_Weight: 1
+  - m_Path: Armature/Staff/Staff_end
+    m_Weight: 1
+  - m_Path: Armature/Staff/Staff_end/Staff_end_end
+    m_Weight: 1
+  - m_Path: Armature/t7.001
+    m_Weight: 1
+  - m_Path: Armature/t7.001/t7.001_end
+    m_Weight: 1
+  - m_Path: Armature/t7.001/t7.001_end/t7.001_end_end
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4/t5
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4/t5/t6
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4/t5/t6/t7
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4/t5/t6/t7/t7_end
+    m_Weight: 1
+  - m_Path: Armature/TentacleBase/t0/t1/t2/t3/t4/t5/t6/t7/t7_end/t7_end_end
+    m_Weight: 1
+  - m_Path: Armature/ThighLeft
+    m_Weight: 0
+  - m_Path: Armature/ThighLeft/CalfLeft
+    m_Weight: 1
+  - m_Path: Armature/ThighLeft/CalfLeft/BootLeft
+    m_Weight: 1
+  - m_Path: Armature/ThighLeft/CalfLeft/BootLeft/BootLeft_end
+    m_Weight: 1
+  - m_Path: Armature/ThighLeft/CalfLeft/BootLeft/BootLeft_end/BootLeft_end_end
+    m_Weight: 1
+  - m_Path: Armature/ThighRight
+    m_Weight: 0
+  - m_Path: Armature/ThighRight/CalfRight
+    m_Weight: 1
+  - m_Path: Armature/ThighRight/CalfRight/BootRight
+    m_Weight: 1
+  - m_Path: Armature/ThighRight/CalfRight/BootRight/BootRight_end
+    m_Weight: 1
+  - m_Path: Armature/ThighRight/CalfRight/BootRight/BootRight_end/BootRight_end_end
+    m_Weight: 1
+  - m_Path: cursedstaff
+    m_Weight: 1
+  - m_Path: sorcerer
+    m_Weight: 1

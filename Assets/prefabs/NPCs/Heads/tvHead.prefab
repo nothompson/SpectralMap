@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: -1756726661, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   - {fileID: -278351036, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   startingIndex: 0
+  randomStart: 1
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -392,6 +393,7 @@ MonoBehaviour:
   - {fileID: -1756726661, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   - {fileID: -278351036, guid: bbc16c8e7b158e644b10ae0f514eb2a2, type: 3}
   startingIndex: 2
+  randomStart: 1
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}

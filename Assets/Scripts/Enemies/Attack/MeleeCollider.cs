@@ -12,6 +12,7 @@ public class MeleeCollider : MonoBehaviour
     public float damage;
     public float range = 5f;
     public float forceMultiplier = 1f;
+      public Vector3 forceOffset = Vector3.zero;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +32,8 @@ public class MeleeCollider : MonoBehaviour
                 float inverse = 1.0f - Mathf.Clamp01(dist / range);
                 
                 Vector3 force = dir * damage * forceMultiplier * inverse;
+
+                force += forceOffset;
 
                 collided = true;
 

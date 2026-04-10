@@ -19,6 +19,10 @@ public class ProjectileParticleManager : MonoBehaviour
 
     private ParticleSystem.EmitParams smokeParams;
 
+    public ParticleSystem SorcererCast;
+
+    private ParticleSystem.EmitParams sorcererCastParams;
+
     void Awake()
     {
         if(Instance == null)
@@ -41,6 +45,19 @@ public class ProjectileParticleManager : MonoBehaviour
     public void Delete(Fireball fireball)
     {
         activeFireballs.Remove(fireball);
+    }
+
+    public void SpawnSorcererCast(Transform spawn, int x)
+    {
+    for (int i = 0; i < x; i++)
+    {
+        sorcererCastParams = new ParticleSystem.EmitParams();
+        // Scatter within a sphere around the target position
+        sorcererCastParams.position = spawn.position + Random.insideUnitSphere * 0.25f;
+        sorcererCastParams.applyShapeToPosition = true;
+
+        SorcererCast.Emit(sorcererCastParams, 1);
+    }
     }
 
     void Update()

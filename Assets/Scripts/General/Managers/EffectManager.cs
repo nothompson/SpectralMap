@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     public static EffectManager Instance;
+    
 
     private Dictionary<GameObject, Effect> debuffKey = new Dictionary<GameObject, Effect>();
     private Dictionary<GameObject, Effect> buffKey = new Dictionary<GameObject, Effect>();

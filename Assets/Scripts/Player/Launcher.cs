@@ -135,6 +135,8 @@ public class Launcher : MonoBehaviour
 
     private void MyInput()
     {
+        if(player.ensared) return;
+
         if(!player.paused){
             //left click. if yes trigger bool
             // shooting = InputManager.Instance.inputs.Player.Fire.triggered;

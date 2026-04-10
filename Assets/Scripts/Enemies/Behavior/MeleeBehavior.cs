@@ -6,6 +6,7 @@ public class MeleeBehavior : AttackBehavior
 {
     [SerializeField] public float HitBoxLife;
     [SerializeField] public float MeleeRadius;
+    [SerializeField] public Vector3 ForceOffset;
 
     public override void Fire()
     {
@@ -24,6 +25,7 @@ public class MeleeBehavior : AttackBehavior
             melee.damage = Damage;
             melee.range = MeleeRadius;
             melee.forceMultiplier = Force;
+            melee.forceOffset = ForceOffset;
         }
 
         Destroy(hitbox, HitBoxLife);
