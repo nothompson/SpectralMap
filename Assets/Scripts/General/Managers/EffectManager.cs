@@ -1,11 +1,20 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using TMPro;
+using System.IO;
 
 public class EffectManager : MonoBehaviour
 {
     public static EffectManager Instance;
     
+    public GameObject EffectCanvas; 
+
+    public GridLayoutGroup EffectGrid;
 
     private Dictionary<GameObject, Effect> debuffKey = new Dictionary<GameObject, Effect>();
     private Dictionary<GameObject, Effect> buffKey = new Dictionary<GameObject, Effect>();
@@ -473,6 +482,11 @@ public class EffectManager : MonoBehaviour
             boost.boosted = true;
         }
     
+    }
+
+    public void FleshSuit(GameObject target)
+    {
+        
     }
 
     public void Rage(GameObject target, float duration, float multiplier)

@@ -17,7 +17,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public Transform player;
     public Transform playerCamera = null;
     public Transform attackingPoint = null;
-    public Transform gun = null;
+    public Launcher launcher = null;
     public Transform[] hands = null;
     public GameObject YawPivot; 
     public CapsuleCollider capsule; 
@@ -788,6 +788,11 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         impact += force;
         ignoregroundtimer = ignoregroundtime;
+    }
+
+    public void SpellError(bool drain = false)
+    {
+        launcher.SpellError(drain);
     }
 
     #endregion

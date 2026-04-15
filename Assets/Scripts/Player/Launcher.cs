@@ -114,16 +114,14 @@ public class Launcher : MonoBehaviour
         {
             errorCooldown -= Time.deltaTime;
             if(errorCooldown <=0){
-                mana.Error();
-                cantShootYet.Play();
+                SpellError();
                 errorCooldown = errorTimer;
             }
         }
         
         if(readyToShoot && InputManager.Instance.inputs.Player.Fire.triggered && playerMagic.magicPoints < 10f * costMultiplier)
         {
-            mana.Error();
-            cantShootYet.Play();
+            SpellError();
         }
 
         // if(grappling && playerMagic.magicPoints < costToShoot && !grapple.grappleActive && !grapple.releasing)
@@ -131,6 +129,20 @@ public class Launcher : MonoBehaviour
         //     mana.Error();
         //     cantShootYet.Play();
         // }
+    }
+
+    public void SpellError(bool drain = false)
+    {
+        mana.Error();
+        cantShootYet.Play();
+        if (drain)
+        {
+            playerMagic.magicPoints -= 25f;
+            if(playerMagic.magicPoints <= 0f)
+            {
+                playerMagic.magicPoints = 0f;
+            }
+        }
     }
 
     private void MyInput()

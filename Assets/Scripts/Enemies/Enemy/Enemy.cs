@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public bool stationaryAttack = false;
 
-    float strafeDir = 0f;
+    protected float strafeDir = 0f;
     float strafeTimer = 0f;
     float strafeDuration = 0f;
 
@@ -186,7 +186,7 @@ public class Enemy : MonoBehaviour
 
         preferredRange = GetPreferredRange();
 
-        lastGroundCheckPos = GroundCheck.position;
+        if(GroundCheck != null) lastGroundCheckPos = GroundCheck.position;
 
     }
 
@@ -431,7 +431,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void LookTowards(Vector3 direction)
+    public virtual void LookTowards(Vector3 direction)
     {
         Vector3 clamped = direction;
         clamped.y = Mathf.Clamp(direction.y, -0.15f, 0.15f);
@@ -446,7 +446,7 @@ public class Enemy : MonoBehaviour
         attackPoint.localRotation = Quaternion.Inverse(transform.rotation) * desiredAttackRotation;
     }
 
-    public void MoveTowards(Vector3 direction)
+    public virtual void MoveTowards(Vector3 direction)
     {
         float noise = Mathf.PerlinNoise(Time.time * chaosFrequency + noiseOffset, 0f);
         float bipolar = (noise * 2f - 1f) * movementChaos;
@@ -465,15 +465,12 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Movement
-    public void Movement()
+    public virtual void Movement()
     {
- 
-
         GroundedCheck();
         // LedgeCheck();
         if (!grounded)
         {
-            // MovementFunctions.ApplyGravity(ref enemyVelocity);
             applyFriction(0.5f);
             moveSpeed = airSpeed;
 
@@ -502,11 +499,6 @@ public class Enemy : MonoBehaviour
             // Debug.Log("moving: " + enemymovement);
             fbx.SetTrigger("moving");
         }
-
-     
-
-        // Debug.Log("x: " + transform.localRotation.x + " " + "y: " + transform.localRotation.y + " " + "z: " + transform.localRotation.z);
-
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -601,7 +593,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-        void UpdateStrafe()
+    protected void UpdateStrafe()
     {
         strafeTimer -= Time.fixedDeltaTime;
         if(strafeTimer <= 0f)
@@ -635,7 +627,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Dodge()
+    protected virtual void Dodge()
     {
         if(dodged || !fov.canSeePlayer || !grounded) return;
 
@@ -855,21 +847,7 @@ public class Enemy : MonoBehaviour
         if(fbx == null) return;
         fbx.SetTrigger(pendingAttack.AnimationEvent);
 
-        // StartCoroutine(AttackTimeout(bestChoice));
-
     }
-
-    // public IEnumerator AttackTimeout(AttackBehavior expected)
-    // {
-    //     yield return new WaitForSeconds(2f);
-    //     if(pendingAttack == expected)
-    //     {
-    //         pendingAttack = null;
-    //         beginAttacking = false;
-    //         stationaryAttack = false;
-    //     }
-    // }
-
     public virtual void OnAttack()
     {
         if(pendingAttack == null) return;
@@ -883,9 +861,7 @@ public class Enemy : MonoBehaviour
 
         attacking = true;
         pendingAttack.Fire();
-        // float cooldown = pendingAttack.Fire();
         pendingAttack = null;
-        // StartCoroutine(AttackCooldown(cooldown));
     }
 
     public virtual void EndAttack()
@@ -894,13 +870,6 @@ public class Enemy : MonoBehaviour
         stationaryAttack = false;
         attacking = false;
     }
-
-    // public virtual IEnumerator AttackCooldown(float cooldown)
-    // {
-    //     yield return new WaitForSeconds(cooldown);
-    //     attacking = false;
-    //     beginAttacking = false;
-    // }
 
     #endregion
 }

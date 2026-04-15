@@ -129,15 +129,16 @@ public class Fireball : MonoBehaviour
 
                     if (!e.grounded)
                     {
+                        bool airshotted = false;
                         float airdamage = direct ? damage * airshotMultiplier : damage;
-                         Debug.Log("damage: " + airdamage);
-                        if (direct)
-                        {
-                            TrickManager.Instance.Airshot();
-                        }
-                        if(direct && playerControl.RocketJumped)
+                        if (direct && (playerControl.RocketJumped || playerControl.playerVelocity.y >= 10f) && airshotted == false)
                         {
                             TrickManager.Instance.AirAirshot();
+                            airshotted = true;
+                        }
+                        else if(direct && airshotted == false)
+                        {
+                            TrickManager.Instance.Airshot();
                         }
                         targetHP.Damage(airdamage);
                     }
@@ -145,7 +146,6 @@ public class Fireball : MonoBehaviour
                     {
                         e.grounded = false;
                         targetHP.Damage(damage);
-                        Debug.Log("damage: " + damage);
                         impact.y += explosionForce;
                         impact.x *= 2f;
                         impact.z *= 2f;

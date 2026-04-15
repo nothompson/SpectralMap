@@ -860,7 +860,6 @@ MonoBehaviour:
   ChanceToDropPickup: 1
   rb: {fileID: 0}
   player: {fileID: 0}
-  launcher: {fileID: 0}
   attackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
   projectileMask:
     serializedVersion: 2
@@ -1099,8 +1098,10 @@ MonoBehaviour:
   BurstCount: 3
   AttackPoint: {fileID: 5536796892424308439}
   Owner: {fileID: 0}
+  onCooldown: 0
   HitBoxLife: 0.3
   MeleeRadius: 2
+  ForceOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &5749409566630096111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1257,7 @@ Transform:
   m_GameObject: {fileID: 7479902017088984428}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.064, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:

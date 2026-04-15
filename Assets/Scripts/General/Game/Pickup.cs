@@ -142,6 +142,10 @@ public class Pickup : MonoBehaviour
                     HitNumberManager.Instance.DisplayHitNumber(regen, transform, HitNumber.HitType.Magic);
                 }
                 break;
+            case PickupType.Greed:
+                consumed = true;
+                Debug.Log("picked up pot of greed!");
+                break;
         }
 
         if (consumed)

@@ -58,7 +58,17 @@ public class GrappleProjectile : MonoBehaviour
         if(Physics.SphereCast(transform.position, collisionRadius, velocity.normalized,
         out RaycastHit hit, step, targetMask, QueryTriggerInteraction.Ignore))
         {
-            grapple.OnProjectileHit(hit.collider.transform, hit.point, hit.distance + distanceTravelled, hit.normal);
+            Transform targ = hit.collider.transform;
+
+            if (targ.gameObject.CompareTag("NoGrapple"))
+            {
+                grapple.OnProjectileMiss();
+            }
+            else
+            {
+                grapple.OnProjectileHit(targ, hit.point, hit.distance + distanceTravelled, hit.normal);
+            }
+
 
             Destroy(gameObject);
             return;
