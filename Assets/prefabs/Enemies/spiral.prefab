@@ -109,8 +109,8 @@ GameObject:
   - component: {fileID: 2572167946804191735}
   - component: {fileID: 3605186306415746810}
   - component: {fileID: 426539979119321546}
-  - component: {fileID: 1341380951175131897}
   - component: {fileID: 6921600930547641381}
+  - component: {fileID: 4272022668264413488}
   m_Layer: 11
   m_Name: spiral
   m_TagString: Enemy
@@ -381,6 +381,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
   AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls: []
   Range: 3
   Cooldown: 1
   Damage: 10
@@ -396,34 +399,6 @@ MonoBehaviour:
   HitBoxLife: 0.3
   MeleeRadius: 4
   ForceOffset: {x: 0, y: 0, z: 0}
---- !u!114 &1341380951175131897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8759779590190901129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d200e42f4f3c10e42a7a7766d0bde9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangedBehavior
-  AttackPrefab: {fileID: 8812009374192403409, guid: 9130b00d0c46e6c4c93ea1830ea0a3c8, type: 3}
-  Range: 10
-  Cooldown: 3
-  Damage: 10
-  Force: 10
-  AnimationEvent: shooting
-  Stationary: 1
-  Support: 0
-  BurstMode: 0
-  BurstCount: 3
-  AttackPoint: {fileID: 5057575315023857220}
-  Owner: {fileID: 0}
-  onCooldown: 0
-  ProjectileSpeed: 1
-  AutoTimer: 3
-  ExplosionRadius: 3
 --- !u!114 &6921600930547641381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +412,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PredictedRangedBehavior
   AttackPrefab: {fileID: 8812009374192403409, guid: 9130b00d0c46e6c4c93ea1830ea0a3c8, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4272022668264413488}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 10
   Cooldown: 3
   Damage: 10
@@ -449,11 +439,26 @@ MonoBehaviour:
   AttackPoint: {fileID: 5057575315023857220}
   Owner: {fileID: 0}
   onCooldown: 0
-  projectileSpeed: 1
+  projectileSpeed: 10
   predictionClamp: 5
   AutoTimer: 5
   ExplosionRadius: 3
+  enemy: {fileID: 0}
   predictedTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &4272022668264413488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759779590190901129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 0
+  overrideSpawn: {fileID: 0}
 --- !u!1001 &841842858740956116
 PrefabInstance:
   m_ObjectHideFlags: 0

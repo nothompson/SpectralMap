@@ -8,7 +8,7 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
     public GameObject player;
     public PlayerControlRigid pc;
 
-    public GameObject enemy;
+    public Enemy enemy;
     public HP playerHealth;
     public Rigidbody rb;
 
@@ -45,24 +45,6 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
 
             collided = true;
             StartCoroutine(Hit());
-        }
-        if ((reflected || support) && other.gameObject.layer == 11)
-        {
-            if (support && other.transform.parent.gameObject != thisEnemy)
-            {
-                enemy = other.transform.parent.gameObject;
-                enemyHP = other.GetComponentInParent<HP>();
-                collided = true;
-                StartCoroutine(Hit());
-            }
-            else if (reflected)
-            {
-                enemy = other.transform.parent.gameObject;
-                enemyHP = other.GetComponentInParent<HP>();
-                collided = true;
-                StartCoroutine(Hit());
-            }
-    
         }
     }
 

@@ -8,6 +8,7 @@ public class HookBehavior : PredictedRangedBehavior
     public override void Fire()
     {
         predictedTarget = PredictTarget();
+        OnFire?.Invoke(AttackPoint);
         ShootHook(predictedTarget);
         StartCoroutine(CooldownRoutine());
     }
@@ -32,6 +33,8 @@ public class HookBehavior : PredictedRangedBehavior
         }
 
         hook.attackPoint = AttackPoint;
+        hook.target = target;
+        hook.enemy = enemy;
 
     }
 }

@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2704662763857125183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.74, z: 0.49}
-  m_LocalScale: {x: 1.85, y: 1.85, z: 1.85}
+  m_LocalPosition: {x: 0, y: 0.74, z: -0.18}
+  m_LocalScale: {x: 1.5404395, y: 1.5404395, z: 1.5404395}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4632549397184289932}
@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 7113690847693012688}
   - component: {fileID: 3683110675594042977}
   - component: {fileID: 1938615318040601390}
+  - component: {fileID: 6541343850205941331}
   m_Layer: 11
   m_Name: seastar
   m_TagString: Untagged
@@ -416,6 +417,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PredictedRangedBehavior
   AttackPrefab: {fileID: 8812009374192403409, guid: 64f6959dc625c1141b4e5f0e12ac0cf0, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6541343850205941331}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 10
   Cooldown: 3
   Damage: 10
@@ -432,7 +448,22 @@ MonoBehaviour:
   predictionClamp: 8
   AutoTimer: 10
   ExplosionRadius: 5
+  enemy: {fileID: 0}
   predictedTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &6541343850205941331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749430797362092941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 2
+  overrideSpawn: {fileID: 0}
 --- !u!1 &4576408092282724411
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 4576408092282724411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.467}
+  m_LocalPosition: {x: 0, y: -0.11, z: 1.119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

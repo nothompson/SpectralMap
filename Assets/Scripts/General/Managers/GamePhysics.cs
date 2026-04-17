@@ -5,7 +5,7 @@ namespace GamePhysics
 {
     public static class GameFunctions
     {
-        public static Vector3 TargetedExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce)
+        public static Vector3 TargetedExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce, float multiplier = 1f)
         {
             //get angle of explosion from target
             // Vector3 dir = (hit.transform.position - position).normalized;
@@ -20,12 +20,12 @@ namespace GamePhysics
             float inverse = Mathf.Max(0.2f, 1.0f - Mathf.Clamp01(dist / explosionRadius));
 
             //calculate force 
-            Vector3 force = dir * explosionForce * inverse;
+            Vector3 force = dir * explosionForce * inverse * multiplier;
 
             return force;
         }
 
-        public static Vector3 SelfExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce)
+        public static Vector3 SelfExplosionForce(Collider hit, Vector3 position, float explosionRadius, float explosionForce, float multiplier = 1f)
         {
             //get angle of explosion from target
             Vector3 dir = (hit.transform.position - position).normalized;
@@ -46,7 +46,7 @@ namespace GamePhysics
             float inverse = 1.0f - Mathf.Clamp01(dist / explosionRadius);
 
             //calculate force 
-            Vector3 force = dir * explosionForce * inverse;
+            Vector3 force = dir * explosionForce * inverse * multiplier;
 
             return force;
         }

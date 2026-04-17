@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 8772950976305517556}
   - component: {fileID: 692298165493817340}
   - component: {fileID: 9156543957067525330}
+  - component: {fileID: 4298493812530365580}
+  - component: {fileID: 5711799248109314653}
   m_Layer: 11
   m_Name: ghost
   m_TagString: NoGrapple
@@ -320,6 +322,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PredictedRangedBehavior
   AttackPrefab: {fileID: 8812009374192403409, guid: 1b8f66840baefef478547db45816f018, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5711799248109314653}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 10
   Cooldown: 3
   Damage: 10
@@ -336,7 +353,53 @@ MonoBehaviour:
   predictionClamp: 8
   AutoTimer: 10
   ExplosionRadius: 5
+  enemy: {fileID: 0}
   predictedTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &4298493812530365580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653363824290525964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907934122238b204bb9f39fbc87385b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
+  AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls: []
+  Range: 3
+  Cooldown: 7
+  Damage: 10
+  Force: 5
+  AnimationEvent: shooting
+  Stationary: 1
+  Support: 0
+  BurstMode: 0
+  BurstCount: 3
+  AttackPoint: {fileID: 4798955191140198460}
+  Owner: {fileID: 0}
+  onCooldown: 0
+  HitBoxLife: 0.5
+  MeleeRadius: 5
+  ForceOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &5711799248109314653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653363824290525964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 3
+  overrideSpawn: {fileID: 0}
 --- !u!1 &9097323649251154339
 GameObject:
   m_ObjectHideFlags: 0

@@ -140,7 +140,7 @@ MonoBehaviour:
     m_Bits: 384
   pickupSound: {fileID: -8213131136282413363}
   platformVelocity: {x: 0, y: 0, z: 0}
-  Type: 0
+  Type: 3
   size: 0.5
 --- !u!114 &-8213131136282413363
 MonoBehaviour:

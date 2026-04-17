@@ -10,6 +10,7 @@ public class MeleeBehavior : AttackBehavior
 
     public override void Fire()
     {
+        OnFire?.Invoke(AttackPoint);
         StartCoroutine(Melee());
         StartCoroutine(CooldownRoutine());
     }

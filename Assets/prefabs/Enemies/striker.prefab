@@ -441,11 +441,11 @@ Transform:
   m_GameObject: {fileID: 1884494828090182384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.03, z: 2.625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00022, y: 0.00072, z: -0.00168}
+  m_LocalScale: {x: 0.0035221383, y: 0.004208003, z: 0.006101567}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7876543471418542329}
+  m_Father: {fileID: 734465132869159703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989079232731557905
 GameObject:
@@ -1457,6 +1457,7 @@ GameObject:
   - component: {fileID: 4013228342075658950}
   - component: {fileID: 2479855020790304984}
   - component: {fileID: 1291181441246652279}
+  - component: {fileID: 5966270999940845173}
   m_Layer: 11
   m_Name: striker
   m_TagString: Untagged
@@ -1480,7 +1481,6 @@ Transform:
   - {fileID: 9180197489589449406}
   - {fileID: 7015611658453429566}
   - {fileID: 763617689912539918}
-  - {fileID: 352548474504655841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6904332122372736911
@@ -1726,8 +1726,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HookBehavior
   AttackPrefab: {fileID: 8812009374192403409, guid: 273853023555c6d43827027e1bda6971, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5966270999940845173}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 30
-  Cooldown: 15
+  Cooldown: 5
   Damage: 5
   Force: 0
   AnimationEvent: shooting
@@ -1742,6 +1757,7 @@ MonoBehaviour:
   predictionClamp: 8
   AutoTimer: 3
   ExplosionRadius: 10
+  enemy: {fileID: 0}
   predictedTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &2479855020790304984
 MonoBehaviour:
@@ -1756,6 +1772,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
   AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls: []
   Range: 4
   Cooldown: 2
   Damage: 15
@@ -1769,7 +1788,7 @@ MonoBehaviour:
   Owner: {fileID: 0}
   onCooldown: 0
   HitBoxLife: 0.25
-  MeleeRadius: 4
+  MeleeRadius: 3
   ForceOffset: {x: 0, y: 15, z: 0}
 --- !u!114 &1291181441246652279
 MonoBehaviour:
@@ -1784,6 +1803,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
   AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls: []
   Range: 10
   Cooldown: 8
   Damage: 10
@@ -1797,8 +1819,22 @@ MonoBehaviour:
   Owner: {fileID: 0}
   onCooldown: 0
   HitBoxLife: 0.75
-  MeleeRadius: 10
+  MeleeRadius: 6
   ForceOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &5966270999940845173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820360266154066643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 1
+  overrideSpawn: {fileID: 0}
 --- !u!1 &7039793874015807012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,12 +2791,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -7723619210167972629, guid: baeac64f9c963ab4da0dc47bf1f0f439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 352548474504655841}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: baeac64f9c963ab4da0dc47bf1f0f439, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5545590807417069404}
   m_SourcePrefab: {fileID: 100100000, guid: baeac64f9c963ab4da0dc47bf1f0f439, type: 3}
+--- !u!4 &734465132869159703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7723619210167972629, guid: baeac64f9c963ab4da0dc47bf1f0f439, type: 3}
+  m_PrefabInstance: {fileID: 2225175252715800572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1306044766786468525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: baeac64f9c963ab4da0dc47bf1f0f439, type: 3}

@@ -266,7 +266,7 @@ public class Launcher : MonoBehaviour
         //pass in references to rocket prefab
         rocketInstance.GetComponent<Fireball>().player = player.transform;
         rocketInstance.GetComponent<Fireball>().damageMultiplier = PlayerManager.Instance.DamageMultiplier;
-        rocketInstance.GetComponent<Fireball>().forceMultiplier = forceMultiplier;
+        rocketInstance.GetComponent<Fireball>().forceMultiplier = PlayerManager.Instance.ForceMultiplier;
         rocketInstance.GetComponent<Fireball>().speed = fireballSpeed;
 
         fireSound.Play();

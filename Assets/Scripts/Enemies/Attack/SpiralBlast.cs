@@ -31,7 +31,8 @@ public class SpiralBlast : Rocket
                 }
                 if(p != null)
                 {
-                    EffectManager.Instance.Confuse(p.gameObject, ConfuseDur, 1f);
+                    EffectManager.Instance.Confuse(p.gameObject, ConfuseDur);
+                    EffectManager.Instance.Guilt(p.gameObject, ConfuseDur * 2f);
                     p.playerVelocity += force;
                 }
                 damagedHP.Add(targetHP);
@@ -44,6 +45,7 @@ public class SpiralBlast : Rocket
                 }
             }
         }
+        ProjectileParticleManager.Instance.SpawnSquidBlast(transform);
         Destroy(gameObject);
     }
 }

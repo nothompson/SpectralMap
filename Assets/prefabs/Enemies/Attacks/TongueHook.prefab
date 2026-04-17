@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3001575971675077452}
-  m_Mesh: {fileID: -1633026652517017674, guid: 36929c3cecb20dd4dbf576321d316154, type: 3}
+  m_Mesh: {fileID: 5677544268158096823, guid: 057d97b4ada68d74caa78591fa6d2690, type: 3}
 --- !u!23 &3649957496642460313
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4937771763362974424, guid: 36929c3cecb20dd4dbf576321d316154, type: 3}
+  - {fileID: -8212318888825133405, guid: baa23c482b1f1b84286e197268c7ac0a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479809001867923690}
+  - component: {fileID: 4591493425723546277}
   m_Layer: 19
   m_Name: Gib7
   m_TagString: Untagged
@@ -122,6 +123,28 @@ Transform:
   - {fileID: 2516507091720086006}
   m_Father: {fileID: 8812009374192403408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4591493425723546277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162990987268158586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshJitter
+  fps: 12
+  scaleRange: 0.12
+  rotationRange: 50.1
+  positionRange: 0
+  lockPosition: 0
+  parented: 0
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
+  targetRot: {x: 0, y: 0, z: 0, w: 0}
+  scale: {x: 0, y: 0, z: 0}
 --- !u!1 &8812009374192403409
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +226,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.32
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4156085035939408360
 MonoBehaviour:
@@ -228,13 +251,14 @@ MonoBehaviour:
     m_Bits: 8
   speed: 10
   damage: 10
-  autoTimer: 12
+  autoTimer: 1.5
   reflected: 0
   support: 0
   collided: 0
   enemyHP: {fileID: 0}
   attackPoint: {fileID: 0}
   HookDuration: 2
+  steerStrength: 2
   HookCurve:
     serializedVersion: 2
     m_Curve:
@@ -277,3 +301,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  target: {x: 0, y: 0, z: 0}
+  segmentSpacing: 0.45
+  maxSegments: 80
+  segmentPoolID: TongueSegment

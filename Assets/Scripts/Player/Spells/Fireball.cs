@@ -107,9 +107,9 @@ public class Fireball : MonoBehaviour
             Rigidbody rb = hit.attachedRigidbody;
 
 
-            Vector3 targetForce = GameFunctions.TargetedExplosionForce(hit, transform.position, explosionRadius, explosionForce);
+            Vector3 targetForce = GameFunctions.TargetedExplosionForce(hit, transform.position, explosionRadius, explosionForce, forceMultiplier);
 
-            Vector3 selfForce = GameFunctions.SelfExplosionForce(hit, transform.position, explosionRadius, explosionForce);
+            Vector3 selfForce = GameFunctions.SelfExplosionForce(hit, transform.position, explosionRadius, explosionForce, forceMultiplier);
 
             damage = GameFunctions.CalculateForceDamage(hit, transform.position, explosionRadius, maximumDamage, damageMultiplier, direct);
 

@@ -12,7 +12,7 @@ public class PredictedRangedBehavior : AttackBehavior
     [SerializeField] private float AutoTimer = 1f;
     [SerializeField] private float ExplosionRadius = 1f;
 
-    Enemy enemy;
+    [HideInInspector] public Enemy enemy;
     Transform player;
 
     [HideInInspector] public Vector3 predictedTarget;
@@ -81,6 +81,7 @@ public class PredictedRangedBehavior : AttackBehavior
     public override void Fire()
     {
         predictedTarget = PredictTarget();
+        OnFire?.Invoke(AttackPoint);
         SpawnProjectile(predictedTarget);
         StartCoroutine(CooldownRoutine());
     }

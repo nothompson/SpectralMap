@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     public float DamageMultiplier; 
+
+    public float ForceMultiplier; 
+
     public bool ProjectileGrappling;
     void Awake()
     {
@@ -37,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     void LoadDefaults()
     {
         DamageMultiplier = 1f;
+        ForceMultiplier = 1f;
         ProjectileGrappling = false;
     }
 

@@ -7,18 +7,18 @@ public class Iceball : EnemyProjectile
     
     public override IEnumerator Hit()
     {
-        if (!reflected)
-        {
-            if (player != null)
-                EffectManager.Instance.Weak(player, 5f, 0.6f);
-        }
-        else
-        {
-            if (enemy != null)  
-            {
-                EffectManager.Instance.Weak(enemy, 5f, 0.75f);
-            }
-        }
+        // if (!reflected)
+        // {
+        //     if (player != null)
+        //         EffectManager.Instance.Weak(player, 5f, 0.6f);
+        // }
+        // else
+        // {
+        //     if (enemy != null)  
+        //     {
+        //         EffectManager.Instance.Weak(enemy, 5f, 0.75f);
+        //     }
+        // }
 
         yield return base.Hit();
     }

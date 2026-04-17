@@ -121,7 +121,9 @@ GameObject:
   - component: {fileID: 5092387185162327647}
   - component: {fileID: 4631217552735360765}
   - component: {fileID: 3184653825239952112}
-  - component: {fileID: 1816239934314239741}
+  - component: {fileID: 1784891081814807805}
+  - component: {fileID: 1127888282116806436}
+  - component: {fileID: 6558097623988336961}
   m_Layer: 11
   m_Name: sorcerer
   m_TagString: Untagged
@@ -144,7 +146,6 @@ Transform:
   m_Children:
   - {fileID: 4341893594317763187}
   - {fileID: 1591314660572807169}
-  - {fileID: 3643472282274183335}
   - {fileID: 986225158373113244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -366,6 +367,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
   AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls: []
   Range: 5
   Cooldown: 3
   Damage: 10
@@ -394,7 +398,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
   AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
-  Range: 10
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6558097623988336961}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Range: 8
   Cooldown: 8
   Damage: 5
   Force: 10
@@ -403,11 +422,11 @@ MonoBehaviour:
   Support: 0
   BurstMode: 0
   BurstCount: 3
-  AttackPoint: {fileID: 3643472282274183335}
+  AttackPoint: {fileID: 3452970371691434643}
   Owner: {fileID: 0}
   onCooldown: 0
   HitBoxLife: 1.5
-  MeleeRadius: 10
+  MeleeRadius: 6
   ForceOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &3184653825239952112
 Rigidbody:
@@ -436,7 +455,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1816239934314239741
+--- !u!114 &1784891081814807805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,10 +464,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 542235675213923920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ce1c2aa3537324392648c028a97666, type: 3}
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SorcererCastBehavior
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 4
+  overrideSpawn: {fileID: 684305767283920598}
+--- !u!114 &1127888282116806436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542235675213923920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65b29ca5548f214bb3808d2f5a9ff0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredictedRangedBehavior
   AttackPrefab: {fileID: 8812009374192403409, guid: dd381de543bb4cf48b14d3ae900a6b30, type: 3}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1784891081814807805}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 20
   Cooldown: 5
   Damage: 5
@@ -464,9 +512,23 @@ MonoBehaviour:
   projectileSpeed: 15
   predictionClamp: 8
   AutoTimer: 5
-  ExplosionRadius: 5
+  ExplosionRadius: 1
+  enemy: {fileID: 0}
   predictedTarget: {x: 0, y: 0, z: 0}
-  particleSpawn: {fileID: 684305767283920598}
+--- !u!114 &6558097623988336961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542235675213923920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 6
+  overrideSpawn: {fileID: 3452970371691434643}
 --- !u!1 &1375979508780757300
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,37 +980,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0009890429, y: 0.00034016673, z: -0.0007114045}
     m_Extent: {x: 0.007294479, y: 0.0073392065, z: 0.0067875907}
   m_DirtyAABB: 0
---- !u!1 &3722608519042215019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3643472282274183335}
-  m_Layer: 11
-  m_Name: screamPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3643472282274183335
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3722608519042215019}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.587, z: 0.084}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1031560048401212358}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3903262956663062512
 GameObject:
   m_ObjectHideFlags: 0

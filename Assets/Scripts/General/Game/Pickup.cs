@@ -29,7 +29,8 @@ public class Pickup : MonoBehaviour
     {
         Health,
         Magic,
-        Greed
+        Greed,
+        FleshSuit
     }
 
     public PickupType Type;
@@ -145,6 +146,10 @@ public class Pickup : MonoBehaviour
             case PickupType.Greed:
                 consumed = true;
                 Debug.Log("picked up pot of greed!");
+                break;
+            case PickupType.FleshSuit:
+                consumed = true;
+                EffectManager.Instance.FleshSuit(other.gameObject, 100f);
                 break;
         }
 

@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;  
+using UnityEngine.Events;
+
+
 
 public abstract class AttackBehavior : MonoBehaviour
 {
     [SerializeField] public GameObject AttackPrefab;
+    [System.Serializable]
+    public class FireEvent : UnityEvent<Transform> {}
+    public FireEvent OnFire;
 
     [SerializeField] public float Range;
 

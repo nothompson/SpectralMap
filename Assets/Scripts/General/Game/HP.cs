@@ -68,16 +68,21 @@ public class HP : MonoBehaviour
     public void Damage(float dmg)
     {
         if(dead) return;
-        currentHP -= dmg;
         if(type == ObjectType.Player){
             PlayerControlRigid pc = GetComponentInParent<PlayerControlRigid>();
             Profile profile = GetComponentInChildren<Profile>();
             AudioManager.Instance.Hurt();
             float mult = dmg * 0.1f;
-            // Debug.Log(dmg);
             pc.applyShake(1f, mult);
             DamageManager.Instance.PlayDamageOverlay(dmg * 0.025f);
+            
+            dmg = EffectManager.Instance.ProcessDamage(gameObject, dmg);
+
+            if(dmg <= 0f) return;
             profile.TriggerHurt();
+            currentHP -= dmg;
+            HitNumberManager.Instance.DisplayHitNumber(dmg, transform, HitNumber.HitType.Damage);
+            return;
         }
         else if(type == ObjectType.Enemy)
         {
@@ -90,6 +95,7 @@ public class HP : MonoBehaviour
         }
 
         HitNumberManager.Instance.DisplayHitNumber(dmg, transform, HitNumber.HitType.Damage);
+        currentHP -= dmg;
     }
 
     public void Heal(float heal)
@@ -123,6 +129,8 @@ public class HP : MonoBehaviour
                     ReloadManager.Instance.StopReload();
 
                     DamageManager.Instance.PlayDamageOverlay(0f);
+
+                    EffectManager.Instance.EffectCanvas.SetActive(false);
 
                     TrickManager.Instance.ResetCombo();
 
@@ -167,7 +175,6 @@ public class HP : MonoBehaviour
 
                 Enemy e = GetComponentInParent<Enemy>();
                 if(e != null){
-                SpectrumManager.Instance.PurifySpectrum(SpectrumManager.Instance.NPCKill);
                 float roll = Random.Range(0f,1f);
                 Debug.Log(roll);
                 if(roll >= 1.0f - e.ChanceToDropPickup){

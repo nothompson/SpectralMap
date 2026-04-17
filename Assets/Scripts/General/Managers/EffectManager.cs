@@ -16,543 +16,354 @@ public class EffectManager : MonoBehaviour
 
     public GridLayoutGroup EffectGrid;
 
-    private Dictionary<GameObject, Effect> debuffKey = new Dictionary<GameObject, Effect>();
-    private Dictionary<GameObject, Effect> buffKey = new Dictionary<GameObject, Effect>();
+    public GameObject effectUIPrefab;
+
+    public AnimationCurve ScaleCurve;
+
+    public AnimationCurve FadeCurve;
+
+    public Dictionary<GameObject, EffectContainer> Effects = new();
+
+    public List<EffectUIData> effectUIDataList;
+    private Dictionary<string, EffectUIData> lookup;
+
+
     private void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            lookup = effectUIDataList.ToDictionary(x => x.id);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+    #region General
+    public interface IEffect
+    {
+        string EffectID{get;}
+        void OnApply();
+        void OnRemove();
+        void Tick(float deltaTime);
+        bool isFinished {get;}
+    }
+
+    public class EffectContainer
+    {
+        public List<IEffect> activeEffects = new();
+
+        public Dictionary<IEffect, GameObject> uiMap = new();
+        public T GetEffect<T>() where T : class, IEffect
+        {
+            return activeEffects.OfType<T>().FirstOrDefault();
+        }
+    }
+
+    public void AddEffect(IEffect effect, GameObject target)
+        {
+            var container = Get(target);
+
+            container.activeEffects.Add(effect);
+            effect.OnApply();
+
+
+            var data = GetUIData(effect.EffectID);
+            if(data == null) return;
+
+            GameObject ui = GameObject.Instantiate(effectUIPrefab, EffectGrid.transform);
+
+            ui.SetActive(false);
+            
+            SpriteAnimate uiSprites = ui.GetComponent<SpriteAnimate>();
+
+            SpriteText text = ui.GetComponentInChildren<SpriteText>();
+
+            text.input = data.DisplayName;
+
+            text.Refresh();
+
+            uiSprites.sprites = data.sprites;
+
+            uiSprites.length = data.sprites.Length;
+
+            container.uiMap[effect] = ui;
+
+            ui.SetActive(true);
+        }
+
+        public void RemoveEffect(IEffect effect, GameObject target)
+        {
+            var container = Get(target);
+            if(!container.activeEffects.Contains(effect)) return;
+
+            effect.OnRemove();
+            container.activeEffects.Remove(effect);
+
+            if(container.uiMap.TryGetValue(effect, out var ui))
+            {
+                Destroy(ui);
+                container.uiMap.Remove(effect);
+            }
+        }
+
+    public EffectContainer Get(GameObject go)
+    {
+        if(!Effects.TryGetValue(go, out var e))
+        {
+            e = new EffectContainer();
+            Effects[go] = e;
+        }
+        return e;
+    }
 
     public void Update()
     {
-        Debuffs();
-        Buffs();
+        foreach(var kvp in Effects)
+        {
+            var target = kvp.Key;
+            var container = kvp.Value;
+
+            for(int i = container.activeEffects.Count - 1; i >= 0; i--)
+            {
+                var e = container.activeEffects[i];
+                e.Tick(Time.deltaTime);
+
+                if (e.isFinished)
+                {
+                    RemoveEffect(e, target);
+                }
+            }
+        }
     }
 
-    #region Effect Class
-    private class Effect
+    public float ProcessDamage(GameObject target, float dmg)
     {
-        //references
-        public PlayerControlRigid pc;
-        public HP hp;
-        public Launcher launch;
-        public Fireball fireball;
-        public MagicManagement magic;
-        public Enemy e;
-        public MeleeCollider melee;
-        public EnemyProjectile projectile;
-        public Rocket rocket;
+        var container = Get(target);
 
-        public bool player;
-        //movement effects
-        public float slowTimer;
-        public float slowMultiplier;
-        public bool slowed;
-        public float boostTimer;
-        public float boostMultiplier;
-        public bool boosted;
-        // combat effects
-        public float rageTimer;
-        public float rageMultiplier;
-        public bool enraged;
-        public float weakTimer;
-        public float weakMultiplier;
-        public bool weakened;
-        //copies of og 
-        float speed;
-        float jump;
-        float attackSpeed;
-        float projSpeed;
-        float damage;
-        float force;
-        float forceMultiplier;
-        float maxHP;
-        float currentHP;
-
-        //states 
-        public float confuseTimer;
-        public bool confused;
-
-        public void Spawn(GameObject target, float duration, float multiplier)
+        var flesh = container.GetEffect<FleshSuitEffect>();
+        if (flesh != null)
         {
-            if (target.CompareTag("Player"))
-            {
-                pc = target.GetComponent<PlayerControlRigid>();
-                if (pc == null) return;
-                player = true;
-                //grab references
-                hp = target.GetComponent<HP>();
-                launch = target.GetComponentInChildren<Launcher>();
-                magic = target.GetComponent<MagicManagement>();
-
-                //copy of initial parameters 
-                speed = pc.moveSpeed;
-                jump = pc.jumpHeight;
-
-                maxHP = hp.maxHP;
-                currentHP = hp.currentHP;
-
-                projSpeed = launch.fireballSpeed;
-            }
-            else
-            {
-                e = target.GetComponent<Enemy>();
-                if (e == null) return;
-                player = false;
-                hp = target.GetComponent<HP>();
-                // if (e.attackType < 2)
-                // {
-                //     GameObject meleeRef = e.attackPrefab;
-                //     melee = meleeRef.GetComponent<MeleeCollider>();
-                // }
-                // else
-                // {
-                //     GameObject projRef = e.attackPrefab;
-                //     projectile = projRef.GetComponent<EnemyProjectile>();
-                // }
-
-                //copy of initial parameters 
-                speed = e.moveSpeed;
-                jump = e.jumpHeight;
-                attackSpeed = e.attackingCooldown;
-
-                currentHP = hp.currentHP;
-                maxHP = hp.maxHP;
-
-                damage = e.damage;
-                if (melee != null)
-                {
-                    forceMultiplier = melee.forceMultiplier;
-                }
-
-            }
-
-            //slow
-            slowTimer = duration;
-            slowMultiplier = multiplier;
-
-            //confuse
-            confuseTimer = duration;
-
-            //speed
-            boostTimer = duration;
-            boostMultiplier = multiplier;
-
-            //rage
-            rageTimer = duration;
-            rageMultiplier = multiplier;
-
-            weakTimer = duration;
-            weakMultiplier = multiplier;
+            float absorbed = flesh.Absorb(dmg);
+            dmg -= absorbed;
         }
-        #endregion
+        return dmg;
+    }
 
-        #region Slow
-        public void ApplySlow()
+    public EffectUIData GetUIData(string id)
+    {
+        lookup.TryGetValue(id, out var data);
+        return data;
+    }
+
+    #endregion
+
+    #region Confuse
+    public class ConfuseEffect: IEffect
+    {
+        public string EffectID => "Confuse";
+        private PlayerControlRigid pc;
+        private float duration;
+        private float timer;
+        public bool isFinished => timer <= 0f;
+
+        public ConfuseEffect(GameObject target, float duration)
         {
+            this.duration = duration;
+            this.timer = duration;
 
-            if (!slowed) return;
-
-            if (player && pc != null)
-            {
-                pc.moveSpeed = speed * slowMultiplier;
-                pc.jumpHeight = jump * slowMultiplier;
-            }
-
-            else if (e != null)
-            {
-                e.moveSpeed = speed * slowMultiplier;
-                e.jumpHeight = jump * slowMultiplier;
-                e.attackingCooldown = attackSpeed / slowMultiplier;
-            }
+            pc = target.GetComponent<PlayerControlRigid>();
         }
 
-        public void ClearSlow()
+        public void OnApply()
         {
-            if (player && pc != null)
-            {
-                pc.moveSpeed = speed;
-                pc.jumpHeight = jump;
-            }
-            else if (e != null)
-            {
-                e.moveSpeed = speed;
-                e.jumpHeight = jump;
-                e.attackingCooldown = attackSpeed;
-            }
-            slowed = false;
-        }
-        #endregion
-        #region Boost
-        public void ApplyBoost()
-        {
-            if (!boosted) return;
-
-            if (player && pc != null && launch != null)
-            {
-                pc.moveSpeed = speed * boostMultiplier;
-                launch.shootMultiplier = boostMultiplier;
-                launch.fireballSpeed = projSpeed * boostMultiplier;
-            }
-            else if (e != null)
-            {
-                e.moveSpeed = speed * boostMultiplier;
-                e.attackingCooldown = attackSpeed / boostMultiplier;
-
-                if (projectile != null)
-                {
-                    e.projSpeedMultiplier = boostMultiplier;
-                }
-            }
-        }
-
-        public void ClearBoost()
-        {
-            if (player && pc != null && launch != null)
-            {
-                pc.moveSpeed = speed;
-                launch.shootMultiplier = 1f;
-                launch.fireballSpeed = projSpeed * 1f;
-            }
-            else if (e != null)
-            {
-                e.moveSpeed = speed;
-                e.attackingCooldown = attackSpeed;
-                e.projSpeedMultiplier = 1f;
-            }
-            boosted = false;
-        }
-        #endregion
-
-        #region Confuse
-        public void ApplyConfuse()
-        {
-            if (!confused) return;
-
-            if (player && pc != null)
+            if(pc != null)
             {
                 pc.confused = true;
             }
         }
 
-        public void ClearConfuse()
+        public void Tick(float dt)
         {
-            if (player && pc != null)
+            timer -= dt;
+        }
+
+        public void OnRemove()
+        {
+            if(pc!= null)
             {
                 pc.confused = false;
             }
-
-            confused = false;
-        }
-        #endregion
-
-        #region Weak
-        public void ApplyWeak()
-        {
-            if (!weakened) return;
-
-            float weakSpeed = Mathf.Pow(weakMultiplier, weakMultiplier);
-            if (player && pc != null && launch != null && hp != null)
-            {
-                pc.moveSpeed = speed * weakSpeed + 0.1f;
-                launch.forceMultiplier = weakMultiplier;
-                launch.damageMultiplier = weakMultiplier;
-                hp.currentHP -= 0.05f / weakMultiplier;
-            }
-
-            else if (e != null && hp != null)
-            {
-                hp.currentHP -= 0.05f / weakMultiplier;
-                e.moveSpeed = speed * weakSpeed + 0.1f;
-                e.damage = damage * weakMultiplier;
-                e.forceMultiplier = weakMultiplier;
-            }
-
-        }
-        public void ClearWeak()
-        {
-            if (player && pc != null && launch != null)
-            {
-                pc.moveSpeed = speed;
-                launch.forceMultiplier = 1f;
-                launch.damageMultiplier = 1f;
-            }
-            else if (e != null)
-            {
-                e.moveSpeed = speed;
-                e.damage = damage;
-                e.forceMultiplier = 1f;
-            }
-        }
-        #endregion
-
-        #region Rage
-        public void ApplyRage()
-        {
-
-            if (!enraged) return;
-
-            if (player && hp != null && launch != null)
-            {
-                launch.forceMultiplier = rageMultiplier * 0.5f;
-                launch.damageMultiplier = rageMultiplier;
-                hp.currentHP = currentHP * rageMultiplier;
-                if (hp.currentHP * rageMultiplier > maxHP)
-                {
-                    hp.maxHP = currentHP * rageMultiplier;
-                }
-            }
-
-            else if (e != null)
-            {
-                if (hp != null)
-                {
-                    e.damage = damage * rageMultiplier;
-                    e.forceMultiplier = rageMultiplier;
-                    hp.currentHP = currentHP * rageMultiplier;
-                    if (hp.currentHP * rageMultiplier > maxHP)
-                    {
-                        hp.maxHP = currentHP * rageMultiplier;
-                    }
-                }
-            }
-        }
-        public void ClearRage()
-        {
-            if (player && hp != null && launch != null)
-            {
-                launch.forceMultiplier = 1f;
-                launch.damageMultiplier = 1f;
-                hp.maxHP = maxHP;
-                if (hp.currentHP * rageMultiplier > maxHP)
-                {
-                    hp.currentHP = hp.maxHP;
-                }
-            }
-
-            else if (e != null)
-            {
-                e.damage = damage;
-                e.forceMultiplier = 1f;
-                e.projSpeedMultiplier = 1f;
-                hp.maxHP = maxHP;
-                if (hp.currentHP * rageMultiplier > maxHP)
-                {
-                    hp.currentHP = hp.maxHP;
-                }
-            }
-            enraged = false;
-        }
-        #endregion
-    }
-    
-    #region Debuffs
-    public void Slow(GameObject target, float duration, float multiplier)
-    {
-        if (buffKey.TryGetValue(target, out Effect buff))
-        {
-            buff.ClearBoost();
-            buffKey.Remove(target);
-        }
-
-        if (!debuffKey.ContainsKey(target))
-        {
-            Effect debuff = new Effect();
-            debuff.Spawn(target, duration, multiplier);
-            debuff.slowed = true;
-            debuffKey[target] = debuff;
         }
     }
-
-    public void Confuse(GameObject target, float duration, float multiplier)
+    public void Confuse(GameObject target, float duration)
     {
-        if (!debuffKey.ContainsKey(target))
+        var container = Get(target);
+
+        var existing = container.GetEffect<ConfuseEffect>();
+        if(existing != null)
         {
-            Effect debuff = new Effect();
-            debuff.Spawn(target, duration, multiplier);
-            debuff.confused = true;
-            debuffKey[target] = debuff;
+            return;
         }
-    }
-
-    public void Weak(GameObject target, float duration, float multiplier)
-    {
-        if (buffKey.TryGetValue(target, out Effect buff))
-        {
-            buff.ClearRage();
-            buffKey.Remove(target);
-        }
-
-        if (!debuffKey.ContainsKey(target))
-        {
-            Effect debuff = new Effect();
-            debuff.Spawn(target, duration, multiplier);
-            debuff.weakened = true;
-            debuffKey[target] = debuff;
-        }
-    }
-
-    public void Debuffs()
-    {
-        List<GameObject> removed = new List<GameObject>();
-
-        foreach (var dbf in debuffKey)
-        {
-            var target = dbf.Key;
-            var debuff = dbf.Value;
-
-            //Slow
-            if (debuff.slowed)
-            {
-                debuff.slowTimer -= Time.deltaTime;
-                if (debuff.slowTimer > 0)
-                {
-                    debuff.ApplySlow();
-                }
-                else
-                {
-                    debuff.ClearSlow();
-                    removed.Add(target);
-                }
-            }
-
-            //Confuse
-            if (debuff.confused)
-            {
-                debuff.confuseTimer -= Time.deltaTime;
-                if (debuff.confuseTimer > 0)
-                {
-                    debuff.ApplyConfuse();
-                }
-                else
-                {
-                    debuff.ClearConfuse();
-                    removed.Add(target);
-                }
-            }
-            //Weaken
-            if (debuff.weakened)
-            {
-                debuff.weakTimer -= Time.deltaTime;
-                if (debuff.weakTimer > 0)
-                {
-                    debuff.ApplyWeak();
-                }
-                else
-                {
-                    debuff.ClearWeak();
-                    removed.Add(target);
-                }
-            }
-        }
-
-        //remove debuff when timer is up
-        foreach (var t in removed)
-        {
-            debuffKey.Remove(t);
-        }
+        AddEffect(new ConfuseEffect(target, duration), target);
     }
     #endregion
 
-    #region Buffs
-    public void Boost(GameObject target, float duration, float multiplier)
+    #region Guilt
+
+    public class GuiltEffect: IEffect
     {
-        if (debuffKey.TryGetValue(target, out Effect debuff))
+        public string EffectID => "Guilt";
+        private Launcher launcher;
+
+        private float duration;
+        private float timer;
+        public bool isFinished => timer <= 0f;
+
+        private float cachedDamageMult;
+        private float cachedForceMult;
+
+        public GuiltEffect(GameObject target, float duration)
         {
-            debuff.ClearSlow();
+            this.duration = duration;
+            this.timer = duration;
+            launcher = target.GetComponentInChildren<Launcher>();
         }
 
-        if (!buffKey.TryGetValue(target, out Effect boost))
+        public void OnApply()
         {
-            boost = new Effect();
-            boost.Spawn(target, duration, multiplier);
-            buffKey[target] = boost;
+            cachedDamageMult = PlayerManager.Instance.DamageMultiplier;
+            cachedForceMult = PlayerManager.Instance.ForceMultiplier;
         }
-
-        if (!boost.boosted) 
+        public void Tick(float dt)
         {
-            boost.boosted = true;
+            timer -= dt;
+            PlayerManager.Instance.DamageMultiplier = 0f;
+            PlayerManager.Instance.ForceMultiplier = 2.5f;
         }
-    
+        public void OnRemove()
+        {
+            PlayerManager.Instance.DamageMultiplier = cachedDamageMult;
+            PlayerManager.Instance.ForceMultiplier = cachedForceMult;
+            PlayerManager.Instance.CheckItems();
+        }
     }
 
-    public void FleshSuit(GameObject target)
+    public void Guilt(GameObject target, float duration)
     {
-        
+        var container = Get(target);
+
+        var existing = container.GetEffect<GuiltEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new GuiltEffect(target, duration), target);
     }
 
-    public void Rage(GameObject target, float duration, float multiplier)
-    {
-        //implement after making weak debuff 
+    #endregion
 
-        // if (debuffKey.TryGetValue(target, out Effect debuff))
-        // {
-        //     debuff.ClearWeak();
-        //     debuffKey.Remove(target);
-        // }
-        
-        if (!buffKey.TryGetValue(target, out Effect rage))
+    public class EnsareEffect : IEffect
+    {
+        public string EffectID => "Ensare";
+        public PlayerControlRigid pc;
+        private float duration;
+        private float timer;
+        public bool isFinished => timer <= 0f;
+
+        private float cachedJumpHeight;
+        private float cachedMoveSpeed;
+
+        public EnsareEffect(GameObject target, float duration)
         {
-            rage = new Effect();
-            rage.Spawn(target, duration, multiplier);
-            buffKey[target] = rage;
+            pc = target.GetComponent<PlayerControlRigid>();
+            this.duration = duration;
+            this.timer = duration;
         }
 
-        if (!rage.enraged)
+        public void OnApply()
         {
-            rage.enraged = true;
-        }
-    }
-    
-    public void Buffs()
-    {
-        List<GameObject> removed = new List<GameObject>();
-        foreach (var bff in buffKey)
-        {
-            var target = bff.Key;
-            var buff = bff.Value;
-
-            if (buff.boosted)
+            if(pc != null)
             {
-                buff.boostTimer -= Time.deltaTime;
-                if (buff.boostTimer > 0)
-                {
-                    buff.ApplyBoost();
-                }
-                else
-                {
-                    buff.ClearBoost();
-                    removed.Add(target);
-                }
+                cachedJumpHeight = pc.jumpHeight;
+                cachedMoveSpeed = pc.moveSpeed;
+                pc.ensared = true;
+                pc.grounded = false;
             }
-
-            if (buff.enraged)
-            {
-                buff.rageTimer -= Time.deltaTime;
-                if (buff.rageTimer > 0)
-                {
-                    buff.ApplyRage();
-                }
-                else
-                {
-                    buff.ClearRage();
-                    removed.Add(target);
-                }
-            }
-
         }
-        foreach (var t in removed)
+
+        public void Tick(float dt)
         {
-            buffKey.Remove(t);
+            timer -= dt;
+            if(pc!= null)
+            {
+                pc.playerVelocity = Vector3.zero;
+                pc.moveSpeed = 0f;
+                pc.jumpHeight = 0f;
+            }
         }
+
+        public void OnRemove()
+        {
+            if(pc != null){
+                pc.jumpHeight = cachedJumpHeight;
+                pc.moveSpeed = cachedMoveSpeed;
+                pc.ensared = false;
+            }
+        }
+
+    }
+
+    public void Ensare(GameObject target, float duration)
+    {
+        var container = Get(target);
+
+        var existing = container.GetEffect<EnsareEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new EnsareEffect(target, duration), target);
+    }
+
+    #region FleshSuit
+
+    public class FleshSuitEffect : IEffect
+    {
+        public string EffectID => "FleshSuit";
+        private float hp;
+
+        public bool isFinished => hp <= 0;
+
+        public FleshSuitEffect(float hp)
+        {
+            this.hp = hp;
+        }
+
+        public float Absorb(float dmg)
+        {
+            float absorbed = Mathf.Min(hp, dmg);
+            hp -= absorbed;
+            return absorbed;
+        }
+
+        public void OnApply(){}
+        public void Tick(float dt) {}
+        public void OnRemove() {}
+    }
+
+    public void FleshSuit(GameObject target, float hp)
+    {
+        var container = Get(target);
+        var existing = container.GetEffect<FleshSuitEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new FleshSuitEffect(hp), target);
     }
     #endregion
 }
