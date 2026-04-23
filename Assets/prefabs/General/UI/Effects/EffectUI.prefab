@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4258289098629598372}
   - component: {fileID: 7716589007890923073}
   - component: {fileID: 7830976689239758305}
+  - component: {fileID: 8427435575030993651}
   m_Layer: 0
   m_Name: EffectUI
   m_TagString: Untagged
@@ -102,6 +103,124 @@ MonoBehaviour:
   isPlaying: 1
   pingPong: 1
   direction: 1
+--- !u!114 &8427435575030993651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409552843212225122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741b9505a776b544ab571136c1c9819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectUI
+  rect: {fileID: 460174709066667407}
+  image: {fileID: 7716589007890923073}
+  IntroCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9271053
+      value: 1.027327
+      inSlope: 0.113691494
+      outSlope: 0.113691494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.24570288
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.99502224
+      outSlope: 0.99502224
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24666506
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OutroCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: 0.00077513227
+      outSlope: 0.00077513227
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.8
+      value: 0.5
+      inSlope: -0.007312407
+      outSlope: -0.007312407
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.85
+      value: 1
+      inSlope: -0.011978359
+      outSlope: -0.011978359
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.51690984
+    - serializedVersion: 3
+      time: 0.9
+      value: 0.25
+      inSlope: 0.001933575
+      outSlope: 0.001933575
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.95
+      value: 1
+      inSlope: 0.040260322
+      outSlope: 0.040260322
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23440355
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -19.999996
+      outSlope: -19.999996
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  introDur: 0.5
+  EffectDuration: 0
 --- !u!1 &8939514654460485556
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 65}
+  m_AnchoredPosition: {x: 5, y: 75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2594262355196668246

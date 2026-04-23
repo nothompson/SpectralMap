@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5271835531702086529}
   - component: {fileID: 1347770902535452064}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2704662763857125183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.74, z: -0.18}
-  m_LocalScale: {x: 1.5404395, y: 1.5404395, z: 1.5404395}
+  m_LocalPosition: {x: 0, y: 0.61, z: 0.7}
+  m_LocalScale: {x: 1.7784374, y: 1.7784374, z: 1.7784374}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4632549397184289932}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 794028006, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  m_Sprite: {fileID: 640631052, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,17 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49da9ac3420a1ab429210e036b082415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
-  sprites:
-  - {fileID: -1184405507, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 1227144481, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 364257105, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -100247350, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 170700794, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 794028006, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -1900713529, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -1832382621, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 980620167, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -56750501, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  sprites: []
   startingIndex: 0
   randomStart: 0
   fps: 8
@@ -144,6 +134,7 @@ GameObject:
   - component: {fileID: 3683110675594042977}
   - component: {fileID: 1938615318040601390}
   - component: {fileID: 6541343850205941331}
+  - component: {fileID: 7252600371888337202}
   m_Layer: 11
   m_Name: seastar
   m_TagString: Untagged
@@ -204,6 +195,7 @@ MonoBehaviour:
   fov: {fileID: 4666909001356975068}
   hp: {fileID: 2095758434040908332}
   fbx: {fileID: 0}
+  spriteEvent: {fileID: 7252600371888337202}
   EnemyID: 
   Personality: 1
   Behaviors: []
@@ -462,8 +454,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
-  type: 2
+  type: 4
   overrideSpawn: {fileID: 0}
+--- !u!114 &7252600371888337202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749430797362092941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a621ec999cced4fa0bf5799a8b14d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteEventHandler
+  spriteAnimate: {fileID: 1347770902535452064}
+  animationEvents:
+  - {fileID: 11400000, guid: 22a8004d23f67ec4e81811e90e497ad2, type: 2}
+  - {fileID: 11400000, guid: ad5c87194e7509e46b56c247cb8b45a6, type: 2}
 --- !u!1 &4576408092282724411
 GameObject:
   m_ObjectHideFlags: 0

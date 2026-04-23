@@ -13,82 +13,213 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_Data:
-    m_SerializedData: []
   m_GUID: 6e257523662df3247b5d275462229d3f
   m_SerializeEntries:
-  - m_GUID: 6fe0571a779f6f44bb9039bda36d0165
-    m_Address: Assets/prefabs/NPCs/brainFace.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Head
-  - m_GUID: 4aff601e7a4d3d84a9d4318b4eb64003
-    m_Address: Assets/prefabs/NPCs/footSoldierArmor.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Body
-  - m_GUID: 149500919c40d3b4bb371ccb3d7a3ec6
-    m_Address: Assets/prefabs/NPCs/tweakHand.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Hand
-  - m_GUID: bd18a70b7f198264cb5efa07e177b6ae
-    m_Address: Assets/prefabs/NPCs/dress.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Body
-  - m_GUID: 4d86b6341abeef54ba62574dc7bcbc65
-    m_Address: Assets/prefabs/NPCs/tvHead.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Head
-  - m_GUID: a06b23822efa685499b68e0e167bfdf4
-    m_Address: Assets/prefabs/NPCs/prayingcorpse.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0d2f6bc33bf10be4c89757143ddae094
-    m_Address: Assets/prefabs/NPCs/gaurdianhelm.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f1fe89d798ff1234da97ffab79bbe876
-    m_Address: Assets/prefabs/NPCs/boxingglove.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c80bf37ccc08c4c41a5fabaf11d756c5
-    m_Address: Assets/prefabs/NPCs/fleshstaff.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b48f44958248d31428702fb94253bff2
-    m_Address: Assets/prefabs/NPCs/eyeHand.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3e7e2d909790e79438d1eed244a8837a
-    m_Address: Assets/prefabs/NPCs/twoface.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a12c54b40e9e5e642a968ec8e5995c77
-    m_Address: Assets/prefabs/NPCs/claw.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0f62aea0ef1648d4db960f3d3e80c678
-    m_Address: Assets/prefabs/NPCs/tentacle.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1b200356a39dd8a41ae1155d7b2e6fd7
-    m_Address: Assets/prefabs/NPCs/Hands/bell.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 0a96a09eb21d8c845a23b12d5152e9f6
     m_Address: Assets/prefabs/NPCs/Bodies/plant.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cbd354298d4839459135d34b094f731
+    m_Address: Assets/prefabs/NPCs/Heads/TVHead.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f62aea0ef1648d4db960f3d3e80c678
+    m_Address: Assets/prefabs/NPCs/Hands/tentacle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11482d629dd279f469f8264d12f13278
+    m_Address: Assets/prefabs/NPCs/Hands/growingPainLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15096373e02ec2640a061e481589c3d4
+    m_Address: Assets/prefabs/NPCs/Hands/boxinggloveLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b200356a39dd8a41ae1155d7b2e6fd7
+    m_Address: Assets/prefabs/NPCs/Hands/bell.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23db5a45f87758640b700be43c11cdf3
+    m_Address: Assets/prefabs/NPCs/Hands/eyeHandLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e2c810a80d73024db6b2ddbcd4d4a2b
+    m_Address: Assets/prefabs/NPCs/Hands/clawLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a117d02935500345810ba7c2ce9fdec
+    m_Address: Assets/prefabs/NPCs/Heads/growingPain.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c71d1fd38c5ee842827d88a3425bff8
+    m_Address: Assets/prefabs/NPCs/Hands/zombieRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3feb8e926743cff4ca4ee66e7e097403
+    m_Address: Assets/prefabs/NPCs/Bodies/dino.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4679e5620d59bb345a05c500f8998b00
+    m_Address: Assets/prefabs/NPCs/Heads/TwoFace.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4aff601e7a4d3d84a9d4318b4eb64003
+    m_Address: Assets/prefabs/NPCs/Bodies/footSoldierArmor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Body
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55295114f36466845b76ee0f5a24c2f7
+    m_Address: Assets/prefabs/NPCs/Bodies/slimecircle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bbd210c52c6bd44f8f354aaf9b65c37
+    m_Address: Assets/prefabs/NPCs/Heads/Floaty.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c639bd1830578d48b153b23c4ff4485
+    m_Address: Assets/prefabs/NPCs/Hands/growingPainRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76404e9f99104864f9e65e5c025f7e34
+    m_Address: Assets/prefabs/NPCs/Heads/slimecircleHead.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 766602570921cb64088abbece270ee00
+    m_Address: Assets/prefabs/NPCs/Bodies/zombie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cfae684dbec76640b4a7ecb5f2aacc5
+    m_Address: Assets/prefabs/NPCs/Hands/zombieLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e8a4d753ae0ade4fb2b08cbb020f789
+    m_Address: Assets/prefabs/NPCs/Heads/Molusk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80fe340ec3a67474094e12e12d6faea5
+    m_Address: Assets/prefabs/NPCs/Heads/GuardianHelm.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83fc19d8719034545be8e429548dd579
+    m_Address: Assets/prefabs/NPCs/Hands/tweakHandRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 860833f241a06b54c9f79e9debda6039
+    m_Address: Assets/prefabs/NPCs/Bodies/cloak.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a06b23822efa685499b68e0e167bfdf4
+    m_Address: Assets/prefabs/NPCs/Bodies/prayingcorpse.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a12c54b40e9e5e642a968ec8e5995c77
+    m_Address: Assets/prefabs/NPCs/Hands/clawRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa6261e4d6635104ebe84553c86c8e7e
+    m_Address: Assets/prefabs/NPCs/Heads/Joker.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b08cabe8890d371438d5e13b1e1737d2
+    m_Address: Assets/prefabs/NPCs/Heads/Frog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b338afd96da608347b7f2e5c35f2c4f3
+    m_Address: Assets/prefabs/NPCs/Bodies/organ.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b48f44958248d31428702fb94253bff2
+    m_Address: Assets/prefabs/NPCs/Hands/eyeHandRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b69bc7e135eac6745b3db012782b6d60
+    m_Address: Assets/prefabs/NPCs/Heads/Coral.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b99ffc7a91cf3eb46bb1c614f7d12a5e
+    m_Address: Assets/prefabs/NPCs/Heads/Worm.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd18a70b7f198264cb5efa07e177b6ae
+    m_Address: Assets/prefabs/NPCs/Bodies/dress.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Body
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c80bf37ccc08c4c41a5fabaf11d756c5
+    m_Address: Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2f242f5bc83d3e479b023a8c579f460
+    m_Address: Assets/prefabs/NPCs/Hands/boxinggloveRight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df0414ed20e379940b630d633d49e81f
+    m_Address: Assets/prefabs/NPCs/Hands/tweakHandLeft.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e34d9fcb5e62c3941a726fa6f80c8eba
+    m_Address: Assets/prefabs/NPCs/Heads/BrainFace.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e434aa218eb93da4daa9a484521c50a4
     m_Address: Assets/prefabs/NPCs/Bodies/slimegiant.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec43975e37bee0448b9c7129c258a40e
+    m_Address: Assets/prefabs/NPCs/Bodies/cello.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed9d27521622dfa4fa9bbfc3a615c091
+    m_Address: Assets/prefabs/NPCs/Bodies/vein.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f08bac019e9bfcc44b887c3a1e6808c9
+    m_Address: Assets/prefabs/NPCs/Heads/Snail.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b7a39fd166522b748b6be82d58c360b9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 4f5719e5b38d08247821f7a566e07882, type: 2}
     - {fileID: 11400000, guid: 6926a975c364ea94ea14891c7a3b3f36, type: 2}
+    - {fileID: 11400000, guid: 4f5719e5b38d08247821f7a566e07882, type: 2}

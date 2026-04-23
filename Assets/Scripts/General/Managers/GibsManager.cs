@@ -15,18 +15,6 @@ public class GibsManager : MonoBehaviour
     public float explosionForce = 5f;
     public float despawnTime = 3f;
 
-    [Header("Blood Decals")]
-    public LayerMask surfaceLayers = -1;
-    public float minTimeBetweenDecals = 0.02f;
-
-    public float minTimeFactor = 0.01f;
-
-    private Dictionary<ParticleSystem, float> lastDecalTime = new Dictionary<ParticleSystem, float>();
-
-    private Dictionary<ParticleSystem, float> decalSpawnCooldown = new Dictionary<ParticleSystem, float>();
-
-    private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
-
     public FMODUnity.EventReference gibSplat;
 
     private void Awake()
@@ -71,6 +59,7 @@ public class GibsManager : MonoBehaviour
 
             if (gib.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
             {
+                DecalManager.Instance.RegisterParticleSystem(ps);
                 ps.Play();
             }
 
@@ -83,65 +72,6 @@ public class GibsManager : MonoBehaviour
         }
 
         return spawnedGibs;
-    }
-
-    
-    public void RegisterParticleSystem(ParticleSystem ps)
-    {
-        if (!lastDecalTime.ContainsKey(ps))
-        {
-            lastDecalTime[ps] = 0f;
-        }
-
-        if (!decalSpawnCooldown.ContainsKey(ps))
-        {
-            decalSpawnCooldown[ps] = minTimeBetweenDecals;
-        }
-    }
-
-
-    public void HandleParticleCollision(ParticleSystem ps, GameObject other)
-    {
-        if (DecalManager.Instance == null)
-        {
-            return;
-        }
-
-        if (!lastDecalTime.ContainsKey(ps))
-        {
-            return;
-        }
-
-        if (!decalSpawnCooldown.ContainsKey(ps))
-        {
-            return;
-        }
-
-        if (Time.time - lastDecalTime[ps] < decalSpawnCooldown[ps])
-        {
-            return;
-        }
-
-        if (((1 << other.layer) & surfaceLayers) == 0)
-        {
-            return;
-        }
-
-        int numCollisions = ps.GetCollisionEvents(other, collisionEvents);
-
-        if (numCollisions > 0)
-        {
-            for (int i = 0; i < numCollisions; i++)
-            {
-                decalSpawnCooldown[ps] += minTimeFactor;
-                DecalManager.Instance.SpawnDecal(
-                    collisionEvents[i].intersection,
-                    collisionEvents[i].normal, 
-                    DecalManager.Instance.bloodSplatter
-                );
-            }
-            lastDecalTime[ps] = Time.time;
-        }
     }
 
     private GameObject CreateItem()
@@ -172,19 +102,10 @@ public class GibsManager : MonoBehaviour
 
         if (gib.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
         {
-            minTimeBetweenDecals = 0.05f;
             ps.Stop();
             ps.Clear();
+            DecalManager.Instance.Unregister(ps);
 
-            if (lastDecalTime.ContainsKey(ps))
-            {
-                lastDecalTime.Remove(ps);
-            }
-
-            if (decalSpawnCooldown.ContainsKey(ps))
-            {
-                decalSpawnCooldown[ps] = minTimeBetweenDecals;
-            }
         }
     }
 

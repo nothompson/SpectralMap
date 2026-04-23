@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
-  type: 4
+  type: 2
   overrideSpawn: {fileID: 684305767283920598}
 --- !u!114 &1127888282116806436
 MonoBehaviour:

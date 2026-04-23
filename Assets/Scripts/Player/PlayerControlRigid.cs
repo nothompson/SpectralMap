@@ -153,7 +153,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     float ignoregroundtimer = 0f;
     float ignoregroundtime = 0.25f;
     public bool ensared = false;
-    
 
     //end of class variables
     //--------------------------------
@@ -255,7 +254,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         if(DeathManager.PlayerDead) return;
         CalculateVelocity();
         MovementFunctions.ApplyVelocity(playerVelocity, ref rb);
-        currentCheckpoint.saveCheckpoint();
+        // currentCheckpoint.saveCheckpoint();
     }
 
 
@@ -614,7 +613,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         if(grounded && wishJump && !didJump)
         {
             didJump = true;
-            playerVelocity.y = jumpHeight;
+            MovementFunctions.Jump(ref playerVelocity, jumpHeight);
 
             wishJump = false;
 

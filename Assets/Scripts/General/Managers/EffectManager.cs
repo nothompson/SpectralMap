@@ -63,7 +63,7 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    public void AddEffect(IEffect effect, GameObject target)
+    public void AddEffect(IEffect effect, GameObject target, float duration = 1f)
         {
             var container = Get(target);
 
@@ -77,6 +77,10 @@ public class EffectManager : MonoBehaviour
             GameObject ui = GameObject.Instantiate(effectUIPrefab, EffectGrid.transform);
 
             ui.SetActive(false);
+
+            EffectUI effectUI = ui.GetComponent<EffectUI>();
+
+            effectUI.EffectDuration = duration;
             
             SpriteAnimate uiSprites = ui.GetComponent<SpriteAnimate>();
 
@@ -89,6 +93,10 @@ public class EffectManager : MonoBehaviour
             uiSprites.sprites = data.sprites;
 
             uiSprites.length = data.sprites.Length;
+
+            uiSprites.fps = data.fps;
+
+            uiSprites.pingPong = data.pingPong;
 
             container.uiMap[effect] = ui;
 
@@ -208,7 +216,7 @@ public class EffectManager : MonoBehaviour
         {
             return;
         }
-        AddEffect(new ConfuseEffect(target, duration), target);
+        AddEffect(new ConfuseEffect(target, duration), target, duration);
     }
     #endregion
 
@@ -261,7 +269,7 @@ public class EffectManager : MonoBehaviour
         {
             return;
         }
-        AddEffect(new GuiltEffect(target, duration), target);
+        AddEffect(new GuiltEffect(target, duration), target, duration);
     }
 
     #endregion
@@ -326,7 +334,7 @@ public class EffectManager : MonoBehaviour
         {
             return;
         }
-        AddEffect(new EnsareEffect(target, duration), target);
+        AddEffect(new EnsareEffect(target, duration), target, duration);
     }
 
     #region FleshSuit

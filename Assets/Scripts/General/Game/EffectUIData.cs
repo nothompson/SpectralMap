@@ -7,4 +7,6 @@ public class EffectUIData : ScriptableObject
     public string id;
     public string DisplayName;
     public Sprite[] sprites;
+    public bool pingPong;
+    public int fps; 
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 using MovementPhysics;
 
+using System.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 #region Init
 public class Enemy : MonoBehaviour
 {
@@ -35,6 +39,7 @@ public class Enemy : MonoBehaviour
     public HP hp;
 
     [HideInInspector] public Animator fbx; 
+    public SpriteEventHandler spriteEvent; 
 
     [Header("General")]
     [SerializeField] public string EnemyID;
@@ -486,6 +491,11 @@ public class Enemy : MonoBehaviour
         }
        float enemymovement = enemyVelocity.magnitude;
 
+        if(spriteEvent != null)
+            {
+                spriteEvent.PlayEvent("Idle");
+            }
+
         if (enemymovement < 0.5f)
         {
             if(fbx == null) return;
@@ -551,7 +561,7 @@ public class Enemy : MonoBehaviour
                 float chance = Random.value;
                 if ((chance < 0.15 && !nearLedge && grounded) || jumpAcross && grounded)
                 {
-                    enemyVelocity.y = jumpHeight;
+                    MovementFunctions.Jump(ref enemyVelocity, jumpHeight);
                     jumpAcross = false;
                 }
             }
@@ -662,7 +672,7 @@ public class Enemy : MonoBehaviour
         {
             if(Random.value < 0.4f)
             {
-                enemyVelocity.y = jumpHeight;
+                MovementFunctions.Jump(ref enemyVelocity, jumpHeight);
             }
             else
             {
@@ -843,13 +853,13 @@ public class Enemy : MonoBehaviour
             stationaryAttack = true;
             enemyVelocity = Vector3.zero;
         }
-
         if(fbx == null) return;
         fbx.SetTrigger(pendingAttack.AnimationEvent);
 
     }
     public virtual void OnAttack()
     {
+        
         if(pendingAttack == null) return;
 
         if (pendingAttack.onCooldown)
@@ -857,6 +867,11 @@ public class Enemy : MonoBehaviour
             pendingAttack = null;
             beginAttacking = false;
             return;
+        }
+
+        if(spriteEvent != null)
+        {
+            spriteEvent.PlayEvent("Attack");
         }
 
         attacking = true;

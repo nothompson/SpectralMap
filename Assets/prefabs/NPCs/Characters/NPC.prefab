@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6287816384026024645}
-  - component: {fileID: 4035673224668232403}
+  - component: {fileID: 464380221338242201}
   - component: {fileID: 7086088382146616669}
   - component: {fileID: 2059406964561230636}
   m_Layer: 21
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6239325195477015448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4035673224668232403
+--- !u!114 &464380221338242201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,8 +142,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: -1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6239325195477015448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,8 +236,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6239325195477015448}
   - component: {fileID: 6239325195477015449}
+  - component: {fileID: 3670952881104141622}
   - component: {fileID: 6268602987876356715}
   - component: {fileID: 448972914210976078}
+  - component: {fileID: 3182594648948046437}
   m_Layer: 21
   m_Name: NPC
   m_TagString: Untagged
@@ -277,220 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NamedEntity: {fileID: 0}
+  modularBody: {fileID: 3670952881104141622}
   npcID: 
-  parts:
-  - partName: Head
-    addressableKeys:
-    - Assets/prefabs/NPCs/brainFace.prefab
-    - Assets/prefabs/NPCs/tvHead.prefab
-    - Assets/prefabs/NPCs/gaurdianhelm.prefab
-    - Assets/prefabs/NPCs/twoface.prefab
-    mountPoint: {fileID: 7317955472801406449}
-    meshFilter: {fileID: 0}
-    meshRender: {fileID: 0}
-    offsets: []
-    hands: []
-    heads:
-    - addressableKey: Assets/prefabs/NPCs/brainFace.prefab
-      offset: {x: 0, y: 0, z: 0}
-      rotation: {x: 341.4345, y: 119.29811, z: 10.495735}
-    - addressableKey: Assets/prefabs/NPCs/tvHead.prefab
-      offset: {x: 0, y: 0.18, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/gaurdianhelm.prefab
-      offset: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 78.06, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/twoface.prefab
-      offset: {x: 0, y: 0.34, z: 0}
-      rotation: {x: 0, y: 80.76, z: 0}
-  - partName: Body
-    addressableKeys:
-    - Assets/prefabs/NPCs/footSoldierArmor.prefab
-    - Assets/prefabs/NPCs/dress.prefab
-    - Assets/prefabs/NPCs/prayingcorpse.prefab
-    - Assets/prefabs/NPCs/Bodies/plant.prefab
-    - Assets/prefabs/NPCs/Bodies/slimegiant.prefab
-    mountPoint: {fileID: 7965857114878844237}
-    meshFilter: {fileID: 0}
-    meshRender: {fileID: 0}
-    offsets:
-    - addressableKey: Assets/prefabs/NPCs/footSoldierArmor.prefab
-      headOffset: {x: 0, y: 0.803, z: 0}
-      bodyOffset: {x: 0, y: 0, z: 0}
-      bodyRotation: {x: 0.09166097, y: -191.386, z: 10.572732}
-      leftHandOffset: {x: -0.818, y: 0.443, z: 0.266}
-      rightHandOffset: {x: 0.823, y: 0.307, z: 0.22}
-      overrideScale: 0
-      headScale: {x: 0, y: 0, z: 0}
-      scale: {x: 0, y: 0, z: 0}
-      handScale: 0
-      colliderHeight: 0
-      colliderRadius: 0
-      colliderCenter: {x: 0, y: 0, z: 0}
-      leftArmBone: 
-      rightArmBone: 
-    - addressableKey: Assets/prefabs/NPCs/dress.prefab
-      headOffset: {x: 0, y: 0.15, z: 0}
-      bodyOffset: {x: 0, y: -0.47, z: 0}
-      bodyRotation: {x: 1.0313565, y: 168.68953, z: 6.464021}
-      leftHandOffset: {x: -0.47, y: -0.3063577, z: 0.21216384}
-      rightHandOffset: {x: 0.35, y: -0.285, z: 0.335}
-      overrideScale: 0
-      headScale: {x: 0, y: 0, z: 0}
-      scale: {x: 0, y: 0, z: 0}
-      handScale: 0
-      colliderHeight: 0
-      colliderRadius: 0
-      colliderCenter: {x: 0, y: 0, z: 0}
-      leftArmBone: 
-      rightArmBone: 
-    - addressableKey: Assets/prefabs/NPCs/prayingcorpse.prefab
-      headOffset: {x: 0, y: 0.68, z: -0.15}
-      bodyOffset: {x: -0.089, y: -0.698, z: -0.1}
-      bodyRotation: {x: 0, y: 88.909, z: 0}
-      leftHandOffset: {x: -0.775, y: -0.445, z: 0.057}
-      rightHandOffset: {x: 0.682, y: -0.444, z: -0.009}
-      overrideScale: 0
-      headScale: {x: 0, y: 0, z: 0}
-      scale: {x: 0, y: 0, z: 0}
-      handScale: 0
-      colliderHeight: 0
-      colliderRadius: 0
-      colliderCenter: {x: 0, y: 0, z: 0}
-      leftArmBone: 
-      rightArmBone: 
-    - addressableKey: Assets/prefabs/NPCs/Bodies/plant.prefab
-      headOffset: {x: 0, y: 1.49, z: -0.58}
-      bodyOffset: {x: 0, y: -0.75, z: 0}
-      bodyRotation: {x: 0, y: 0, z: 0}
-      leftHandOffset: {x: 0.00856, y: 0.00143, z: 0.00076}
-      rightHandOffset: {x: 0.00856, y: 0.00143, z: 0.00076}
-      overrideScale: 1
-      headScale: {x: 2, y: 2, z: 2}
-      scale: {x: 3.82, y: 3.82, z: 3.82}
-      handScale: 1.75
-      colliderHeight: 2.3
-      colliderRadius: 1.75
-      colliderCenter: {x: 0, y: 0.69, z: 0}
-      leftArmBone: Bone.032
-      rightArmBone: Bone.033
-    - addressableKey: Assets/prefabs/NPCs/Bodies/slimegiant.prefab
-      headOffset: {x: 0.12, y: 2.758, z: 0.766}
-      bodyOffset: {x: 0, y: -0.73, z: 0}
-      bodyRotation: {x: 0, y: 0, z: 0}
-      leftHandOffset: {x: -0.8647976, y: 1.23, z: 0.88298273}
-      rightHandOffset: {x: 1.65, y: 0.85, z: 0}
-      overrideScale: 1
-      headScale: {x: 2, y: 2, z: 2}
-      scale: {x: 3.9899998, y: 3.9899998, z: 3.9899998}
-      handScale: 1.75
-      colliderHeight: 6.11
-      colliderRadius: 1.36
-      colliderCenter: {x: 0, y: 2, z: -0.75}
-      leftArmBone: 
-      rightArmBone: 
-    hands: []
-    heads: []
-  - partName: LeftHand
-    addressableKeys:
-    - Assets/prefabs/NPCs/tweakHand.prefab
-    - Assets/prefabs/NPCs/boxingglove.prefab
-    - Assets/prefabs/NPCs/eyeHand.prefab
-    - Assets/prefabs/NPCs/claw.prefab
-    - Assets/prefabs/NPCs/tentacle.prefab
-    mountPoint: {fileID: 4014847184100833193}
-    meshFilter: {fileID: 0}
-    meshRender: {fileID: 0}
-    offsets: []
-    hands:
-    - addressableKey: Assets/prefabs/NPCs/tweakHand.prefab
-      rotation: {x: 320.3, y: 201.8, z: 84.899994}
-      scale: {x: 1, y: 1, z: -1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/boxingglove.prefab
-      rotation: {x: 296.18274, y: 98.07271, z: 83.06406}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/eyeHand.prefab
-      rotation: {x: 0, y: 0, z: 0}
-      scale: {x: 1, y: 1, z: -1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/claw.prefab
-      rotation: {x: 69.85059, y: 354.56372, z: 12.672022}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/tentacle.prefab
-      rotation: {x: 320.6541, y: 286, z: 268.78235}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: -0.1, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    heads: []
-  - partName: RightHand
-    addressableKeys:
-    - Assets/prefabs/NPCs/tweakHand.prefab
-    - Assets/prefabs/NPCs/boxingglove.prefab
-    - Assets/prefabs/NPCs/fleshstaff.prefab
-    - Assets/prefabs/NPCs/eyeHand.prefab
-    - Assets/prefabs/NPCs/claw.prefab
-    - Assets/prefabs/NPCs/tentacle.prefab
-    - Assets/prefabs/NPCs/Hands/bell.prefab
-    mountPoint: {fileID: 3845664889371563197}
-    meshFilter: {fileID: 0}
-    meshRender: {fileID: 0}
-    offsets: []
-    hands:
-    - addressableKey: Assets/prefabs/NPCs/tweakHand.prefab
-      rotation: {x: 358.82, y: 286.63998, z: 35.040005}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/boxingglove.prefab
-      rotation: {x: 70.469055, y: 162.4347, z: 146.59972}
-      scale: {x: 1, y: 1, z: -1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/fleshstaff.prefab
-      rotation: {x: 0, y: 142.29, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/eyeHand.prefab
-      rotation: {x: 0, y: 180, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/claw.prefab
-      rotation: {x: 287.39407, y: 203.15591, z: 12.833057}
-      scale: {x: 1, y: 1, z: -1}
-      offsetPosition: {x: 0, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/tentacle.prefab
-      rotation: {x: 34.960613, y: 136.09831, z: 100.29292}
-      scale: {x: 1, y: 1, z: -1}
-      offsetPosition: {x: -0.2, y: 0, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    - addressableKey: Assets/prefabs/NPCs/Hands/bell.prefab
-      rotation: {x: 354.00134, y: 359.99173, z: 339.49518}
-      scale: {x: 1, y: 1, z: 1}
-      offsetPosition: {x: 0, y: 0.5, z: 0}
-      overridePosition: 0
-      position: {x: 0, y: 0, z: 0}
-    heads: []
   head: {fileID: 7317955472801406449}
   fov: {fileID: 448972914210976078}
   dialogueData: {fileID: 11400000, guid: 48a6a26911156df478d3f2f80ec4985f, type: 2}
@@ -510,6 +300,427 @@ MonoBehaviour:
     lineIndexToAddItem: 0
     advance: 0
     repeat: 0
+--- !u!114 &3670952881104141622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239325195477015450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5c78d09b1c58b46b706d4fee82c47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModularBody
+  parts:
+  - partName: Head
+    addressableKeys:
+    - Assets/prefabs/NPCs/Heads/BrainFace.prefab
+    - Assets/prefabs/NPCs/Heads/GuardianHelm.prefab
+    - Assets/prefabs/NPCs/Heads/TVHead.prefab
+    - Assets/prefabs/NPCs/Heads/TwoFace.prefab
+    - Assets/prefabs/NPCs/Heads/Coral.prefab
+    - Assets/prefabs/NPCs/Heads/Frog.prefab
+    - Assets/prefabs/NPCs/Heads/Joker.prefab
+    - Assets/prefabs/NPCs/Heads/Molusk.prefab
+    - Assets/prefabs/NPCs/Heads/Snail.prefab
+    - Assets/prefabs/NPCs/Heads/Worm.prefab
+    - Assets/prefabs/NPCs/Heads/growingPain.prefab
+    - Assets/prefabs/NPCs/Heads/slimecircleHead.prefab
+    - Assets/prefabs/NPCs/Heads/Floaty.prefab
+    mountPoint: {fileID: 7317955472801406449}
+    bodies: []
+    hands: []
+    heads:
+    - addressableKey: Assets/prefabs/NPCs/Heads/BrainFace.prefab
+      offset: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/GuardianHelm.prefab
+      offset: {x: 0, y: -0.064, z: -0.018}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/TVHead.prefab
+      offset: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/TwoFace.prefab
+      offset: {x: 0, y: 0.15, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Coral.prefab
+      offset: {x: 0, y: 0.1, z: 0.05}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Frog.prefab
+      offset: {x: 0, y: 0.1, z: -0.1}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Joker.prefab
+      offset: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Molusk.prefab
+      offset: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Snail.prefab
+      offset: {x: 0, y: 0.3, z: -0.015}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Worm.prefab
+      offset: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/growingPain.prefab
+      offset: {x: 0, y: 0.1, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/slimecircleHead.prefab
+      offset: {x: 0, y: 0.2, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Heads/Floaty.prefab
+      offset: {x: 0, y: 0.25, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+  - partName: Body
+    addressableKeys:
+    - Assets/prefabs/NPCs/Bodies/dress.prefab
+    - Assets/prefabs/NPCs/Bodies/footSoldierArmor.prefab
+    - Assets/prefabs/NPCs/Bodies/plant.prefab
+    - Assets/prefabs/NPCs/Bodies/prayingcorpse.prefab
+    - Assets/prefabs/NPCs/Bodies/slimegiant.prefab
+    - Assets/prefabs/NPCs/Bodies/cello.prefab
+    - Assets/prefabs/NPCs/Bodies/cloak.prefab
+    - Assets/prefabs/NPCs/Bodies/dino.prefab
+    - Assets/prefabs/NPCs/Bodies/organ.prefab
+    - Assets/prefabs/NPCs/Bodies/slimecircle.prefab
+    - Assets/prefabs/NPCs/Bodies/vein.prefab
+    - Assets/prefabs/NPCs/Bodies/zombie.prefab
+    mountPoint: {fileID: 7965857114878844237}
+    bodies:
+    - addressableKey: Assets/prefabs/NPCs/Bodies/dress.prefab
+      headOffset: {x: -0.028, y: -0.003, z: -0.009}
+      bodyOffset: {x: 0, y: -0.666, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.436, y: -0.452, z: 0.485}
+      rightHandOffset: {x: 0.436, y: -0.501, z: 0.41225958}
+      overrideScale: 0
+      headScale: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      handScale: 0
+      colliderHeight: 0.35
+      colliderRadius: 0.5
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/footSoldierArmor.prefab
+      headOffset: {x: 0, y: 0.656, z: 0}
+      bodyOffset: {x: 0, y: -0.25, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.72986114, y: -0.098, z: 0.24897392}
+      rightHandOffset: {x: 0.68771183, y: -0.098, z: 0.28}
+      overrideScale: 0
+      headScale: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      handScale: 0
+      colliderHeight: 0.75
+      colliderRadius: 0.5
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/plant.prefab
+      headOffset: {x: 0.052, y: 0.781, z: -0.391}
+      bodyOffset: {x: 0, y: -0.9, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: 0.0089, y: 0.0057, z: 0.008}
+      rightHandOffset: {x: 0.0137, y: 0.0047, z: -0.0019}
+      overrideScale: 1
+      headScale: {x: 1.5, y: 1.5, z: 1.5}
+      scale: {x: 3, y: 3, z: 3}
+      handScale: 1.5
+      colliderHeight: 2
+      colliderRadius: 1
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: Bone.032
+      rightArmBone: Bone.033
+      neckBone: 
+      noHands: 0
+      excludedHandles:
+      - Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+      - Assets/prefabs/NPCs/Hands/bell.prefab
+    - addressableKey: Assets/prefabs/NPCs/Bodies/prayingcorpse.prefab
+      headOffset: {x: 0.0012, y: 0.0434, z: 0.0013}
+      bodyOffset: {x: 0, y: -1, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.5, y: 0.049, z: 0.142}
+      rightHandOffset: {x: 0.7, y: 0.049, z: 0.142}
+      overrideScale: 0
+      headScale: {x: 0, y: 0, z: 0}
+      scale: {x: 0, y: 0, z: 0}
+      handScale: 0
+      colliderHeight: 0.5
+      colliderRadius: 0.5
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: Bone
+      noHands: 1
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/slimegiant.prefab
+      headOffset: {x: 0.0254, y: 0.046, z: 0.0038}
+      bodyOffset: {x: 0, y: -1, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -1.019, y: 0.7, z: -0.11280154}
+      rightHandOffset: {x: 0.9469759, y: 0.71, z: -0.2019617}
+      overrideScale: 1
+      headScale: {x: 2, y: 2, z: 2}
+      scale: {x: 4, y: 4, z: 4}
+      handScale: 2
+      colliderHeight: 4
+      colliderRadius: 1.25
+      colliderCenter: {x: 0, y: 1, z: -0.75}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: Bone.005
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/cello.prefab
+      headOffset: {x: 0.045, y: 0.995, z: 0.089}
+      bodyOffset: {x: 0, y: 0, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -1.082, y: -0.012224222, z: 0.25}
+      rightHandOffset: {x: 1, y: -0.0025429372, z: 0.25}
+      overrideScale: 1
+      headScale: {x: 1.25, y: 1.25, z: 1.25}
+      scale: {x: 2, y: 2, z: 2}
+      handScale: 1.25
+      colliderHeight: 2.5
+      colliderRadius: 0.75
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/cloak.prefab
+      headOffset: {x: 0, y: 0.2, z: 0.075}
+      bodyOffset: {x: 0, y: -0.526, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.3554488, y: -0.216, z: 0.475}
+      rightHandOffset: {x: 0.42921895, y: -0.291, z: 0.481}
+      overrideScale: 1
+      headScale: {x: 1, y: 1, z: 1}
+      scale: {x: 2.5, y: 2.5, z: 2.5}
+      handScale: 1
+      colliderHeight: 0.75
+      colliderRadius: 0.25
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/dino.prefab
+      headOffset: {x: 0.0001, y: 0.0082, z: 0.009}
+      bodyOffset: {x: 0, y: -1.03, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: 0, y: 0, z: 0}
+      rightHandOffset: {x: 0, y: 0, z: 0}
+      overrideScale: 1
+      headScale: {x: 2.5, y: 2.5, z: 2.5}
+      scale: {x: 2, y: 2, z: 2}
+      handScale: 1
+      colliderHeight: 2
+      colliderRadius: 1
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: Root
+      noHands: 1
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/organ.prefab
+      headOffset: {x: -0.077, y: 1.1, z: 0.01}
+      bodyOffset: {x: 0, y: 0, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -1.226, y: 0.297, z: 0.418}
+      rightHandOffset: {x: 0.866, y: 0.231, z: 0.418}
+      overrideScale: 1
+      headScale: {x: 1.5, y: 1.5, z: 1.5}
+      scale: {x: 2, y: 2, z: 2}
+      handScale: 1.5
+      colliderHeight: 2.5
+      colliderRadius: 0.75
+      colliderCenter: {x: 0, y: 0.3, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 0
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/slimecircle.prefab
+      headOffset: {x: 0, y: 1.435, z: 0.1}
+      bodyOffset: {x: 0, y: 0, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.848, y: -0.136, z: 0.592}
+      rightHandOffset: {x: 1.076, y: -0.122, z: 0.7156884}
+      overrideScale: 1
+      headScale: {x: 1.5, y: 1.5, z: 1.5}
+      scale: {x: 2, y: 2, z: 2}
+      handScale: 1.5
+      colliderHeight: 2.5
+      colliderRadius: 0.75
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: 
+      rightArmBone: 
+      neckBone: 
+      noHands: 0
+      excludedHandles: []
+    - addressableKey: Assets/prefabs/NPCs/Bodies/vein.prefab
+      headOffset: {x: 0.0004, y: 0.0003, z: 0.0048}
+      bodyOffset: {x: 0, y: 0.25, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: 0.0004, y: 0.001, z: 0.0076}
+      rightHandOffset: {x: 0.0007, y: 0.002, z: 0.0095}
+      overrideScale: 1
+      headScale: {x: 1.5, y: 1.5, z: 1.5}
+      scale: {x: 1.9, y: 1.9, z: 1.9}
+      handScale: 1
+      colliderHeight: 2.5
+      colliderRadius: 0.5
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: ArmLeft
+      rightArmBone: ArmRight
+      neckBone: Neck.001
+      noHands: 0
+      excludedHandles:
+      - Assets/prefabs/NPCs/Hands/bell.prefab
+      - Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+    - addressableKey: Assets/prefabs/NPCs/Bodies/zombie.prefab
+      headOffset: {x: -0.0018, y: 0.009, z: 0.0118}
+      bodyOffset: {x: 0, y: -0.484, z: 0}
+      bodyRotation: {x: 0, y: 0, z: 0}
+      leftHandOffset: {x: -0.0017, y: 0.0039, z: 0.0008}
+      rightHandOffset: {x: 0.0019, y: 0.0036, z: 0.003}
+      overrideScale: 1
+      headScale: {x: 1.5, y: 1.5, z: 1.5}
+      scale: {x: 1.9, y: 1.9, z: 1.9}
+      handScale: 1
+      colliderHeight: 2.5
+      colliderRadius: 0.75
+      colliderCenter: {x: 0, y: 0, z: 0}
+      leftArmBone: ForearmLeft.001
+      rightArmBone: ForearmRight.001
+      neckBone: Bone.004
+      noHands: 0
+      excludedHandles:
+      - Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+      - Assets/prefabs/NPCs/Hands/bell.prefab
+    hands: []
+    heads: []
+  - partName: LeftHand
+    addressableKeys:
+    - Assets/prefabs/NPCs/Hands/tweakHandLeft.prefab
+    - Assets/prefabs/NPCs/Hands/tentacle.prefab
+    - Assets/prefabs/NPCs/Hands/eyeHandLeft.prefab
+    - Assets/prefabs/NPCs/Hands/clawLeft.prefab
+    - Assets/prefabs/NPCs/Hands/growingPainLeft.prefab
+    - Assets/prefabs/NPCs/Hands/zombieLeft.prefab
+    mountPoint: {fileID: 4014847184100833193}
+    bodies: []
+    hands:
+    - addressableKey: Assets/prefabs/NPCs/Hands/tweakHandLeft.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/tentacle.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/eyeHandLeft.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/clawLeft.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/growingPainLeft.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/zombieLeft.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    heads: []
+  - partName: RightHand
+    addressableKeys:
+    - Assets/prefabs/NPCs/Hands/tweakHandRight.prefab
+    - Assets/prefabs/NPCs/Hands/tentacle.prefab
+    - Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+    - Assets/prefabs/NPCs/Hands/eyeHandRight.prefab
+    - Assets/prefabs/NPCs/Hands/clawRight.prefab
+    - Assets/prefabs/NPCs/Hands/bell.prefab
+    - Assets/prefabs/NPCs/Hands/growingPainRight.prefab
+    - Assets/prefabs/NPCs/Hands/zombieRight.prefab
+    mountPoint: {fileID: 3845664889371563197}
+    bodies: []
+    hands:
+    - addressableKey: Assets/prefabs/NPCs/Hands/tweakHandRight.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/tentacle.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/fleshstaff.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0.4, y: 0.2, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/eyeHandRight.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/clawRight.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/bell.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0.54, z: -0.08}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/growingPainRight.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    - addressableKey: Assets/prefabs/NPCs/Hands/zombieRight.prefab
+      rotation: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      offsetPosition: {x: 0, y: 0, z: 0}
+      overridePosition: 0
+      position: {x: 0, y: 0, z: 0}
+    heads: []
 --- !u!136 &6268602987876356715
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -546,7 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  angle: 160
+  angle: 110
   player: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -556,6 +767,34 @@ MonoBehaviour:
     m_Bits: 128
   canSeePlayer: 0
   playerInRange: 0
+--- !u!114 &3182594648948046437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239325195477015450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131f885a9bf0be6408863f5fc4410752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HP
+  currentHP: 0
+  maxHP: 100
+  characterID: 
+  dead: 0
+  type: 2
+  minGibs: 5
+  maxGibs: 10
+  damageFlashEnable: 0
+  targetFlashValue: 0
+  flashDur: 0
+  FlashCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7317955472801406449
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +804,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3868595246276504493}
-  - component: {fileID: 8333508048326762697}
   - component: {fileID: 5923106214458460493}
   - component: {fileID: 2249893010323119834}
   m_Layer: 21
@@ -590,28 +828,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6239325195477015448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8333508048326762697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7317955472801406449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fps: 24
-  scaleRange: 0.35
-  rotationRange: 15
-  positionRange: 0.025
-  lockPosition: 0
-  parented: 0
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
-  targetRot: {x: 0, y: 0, z: 0, w: 0}
-  scale: {x: 0, y: 0, z: 0}
 --- !u!23 &5923106214458460493
 MeshRenderer:
   m_ObjectHideFlags: 0

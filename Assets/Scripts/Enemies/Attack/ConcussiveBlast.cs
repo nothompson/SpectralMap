@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ConcussiveBlast : MeleeCollider 
 {
-    public override IEnumerator Collide(GameObject player, PlayerControlRigid control, HP hp, Vector3 force)
+    public override IEnumerator Collide(GameObject player, PlayerControlRigid control, HP hp, Vector3 force, Transform t)
     {
         if (player != null){
             EffectManager.Instance.Confuse(player, 5f);
             }
 
-        yield return base.Collide(player, control, hp, force);
+        yield return base.Collide(player, control, hp, force, t);
     }
 }

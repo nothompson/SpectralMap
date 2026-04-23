@@ -10,64 +10,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] public NamedEntity NamedEntity;
+    [SerializeField] public ModularBody modularBody;
     public string npcID;
-
-    [System.Serializable]
-    public class PartConfig
-    {
-        public string partName;
-        public string[] addressableKeys;
-        public GameObject mountPoint; 
-        public MeshFilter meshFilter;
-        public MeshRenderer meshRender;
-        
-        public BodyConfig[] offsets;
-
-        public HandConfig[] hands;
-
-        public HeadConfig[] heads;
-    }
-
-    [System.Serializable]
-    public class HeadConfig
-    {
-        public string addressableKey;
-        public Vector3 offset;
-        public Vector3 rotation;
-    }
-
-    [System.Serializable]
-    public class BodyConfig
-    {
-        public string addressableKey;
-        public Vector3 headOffset;
-        public Vector3 bodyOffset;
-        public Vector3 bodyRotation;
-        public Vector3 leftHandOffset;
-        public Vector3 rightHandOffset;
-        public bool overrideScale;
-        public Vector3 headScale;
-        public Vector3 scale;
-        public float handScale;
-        public float colliderHeight;
-        public float colliderRadius;
-        public Vector3 colliderCenter;
-
-        public string leftArmBone;
-        public string rightArmBone;
-    }
-    [System.Serializable]
-    public class HandConfig
-    {
-        public string addressableKey;
-        public Vector3 rotation;
-        public Vector3 scale;
-        public Vector3 offsetPosition;
-        public bool overridePosition;
-        public Vector3 position;
-    }
-
-    [SerializeField] PartConfig[] parts;
 
     [SerializeField] GameObject head;
     [SerializeField] FOV fov;
@@ -77,13 +21,13 @@ public class NPC : MonoBehaviour, IInteractable
     public DialogueProgression currentDialogue;
 
     private List<string> currentWords = new List<string>();
-    private List<AsyncOperationHandle<GameObject>> loadedParts = new();
 
     private IEnumerator Speak;
 
     private MeshJitter meshJitter;
 
     private Quaternion headRotation;
+    private Quaternion headTargetRotation;
 
     Quaternion rotation; 
 
@@ -92,6 +36,10 @@ public class NPC : MonoBehaviour, IInteractable
     bool playerHasInteracted = false;
 
     private PlayerInteract playerInteract;
+
+    private Quaternion neckRestRotation;
+
+    public FMOD.Studio.EventInstance speechInstance;
 
     public void Awake()
     {
@@ -106,15 +54,18 @@ public class NPC : MonoBehaviour, IInteractable
             return;
         }
         ableToSeePlayer = false;
-        await LoadRandomParts();
-        headRotation = head.transform.localRotation;
 
-        fov = gameObject.GetComponent<FOV>();
-        meshJitter = head.GetComponent<MeshJitter>();
+        modularBody.OnPartsLoaded += OnBodyReady;
+        await modularBody.LoadRandomParts();
+
+    }
+
+    private void OnBodyReady()
+    {
+        headRotation = head.transform.rotation;
+        headTargetRotation = headRotation;
 
         RefreshMeshJitter();
-
-        meshJitter.rotation = headRotation;
 
         ableToSeePlayer = true;
     }
@@ -128,244 +79,49 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
-    private async Task LoadRandomParts()
-    {
-        string spawnedHead = null;
-        string spawnedBodyKey = null;
-        string spawnedLeftHand = null;
-        string spawnedRightHand = null;
-        GameObject spawnedObject = null;
-        foreach(var config in parts)
-        {
-            if(config.addressableKeys == null || config.addressableKeys.Length < 1) continue;
-
-            string randomKey = config.addressableKeys[Random.Range(0, config.addressableKeys.Length)];
-
-            if(config.partName == "Head")
-            {
-                spawnedHead = randomKey;
-            }
-
-            if(config.partName == "Body")
-            {
-                spawnedBodyKey = randomKey;
-            }
-
-            if(config.partName == "LeftHand")
-            {
-                spawnedLeftHand = randomKey;
-            }
-
-            if(config.partName == "RightHand")
-            {
-                spawnedRightHand = randomKey;
-            }
-
-
-            var assetHandle = Addressables.LoadAssetAsync<GameObject>(randomKey);
-            await assetHandle.Task;
-
-            loadedParts.Add(assetHandle);
-
-            GameObject prefab = assetHandle.Result;
-            GameObject part = Instantiate(prefab, config.mountPoint.transform);
-
-            if(config.partName == "Body") spawnedObject = part;
-
-            MeshFilter filter = part.GetComponent<MeshFilter>();
-            MeshRenderer render = part.GetComponent<MeshRenderer>();
-
-            if(config.meshFilter != null && filter != null)
-            {
-                config.meshFilter.sharedMesh = filter.sharedMesh;
-            }
-
-            MeshRenderer targetRender = config.mountPoint.GetComponent<MeshRenderer>();
-            if(targetRender !=null && render != null)
-            {
-                targetRender.sharedMaterials = render.sharedMaterials;
-            }
-        }
-
-        if (!string.IsNullOrEmpty(spawnedBodyKey) || !string.IsNullOrEmpty(spawnedLeftHand) || !string.IsNullOrEmpty(spawnedRightHand))
-            {
-                PartConfig bodyConfig = System.Array.Find(parts, p=> p.partName == "Body");
-                if(bodyConfig?.offsets != null)
-                {
-                    BodyConfig bodyOffsets = System.Array.Find(bodyConfig.offsets, e => e.addressableKey == spawnedBodyKey);
-                    if(bodyOffsets != null)
-                    {
-                        if(bodyOffsets.bodyOffset != Vector3.zero && bodyConfig.mountPoint != null)
-                        {
-                            bodyConfig.mountPoint.transform.localPosition += bodyOffsets.bodyOffset;
-                            bodyConfig.mountPoint.transform.localRotation = Quaternion.Euler(bodyOffsets.bodyRotation);
-                            if (bodyOffsets.overrideScale)
-                            {
-                                bodyConfig.mountPoint.transform.localScale = bodyOffsets.scale;
-                                CapsuleCollider collider = GetComponent<CapsuleCollider>();
-                                if(collider !=null){
-                                    collider.height = bodyOffsets.colliderHeight;
-                                    collider.radius = bodyOffsets.colliderRadius;
-                                    collider.center = bodyOffsets.colliderCenter;
-                                }
-                            }
-                        }
-
-                        PartConfig headPart = System.Array.Find(parts, p=>p.partName == "Head");
-                        if(headPart != null)
-                        {
-                            HeadConfig headConfig = System.Array.Find(headPart.heads, e => e.addressableKey == spawnedHead);
-                            if(headConfig != null)
-                            {
-                                headPart.mountPoint.transform.localPosition += bodyOffsets.headOffset + headConfig.offset;
-                                headPart.mountPoint.transform.localRotation = Quaternion.Euler(headConfig.rotation);
-                                if (bodyOffsets.overrideScale)
-                                {
-                                    headPart.mountPoint.transform.localScale = bodyOffsets.headScale;
-                                }
-                            }
-                        }
-
-
-                        PartConfig leftHandConfig = System.Array.Find(parts, _p=>_p.partName == "LeftHand");
-                        HandConfig leftHandRotation = null;
-                        if(leftHandConfig != null)
-                        {
-                            leftHandConfig.mountPoint.transform.localPosition += bodyOffsets.leftHandOffset;
-                            leftHandRotation = System.Array.Find(leftHandConfig.hands, e => e.addressableKey == spawnedLeftHand);
-                            if(leftHandRotation != null)
-                            {
-                                leftHandConfig.mountPoint.transform.localRotation = Quaternion.Euler(leftHandRotation.rotation);
-                                leftHandConfig.mountPoint.transform.localScale = leftHandRotation.scale;
-                                leftHandConfig.mountPoint.transform.localPosition += leftHandRotation.offsetPosition;
-                                if (leftHandRotation.overridePosition)
-                                {
-                                    leftHandConfig.mountPoint.transform.localPosition = leftHandRotation.position;
-                                }
-                                if (bodyOffsets.overrideScale)
-                                {
-                                    leftHandConfig.mountPoint.transform.localScale *= bodyOffsets.handScale;
-                                }
-                            }
-                        }
-
-                        PartConfig rightHandConfig = System.Array.Find(parts, _p=>_p.partName == "RightHand");
-                        HandConfig rightHandRotation = null;
-                        if(rightHandConfig != null)
-                        {
-                            rightHandConfig.mountPoint.transform.localPosition += bodyOffsets.rightHandOffset;
-                            rightHandRotation = System.Array.Find(rightHandConfig.hands, e => e.addressableKey == spawnedRightHand);
-                            if(rightHandRotation != null)
-                            {
-                                rightHandConfig.mountPoint.transform.localRotation = Quaternion.Euler(rightHandRotation.rotation);
-                                rightHandConfig.mountPoint.transform.localScale = rightHandRotation.scale;
-                                rightHandConfig.mountPoint.transform.localPosition += rightHandRotation.offsetPosition;
-                                if (rightHandRotation.overridePosition)
-                                {
-                                    rightHandConfig.mountPoint.transform.localPosition = rightHandRotation.position;
-                                }
-                                if (bodyOffsets.overrideScale)
-                                {
-                                    rightHandConfig.mountPoint.transform.localScale *= bodyOffsets.handScale;
-                                }
-                            }
-                        }
-
-                    if(spawnedObject != null && bodyOffsets != null)
-                    {
-                        if (!string.IsNullOrEmpty(bodyOffsets.leftArmBone))
-                        {
-                            Transform leftBone = FindBone(spawnedObject.transform, bodyOffsets.leftArmBone);
-                            leftHandConfig = System.Array.Find(parts, p => p.partName == "LeftHand");
-                            if(leftBone != null && leftHandConfig != null)
-                            {
-                                leftHandConfig.mountPoint.transform.SetParent(leftBone, true);
-                                leftHandConfig.mountPoint.transform.localPosition = bodyOffsets.leftHandOffset;
-                                leftHandConfig.mountPoint.transform.position += leftHandRotation.offsetPosition;
-
-                                Debug.Log(leftHandRotation.offsetPosition);
-
-                                MeshJitter lhj = leftHandConfig.mountPoint.GetComponent<MeshJitter>();
-
-                                if(lhj != null)
-                                {
-                                    lhj.parented = true;
-                                    lhj.UpdateBaseValues();
-                                }
-
-                            }
-                        }
-
-                        if (!string.IsNullOrEmpty(bodyOffsets.rightArmBone))
-                        {
-                            Transform rightBone = FindBone(spawnedObject.transform, bodyOffsets.rightArmBone);
-                            rightHandConfig = System.Array.Find(parts, p => p.partName == "RightHand");
-                            if(rightBone != null && leftHandConfig != null)
-                            {
-                                rightHandConfig.mountPoint.transform.SetParent(rightBone, true);
-                                rightHandConfig.mountPoint.transform.localPosition = bodyOffsets.rightHandOffset;
-                                rightHandConfig.mountPoint.transform.position += rightHandRotation.offsetPosition;
-
-                                MeshJitter rhj = rightHandConfig.mountPoint.GetComponent<MeshJitter>();
-
-                                if(rhj != null)
-                                {
-                                    rhj.parented = true;
-                                    rhj.UpdateBaseValues();
-                                }
-                                
-                            }
-                        }
-
-                    }
-                    }
-                }
-            }
-    }
-
-    Transform FindBone(Transform root, string boneName)
-    {
-        if(root.name == boneName) return root;
-        foreach(Transform child in root)
-        {
-            Transform result = FindBone(child, boneName);
-            if(result != null) return result;
-        }
-        return null;
-    }
-
     public void Update()
+{
+    if (!ableToSeePlayer) return;
+
+    if (fov.canSeePlayer)
     {
-        if(ableToSeePlayer){
-        if(fov.canSeePlayer){
-            Vector3 adjusted = new Vector3(fov.player.transform.position.x, fov.player.transform.position.y + 1.75f, fov.player.transform.position.z);
-            Vector3 direction = (adjusted - head.transform.position).normalized;
+        Vector3 adjusted = new Vector3(
+            fov.player.transform.position.x,
+            fov.player.transform.position.y + 1f,
+            fov.player.transform.position.z);
 
-            Vector3 localDir = Quaternion.Inverse(transform.rotation) * direction;
-            
-            float yAngle = Mathf.Atan2(localDir.x,localDir.z) * Mathf.Rad2Deg;
-            float xAngle = Mathf.Asin(-localDir.y) * Mathf.Rad2Deg;
+        Vector3 worldDir = (adjusted - head.transform.position).normalized;
 
-            yAngle = Mathf.Clamp(yAngle,-90f,90f);
-            xAngle = Mathf.Clamp(xAngle,-30f,30f);
+        Vector3 localDir = Quaternion.Inverse(transform.rotation) * worldDir;
 
-            rotation = Quaternion.Euler(xAngle,yAngle,0f) * headRotation;
-        }
-        else
-        {
-            rotation = headRotation;
-        }
+        float yAngle = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float xAngle = Mathf.Asin(Mathf.Clamp(-localDir.y, -1f, 1f)) * Mathf.Rad2Deg;
 
-        meshJitter.targetRot = rotation;
-        }
+        yAngle = Mathf.Clamp(yAngle, -80f, 80f);
+        xAngle = Mathf.Clamp(xAngle, -50f, 50f);
+
+        Quaternion clampedWorld = transform.rotation
+            * Quaternion.AngleAxis(yAngle, Vector3.up)
+            * Quaternion.AngleAxis(xAngle, Vector3.right);
+
+        headTargetRotation = clampedWorld;
     }
+    else
+    {
+        // headTargetRotation = head.transform.parent != null
+        //     ? head.transform.parent.rotation * headRotation
+        //     : transform.rotation * headRotation;
+        headTargetRotation = transform.rotation * headRotation;
+    }
+
+    head.transform.rotation = Quaternion.Slerp(
+        head.transform.rotation,
+        headTargetRotation,
+        Time.deltaTime * 5f);
+}
 
     void OnDestroy()
     {
-        foreach(var part in loadedParts)
-            Addressables.Release(part);
-        loadedParts.Clear();
-
         if(playerInteract != null)
         {
             playerInteract.CloseDialogue();
@@ -392,7 +148,7 @@ public class NPC : MonoBehaviour, IInteractable
                 playerInteract.dialogue.fullTextShown = false;
             }
         
-        if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
+            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
             {
                 dialogueData.AddJournalEntry(currentDialogue);
             }
@@ -453,6 +209,7 @@ public class NPC : MonoBehaviour, IInteractable
     public void ExitInteract()
     {
         if(playerInteract == null) return;
+
         playerInteract.CloseDialogue();
         playerInteract = null;
     }

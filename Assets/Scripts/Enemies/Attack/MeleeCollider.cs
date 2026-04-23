@@ -15,7 +15,7 @@ public class MeleeCollider : MonoBehaviour
       public Vector3 forceOffset = Vector3.zero;
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, range, playerMask);
         if (hits.Length != 0 && !collided)
@@ -25,9 +25,13 @@ public class MeleeCollider : MonoBehaviour
                 var control = player.GetComponent<PlayerControlRigid>();
                 var playerHP = player.GetComponent<HP>();
 
-                Vector3 dir = (hits[0].transform.position - transform.position).normalized;
+                Vector3 pos = hits[0].transform.position;
 
-                float dist = Vector3.Distance(hits[0].transform.position, transform.position);
+                Transform t = hits[0].transform;
+
+                Vector3 dir = (pos - transform.position).normalized;
+
+                float dist = Vector3.Distance(pos, transform.position);
 
                 float inverse = 1.0f - Mathf.Clamp01(dist / range);
                 
@@ -37,11 +41,11 @@ public class MeleeCollider : MonoBehaviour
 
                 collided = true;
 
-                StartCoroutine(Collide(player, control, playerHP, force));
+                StartCoroutine(Collide(player, control, playerHP, force, t));
         }
     }
 
-    public virtual IEnumerator Collide(GameObject player, PlayerControlRigid control, HP hp, Vector3 force)
+    public virtual IEnumerator Collide(GameObject player, PlayerControlRigid control, HP hp, Vector3 force, Transform t)
     {
         yield return new WaitForSeconds(0.1f);
 

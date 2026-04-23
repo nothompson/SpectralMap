@@ -20,6 +20,7 @@ public class LeachEnemy : Enemy
         spawnDir = Vector3.one;
         StartCoroutine(WaitToSeekPlayer());
         StartCoroutine(AutoDeath());
+        engage = true;
     }
 
     public override void References()

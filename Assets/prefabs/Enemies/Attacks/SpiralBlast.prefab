@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1994924115099207633}
   - component: {fileID: 1428052741814618850}
   - component: {fileID: 109470985969586809}
+  - component: {fileID: 8073482573488353867}
   m_Layer: 13
   m_Name: sprite
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8812009374192403408}
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 49a394464a42402469eac30f8af78633, type: 3}
+  m_Sprite: {fileID: 1161436729, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,6 +106,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
   type: 1
+--- !u!114 &8073482573488353867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132705882587867683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49da9ac3420a1ab429210e036b082415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
+  sprites:
+  - {fileID: 1161436729, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  - {fileID: -1385035123, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  - {fileID: 1441028024, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  - {fileID: 552959866, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  - {fileID: 2115951465, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  - {fileID: -1023205236, guid: 6a5715e6b4e54a04f82912bc5f0b5f7b, type: 3}
+  startingIndex: 0
+  randomStart: 0
+  fps: 12
+  image: {fileID: 0}
+  material: {fileID: 0}
+  sprite: {fileID: 1428052741814618850}
+  worldSpace: 1
+  length: 6
+  index: 0
+  isPlaying: 1
+  pingPong: 0
+  direction: 0
 --- !u!1 &8812009374192403409
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +218,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.66
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4733249961359228162
 MonoBehaviour:

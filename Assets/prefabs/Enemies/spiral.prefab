@@ -172,6 +172,7 @@ MonoBehaviour:
   fov: {fileID: 2185736895874099741}
   hp: {fileID: 6663585221207252220}
   fbx: {fileID: 0}
+  spriteEvent: {fileID: 0}
   EnemyID: 
   Personality: 1
   Behaviors: []
@@ -439,7 +440,7 @@ MonoBehaviour:
   AttackPoint: {fileID: 5057575315023857220}
   Owner: {fileID: 0}
   onCooldown: 0
-  projectileSpeed: 10
+  projectileSpeed: 12.5
   predictionClamp: 5
   AutoTimer: 5
   ExplosionRadius: 3

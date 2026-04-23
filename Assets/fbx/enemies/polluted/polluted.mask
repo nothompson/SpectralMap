@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: polluted
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: AnkleLeft.001
+    m_Weight: 0
+  - m_Path: AnkleRight.001
+    m_Weight: 0
+  - m_Path: Head.001
+    m_Weight: 1
+  - m_Path: HipLeft
+    m_Weight: 0
+  - m_Path: HipLeft/ThighLeft
+    m_Weight: 1
+  - m_Path: HipLeft/ThighLeft/CalfLeft
+    m_Weight: 1
+  - m_Path: HipLeft/ThighLeft/CalfLeft/AnkleLeft
+    m_Weight: 1
+  - m_Path: HipRight
+    m_Weight: 0
+  - m_Path: HipRight/ThighRight
+    m_Weight: 1
+  - m_Path: HipRight/ThighRight/CalfRight
+    m_Weight: 1
+  - m_Path: HipRight/ThighRight/CalfRight/AnkleRight
+    m_Weight: 1
+  - m_Path: LowerSpine
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/Neck
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/Neck/Head
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderLeft
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderLeft/BicepLeft
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderLeft/BicepLeft/ForearmLeft
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderLeft/BicepLeft/ForearmLeft/WristLeft
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderRight
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderRight/BicepRight
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderRight/BicepRight/ForearmRight
+    m_Weight: 1
+  - m_Path: LowerSpine/UpperSpine/ShoulderRight/BicepRight/ForearmRight/WristRight
+    m_Weight: 1
+  - m_Path: WristLeft.001
+    m_Weight: 1
+  - m_Path: WristRight.001
+    m_Weight: 1

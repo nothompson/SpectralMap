@@ -464,5 +464,14 @@
                 velocity.y += Gravity.y * Time.fixedDeltaTime * 0.5f;
             }
 
+            public static void Jump(ref Vector3 velocity, float jumpHeight)
+            {
+                if(velocity.y <= 0)
+                {
+                    velocity.y = 0;
+                }
+                velocity.y += jumpHeight;
+            }
+
         }
     }

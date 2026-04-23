@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ae20d815a32c14e8e90f5ba6c8e642, type: 3}
+  m_Name: bigEyeAttack
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEvent
+  id: Attack
+  restingAnimation: 0
+  sprites:
+  - {fileID: 640631052, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -994952336, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -160986632, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: 1072207777, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: 1383961464, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -522380787, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -542050615, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -2090504562, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: 2019656487, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: -353642362, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  - {fileID: 1567368663, guid: 4aa05d887ba20d1408308b81b7466295, type: 3}
+  fps: 12
+  pingPong: 0

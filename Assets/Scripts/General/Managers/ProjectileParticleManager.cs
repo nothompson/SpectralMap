@@ -10,10 +10,12 @@ public class ProjectileParticleManager : MonoBehaviour
     {
         public Transform target;
         public float remainingLifetime;
+        public ParticleSystem system;
     }
 
     private List<ParticleEntry> trackedParticles = new List<ParticleEntry>();
     private ParticleSystem.Particle[] particleBuffer;
+    private Dictionary<ParticleSystem, ParticleSystem.Particle[]> particleBuffers = new ();
 
     public ParticleSystem fireballExplosionSmoke;
     
@@ -55,6 +57,28 @@ public class ProjectileParticleManager : MonoBehaviour
         smokeParams = new ParticleSystem.EmitParams();
     }
 
+    private void SpawnParticle(ParticleSystem ps, Transform spawn, int count, float positionJitter = 0f, bool track = false)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+
+        for(int i = 0; i < count; i++)
+        {
+            emitParams.position = positionJitter > 0f ? spawn.position + Random.insideUnitSphere * positionJitter : spawn.position;
+            emitParams.applyShapeToPosition = true;
+
+            ps.Emit(emitParams, 1);
+
+            if (track)
+            {
+                trackedParticles.Add(new ParticleEntry{
+                    target = spawn,
+                    remainingLifetime = ps.main.startLifetime.constantMax,
+                    system = ps
+                });
+            }
+        }
+    }
+
     public void Register(Fireball fireball)
     {
         activeFireballs.Add(fireball);
@@ -64,71 +88,26 @@ public class ProjectileParticleManager : MonoBehaviour
         activeFireballs.Remove(fireball);
     }
 
-    public void SpawnSorcererCast(Transform spawn, int x)
-    {
-    for (int i = 0; i < x; i++)
-    {
-        var sorcererCastParams = new ParticleSystem.EmitParams();
-        sorcererCastParams.position = spawn.position + Random.insideUnitSphere * 0.5f;
-        sorcererCastParams.applyShapeToPosition = true;
+    public void SpawnSorcererCast(Transform spawn, int x, bool track = false)
+        => SpawnParticle(SorcererCast, spawn, x, positionJitter: 0.5f, track);
 
-        SorcererCast.Emit(sorcererCastParams, 1);
-    }
-    }
+    public void SpawnSquidBlast(Transform spawn, bool track = false)
+        => SpawnParticle(SquidBlast, spawn, 1, track: track);
 
-    public void SpawnSquidBlast(Transform spawn)
-    {
-        var squidBlastParams = new ParticleSystem.EmitParams();
-        squidBlastParams.position = spawn.position;
+    public void SpawnSpitTongue(Transform spawn, bool track = false)
+        => SpawnParticle(SpitTongue, spawn, 1, track: track);
 
-        SquidBlast.Emit(squidBlastParams, 1);
-    }
+    public void SpawnGoreBlast(Transform spawn, bool track = false)
+        => SpawnParticle(GoreBlast, spawn, 1, track: track);
 
-    public void SpawnSpitTongue(Transform spawn)
-    {
-        var spitTongueParams = new ParticleSystem.EmitParams();
-        spitTongueParams.position = spawn.position;
+    public void SpawnBloodShot(Transform spawn, bool track = false)
+        => SpawnParticle(BloodShot, spawn, 1, track: track);
 
-        SpitTongue.Emit(spitTongueParams, 1);
-    }
+    public void SpawnSpectralBlast(Transform spawn, bool track = false)
+        => SpawnParticle(SpectralBlast, spawn, 1, track: track);
 
-    public void SpawnGoreBlast(Transform spawn)
-    {
-        var goreBlastParams = new ParticleSystem.EmitParams();
-        goreBlastParams.position = spawn.position;
-
-        GoreBlast.Emit(goreBlastParams, 1);
-    }
-
-    public void SpawnBloodShot(Transform spawn)
-    {
-        var bloodShotParams = new ParticleSystem.EmitParams();
-        bloodShotParams.position = spawn.position;
-
-        BloodShot.Emit(bloodShotParams, 1);
-    }
-
-    public void SpawnSpectralBlast(Transform spawn)
-    {
-        var spectralBlastParams = new ParticleSystem.EmitParams();
-        spectralBlastParams.position = spawn.position;
-
-        SpectralBlast.Emit(spectralBlastParams, 1);
-    }
-
-    public void SpawnScreech(Transform spawn)
-    {
-        var screechParams = new ParticleSystem.EmitParams();
-        screechParams.position = spawn.position;
-
-        Screech.Emit(screechParams, 1);
-
-        trackedParticles.Add(new ParticleEntry
-        {
-            target = spawn,
-            remainingLifetime = Screech.main.startLifetime.constantMax
-        });
-    }
+    public void SpawnScreech(Transform spawn, bool track = true)
+        => SpawnParticle(Screech, spawn, 1, track: track);
 
     void Update()
     {
@@ -166,42 +145,50 @@ public class ProjectileParticleManager : MonoBehaviour
             if(e.target == null || e.remainingLifetime <= 0f)
             {
                 trackedParticles.RemoveAt(i);
-                continue;
             }
-            trackedParticles[i] = e;
-        }
-
-        if(trackedParticles.Count == 0) return;
-
-        int count = Screech.particleCount;
-        if (count == 0) return;
-
-        if(particleBuffer == null || particleBuffer.Length < count)
-        {
-            particleBuffer = new ParticleSystem.Particle[count];
-        }
-
-        Screech.GetParticles(particleBuffer,count);
-
-        for(int i = 0; i < trackedParticles.Count && i < count; i++)
-        {
-            var entry = trackedParticles[i];
-            if(entry.target == null) continue;
-
-            int best = 0;
-            float bestDelta = float.MaxValue;
-            for (int j = 0; j < count; j++)
+            else
             {
-                float delta = Mathf.Abs(particleBuffer[j].remainingLifetime - entry.remainingLifetime);
-                if(delta < bestDelta)
-                {
-                    bestDelta = delta;
-                    best = j;
-                }
-
+                trackedParticles[i] = e;
             }
-            particleBuffer[best].position = entry.target.position;
         }
-        Screech.SetParticles(particleBuffer, count);
+
+        var groups = new Dictionary<ParticleSystem, List<ParticleEntry>>();
+        foreach(var entry in trackedParticles)
+        {
+            if(!groups.ContainsKey(entry.system)) groups[entry.system] = new List<ParticleEntry>();
+
+            groups[entry.system].Add(entry);
+        }
+
+        foreach(var(ps, entries) in groups)
+        {
+            int count = ps.particleCount;
+            if(count == 0) continue;
+
+            if(!particleBuffers.TryGetValue(ps, out var buffer) || buffer.Length < count)
+            {
+                buffer = new ParticleSystem.Particle[count];
+                particleBuffers[ps] = buffer;
+            }
+
+            ps.GetParticles(buffer,count);
+
+            foreach(var entry in entries)
+            {
+                if(entry.target == null) continue;
+
+                int best = 0;
+                float bestDelta = float.MaxValue;
+                for(int j = 0; j < count; j++)
+                {
+                    float delta = Mathf.Abs(buffer[j].remainingLifetime - entry.remainingLifetime);
+                    if(delta < bestDelta) { bestDelta = delta; best = j; }
+                }
+                buffer[best].position = entry.target.position;
+            }
+
+            ps.SetParticles(buffer,count);
+
+        }
     }
 }

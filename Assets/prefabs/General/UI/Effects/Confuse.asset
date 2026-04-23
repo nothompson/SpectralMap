@@ -15,13 +15,18 @@ MonoBehaviour:
   id: Confuse
   DisplayName: Spiraling
   sprites:
-  - {fileID: -1184405507, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 1227144481, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 364257105, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -100247350, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 170700794, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 794028006, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -1900713529, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -1832382621, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: 980620167, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
-  - {fileID: -56750501, guid: 7918e916f6142454a8fc99055fa7c4fe, type: 3}
+  - {fileID: -1583248645, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1394948780, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1090716741, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -790745591, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1831811946, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: 1524726392, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1912808034, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1127508163, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: 1270049796, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -595684215, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -1901626681, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: -974017337, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  - {fileID: 1247067922, guid: f86d5e138d4241a40b713c4e7dff94ce, type: 3}
+  pingPong: 0
+  fps: 24

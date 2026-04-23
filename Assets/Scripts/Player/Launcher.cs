@@ -137,11 +137,7 @@ public class Launcher : MonoBehaviour
         cantShootYet.Play();
         if (drain)
         {
-            playerMagic.magicPoints -= 25f;
-            if(playerMagic.magicPoints <= 0f)
-            {
-                playerMagic.magicPoints = 0f;
-            }
+            playerMagic.Drain(25f);
         }
     }
 
@@ -230,7 +226,8 @@ public class Launcher : MonoBehaviour
         //create rocket at the point of attacking
 
         //magic drain
-        playerMagic.magicPoints -= 10f * costMultiplier;
+        // playerMagic.magicPoints -= 10f * costMultiplier;
+        playerMagic.Drain(10f * costMultiplier);
         playerMagic.justUsed = true;
         playerMagic.regenTimer = playerMagic.magicBufferTime;
 
@@ -244,7 +241,7 @@ public class Launcher : MonoBehaviour
             if (grappleSuccess)
             {
                 leftHandAnim.SetTrigger("Fire");
-                playerMagic.magicPoints -= 20f * costMultiplier;
+                playerMagic.Drain(20f * costMultiplier);
             }
             }
             else

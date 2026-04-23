@@ -135,7 +135,7 @@ public class PlayerKeyBinds : MonoBehaviour
 
         if (onbeat)
         {
-            playerMagic.magicPoints += 25f;
+            playerMagic.Replenish(25f);
             if(playerMagic.magicPoints >= playerMagic.maximumMagic)
             {
                 playerMagic.magicPoints = playerMagic.maximumMagic;
@@ -145,7 +145,7 @@ public class PlayerKeyBinds : MonoBehaviour
         }
         else
         {
-            playerMagic.magicPoints -= 25f;
+            playerMagic.Drain(25f);
             if(playerMagic.magicPoints <= 0f)
             {
                 playerMagic.magicPoints = 0f;

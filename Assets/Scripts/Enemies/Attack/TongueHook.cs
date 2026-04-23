@@ -20,60 +20,98 @@ public class TongueHook : EnemyProjectile
 
     private List<Transform> segments = new();
 
+    private Vector3 cachedAnchor;
+    private bool anchorLost = false;
+
     float t = 0f;
 
     bool missed = false;
+
+    public override void Start()
+    {
+        base.Start();
+
+        if(attackPoint != null) cachedAnchor = attackPoint.position;
+    }
+
+    Vector3 AnchorPosition => (attackPoint != null) ? attackPoint.position : cachedAnchor; 
 
     public void FixedUpdate()
     {
         if (missed || collided) return;
 
-    Vector3 vel = rb.linearVelocity;
+        if(attackPoint == null || (enemy != null && !enemy.gameObject.activeInHierarchy))
+        {
+            ForceRetract();
+            return;
+        }
 
-    if (vel.sqrMagnitude < 0.001f)
-        vel = transform.forward * speed;
+        Vector3 vel = rb.linearVelocity;
 
-    Vector3 wishDir = (enemy.player.position - transform.position).normalized;
-    Vector3 currentDir = vel.normalized;
+        if (vel.sqrMagnitude < 0.001f)
+            vel = transform.forward * speed;
 
-    Vector3 steer = wishDir - currentDir;
+        Vector3 wishDir = (enemy.player.position - transform.position).normalized;
+        Vector3 currentDir = vel.normalized;
 
-    Vector3 forwardBias = transform.forward * 0.3f;
+        Vector3 steer = wishDir - currentDir;
 
-    Vector3 accel = (steer + forwardBias) * steerStrength * speed;
+        Vector3 forwardBias = transform.forward * 0.3f;
 
-    vel += accel * Time.fixedDeltaTime;
+        Vector3 accel = (steer + forwardBias) * steerStrength * speed;
 
-    vel = vel.normalized * speed;
+        vel += accel * Time.fixedDeltaTime;
 
-    rb.linearVelocity = vel;
+        vel = vel.normalized * speed;
+
+        rb.linearVelocity = vel;
     }
 
     public override void Update()
     {
-        if(!hookActive){
-            t += Time.deltaTime;
+        if(attackPoint != null)
+        {
+            cachedAnchor = attackPoint.position;
         }
-        if(t >= autoTimer)
+
+        if(!anchorLost && (attackPoint == null || (enemy != null && !enemy.gameObject.activeInHierarchy)))
+        {
+            anchorLost = true;
+            ForceRetract();
+            return;
+        }
+
+        if(!hookActive && !missed & !collided){
+            t += Time.deltaTime;
+                 if(t >= autoTimer)
         {
             Retract();
+        }
         }
 
 
         if (missed)
         {
-            if(Vector3.Distance(transform.position, attackPoint.position) <= 3f)
+            Vector3 anchor = AnchorPosition;
+            transform.position = Vector3.Lerp(transform.position, anchor, Time.deltaTime * 10f);
+
+            if(Vector3.Distance(transform.position, anchor) <= 1f)
             {
+                ClearSegments();
                 Destroy(gameObject);
             }
+            else
+            {
+                SyncSegments(anchor,transform.position);
+                RenderSegments(anchor, transform.position);
+            }
+            return;
         }
 
         if(collided) return;
         
-        Vector3 a = attackPoint.position;
+        Vector3 a = AnchorPosition;
         Vector3 b = hookActive ? target : transform.position;
-
-        
 
         SyncSegments(a,b);
         RenderSegments(a,b);
@@ -81,9 +119,20 @@ public class TongueHook : EnemyProjectile
 
     void Retract()
     {
+        if(missed) return;
         missed = true;
-        rb.linearVelocity = transform.forward * 0f;
-        transform.position = Vector3.Lerp(transform.position, attackPoint.position, Time.deltaTime * 10f);
+        rb.linearVelocity = Vector3.zero;
+    }
+
+    void ForceRetract()
+    {
+        if (hookActive)
+        {
+            StopAllCoroutines();
+            hookActive = false;
+            RestorePlayer();
+        }
+        Retract();
     }
 
     public IEnumerator StartHook()
@@ -95,6 +144,14 @@ public class TongueHook : EnemyProjectile
 
         while (t < HookDuration)
         {
+            if (anchorLost || attackPoint == null)
+            {
+                RestorePlayer();
+                ClearSegments();
+                Destroy(gameObject);
+                yield break;
+            }
+
             t += Time.deltaTime;
             float elapsed = t / HookDuration;
             float value = HookCurve.Evaluate(elapsed);

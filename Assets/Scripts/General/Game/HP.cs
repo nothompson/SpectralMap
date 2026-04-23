@@ -69,7 +69,7 @@ public class HP : MonoBehaviour
     {
         if(dead) return;
         if(type == ObjectType.Player){
-            PlayerControlRigid pc = GetComponentInParent<PlayerControlRigid>();
+            PlayerControlRigid pc = GetComponent<PlayerControlRigid>();
             Profile profile = GetComponentInChildren<Profile>();
             AudioManager.Instance.Hurt();
             float mult = dmg * 0.1f;

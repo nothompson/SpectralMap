@@ -46,8 +46,14 @@ public class MeshJitter : MonoBehaviour
         worldPosition = transform.position;
         worldRotation = transform.rotation;
         worldScale = transform.lossyScale;
-        if(lockPosition) return;
+        if (!lockPosition)
         position = transform.localPosition;
+        
+        StopAllCoroutines();
+        
+        waiting = true;
+        
+        StartCoroutine(Jitter());
     }
 
     public IEnumerator Jitter()

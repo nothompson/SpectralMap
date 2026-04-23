@@ -9,17 +9,11 @@ public class BloodParticle : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
         
-        if (GibsManager.Instance != null)
-        {
-            GibsManager.Instance.RegisterParticleSystem(ps);
-        }
+        DecalManager.Instance.RegisterParticleSystem(ps);
     }
 
     void OnParticleCollision(GameObject other)
     {
-        if (GibsManager.Instance != null)
-        {
-            GibsManager.Instance.HandleParticleCollision(ps, other);
-        }
+        DecalManager.Instance.HandleParticleCollision(ps, other);
     }
 }

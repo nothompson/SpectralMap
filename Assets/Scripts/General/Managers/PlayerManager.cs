@@ -17,6 +17,9 @@ public class PlayerManager : MonoBehaviour
     public float ForceMultiplier; 
 
     public bool ProjectileGrappling;
+
+    public bool Forgiveness;
+
     void Awake()
     {
         if(Instance == null)
@@ -42,6 +45,7 @@ public class PlayerManager : MonoBehaviour
         DamageMultiplier = 1f;
         ForceMultiplier = 1f;
         ProjectileGrappling = false;
+        Forgiveness = true;
     }
 
     public void CheckItems()
@@ -49,6 +53,11 @@ public class PlayerManager : MonoBehaviour
         if (InventoryManager.Instance.HasItem("bezoar"))
         {
             DamageMultiplier = 1.5f;
+        }
+
+        if (InventoryManager.Instance.HasItem("lichen"))
+        {
+            Forgiveness = true;
         }
     }
     
