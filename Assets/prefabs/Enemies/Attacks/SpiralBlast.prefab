@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1428052741814618850}
   - component: {fileID: 109470985969586809}
   - component: {fileID: 8073482573488353867}
+  - component: {fileID: 2167620833600567356}
   m_Layer: 13
   m_Name: sprite
   m_TagString: Untagged
@@ -137,6 +138,28 @@ MonoBehaviour:
   isPlaying: 1
   pingPong: 0
   direction: 0
+--- !u!114 &2167620833600567356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132705882587867683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshJitter
+  fps: 12
+  scaleRange: 0.11
+  rotationRange: 48.5
+  positionRange: 0
+  lockPosition: 0
+  parented: 0
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
+  targetRot: {x: 0, y: 0, z: 0, w: 0}
+  scale: {x: 0, y: 0, z: 0}
 --- !u!1 &8812009374192403409
 GameObject:
   m_ObjectHideFlags: 0

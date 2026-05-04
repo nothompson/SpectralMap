@@ -21,4 +21,16 @@ public class Grenade : Rocket
                 Explode();
             }
     }
+
+    public void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.layer == 3) Explode();
+    }
+
+    public override void Explode()
+    {
+        ProjectileParticleManager.Instance.SpawnSkulls(transform);
+        ProjectileParticleManager.Instance.SpawnPollutantBlast(transform);
+        base.Explode();
+    }
 }

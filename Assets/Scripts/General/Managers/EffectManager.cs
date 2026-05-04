@@ -13,6 +13,8 @@ public class EffectManager : MonoBehaviour
     public static EffectManager Instance;
     
     public GameObject EffectCanvas; 
+    public GameObject FleshSuitCanvas; 
+    public SpriteUI[] FleshSuitHuds;
 
     public GridLayoutGroup EffectGrid;
 
@@ -130,6 +132,8 @@ public class EffectManager : MonoBehaviour
 
     public void Update()
     {
+        bool hasFlesh = false;
+
         foreach(var kvp in Effects)
         {
             var target = kvp.Key;
@@ -145,6 +149,16 @@ public class EffectManager : MonoBehaviour
                     RemoveEffect(e, target);
                 }
             }
+
+            var flesh = container.GetEffect<FleshSuitEffect>();
+                if(flesh != null)
+                {
+                    hasFlesh = true;
+                    FleshSuitHuds[0].Calculate(flesh.CurrentHP, flesh.MaxHP, 0f,0f,0f, true);
+                    FleshSuitHuds[1].Calculate(flesh.CurrentHP, flesh.MaxHP, 0f,0f,0f, true);
+                }
+            
+            FleshSuitCanvas.SetActive(hasFlesh);
         }
     }
 
@@ -343,12 +357,14 @@ public class EffectManager : MonoBehaviour
     {
         public string EffectID => "FleshSuit";
         private float hp;
+        private float maxHP;
 
         public bool isFinished => hp <= 0;
 
         public FleshSuitEffect(float hp)
         {
             this.hp = hp;
+            this.maxHP = hp;
         }
 
         public float Absorb(float dmg)
@@ -357,6 +373,9 @@ public class EffectManager : MonoBehaviour
             hp -= absorbed;
             return absorbed;
         }
+
+        public float CurrentHP => hp;
+        public float MaxHP => maxHP;
 
         public void OnApply(){}
         public void Tick(float dt) {}

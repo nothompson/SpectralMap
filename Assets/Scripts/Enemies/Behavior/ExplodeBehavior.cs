@@ -60,6 +60,7 @@ public class ExplodeBehavior : AttackBehavior
 
         }
         
+        OnFire?.Invoke(transform);
         ownerHP.Damage(ownerHP.currentHP);
 
         yield break;

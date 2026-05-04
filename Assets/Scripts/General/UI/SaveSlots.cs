@@ -256,7 +256,7 @@ public class SaveSlots : MonoBehaviour
             gameObject.SetActive(false);
             if (!cc)
             {
-                LevelManager.Instance.LoadScene("SampleScene");
+                LevelManager.Instance.LoadScene("Demo");
             }
         }
         if (cc)

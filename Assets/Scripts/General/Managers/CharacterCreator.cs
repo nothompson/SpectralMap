@@ -44,8 +44,6 @@ public class CharacterCreator : MonoBehaviour
 
     [SerializeField] private AnimationCurve FadeCurve;
     [SerializeField] private float fadeDur;
-
-    [SerializeField] public SpriteText CurrentEyeSelect;
     [SerializeField] public SpriteText EyeName;
     [SerializeField] public SpriteText MouthName;
     [SerializeField] public SpriteText PlayerName;
@@ -126,6 +124,7 @@ public class CharacterCreator : MonoBehaviour
 
     [SerializeField] private SpriteAnimate MouthLock;
     [SerializeField] private SpriteAnimate EyeLock;
+    [SerializeField] private SpriteAnimate Swap;
 
      [SerializeField] private TMP_InputField NameInput;
     private Dictionary<Sprite, string> EyeDictionary;
@@ -681,8 +680,8 @@ public void ScaleMouthY(float y)
         if (OnLeft)
         {
             OnLeft = false;
-            CurrentEyeSelect.input = "Right";
-            CurrentEyeSelect.Refresh();
+
+            Swap.SetFrame(1);
 
             if(EyeDictionary.TryGetValue(EyeRightImage.sprite, out string input))
             {
@@ -693,9 +692,7 @@ public void ScaleMouthY(float y)
         else if (!OnLeft) 
         {
             OnLeft = true;
-            CurrentEyeSelect.input = "Left";
-            CurrentEyeSelect.Refresh();
-
+            Swap.SetFrame(0);
             if(EyeDictionary.TryGetValue(EyeLeftImage.sprite, out string input))
             {
                 EyeName.input = input;

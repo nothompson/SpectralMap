@@ -50,6 +50,11 @@ MonoBehaviour:
   fireSplatter: {fileID: 1605180356842332601}
   minSize: 1
   maxSize: 3
+  surfaceLayers:
+    serializedVersion: 2
+    m_Bits: 67108607
+  minTimeBetweenDecals: 0.02
+  minTimeFactor: 0.01
 --- !u!1 &6789372757032786693
 GameObject:
   m_ObjectHideFlags: 0

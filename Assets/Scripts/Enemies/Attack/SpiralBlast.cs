@@ -6,6 +6,20 @@ using GamePhysics;
 public class SpiralBlast : Rocket
 {
     [SerializeField] public float ConfuseDur = 5f;
+
+    public override void Start()
+    {
+        base.Start();
+        StartCoroutine(Emit());
+    }
+
+    IEnumerator Emit()
+    {
+        while(true){
+            ProjectileParticleManager.Instance.SpawnSorcererCast(transform, 1);
+            yield return new WaitForSeconds(0.25f); 
+        }
+    }
     public override void Explode()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius, targetMask);

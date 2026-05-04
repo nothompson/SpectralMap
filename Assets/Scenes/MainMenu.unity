@@ -694,6 +694,7 @@ MonoBehaviour:
   - {fileID: -400914578, guid: 571b25501cb9f0a49a140bb119a9ed7d, type: 3}
   - {fileID: 259404938, guid: 571b25501cb9f0a49a140bb119a9ed7d, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -702,6 +703,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &70039078
 MonoBehaviour:
@@ -1956,6 +1958,7 @@ MonoBehaviour:
   - {fileID: 34797330, guid: 9c92bd12dbe081c4eab04925fb71ec24, type: 3}
   - {fileID: -2087078755, guid: 9c92bd12dbe081c4eab04925fb71ec24, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -1964,6 +1967,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &216745807
 MonoBehaviour:
@@ -4102,14 +4106,14 @@ RectTransform:
   m_GameObject: {fileID: 465282190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.86, y: 1.86, z: 1.86}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 190045330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9.2, y: -12.1}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465282192
@@ -4125,9 +4129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
   sprites:
-  - {fileID: -2089232771, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
-  - {fileID: 706758737, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
+  - {fileID: 549174735, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
+  - {fileID: -362371462, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 2
   image: {fileID: 0}
   material: {fileID: 0}
@@ -4136,6 +4141,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 0
 --- !u!114 &465282193
 MonoBehaviour:
@@ -4157,7 +4163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2089232771, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
+  m_Sprite: {fileID: 549174735, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5213,6 +5219,7 @@ MonoBehaviour:
   - {fileID: 1220147361, guid: 523459428a4c6f5499da3eb5f0a76597, type: 3}
   - {fileID: 796808840, guid: 523459428a4c6f5499da3eb5f0a76597, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -5221,6 +5228,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &570659745
 MonoBehaviour:
@@ -6043,6 +6051,7 @@ MonoBehaviour:
   - {fileID: -1614993744, guid: d6908d07d6c42284397d745290cc8ec8, type: 3}
   - {fileID: 854274513, guid: d6908d07d6c42284397d745290cc8ec8, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -6051,6 +6060,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &615299968
 MonoBehaviour:
@@ -6174,6 +6184,7 @@ MonoBehaviour:
   - {fileID: -1119353998, guid: dcba14ddc89e0f24f9ee730ca5453bcc, type: 3}
   - {fileID: -585540171, guid: dcba14ddc89e0f24f9ee730ca5453bcc, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -6182,6 +6193,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &623669240
 MonoBehaviour:
@@ -6304,6 +6316,7 @@ MonoBehaviour:
   - {fileID: 1151297793, guid: ec4f30359db0a2b4dbaf98cf56e8e634, type: 3}
   - {fileID: 1898588786, guid: ec4f30359db0a2b4dbaf98cf56e8e634, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -6312,6 +6325,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &630642957
 MonoBehaviour:
@@ -7678,6 +7692,7 @@ MonoBehaviour:
   - {fileID: 687058980, guid: 4ae25fd80f4a9ea4699e5a4bfedcd1c5, type: 3}
   - {fileID: 587403833, guid: 4ae25fd80f4a9ea4699e5a4bfedcd1c5, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -7686,6 +7701,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &799251085
 MonoBehaviour:
@@ -8703,6 +8719,7 @@ MonoBehaviour:
   - {fileID: 330521710, guid: d894328e53489da4f96acc1edb34b5ca, type: 3}
   - {fileID: -840717426, guid: d894328e53489da4f96acc1edb34b5ca, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -8711,6 +8728,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &877397458
 MonoBehaviour:
@@ -9091,14 +9109,14 @@ RectTransform:
   m_GameObject: {fileID: 940512478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.86, y: 1.86, z: 1.86}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 662082257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 24.3, y: -19}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &940512480
@@ -9121,7 +9139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2089232771, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
+  m_Sprite: {fileID: 549174735, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9152,9 +9170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
   sprites:
-  - {fileID: -2089232771, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
-  - {fileID: 706758737, guid: 1141068dac5afea41855c3360234d2ce, type: 3}
+  - {fileID: 549174735, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
+  - {fileID: -362371462, guid: 3edb4c5db168d114fbf8da13a3597e5f, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 2
   image: {fileID: 0}
   material: {fileID: 0}
@@ -9163,6 +9182,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 0
 --- !u!114 &946713776
 MonoBehaviour:
@@ -9234,6 +9254,7 @@ MonoBehaviour:
   - {fileID: 1447110746, guid: 2665489f4f0871f44887851ee2fef350, type: 3}
   - {fileID: -355662517, guid: 2665489f4f0871f44887851ee2fef350, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -9242,6 +9263,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &947193785
 MonoBehaviour:
@@ -9381,7 +9403,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fadeDur: 1
-  CurrentEyeSelect: {fileID: 1757385778}
   EyeName: {fileID: 2111108799}
   MouthName: {fileID: 1133906746}
   PlayerName: {fileID: 602898454}
@@ -9439,6 +9460,7 @@ MonoBehaviour:
   EyeRotation: {fileID: 1893026590}
   MouthLock: {fileID: 940512482}
   EyeLock: {fileID: 465282192}
+  Swap: {fileID: 1680562389}
   NameInput: {fileID: 1939319673}
 --- !u!1 &960935754
 GameObject:
@@ -9722,6 +9744,7 @@ MonoBehaviour:
   - {fileID: 994752836, guid: e1c8d23bcc2c7bb43bf31641d2f842b1, type: 3}
   - {fileID: -1317197587, guid: e1c8d23bcc2c7bb43bf31641d2f842b1, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -9730,6 +9753,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &977832968
 MonoBehaviour:
@@ -10962,6 +10986,7 @@ MonoBehaviour:
   - {fileID: 1111393846, guid: 42452e9f9a5475c4cbfd663878fb9f1f, type: 3}
   - {fileID: -1536406871, guid: 42452e9f9a5475c4cbfd663878fb9f1f, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -10970,6 +10995,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1094201419
 MonoBehaviour:
@@ -11826,7 +11852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 368, y: -165}
+  m_AnchoredPosition: {x: 368, y: -184.5}
   m_SizeDelta: {x: 92.765, y: 42.268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168405074
@@ -12035,7 +12061,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: Demo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1168405078
@@ -12302,6 +12328,7 @@ MonoBehaviour:
   - {fileID: 1441204503, guid: c739c7c1f914bf84c92f7ddf77c836e4, type: 3}
   - {fileID: -2126335766, guid: c739c7c1f914bf84c92f7ddf77c836e4, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 4
   image: {fileID: 0}
   material: {fileID: 0}
@@ -12310,6 +12337,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
   direction: 1
 --- !u!114 &1182882034
 MonoBehaviour:
@@ -12543,6 +12571,7 @@ MonoBehaviour:
   - {fileID: 29899946, guid: dcae88752e797c542973b909e0b32944, type: 3}
   - {fileID: 2116150217, guid: dcae88752e797c542973b909e0b32944, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -12551,6 +12580,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1212419316
 MonoBehaviour:
@@ -13344,6 +13374,7 @@ MonoBehaviour:
   - {fileID: -525145947, guid: cba399e47a663ad47af1657204a3e807, type: 3}
   - {fileID: 925345003, guid: cba399e47a663ad47af1657204a3e807, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -13352,6 +13383,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1342836220
 MonoBehaviour:
@@ -14851,6 +14883,7 @@ MonoBehaviour:
   - {fileID: 2032822137, guid: eefe837b640520a4cae557dd6ab375e6, type: 3}
   - {fileID: 1209621763, guid: eefe837b640520a4cae557dd6ab375e6, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -14859,6 +14892,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1455511714
 MonoBehaviour:
@@ -15376,6 +15410,7 @@ MonoBehaviour:
   - {fileID: 687058980, guid: 4ae25fd80f4a9ea4699e5a4bfedcd1c5, type: 3}
   - {fileID: 587403833, guid: 4ae25fd80f4a9ea4699e5a4bfedcd1c5, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -15384,6 +15419,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1585116074
 MonoBehaviour:
@@ -15522,6 +15558,7 @@ MonoBehaviour:
   - {fileID: 165829628, guid: f34b537736cd76548b05a7ba1b341272, type: 3}
   - {fileID: 252963913, guid: f34b537736cd76548b05a7ba1b341272, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -15530,6 +15567,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1585934020
 MonoBehaviour:
@@ -15964,6 +16002,7 @@ MonoBehaviour:
   - {fileID: -779926736, guid: 23bb78ad21b43984da0c49e072c1792d, type: 3}
   - {fileID: -211451189, guid: 23bb78ad21b43984da0c49e072c1792d, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -15972,6 +16011,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1679878574
 MonoBehaviour:
@@ -16063,6 +16103,7 @@ GameObject:
   - component: {fileID: 1680562383}
   - component: {fileID: 1680562382}
   - component: {fileID: 1680562381}
+  - component: {fileID: 1680562389}
   m_Layer: 5
   m_Name: SwitchEye
   m_TagString: Untagged
@@ -16079,15 +16120,14 @@ RectTransform:
   m_GameObject: {fileID: 1680562379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1757385777}
+  m_LocalScale: {x: 0.5508859, y: 1.6189867, z: 0.879616}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 1822819932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: -154}
+  m_AnchoredPosition: {x: -358.2, y: -183.8}
   m_SizeDelta: {x: 92.765, y: 42.268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680562381
@@ -16283,7 +16323,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -16293,10 +16333,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -2089232771, guid: 8f7c464936154594c8d84495e03f1fbb, type: 3}
-    m_PressedSprite: {fileID: 706758737, guid: 8f7c464936154594c8d84495e03f1fbb, type: 3}
-    m_SelectedSprite: {fileID: -2089232771, guid: 8f7c464936154594c8d84495e03f1fbb, type: 3}
-    m_DisabledSprite: {fileID: -2089232771, guid: 8f7c464936154594c8d84495e03f1fbb, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -16304,7 +16344,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1680562387}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -16340,7 +16380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2089232771, guid: 8f7c464936154594c8d84495e03f1fbb, type: 3}
+  m_Sprite: {fileID: -1271585573, guid: 175bc38609d2dd9469a8bcca46cf0ac6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16358,6 +16398,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680562379}
   m_CullTransparentMesh: 1
+--- !u!114 &1680562389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680562379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49da9ac3420a1ab429210e036b082415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimate
+  sprites:
+  - {fileID: -1271585573, guid: 175bc38609d2dd9469a8bcca46cf0ac6, type: 3}
+  - {fileID: 2059794816, guid: 175bc38609d2dd9469a8bcca46cf0ac6, type: 3}
+  startingIndex: 0
+  randomStart: 0
+  fps: 2
+  image: {fileID: 0}
+  material: {fileID: 0}
+  sprite: {fileID: 0}
+  worldSpace: 0
+  length: 0
+  index: 0
+  isPlaying: 0
+  pingPong: 0
+  direction: 1
 --- !u!1 &1694996036
 GameObject:
   m_ObjectHideFlags: 0
@@ -16919,6 +16986,7 @@ MonoBehaviour:
   - {fileID: 835952106, guid: ea12b9fcc3033c844aefa4a4e76ca139, type: 3}
   - {fileID: -817264853, guid: ea12b9fcc3033c844aefa4a4e76ca139, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -16927,6 +16995,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1716607666
 MonoBehaviour:
@@ -17124,6 +17193,7 @@ MonoBehaviour:
   - {fileID: 1813451918, guid: 8e6ac46fb99df3c4cb152adead912efd, type: 3}
   - {fileID: 3904442, guid: 8e6ac46fb99df3c4cb152adead912efd, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -17132,6 +17202,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1746182494
 MonoBehaviour:
@@ -17327,162 +17398,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753528434}
   m_CullTransparentMesh: 1
---- !u!1 &1757385776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1757385777}
-  - component: {fileID: 1757385780}
-  - component: {fileID: 1757385779}
-  - component: {fileID: 1757385778}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1757385777
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757385776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1680562380}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.2, y: 8}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1757385778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757385776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b406c0c5001aa024ea1d0d0baaeb2e2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: Left
-  cps: 0
-  isTyping: 0
-  fullTextShown: 0
-  init: 1
-  world: 0
---- !u!114 &1757385779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757385776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: <sprite=25><sprite=21><sprite=10><sprite=34>
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: b11adc24a2fd9e54f84646dbe6887123, type: 2}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1757385780
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757385776}
-  m_CullTransparentMesh: 1
 --- !u!1 &1774474982
 GameObject:
   m_ObjectHideFlags: 0
@@ -17522,6 +17437,7 @@ MonoBehaviour:
   - {fileID: 994752836, guid: e1c8d23bcc2c7bb43bf31641d2f842b1, type: 3}
   - {fileID: -1317197587, guid: e1c8d23bcc2c7bb43bf31641d2f842b1, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -17530,6 +17446,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1774474984
 MonoBehaviour:
@@ -17819,6 +17736,7 @@ MonoBehaviour:
   - {fileID: 647887442, guid: ec535e39a6164ea488eea465b2124b35, type: 3}
   - {fileID: 771067019, guid: ec535e39a6164ea488eea465b2124b35, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -17827,6 +17745,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1797143362
 MonoBehaviour:
@@ -19350,6 +19269,7 @@ MonoBehaviour:
   - {fileID: 1349679263, guid: 4af5f192ef9de5747b108cc34f0fde4e, type: 3}
   - {fileID: -334435687, guid: 4af5f192ef9de5747b108cc34f0fde4e, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -19358,6 +19278,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1940628745
 MonoBehaviour:
@@ -20699,6 +20620,7 @@ MonoBehaviour:
   - {fileID: -1715885215, guid: 3245c9df330e8494086fe079a80735a5, type: 3}
   - {fileID: 436871070, guid: 3245c9df330e8494086fe079a80735a5, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 30
   image: {fileID: 0}
   material: {fileID: 0}
@@ -20707,6 +20629,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &2022126959
 MonoBehaviour:

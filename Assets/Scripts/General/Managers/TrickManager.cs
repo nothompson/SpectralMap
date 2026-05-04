@@ -25,6 +25,7 @@ public class TrickManager : MonoBehaviour
 
     private SpriteText TrickText;
     private SpriteText ScoreText;
+    public RectTransform ScoreRect;
 
     public AnimationCurve addTrickAnimation;
     public AnimationCurve completeComboAnimation; 
@@ -267,10 +268,26 @@ public class TrickManager : MonoBehaviour
             comboTimerActive = false;
         }
 
-        TrickCount++;
         trickHistory.Add(trick);
 
         currentTricks.Add(trick);
+
+        TrickCount++;
+
+        bool continuous = false;
+        if(currentTricks.Count > 1)
+        {
+            Trick last = currentTricks[currentTricks.Count - 2];
+            Trick cur = currentTricks[currentTricks.Count - 1];
+
+            if(last != null && last.Continuous && cur.Continuous && last.Type == cur.Type)
+            {
+                TrickCount--;
+                currentTricks.RemoveAt(0);
+                continuous = true;
+            }
+        }
+   
 
 
         if(currentTricks.Count > maxTricks)
@@ -278,7 +295,10 @@ public class TrickManager : MonoBehaviour
             currentTricks.RemoveAt(0);
         }
 
-        TrickText.input = string.Join("+ ", currentTricks.Select(ty =>ty.Display));
+
+        if(!continuous){
+            TrickText.input = string.Join("+ ", currentTricks.Select(ty =>ty.Display));
+        }
 
         Score += trick.Points;
 

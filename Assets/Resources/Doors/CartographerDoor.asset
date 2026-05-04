@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4808f721e3e1ac04c89f09ff531c1334, type: 3}
+  m_Name: CartographerDoor
+  m_EditorClassIdentifier: Assembly-CSharp::DoorObject
+  ID: cartographer
+  Type: 1
+  WarpLocation: 
+  Opened: 1
+  sprites:
+  - {fileID: 1896200441, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: -1150996883, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: -313151149, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: 1181837141, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: 2082888569, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: 1617060093, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: 1417692546, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  - {fileID: -289299093, guid: 047ed3591c26b6e43b26b084b7ee4969, type: 3}
+  soundbank:
+  - Guid:
+      Data1: -1079588816
+      Data2: 1173645381
+      Data3: -1344548688
+      Data4: -660501941
+    Path: event:/General/Beep
+  - Guid:
+      Data1: -1079588816
+      Data2: 1173645381
+      Data3: -1344548688
+      Data4: -660501941
+    Path: event:/General/Beep
+  KeyID: 

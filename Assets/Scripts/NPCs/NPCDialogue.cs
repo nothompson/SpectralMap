@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     public List<DialogueProgression> dialogues;
-    public float speed;
+    public float speed = 35f;
     public bool reset;
     public FMODUnity.EventReference soundbank;
 

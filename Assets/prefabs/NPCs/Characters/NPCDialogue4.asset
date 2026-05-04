@@ -15,7 +15,6 @@ MonoBehaviour:
   dialogues:
   - lines:
     - just doing me lately yknow
-    - caught my ai girlfriend cheating on me with my wife
     - been trying to get back into bug milk but it's been so hard
     requiresJournalEntry: 0
     prereqId: 
@@ -26,9 +25,9 @@ MonoBehaviour:
     journalID: 
     journalIndex: 0
     lineIndexToAddJournalEntry: 0
-    addItem: 1
-    itemToAddID: testitem
-    lineIndexToAddItem: 1
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
     advance: 1
     repeat: 0
   - lines:

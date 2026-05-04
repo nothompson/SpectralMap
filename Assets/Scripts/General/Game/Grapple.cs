@@ -324,6 +324,10 @@ public class Grapple : MonoBehaviour
 
     public void Release()
     {
+        if(grappleActive && playerControl.playerSpeed >= 17.5f) TrickManager.Instance.GrappleJump();
+
+        playerControl.grappling = false;
+
         grappleActive = false;
         grappleTarget = null;
 
@@ -336,11 +340,8 @@ public class Grapple : MonoBehaviour
         releasing = true;
         releaseProgress = 0f;
         releasePointCount = points.Count; 
+        leftHand.SetInteger("HandState", 0);
 
-        if(playerControl.playerSpeed >= 17.5f)
-        {
-            TrickManager.Instance.GrappleJump();
-        }
     }
 
     public void OnProjectileHit(Transform target, Vector3 hitPoint, float distance, Vector3 normal)
@@ -363,10 +364,13 @@ public class Grapple : MonoBehaviour
         TransitionToFinal();
 
         grappleActive = true;
+        
+        playerControl.grappling = true;
 
         if(leftHand == null) return;
 
-        leftHand.SetTrigger("Fire");
+        leftHand.SetTrigger("Catch");
+        leftHand.SetInteger("HandState", 1);
         
         TrickManager.Instance.Grapple();
     }
@@ -506,7 +510,6 @@ public class Grapple : MonoBehaviour
         for(int iteration = 0; iteration < constraints; iteration++)
         {
             SolveDistanceConstraint();
-            SolveCollisions();
         }
 
         for(int i = 0; i < points.Count; i++)
@@ -605,7 +608,7 @@ public class Grapple : MonoBehaviour
 
     void Retract()
     {
-        if(playerControl.grounded) return;
+        // if(playerControl.grounded) return;
         grappleLength = Mathf.MoveTowards(grappleLength, targetLength, retractSpeed * Time.fixedDeltaTime);
     }
 
@@ -641,7 +644,6 @@ public class Grapple : MonoBehaviour
         for(int iteration = 0; iteration < constraints; iteration++)
         {
             SolveDistanceConstraint();
-            SolveCollisions();
         }
 
         for(int i = 0; i < points.Count; i++)
@@ -684,46 +686,26 @@ public class Grapple : MonoBehaviour
     }
 
 void SolveCollisions()
+{
+    for(int i = 1; i < points.Count - 1; i++)
     {
-        for(int i = 1; i < points.Count - 1; i++)
+        RopePoint p = points[i];
+        RopePoint prev = points[i - 1];
+
+        Vector3 move = p.position - prev.position;
+        float dist = move.magnitude;
+
+        if(dist < 0.001f) continue;
+
+        if(Physics.SphereCast(prev.position, collisionRadius, move.normalized, out RaycastHit hit, dist, collisionMask, QueryTriggerInteraction.Ignore))
         {
-            RopePoint p = points[i];
-
-            Collider[] hits = Physics.OverlapSphere(
-                p.position,
-                collisionRadius,
-                collisionMask,
-                QueryTriggerInteraction.Ignore
-            );
-
-            foreach(var hit in hits)
-            {
-                Vector3 dir;
-                float dist;
-
-                bool overlapped = Physics.ComputePenetration(
-                    probe,
-                    p.position,
-                    Quaternion.identity,
-                    hit,
-                    hit.transform.position,
-                    hit.transform.rotation,
-                    out dir,
-                    out dist
-                );
-
-                if(overlapped && dist > 0f)
-                {
-                    p.position += dir * dist;
-
-                    p.previousPosition = p.position;
-                }
-
-            }
-
-            points[i] = p;
+            p.position = hit.point + hit.normal * collisionRadius;
+            p.previousPosition = p.position;
         }
+
+        points[i] = p;
     }
+}  
 
 
     void ApplyPlayerConstraint()

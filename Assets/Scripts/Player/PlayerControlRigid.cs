@@ -58,6 +58,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public bool onPlatformLastFrame = false;
     public Vector3 platformVelocity;
     public bool surfing;
+
+    public bool grappling = false;
     public bool surfingLastFrame = false;
 
     public float StepHeight = 2f;
@@ -187,6 +189,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         CrosshairManager.Instance.Activate();
         SpectrumManager.Instance.ProfileBackground.SetActive(false);
+        Bouncer.OnBounce -= HandleBounce;
     }
 
     // void OnDestroy()
@@ -230,6 +233,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
 
         GroundedCheck();
+
         ResetCheck();
 
         Tricks();
@@ -239,21 +243,43 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             AutoJump();
         }
         
-        if(!groundedLastFrame) MovementFunctions.StartGravity(ref playerVelocity);
+        if(!grounded) MovementFunctions.StartGravity(ref playerVelocity);
         Movement();
         
-        if(!groundedLastFrame) MovementFunctions.FinishGravity(ref playerVelocity);
+        if(!grounded) MovementFunctions.FinishGravity(ref playerVelocity);
+
+        if (grounded && !jumped)
+        {
+            playerVelocity.y = 0f;
+            
+            // also immediately correct the rb so it doesn't carry negative y into physics solve
+            Vector3 rbVel = rb.linearVelocity;
+            rbVel.y = 0f;
+            rb.linearVelocity = rbVel;  
+        }
 
 
         impact = Vector3.zero;
+        
+        if(!grappling){
+        if(move.magnitude < 1 && grounded && rb.linearVelocity.magnitude < 1f)
+        {
+            rb.maxDepenetrationVelocity = move.magnitude > 0 ? 3f : 0f;
+            rb.linearVelocity = Vector3.zero;
+            playerVelocity = Vector3.zero;
+        } 
+        }
+
+        MovementFunctions.ApplyVelocity(playerVelocity, ref rb);
 
     }
 
     void FixedUpdate()
     {
         if(DeathManager.PlayerDead) return;
+
         CalculateVelocity();
-        MovementFunctions.ApplyVelocity(playerVelocity, ref rb);
+        // Debug.Log($"grounded:{grounded}  vel:{playerVelocity}  rbvel:{rb.linearVelocity}");  
         // currentCheckpoint.saveCheckpoint();
     }
 
@@ -281,7 +307,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         if (!paused)
         {
             lockCursor = true;
-            tilt();
+            // tilt();
             //rotate entire player capsule on the y axis, camera moves along as child object
             Vector2 mouseDelta = InputManager.Instance.inputs.Player.Look.ReadValue<Vector2>();
 
@@ -432,7 +458,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
         Vector3 position;
 
-        bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit) && playerVelocity.y <= 0f && Vector3.Dot(playerVelocity.normalized, surfHit.normal) < -0.1f;
+        // bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit) && playerVelocity.y <= 0f && Vector3.Dot(playerVelocity.normalized, surfHit.normal) < -0.1f;
+        bool wishsurf = surfCast && MovementFunctions.CanSurf(surfHit);
 
         if (!surfing)
         {
@@ -501,11 +528,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 }
 
                 pogoTimer = 0f;
-
-                if(landed && TrickManager.Instance.Score > 0 && !TrickManager.Instance.completed)
-                {
-                    TrickManager.Instance.StartComboTimer();
-                }
             }
         }
 
@@ -527,6 +549,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         }
     }
 
+    private bool physicsGrounded = false;
+    private Vector3 physicsGroundNormal = Vector3.up;
     void GroundedCheck()
     {
         bool check = MovementFunctions.GroundedCheck(
@@ -539,6 +563,17 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform
         );
 
+        // if (physicsGrounded)
+        // {
+        //     groundNormal = physicsGroundNormal;
+        //     groundTimer = coyoteTime;
+        // }
+        // else
+        // {
+        //     groundTimer -= Time.fixedDeltaTime;
+        //     if(groundTimer < 0f) groundTimer = 0f;
+        // }
+
         grounded = check && !surfCast && ignoregroundtimer <= 0f;
 
     }
@@ -548,10 +583,56 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         reset = MovementFunctions.CollisionHandler.ResetCollision(this, collision, resetMask);
     }
 
+    private void OnEnable()
+    {
+        Bouncer.OnBounce += HandleBounce;
+    }
+
+    private void HandleBounce(Bouncer bouncer)
+    {
+        float ymag = Mathf.Abs(playerVelocity.y);
+        if (ymag > bouncer.maxHeight) ymag = bouncer.maxHeight;
+        playerVelocity.y = ymag + bouncer.bounceHeight;
+
+        // force out of grounded state so it doesn't get zeroed next frame
+        grounded = false;
+        groundTimer = 0f;
+    }
+
+
     void OnCollisionStay(Collision collision)
     {
+        if(grounded || groundedLastFrame || playerSpeed < 10f) return;
         MovementFunctions.Slamming(ref playerVelocity, collision);
+        // Debug.Log(collision);
+
+        // if (((1 << collision.gameObject.layer) & GroundMask.value) == 0) return;
+
+        // foreach (ContactPoint contact in collision.contacts)
+        // {
+        //     float angle = Vector3.Angle(contact.normal, Vector3.up);
+        //     if (angle <= MovementFunctions.SlopeLimit && !IsContactSurf(contact.normal))
+        //     {
+        //         physicsGrounded = true;
+        //         physicsGroundNormal = contact.normal;
+        //         return;
+        //     }
+        // }
+
     }
+
+    // void OnCollisionExit(Collision collision)
+    // {
+    //     if (((1 << collision.gameObject.layer) & GroundMask.value) == 0) return;
+    //     physicsGrounded = false;
+    //     physicsGroundNormal = Vector3.up;
+    // }
+
+    // bool IsContactSurf(Vector3 normal)
+    // {
+    //     float upDot = Vector3.Dot(normal, Vector3.up);
+    //     return upDot < 0.75f && upDot > 0.1f;
+    // }
 
     void ResetCheck()
     {
@@ -694,11 +775,15 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         }
     }
 
+    private Vector2 move;
+
     public void MovementInputs()
     {
-        Vector2 move = InputManager.Instance.inputs.Player.Move.ReadValue<Vector2>();
+        move = InputManager.Instance.inputs.Player.Move.ReadValue<Vector2>();
         fmove = move.y;
         smove = move.x;
+
+        // Debug.Log(move.magnitude > 0f);
 
         if (confused)
         {
@@ -741,7 +826,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         );
 
         playerVelocity = MovementFunctions.TryPlayerMove(transform.position, playerVelocity, Time.fixedDeltaTime, capsule.height, capsule.radius, GroundMask, grounded); 
-
 
         // if(ignoregroundtimer <= 0f){
         //     playerVelocity = Vector3.ProjectOnPlane(playerVelocity, groundNormal);

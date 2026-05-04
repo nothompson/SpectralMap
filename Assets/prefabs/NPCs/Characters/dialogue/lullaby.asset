@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
+  m_Name: lullaby
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  dialogues:
+  - lines:
+    - sup bro
+    - cant wait to drop in on these slopes later
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 0
+    repeat: 1
+  speed: 35
+  reset: 0
+  soundbank:
+    Guid:
+      Data1: 646704756
+      Data2: 1271874889
+      Data3: -735230076
+      Data4: 1120456110
+    Path: event:/NPCs/SillyDialogue

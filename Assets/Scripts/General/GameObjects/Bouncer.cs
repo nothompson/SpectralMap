@@ -19,6 +19,8 @@ public class Bouncer : MonoBehaviour
 
     public Vector3 cachedVelocity;
 
+    public static event System.Action<Bouncer> OnBounce;
+
     public void PlayAnimation()
     {
         if(bounced) return;
@@ -29,17 +31,18 @@ public class Bouncer : MonoBehaviour
     public void Bounce(ref Vector3 velocity)
     {
         if(bounced) return;
-            Animation.Play();
             bounced = true;
+            Animation.Play();
             bounce.Play();
+            OnBounce?.Invoke(this);
 
-            float ymag = Mathf.Abs(velocity.y);
-            if (ymag > maxHeight)
-            {
-                ymag = maxHeight;
-            }
+            // float ymag = Mathf.Abs(velocity.y);
+            // if (ymag > maxHeight)
+            // {
+            //     ymag = maxHeight;
+            // }
             
-            velocity.y = ymag + bounceHeight;
+            // velocity.y = ymag + bounceHeight;
     }
 
     public void Ready()

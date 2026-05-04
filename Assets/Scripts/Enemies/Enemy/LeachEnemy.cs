@@ -83,6 +83,7 @@ public class LeachEnemy : Enemy
     {
         yield return new WaitForSeconds(LifeSpan);
 
+        ProjectileParticleManager.Instance.SpawnPollutantBlast(transform);  
         hp.Damage(hp.currentHP);
     }
 }

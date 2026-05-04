@@ -39,6 +39,9 @@ public class ProjectileParticleManager : MonoBehaviour
     public ParticleSystem SquidBlast;
     public ParticleSystem Screech;
 
+    public ParticleSystem Skulls;
+    public ParticleSystem PollutantBlast;
+
     // private ParticleSystem.EmitParams sorcererCastParams;
     // private ParticleSystem.EmitParams spitTongueParams;
 
@@ -108,6 +111,12 @@ public class ProjectileParticleManager : MonoBehaviour
 
     public void SpawnScreech(Transform spawn, bool track = true)
         => SpawnParticle(Screech, spawn, 1, track: track);
+
+    public void SpawnSkulls(Transform spawn, bool track = false)
+        => SpawnParticle(Skulls, spawn, 15, positionJitter: 2f, track: track);
+
+    public void SpawnPollutantBlast(Transform spawn, bool track = false)
+        => SpawnParticle(PollutantBlast, spawn, 1, track: track);
 
     void Update()
     {

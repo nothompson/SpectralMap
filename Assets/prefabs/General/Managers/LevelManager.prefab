@@ -258,7 +258,7 @@ MonoBehaviour:
         Data3: -2095339124
         Data4: -1835662977
       Path: event:/Music/MenuScreen
-  - sceneName: SampleScene
+  - sceneName: Demo
     sceneTrack:
       Guid:
         Data1: -101544582
@@ -651,6 +651,7 @@ MonoBehaviour:
   - {fileID: -1572007224, guid: 93d970cece60b6645adeeac9ebdb9ce8, type: 3}
   - {fileID: -935065473, guid: 93d970cece60b6645adeeac9ebdb9ce8, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -659,6 +660,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
   direction: 1
 --- !u!1 &6892432755666128599
 GameObject:

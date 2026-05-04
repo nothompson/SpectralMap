@@ -101,6 +101,7 @@ MonoBehaviour:
   - {fileID: -975713092, guid: 5757e617be722eb43ae3f9a5eab39506, type: 3}
   - {fileID: -825432404, guid: 5757e617be722eb43ae3f9a5eab39506, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -109,6 +110,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &1890700636431230470
 MonoBehaviour:
@@ -530,6 +532,7 @@ MonoBehaviour:
   - {fileID: 467794506, guid: 12e1d06336e84e44f8a7002109f84cb4, type: 3}
   - {fileID: 1493579300, guid: 12e1d06336e84e44f8a7002109f84cb4, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -538,6 +541,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &7829710027270129144
 MonoBehaviour:
@@ -745,6 +749,7 @@ MonoBehaviour:
   - {fileID: -505894035, guid: 931cb945f10bcf2478979424f8f03b60, type: 3}
   - {fileID: 1413887603, guid: 931cb945f10bcf2478979424f8f03b60, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 0}
   material: {fileID: 0}
@@ -753,6 +758,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &6305955669563827116
 MonoBehaviour:
@@ -1711,6 +1717,7 @@ MonoBehaviour:
   - {fileID: -1754672580, guid: b181af152e595ca4b98bbc6d811229a4, type: 3}
   - {fileID: -191428257, guid: b181af152e595ca4b98bbc6d811229a4, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -1719,6 +1726,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 1
 --- !u!114 &2804438974310253666
 MonoBehaviour:

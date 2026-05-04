@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 8304575672452613849}
   - component: {fileID: 8801921599838216795}
   - component: {fileID: 7135994237155882857}
+  - component: {fileID: 3977496434812107852}
   m_Layer: 11
   m_Name: leech
   m_TagString: Untagged
@@ -293,7 +294,6 @@ MonoBehaviour:
   ChanceToDropPickup: 0
   rb: {fileID: 1307671098746728270}
   player: {fileID: 0}
-  launcher: {fileID: 0}
   attackPrefab: {fileID: 0}
   projectileMask:
     serializedVersion: 2
@@ -312,6 +312,7 @@ MonoBehaviour:
   fov: {fileID: 8801921599838216795}
   hp: {fileID: 2335547494888419022}
   fbx: {fileID: 0}
+  spriteEvent: {fileID: 0}
   EnemyID: 
   Personality: 0
   Behaviors: []
@@ -404,6 +405,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplodeBehavior
   AttackPrefab: {fileID: 0}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3977496434812107852}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 3
   Cooldown: 1
   Damage: 5
@@ -415,10 +431,25 @@ MonoBehaviour:
   BurstCount: 3
   AttackPoint: {fileID: 0}
   Owner: {fileID: 0}
+  onCooldown: 0
   ExplosionRadius: 4
   targetMask:
     serializedVersion: 2
     m_Bits: 2056
+--- !u!114 &3977496434812107852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6709704229617115072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 8
+  overrideSpawn: {fileID: 1574390819405238992}
 --- !u!1001 &164376525836508952
 PrefabInstance:
   m_ObjectHideFlags: 0

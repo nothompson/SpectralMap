@@ -27,13 +27,15 @@ public class MovingPlatform : MonoBehaviour
     private Collider col;
     private float surfaceY;
 
+    Coroutine MovingRoutine;
+
     void Start()
     {
         lastPos = collider.transform.position;
         col = collider.GetComponent<Collider>();
         surfaceY = col.bounds.max.y;
 
-        if(Init) StartCoroutine(MovingTowardsTarget());
+        if(Init) MovingRoutine = StartCoroutine(MovingTowardsTarget());
     }
 
     void FixedUpdate()
@@ -43,6 +45,24 @@ public class MovingPlatform : MonoBehaviour
             PlatformDelta = Vector3.zero;
             PlatformVelocity = Vector3.zero;
         }
+    }
+
+    public void Stop()
+    {
+        Stopped = true;
+
+    }
+
+    public void StartMoving()
+    {
+        if(MovingRoutine != null)
+        {
+            Stopped = false;
+            return;
+        }
+        Stopped = false;
+        MovingRoutine = StartCoroutine(MovingTowardsTarget());
+
     }
 
     public IEnumerator MovingTowardsTarget()

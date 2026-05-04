@@ -7,6 +7,7 @@ public enum InteractionType
     None,
     Talk,
     Press,
+    Grab
 }
 
 public interface IInteractable

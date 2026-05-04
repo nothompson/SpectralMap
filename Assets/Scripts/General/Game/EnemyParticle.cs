@@ -11,6 +11,9 @@ public class EnemyParticle : MonoBehaviour
         BloodShot,
         SquidBlast,
         Screech,
+        Skulls,
+        Pollutant
+
     }
 
     [SerializeField] private ParticleType type;
@@ -42,6 +45,12 @@ public class EnemyParticle : MonoBehaviour
                 break;
             case ParticleType.Screech:
                 ProjectileParticleManager.Instance.SpawnScreech(spawn);
+                break;
+            case ParticleType.Skulls:
+                ProjectileParticleManager.Instance.SpawnSkulls(spawn);
+                break;
+            case ParticleType.Pollutant:
+                ProjectileParticleManager.Instance.SpawnPollutantBlast(spawn);
                 break;
         }
     }

@@ -133,13 +133,15 @@ public class PlayerKeyBinds : MonoBehaviour
 
         bool onbeat = AudioManager.Instance.IsOnBeat();
 
+        ReloadManager.Instance.ReloadAttempt();
+
         if (onbeat)
         {
             playerMagic.Replenish(25f);
             if(playerMagic.magicPoints >= playerMagic.maximumMagic)
             {
                 playerMagic.magicPoints = playerMagic.maximumMagic;
-                ReloadManager.Instance.StopReload();
+                ReloadManager.Instance.StopReload(true);
             }
             ReloadManager.Instance.StartSuccess();
         }

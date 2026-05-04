@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: -2044498308, guid: 4b1b964d595788e4ca134a5076023b09, type: 3}
   - {fileID: -1384098149, guid: 4b1b964d595788e4ca134a5076023b09, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 8
   image: {fileID: 0}
   material: {fileID: 0}
@@ -181,6 +182,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
   direction: 1
 --- !u!1 &2564935457519321638
 GameObject:
@@ -275,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 557.85, y: 40.2309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5133145573126665965
@@ -559,6 +561,7 @@ MonoBehaviour:
   - {fileID: 2079678478, guid: e1c7ab79df1a607439c0da4236ee092e, type: 3}
   - {fileID: -905764342, guid: e1c7ab79df1a607439c0da4236ee092e, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 24
   image: {fileID: 2804830199417394157}
   material: {fileID: 0}
@@ -567,6 +570,7 @@ MonoBehaviour:
   length: 0
   index: 0
   isPlaying: 0
+  pingPong: 0
   direction: 0
 --- !u!1 &6605858144161333542
 GameObject:
@@ -857,7 +861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.2381, y: -85}
+  m_AnchoredPosition: {x: 0, y: -95}
   m_SizeDelta: {x: 458.3002, y: 64.681}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2532298421935589035
@@ -1030,6 +1034,7 @@ MonoBehaviour:
   Score: 0
   FinalScore: 0
   ResetTime: 1
+  ScoreRect: {fileID: 5527318657731310814}
   addTrickAnimation:
     serializedVersion: 2
     m_Curve:

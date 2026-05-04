@@ -19,8 +19,6 @@ public class Checkpoint : MonoBehaviour
         playerControl = player.GetComponent<PlayerControlRigid>();
         magicManagement = player.GetComponent<MagicManagement>();
         grapple = player.GetComponentInChildren<Grapple>();
-
-        newPosition = new Vector3(0f,0f,0f);
     }
     public void updateCheckpoint(Transform playerTransform)
     {

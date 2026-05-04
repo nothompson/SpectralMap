@@ -212,11 +212,10 @@ public class Fireball : MonoBehaviour
                 }
             }
 
-            // if (rb != null)
-            // {
-            //     GameFunctions.ApplyForceToRigidbody(ref rb, e, targetForce);
-            //     Debug.Log("force to rigidbody");
-            // }
+            if (rb != null && e == null && pc == null)
+            {
+                GameFunctions.ApplyForceToRigidbody(ref rb, e, targetForce);
+            }
         }
 
 

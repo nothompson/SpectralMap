@@ -150,6 +150,9 @@ public class PlayerInteract : MonoBehaviour
             case InteractionType.Press:
                 pressSprite.SetActive(true);
                 break;
+            case InteractionType.Grab:
+                pressSprite.SetActive(true);
+                break;
         }
 
         currentSprite = type;

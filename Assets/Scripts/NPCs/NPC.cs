@@ -62,7 +62,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void OnBodyReady()
     {
-        headRotation = head.transform.rotation;
+        headRotation = head.transform.localRotation;
         headTargetRotation = headRotation;
 
         RefreshMeshJitter();
@@ -129,72 +129,56 @@ public class NPC : MonoBehaviour, IInteractable
     }
 
     public void OnInteract(GameObject player)
-    {
-        int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
-
-        //references from interactor(player)
-        PlayerControlRigid pcr = player.GetComponent<PlayerControlRigid>();
-        if(!fov.canSeePlayer || pcr.paused) return;
-
-        playerInteract = player.GetComponent<PlayerInteract>();
-
-        if(playerInteract == null) return;
-        
-        DialogueProgression next = dialogueData.GetCurrentDialogue(npcID);
-
-        if(currentDialogue != next) {
-                currentDialogue = next;
-                DialogueManager.Instance.ResetLineIndex(npcID);
-                playerInteract.dialogue.fullTextShown = false;
-            }
-        
-            if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
-            {
-                dialogueData.AddJournalEntry(currentDialogue);
-            }
-
-        if(dialogueIndex == currentDialogue.lineIndexToAddItem && currentDialogue.addItem)
-            {
-                dialogueData.AddItem(currentDialogue);
-            }
-
-        //if typing, interact again to skip typewriting
-        if (playerInteract.dialogue.isTyping)
-        {
-            playerInteract.dialogue.ShowText(playerInteract);
-            return;
-        }   
-
-        //if full text is shown and interact, go to next line(if any)
-        if (playerInteract.dialogue.fullTextShown)
-        {
-            dialogueIndex++;
-
-            if(dialogueIndex >= currentDialogue.lines.Length)
-            {
-                dialogueData.CompleteDialogue(npcID, currentDialogue);
-
-                currentDialogue = dialogueData.GetCurrentDialogue(npcID);
-
-                if (currentDialogue.repeat)
-                {
-                    dialogueIndex = 0;
-                    DialogueManager.Instance.ResetLineIndex(npcID);
-                }
-                else
-                {
-                    dialogueIndex = currentDialogue.lines.Length - 1;
-                    DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
-                }
-                
-            }
-            else{
-                DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
-            }
-        }
-
-        playerInteract.OpenDialogue();
+{
+    PlayerControlRigid pcr = player.GetComponent<PlayerControlRigid>();
+    if(!fov.canSeePlayer || pcr.paused) return;
+    playerInteract = player.GetComponent<PlayerInteract>();
+    if(playerInteract == null) return;
+    
+    DialogueProgression next = dialogueData.GetCurrentDialogue(npcID);
+    if(currentDialogue != next) {
+        currentDialogue = next;
+        DialogueManager.Instance.ResetLineIndex(npcID);
+        playerInteract.dialogue.fullTextShown = false;
     }
+
+    // Get index AFTER potential reset
+    int dialogueIndex = DialogueManager.Instance.GetLineIndex(npcID);
+
+    if(dialogueIndex == currentDialogue.lineIndexToAddJournalEntry && currentDialogue.addToJournal)
+    {
+        dialogueData.AddJournalEntry(currentDialogue);
+    }
+    if(dialogueIndex == currentDialogue.lineIndexToAddItem && currentDialogue.addItem)
+    {
+        dialogueData.AddItem(currentDialogue);
+    }
+
+    if (playerInteract.dialogue.isTyping)
+    {
+        playerInteract.dialogue.ShowText(playerInteract);
+        return;
+    }   
+
+    if (playerInteract.dialogue.fullTextShown)
+    {
+        dialogueIndex++;
+        if(dialogueIndex >= currentDialogue.lines.Length)
+        {
+            dialogueData.CompleteDialogue(npcID, currentDialogue);
+            currentDialogue = dialogueData.GetCurrentDialogue(npcID);
+            // Reset to 0 always — repeat check is just for non-advancing dialogues
+            dialogueIndex = 0;
+            DialogueManager.Instance.ResetLineIndex(npcID);
+        }
+        else
+        {
+            DialogueManager.Instance.SetLineIndex(npcID, dialogueIndex);
+        }
+    }
+
+    playerInteract.OpenDialogue();
+}
 
     public InteractionType GetInteractionType()
     {

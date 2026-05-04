@@ -27,6 +27,9 @@ public class ReloadManager : MonoBehaviour
     [SerializeField] Color failColor;
     [SerializeField] Color baseColor;
 
+    public Animator rightHandAnim;
+    public Animator leftHandAnim;
+
     public bool reloading = false;
 
     private RectTransform rect;
@@ -40,6 +43,8 @@ public class ReloadManager : MonoBehaviour
     Coroutine successRoutine;
     Coroutine failRoutine;
     Coroutine transitionRoutine;
+
+    PlayerControlRigid pc;
 
     private float BaseIntensity;
     [SerializeField] private float TargetIntensity;
@@ -81,8 +86,19 @@ public class ReloadManager : MonoBehaviour
     public void RegisterPlayer(GameObject player)
     {
         Player = player;
+        pc = player.GetComponent<PlayerControlRigid>();
         GameObject go = Player.transform.Find("YawPivot/Camera/overlay/SpectralShellLight")?.gameObject;
         ShellLight = go.GetComponent<Light>();
+
+        Launcher launcher = player.GetComponentInChildren<Launcher>();
+
+        if(launcher != null)
+        {
+            rightHandAnim = launcher.rightHandAnim;
+            leftHandAnim = launcher.leftHandAnim;
+        }
+
+        Debug.Log(launcher);
         
         BaseIntensity = ShellLight.intensity;
         BaseRange = ShellLight.range;
@@ -91,6 +107,9 @@ public class ReloadManager : MonoBehaviour
 
     public void StartReload()
     {
+        rightHandAnim.ResetTrigger("Reload");
+        if(!pc.grappling) leftHandAnim.ResetTrigger("Reload");
+
         Container.SetActive(true);
         ShellLight.gameObject.SetActive(true);
         // ShellLight.intensity = 0f;
@@ -101,15 +120,57 @@ public class ReloadManager : MonoBehaviour
         StopScaling();
 
         transitionRoutine = StartCoroutine(Transition(true));
+
+         rightHandAnim.SetInteger("HandState", 2);
+        rightHandAnim.SetBool("IsReloading", true);
+        if(!pc.grappling){
+            leftHandAnim.SetInteger("HandState", 2);
+            leftHandAnim.SetBool("IsReloading", true);
+        }
         
     }
 
-    public void StopReload()
+    public void ReloadAttempt()
     {
+        rightHandAnim.SetTrigger("Reload");
+        if(!pc.grappling){
+        leftHandAnim.SetTrigger("Reload");
+        }
+    }
+
+    public void StopReload(bool animate = false)
+    {        
         StopScaling();
         transitionRoutine = StartCoroutine(Transition(false));
         StartCoroutine(Stopping());
+        if(animate){
+        StartCoroutine(StopReloadSequence());
+        }
+        else
+        {
+            rightHandAnim.SetTrigger("Reload");
+            if(!pc.grappling) leftHandAnim.SetTrigger("Reload");
+
+            rightHandAnim.SetInteger("HandState", 0);
+            rightHandAnim.SetBool("IsReloading", false);
+            leftHandAnim.SetBool("IsReloading", false);
+            if(!pc.grappling) leftHandAnim.SetInteger("HandState", 0);
+        }   
     }
+
+    private IEnumerator StopReloadSequence()
+    {
+        rightHandAnim.SetTrigger("Reload");
+        if(!pc.grappling) leftHandAnim.SetTrigger("Reload");
+
+        yield return new WaitForSeconds(0.25f);
+
+        rightHandAnim.SetInteger("HandState", 0);
+        rightHandAnim.SetBool("IsReloading", false);
+        leftHandAnim.SetBool("IsReloading", false);
+        if(!pc.grappling) leftHandAnim.SetInteger("HandState", 0);
+    }
+
     IEnumerator Stopping()
     {
         yield return null;

@@ -148,6 +148,7 @@ public class Pickup : MonoBehaviour
                 Debug.Log("picked up pot of greed!");
                 break;
             case PickupType.FleshSuit:
+                if(other.gameObject.layer == 11) break;
                 consumed = true;
                 EffectManager.Instance.FleshSuit(other.gameObject, 100f);
                 break;
