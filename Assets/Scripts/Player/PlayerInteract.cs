@@ -8,6 +8,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] float dist = 3f;
 
     [SerializeField] private GameObject speakSprite;
+    [SerializeField] private GameObject grabSprite;
     [SerializeField] private GameObject pressSprite;
 
     private IInteractable currentInteract;
@@ -25,7 +26,11 @@ public class PlayerInteract : MonoBehaviour
 
     public bool playerHasInteracted;
 
-    
+    public GameObject HeldObject;
+
+    public Transform ObjectAnchor;
+
+    public bool HoldingObject = false;
 
     void Update()
     {
@@ -71,6 +76,13 @@ public class PlayerInteract : MonoBehaviour
             if(InputManager.Instance.inputs.Player.Interact.triggered){
                 currentInteract.OnInteract(gameObject);
             }
+        }
+
+        if(InputManager.Instance.inputs.Player.Interact.triggered && HoldingObject && currentInteract == null)
+        {
+            GrabObject go = HeldObject.GetComponent<GrabObject>();
+            if(go == null) return;
+            go.Drop(this);
         }
     }
 
@@ -151,7 +163,7 @@ public class PlayerInteract : MonoBehaviour
                 pressSprite.SetActive(true);
                 break;
             case InteractionType.Grab:
-                pressSprite.SetActive(true);
+                grabSprite.SetActive(true);
                 break;
         }
 
@@ -162,6 +174,7 @@ public class PlayerInteract : MonoBehaviour
     {
         speakSprite.SetActive(false);
         pressSprite.SetActive(false);
+        grabSprite.SetActive(false);
 
         currentSprite = null;
     }

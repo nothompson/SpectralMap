@@ -334,10 +334,12 @@ public class CharacterCreator : MonoBehaviour
         if(MouthScalesLocked) {
             MouthScalesLocked = false;
             MouthLock.SetFrame(0);
+            AudioManager.Instance.UIOpen();
         }
         else if(!MouthScalesLocked) {
             MouthScalesLocked = true;
             MouthLock.SetFrame(1);
+            AudioManager.Instance.UIClose();
         }
     }
 
@@ -346,10 +348,12 @@ public class CharacterCreator : MonoBehaviour
         if(EyeScalesLocked) {
             EyeScalesLocked = false;
             EyeLock.SetFrame(0);
+            AudioManager.Instance.UIOpen();
         }
         else if(!EyeScalesLocked) {
             EyeScalesLocked = true;
             EyeLock.SetFrame(1);
+            AudioManager.Instance.UIClose();
         }
     }
 
@@ -683,6 +687,8 @@ public void ScaleMouthY(float y)
 
             Swap.SetFrame(1);
 
+            AudioManager.Instance.UIOpen();
+
             if(EyeDictionary.TryGetValue(EyeRightImage.sprite, out string input))
             {
                 EyeName.input = input;
@@ -693,6 +699,9 @@ public void ScaleMouthY(float y)
         {
             OnLeft = true;
             Swap.SetFrame(0);
+
+            AudioManager.Instance.UIClose();
+
             if(EyeDictionary.TryGetValue(EyeLeftImage.sprite, out string input))
             {
                 EyeName.input = input;

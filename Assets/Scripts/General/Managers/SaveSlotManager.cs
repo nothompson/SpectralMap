@@ -42,7 +42,10 @@ public class SaveSlotManager : MonoBehaviour
 
 void Start()
     {
-            SaveSystem.OnSaveChange();
+        SaveSystem.OnSaveChange();
+        InventoryManager.Instance.AddItem("spectralflame", new Vector2Int(0,0));
+        InventoryManager.Instance.AddItem("slimehook", new Vector2Int(0,0));
+        InventoryManager.Instance.AddItem("lichen", new Vector2Int(0,0));
     }
 
         

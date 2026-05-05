@@ -22,6 +22,7 @@
         public SpriteAnimate[] spriteAnimations;
 
         public GameObject[] buttons;
+        public Graphic[] buttonGraphics;
 
         public GameObject title;
         public GameObject[] letters;
@@ -107,7 +108,9 @@
             DisableTricks();
 
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            CursorManager.Instance.TriggerCursor(true);
+
+            SettingsMenu.Instance.CloseButton.Targets = buttonGraphics;
 
             last = Vector2.zero;
 

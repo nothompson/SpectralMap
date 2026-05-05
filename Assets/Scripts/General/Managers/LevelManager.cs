@@ -161,7 +161,7 @@ public class LevelManager: MonoBehaviour
 
         _loaderCanvas.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        CursorManager.Instance.TriggerCursor(true);
     }
 
     void OnDestroy()

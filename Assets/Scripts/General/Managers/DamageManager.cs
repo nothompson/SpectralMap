@@ -97,7 +97,7 @@ public class DamageManager : MonoBehaviour
             DeathSceneImg.color = new Color(1f,1f,1f,0f);
 
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            CursorManager.Instance.TriggerCursor(true);
         }
 
         float newtime = BloodDur + damageOffset + deathOffset;

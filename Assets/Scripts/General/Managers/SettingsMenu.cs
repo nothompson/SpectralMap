@@ -43,6 +43,9 @@ public class SettingsMenu : MonoBehaviour
 
     public static GameSettingsData SettingsData;
 
+    [Header("References")]
+    public TriggerRaycasts CloseButton;
+
 
     void Awake()
     {
@@ -86,6 +89,8 @@ public class SettingsMenu : MonoBehaviour
         
         if((JournalManager.Instance != null && JournalManager.Instance.animating) || (InventoryManager.Instance != null && InventoryManager.Instance.animating)) return;
 
+        PauseManager.Instance.TriggerRaycasts(false);
+
         SubContainer.SetActive(false);
 
         Container.SetActive(true);
@@ -106,6 +111,8 @@ public class SettingsMenu : MonoBehaviour
     public void Close()
     {
         if(animating) return;
+
+        PauseManager.Instance.TriggerRaycasts(true);
 
         configSprite.index = 0;
 

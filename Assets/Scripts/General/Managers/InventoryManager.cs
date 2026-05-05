@@ -96,6 +96,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
 
         if(JournalManager.Instance.animating || SettingsMenu.Instance.animating) return;
 
+        PauseManager.Instance.TriggerRaycasts(false);
+
         SubContainer.SetActive(false);
 
         Container.SetActive(true);
@@ -116,6 +118,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
     public void Close()
     {
         if(animating) return;
+
+        PauseManager.Instance.TriggerRaycasts(true);
 
         bagSprite.index = 0;
 

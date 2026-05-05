@@ -112,6 +112,7 @@ public class PlayerKeyBinds : MonoBehaviour
         if (!ReloadManager.Instance.reloading)
         {
             if(playerMagic.magicPoints >= playerMagic.maximumMagic) return;
+            if(PlayerManager.Instance.HoldingObject) return;
             ReloadManager.Instance.StartReload();
             ReloadManager.Instance.reloading = true;
         }

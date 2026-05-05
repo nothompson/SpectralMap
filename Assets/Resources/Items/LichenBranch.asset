@@ -15,17 +15,18 @@ MonoBehaviour:
   ID: lichen
   Name: Lichen Branch
   Description: 
-  ItemDisplay: {fileID: 1468029928, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
+  ItemDisplay: {fileID: -1231577147, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
   AnimationSprites:
-  - {fileID: 1468029928, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
-  - {fileID: 535756774, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
-  - {fileID: 1332013790, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
-  - {fileID: 2067042567, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
-  - {fileID: -23806540, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
-  - {fileID: -816294883, guid: 09a6b4e5221ecaf4eb883210db67faff, type: 3}
+  - {fileID: -1231577147, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
+  - {fileID: -1971779208, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
+  - {fileID: -1685487728, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
+  - {fileID: 2107949017, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
+  - {fileID: 2063018862, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
+  - {fileID: -1512459417, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
   AnimationDirection: 0
-  AnimationFPS: 12
-  PositionOnGrid: {x: 0, y: 0}
+  AnimationFPS: 8
+  AnimationPingPong: 1
+  PositionOnGrid: {x: 2, y: 0}
   ImageOffset: {x: 0, y: 0}
   ImageScale: {x: 1.5, y: 1.25}
-  IsInInventory: 0
+  IsInInventory: 1

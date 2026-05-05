@@ -7,10 +7,12 @@ public class JournalTriggerButton : MonoBehaviour
     public void TriggerJournalOpen()
     {
         JournalManager.Instance.Open();
+        PauseManager.Instance.TriggerRaycasts(false);
     }
     public void TriggerJournalClose()
     {
         JournalManager.Instance.Close();
+        PauseManager.Instance.TriggerRaycasts(true);
     }
     public void JournalNextPage()
     {

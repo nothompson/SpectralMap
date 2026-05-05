@@ -28,6 +28,8 @@ public class ApplyResolution : MonoBehaviour
         SettingsMenu.SettingsData.windowType = win;
 
         StartCoroutine(Deactivate());
+
+        CursorManager.Instance.ForceUpdate();
     }
 
     public IEnumerator Deactivate()

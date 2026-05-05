@@ -6,10 +6,12 @@ public class InventoryTriggerButton : MonoBehaviour
     {
         InventoryManager.Instance.Open();
         AudioManager.Instance.BodybagOpen();
+        PauseManager.Instance.TriggerRaycasts(false);
     }
     public void TriggerInventoryClose()
     {
         InventoryManager.Instance.Close();
         AudioManager.Instance.BodybagClose();
+        PauseManager.Instance.TriggerRaycasts(true);
     }
 }

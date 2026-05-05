@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d238615acde9764ca8a71f40061dd12
+guid: 6175e4f3ac3713b409ccaf2638aacab2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,8 +73,8 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    compressionQuality: 21
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -110,7 +110,95 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimehook_0
+      name: pointing_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4104b5e4de638fe47b68b34463e158b8
+      internalID: 1629661260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b22af3df9dc4e94085b919581a91748
+      internalID: 930923973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a174b824637aa243b6aa746555bedf1
+      internalID: -1562876722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e5eea6bc6dcab478250edb98e2d05b
+      internalID: -2079871353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_4
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d771bc2503123b44e9dc2f27a330f1e3
-      internalID: -1846784267
+      spriteID: a82ba969884e6084a9ff3eb84f5e2a16
+      internalID: -661505716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_1
+      name: pointing_5
       rect:
         serializedVersion: 2
         x: 512
@@ -147,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a779fdc770a7d141b5bf8e47b519589
-      internalID: 433392467
+      spriteID: f5585a3802bfea047b2a7644db5fb5ce
+      internalID: 1183339485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_2
+      name: pointing_6
       rect:
         serializedVersion: 2
         x: 1024
@@ -169,14 +257,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8271127bafa3b3840b996da27037035f
-      internalID: -1787576907
+      spriteID: 3758f8c2a51806d41bc8e3c8017ec8f3
+      internalID: 901509800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_3
+      name: pointing_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56dc0ec30ba0c2349a70ec10363c22cc
+      internalID: -691384569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_8
       rect:
         serializedVersion: 2
         x: 0
@@ -191,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cd888274e304924481bdbb917f6adb3
-      internalID: -1288247792
+      spriteID: 6e8efe1d77167af449093d867e334218
+      internalID: -1375232838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_4
+      name: pointing_9
       rect:
         serializedVersion: 2
         x: 512
@@ -213,14 +323,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ee9c061b3925154ba3bb102b61c9d5b
-      internalID: -507960241
+      spriteID: 6d5e17e8f463ec2469311487ef09b044
+      internalID: -844664399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_5
+      name: pointing_10
       rect:
         serializedVersion: 2
         x: 1024
@@ -235,14 +345,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0af8c2543b7ecf242940819254fcd8cc
-      internalID: -424352540
+      spriteID: 517f9836a503bbf4bb0d6d7b9bdf288f
+      internalID: -1311599267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimehook_6
+      name: pointing_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ba17cc41a50b349bc6e18cb782eb74
+      internalID: 1469562069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_12
       rect:
         serializedVersion: 2
         x: 0
@@ -257,8 +389,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e4fe911451a1cf47aa9e497c925a667
-      internalID: 887098152
+      spriteID: 527297b2769e09c4187d7d641e6e1c7a
+      internalID: 1878766818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb972cdbaf056a498cef9aef41651ef
+      internalID: -1452224973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1b774f85af668479f0622937cee45c
+      internalID: -482665401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pointing_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f972ea662c17041969c1a745487528
+      internalID: 904680919
       vertices: []
       indices: 
       edges: []
@@ -267,7 +465,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d87acd6faa41b9542a0a9f6032d2ff04
+    spriteID: 058141be3650f2a4c91d7a5255d0de9a
     internalID: 0
     vertices: []
     indices: 
@@ -279,13 +477,22 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      slimehook_0: -1846784267
-      slimehook_1: 433392467
-      slimehook_2: -1787576907
-      slimehook_3: -1288247792
-      slimehook_4: -507960241
-      slimehook_5: -424352540
-      slimehook_6: 887098152
+      pointing_0: 1629661260
+      pointing_1: 930923973
+      pointing_10: -1311599267
+      pointing_11: 1469562069
+      pointing_12: 1878766818
+      pointing_13: -1452224973
+      pointing_14: -482665401
+      pointing_15: 904680919
+      pointing_2: -1562876722
+      pointing_3: -2079871353
+      pointing_4: -661505716
+      pointing_5: 1183339485
+      pointing_6: 901509800
+      pointing_7: -691384569
+      pointing_8: -1375232838
+      pointing_9: -844664399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -323,7 +323,10 @@ public class TrickManager : MonoBehaviour
 
         if(!surfing && !falling) StartBoredom();
 
-        trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
+
+        if(!continuous){
+            trickAnimation = StartCoroutine(AnimateText(trickText.rectTransform, trickTextInitSize, trickAnimationDur, addTrickAnimation));
+        }
 
         if(trick.Type != TrickType.freefall) StopFalling();
     }

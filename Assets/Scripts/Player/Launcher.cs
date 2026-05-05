@@ -9,6 +9,8 @@ public class Launcher : MonoBehaviour
     [Header("References")]
     public PlayerControlRigid player;
     public MagicManagement playerMagic;
+
+    public PlayerInteract playerInteract;
     public Transform attackPoint;
     public Animator rightHandAnim;
     public Animator leftHandAnim;
@@ -146,6 +148,20 @@ public class Launcher : MonoBehaviour
         if(player.ensared) return;
 
         if(!player.paused){
+
+            if(PlayerManager.Instance.HoldingObject)
+            {
+                if(InputManager.Instance.inputs.Player.Fire.triggered)
+                {
+                    if(playerInteract.HeldObject != null)
+                    {
+                        shootTimer = firingSpeed * 0.25f;
+                        playerInteract.HeldObject.GetComponent<GrabObject>()?.Drop(playerInteract, true);
+                    }
+                }
+                return;
+            }
+
             //left click. if yes trigger bool
             // shooting = InputManager.Instance.inputs.Player.Fire.triggered;
             if (InputManager.Instance.inputs.Player.Fire.IsPressed())
@@ -168,28 +184,9 @@ public class Launcher : MonoBehaviour
         { 
             if(!ReloadManager.Instance.reloading) TryGrapple(); 
         }
-
-        // if (allowInvoke)
-        // {
-        //     fireball = Input.GetKeyDown(KeyCode.Alpha1);
-        //     if (fireball)
-        //     {
-        //         spell = 1;
-
-        //     }
-        //     wind = Input.GetKeyDown(KeyCode.Alpha2);
-        //     if (wind)
-        //     {
-        //         spell = 2;
-        //     }
-        //     slime = Input.GetKeyDown(KeyCode.Alpha3);
-        //     if (slime)
-        //     {
-        //         spell = 3;
-        //     }
-        // }
-            SpellManager();
         }
+
+        SpellManager();
     }
 
     private void SpellManager()
@@ -213,6 +210,7 @@ public class Launcher : MonoBehaviour
 
     private void Shoot()
     {
+        if(!PlayerManager.Instance.SpectralFlame) return;
         // readyToShoot = false;
 
         cooldown = true;
@@ -235,6 +233,7 @@ public class Launcher : MonoBehaviour
 
     private void TryGrapple()
     {
+        if(!PlayerManager.Instance.Grapple) return;
         if(!grapple.grappleActive){
             if(playerMagic.magicPoints >= 20f * costMultiplier){
             grapple.TryGrapple(attackPoint, ref grappleSuccess);

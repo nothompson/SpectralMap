@@ -294,12 +294,12 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            CursorManager.Instance.TriggerCursor(false);
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            CursorManager.Instance.TriggerCursor(true);
         }
 
         Camera.main.fieldOfView = FOVSettings.CurrentFOV;
@@ -487,7 +487,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         {
             grounded = false;
             surfMove();
-            if(!surfingLastFrame && playerSpeed > surfingThreshold){
+            if(!surfingLastFrame){
                 TrickManager.Instance.StartSurfing();
             }
         }

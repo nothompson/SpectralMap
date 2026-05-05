@@ -231,6 +231,8 @@ public class JournalManager : MonoBehaviour
 
         if(SettingsMenu.Instance.animating || InventoryManager.Instance.animating) return;
 
+        PauseManager.Instance.TriggerRaycasts(false);
+
         SubContainer.SetActive(false);
 
         Container.SetActive(true);
@@ -252,6 +254,8 @@ public class JournalManager : MonoBehaviour
     public void Close()
     {
         if(animating) return;
+
+        PauseManager.Instance.TriggerRaycasts(true);
 
         journalSprite.index = 0;
 

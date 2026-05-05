@@ -15,6 +15,8 @@ public class Item : ScriptableObject
     public Sprite[] AnimationSprites;
     public bool AnimationDirection;
     public int AnimationFPS;
+
+    public bool AnimationPingPong;
     public Vector2Int PositionOnGrid;
 
     public Vector2 ImageOffset;

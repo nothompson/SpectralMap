@@ -458,7 +458,7 @@ MonoBehaviour:
       colliderCenter: {x: 0, y: 0, z: 0}
       leftArmBone: 
       rightArmBone: 
-      neckBone: Bone
+      neckBone: Neck
       noHands: 1
       excludedHandles: []
     - addressableKey: Assets/prefabs/NPCs/Bodies/slimegiant.prefab
@@ -476,7 +476,7 @@ MonoBehaviour:
       colliderCenter: {x: 0, y: 1, z: -0.75}
       leftArmBone: 
       rightArmBone: 
-      neckBone: Bone.005
+      neckBone: Neck
       noHands: 0
       excludedHandles: []
     - addressableKey: Assets/prefabs/NPCs/Bodies/cello.prefab

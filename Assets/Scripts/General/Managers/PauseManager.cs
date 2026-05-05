@@ -45,6 +45,8 @@ public class PauseManager : MonoBehaviour
 
     Coroutine IntroRoutine;
 
+    public Image[] Targets;
+
     void Awake()
     {
         if(Instance == null)
@@ -77,12 +79,21 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         StartCoroutine(ScreenShot());
         IntroRoutine = StartCoroutine(HudIntro());
+        TriggerRaycasts(true);
     }
 
     public void Unpause()
     {
         StartCoroutine(Close());
         AudioManager.Instance.pause = 0f;
+    }
+
+    public void TriggerRaycasts(bool dir)
+    {
+        foreach(var im in Targets)
+        {
+            im.raycastTarget = dir;
+        }
     }
 
     public IEnumerator ScreenShot()

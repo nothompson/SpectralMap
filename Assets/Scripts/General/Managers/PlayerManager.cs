@@ -20,6 +20,11 @@ public class PlayerManager : MonoBehaviour
 
     public bool Forgiveness;
 
+    public bool SpectralFlame;
+    public bool Grapple;
+
+    public bool HoldingObject;
+
     void Awake()
     {
         if(Instance == null)
@@ -42,10 +47,14 @@ public class PlayerManager : MonoBehaviour
 
     void LoadDefaults()
     {
+
         DamageMultiplier = 1f;
         ForceMultiplier = 1f;
         ProjectileGrappling = false;
-        Forgiveness = true;
+        Forgiveness = false;
+
+        SpectralFlame = false;
+        Grapple = false;
     }
 
     public void CheckItems()
@@ -59,6 +68,17 @@ public class PlayerManager : MonoBehaviour
         {
             Forgiveness = true;
         }
+
+        if (InventoryManager.Instance.HasItem("spectralflame"))
+        {
+            SpectralFlame = true;
+        }
+
+           if (InventoryManager.Instance.HasItem("slimehook"))
+        {
+            Grapple = true;
+        }
+        
     }
     
 

@@ -88,6 +88,7 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
         InventoryManager.Instance.DisplayAnimate.direction = ItemData.AnimationDirection;
         InventoryManager.Instance.DisplayAnimate.fps = ItemData.AnimationFPS;
         InventoryManager.Instance.DisplayAnimate.length = ItemData.AnimationSprites.Length;
+        InventoryManager.Instance.DisplayAnimate.pingPong = ItemData.AnimationPingPong;
         InventoryManager.Instance.DisplayAnimate.Play();
         }
         else
@@ -102,8 +103,6 @@ IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDra
         InventoryManager.Instance.ItemToDisplay.transform.localPosition = new Vector3(itemPos.x + ItemData.ImageOffset.x, itemPos.y + ItemData.ImageOffset.y, itemPos.z);
 
         InventoryManager.Instance.ItemToDisplay.transform.localScale = new Vector2(ItemData.ImageScale.x, ItemData.ImageScale.y);
-
-        Debug.Log("showing display");
 
         InventoryManager.Instance.DescriptionText.input = ItemData.Description;
         InventoryManager.Instance.TitleText.input = ItemData.Name;
