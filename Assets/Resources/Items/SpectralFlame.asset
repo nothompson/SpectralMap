@@ -61,7 +61,8 @@ MonoBehaviour:
   - {fileID: 649345496, guid: e32701cdd28c2824e96e86ab6b205ecb, type: 3}
   AnimationDirection: 1
   AnimationFPS: 24
+  AnimationPingPong: 0
   PositionOnGrid: {x: 0, y: 0}
-  ImageOffset: {x: 0, y: 0}
-  ImageScale: {x: 1.5, y: 1.25}
+  ImageOffset: {x: 0, y: 50}
+  ImageScale: {x: 1.5, y: 1.5}
   IsInInventory: 1

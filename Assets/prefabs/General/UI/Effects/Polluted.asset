@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f278bd1b8dd78e4d8299bb601c7937b, type: 3}
+  m_Name: Polluted
+  m_EditorClassIdentifier: Assembly-CSharp::EffectUIData
+  id: Polluted
+  DisplayName: Polluted
+  sprites:
+  - {fileID: -1816458975, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -1734393397, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -1104155698, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 908393365, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -851488011, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 2033030483, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 34078246, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -1519754112, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 286049536, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 219681033, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 1157770532, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -340031947, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 819858620, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 572168824, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -1337119442, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -2036309852, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 369470082, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 558665880, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 914596261, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -154321452, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: -891725995, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  - {fileID: 1448241750, guid: 1854dfbf2dd58804c9035d89619fbb98, type: 3}
+  pingPong: 1
+  fps: 24

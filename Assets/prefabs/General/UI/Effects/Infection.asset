@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f278bd1b8dd78e4d8299bb601c7937b, type: 3}
+  m_Name: Infection
+  m_EditorClassIdentifier: Assembly-CSharp::EffectUIData
+  id: Infection
+  DisplayName: Infection
+  sprites:
+  - {fileID: -162062497, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: -1876103902, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: -350169233, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: 1767416075, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: 142222076, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: -2036992673, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: 1918119062, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: 1105889903, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: 1916144390, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  - {fileID: -1955348721, guid: e789a00ba47a16b45985b81aec226827, type: 3}
+  pingPong: 1
+  fps: 24

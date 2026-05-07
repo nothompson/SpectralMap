@@ -69,54 +69,54 @@ public class GrabObject : MonoBehaviour, IInteractable
     transform.SetParent(null);
 }
 
-public void Drop(PlayerInteract pi, bool thrown = false)
-{
-    isHeld = false;
-    holder = null;
-    
-    if(rb != null)
+    public void Drop(PlayerInteract pi, bool thrown = false)
     {
-        if (thrown)
-            {
-                Vector3 throwVel = Camera.main.transform.forward * 10f;
-                rb.AddForce(throwVel, ForceMode.Impulse);
-            }
-        rb.useGravity = true;
-        rb.linearDamping = 0f;
-        rb.angularDamping = 0.05f;
-        rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        isHeld = false;
+        holder = null;
+        
+        if(rb != null)
+        {
+            if (thrown)
+                {
+                    Vector3 throwVel = Camera.main.transform.forward * 10f;
+                    rb.AddForce(throwVel, ForceMode.Impulse);
+                }
+            rb.useGravity = true;
+            rb.linearDamping = 0f;
+            rb.angularDamping = 0.05f;
+            rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+        }
+
+        pi.HoldingObject = false;
+        pi.HeldObject.layer = LayerMask.NameToLayer("Object");
+        PlayerManager.Instance.HoldingObject = false;
+
+        Collider playerCollider = pi.GetComponent<Collider>();
+        Physics.IgnoreCollision(collider, playerCollider, false);
+
+        pi.HeldObject = null;
     }
 
-    pi.HoldingObject = false;
-    pi.HeldObject.layer = LayerMask.NameToLayer("Object");
-    PlayerManager.Instance.HoldingObject = false;
+    void FixedUpdate()
+    {
+        if(!isHeld || holder == null) return;
 
-    Collider playerCollider = pi.GetComponent<Collider>();
-    Physics.IgnoreCollision(collider, playerCollider, false);
+        Vector3 target = holder.ObjectAnchor.position;
+        Vector3 delta = target - transform.position;
 
-    pi.HeldObject = null;
-}
+        if(delta.magnitude > 5f) Drop(holder);
 
-void FixedUpdate()
-{
-    if(!isHeld || holder == null) return;
+        rb.linearVelocity = delta * 50f;
+    }
 
-    Vector3 target = holder.ObjectAnchor.position;
-    Vector3 delta = target - transform.position;
-
-    if(delta.magnitude > 7f) Drop(holder);
-
-    rb.linearVelocity = delta * 20f;
-}
-
-float GetColliderRadius()
-{
-    if (collider is SphereCollider sc) return sc.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
-    if (collider is CapsuleCollider cc) return cc.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
-    if (collider is BoxCollider bc) return Mathf.Min(bc.size.x, bc.size.y, bc.size.z) * 0.5f * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
-    return 0.3f;
-}
+    float GetColliderRadius()
+    {
+        if (collider is SphereCollider sc) return sc.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
+        if (collider is CapsuleCollider cc) return cc.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
+        if (collider is BoxCollider bc) return Mathf.Min(bc.size.x, bc.size.y, bc.size.z) * 0.5f * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
+        return 0.3f;
+    }
 
     public void ExitInteract()
     {
