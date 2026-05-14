@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f278bd1b8dd78e4d8299bb601c7937b, type: 3}
   m_Name: Shapeless
   m_EditorClassIdentifier: Assembly-CSharp::EffectUIData
-  id: Shapeless
+  id: shapeless
   DisplayName: Shapeless
   sprites:
   - {fileID: 152013957, guid: f6feb4157c52c5a43b173a68ad131b5e, type: 3}

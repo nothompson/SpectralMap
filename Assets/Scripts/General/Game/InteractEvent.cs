@@ -7,9 +7,15 @@ using UnityEngine;
 public class InteractEvent : MonoBehaviour, IInteractable
 {
     public UnityEvent Interaction;
+    public bool Disable = false;
+    bool disabled = false;
     public void OnInteract(GameObject player)
     {
         Interaction?.Invoke();
+        if (Disable)
+        {
+            disabled = true;
+        }
     }
     public void ExitInteract()
     {
@@ -18,7 +24,8 @@ public class InteractEvent : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return true;
+        if(disabled) return false;
+        else return true;
     }
 
     public InteractionType GetInteractionType() => InteractionType.Press;

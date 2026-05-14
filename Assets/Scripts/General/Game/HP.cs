@@ -13,6 +13,8 @@ public class HP : MonoBehaviour
     public bool dead = false;
     public ObjectType type;
 
+    public bool immune = false;
+
     public enum ObjectType
     {
         Player,
@@ -68,6 +70,7 @@ public class HP : MonoBehaviour
     public void Damage(float dmg)
     {
         if(dead) return;
+        if(immune) return;
         if(type == ObjectType.Player){
             PlayerControlRigid pc = GetComponent<PlayerControlRigid>();
             Profile profile = GetComponentInChildren<Profile>();
@@ -179,24 +182,19 @@ public class HP : MonoBehaviour
                 Debug.Log(roll);
                 if(roll >= 1.0f - e.ChanceToDropPickup){
                     float pickup = Random.Range(0f,1f);
-                    // if(pickup <= 0.45f)
-                    //     {    
-                    //         PickupPool.Instance.Get(transform.position, Pickup.PickupType.Health, 0.5f);
+                    if(pickup <= 0.45f)
+                        {    
+                            PickupPool.Instance.Get(transform.position, Pickup.PickupType.Health, 0.5f);
 
-                    //         Debug.Log("health spawned");
-                    //     }
-                    // else if (pickup <= 0.9f && pickup > 0.45f)
-                    //     {
-                    //         PickupPool.Instance.Get(transform.position, Pickup.PickupType.Magic, 0.5f);
-
-                    //         Debug.Log("Magic spawned");
-                    //     }
-                    if (pickup >= 0.0f)
+                        }
+                    else if (pickup <= 0.9f && pickup > 0.45f)
+                        {
+                            PickupPool.Instance.Get(transform.position, Pickup.PickupType.Magic, 0.5f);
+                        }
+                    if (pickup > 0.9f)
                         {
                             PickupPool.Instance.Get(transform.position, Pickup.PickupType.Greed, 0.5f);
                         }
-
-                    Debug.Log(pickup);
                 }
                 }
 

@@ -747,12 +747,17 @@ MonoBehaviour:
   - {fileID: 739739205, guid: 4c8bb0bfa3b10734fb9c51104ed57fdb, type: 3}
   - {fileID: -679735701, guid: 4c8bb0bfa3b10734fb9c51104ed57fdb, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 8
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
+  length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
+  direction: 1
 --- !u!1 &25419804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,9 +3678,13 @@ MonoBehaviour:
   - {fileID: 733706081, guid: 6bd7fabf1391b1045b860ab862fd2a65, type: 3}
   - {fileID: 106399636, guid: 6bd7fabf1391b1045b860ab862fd2a65, type: 3}
   - {fileID: 805738301, guid: 6bd7fabf1391b1045b860ab862fd2a65, type: 3}
-  X: -56.47913
-  Y: 64.32077
+  placement: {x: 0, y: 0, z: 0}
   image: {fileID: 0}
+  spriteText: {fileID: 0}
+  rect: {fileID: 0}
+  lastindex: 0
+  lastvalue: 0
+  spriteAnimate: {fileID: 0}
 --- !u!114 &212847752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3982,7 +3991,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 100
+  characterID: 
+  dead: 0
   type: 1
+  minGibs: 0
+  maxGibs: 0
+  damageFlashEnable: 0
   targetFlashValue: 0
   flashDur: 0
   FlashCurve:
@@ -4018,7 +4032,7 @@ MonoBehaviour:
   player: {fileID: 222188146}
   playerCamera: {fileID: 69183766}
   attackingPoint: {fileID: 1895879895}
-  gun: {fileID: 1976332548}
+  launcher: {fileID: 0}
   hands:
   - {fileID: 546207389}
   - {fileID: 595619573}
@@ -4047,7 +4061,11 @@ MonoBehaviour:
   surfingThreshold: 15
   grounded: 0
   groundedLastFrame: 0
+  onPlatform: 0
+  onPlatformLastFrame: 0
+  platformVelocity: {x: 0, y: 0, z: 0}
   surfing: 0
+  grappling: 0
   surfingLastFrame: 0
   StepHeight: 0.1
   SurfRadius: 0.22
@@ -4198,11 +4216,13 @@ MonoBehaviour:
   playerSpeed: 0
   RocketJumped: 0
   CanPogo: 0
+  CanWall: 0
   Synced: 0
   StartSyncTimer: 0
   syncHits: 0
   syncTimer: 0
   syncResult: 0
+  ensared: 0
 --- !u!54 &222188156
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4247,7 +4267,16 @@ MonoBehaviour:
     m_Bits: 3145728
   dist: 3
   speakSprite: {fileID: 1310738241}
+  grabSprite: {fileID: 0}
   pressSprite: {fileID: 25173965}
+  hudbox: {fileID: 0}
+  Text: {fileID: 0}
+  spriteAnimate: {fileID: 0}
+  dialogue: {fileID: 0}
+  playerHasInteracted: 0
+  HeldObject: {fileID: 0}
+  ObjectAnchor: {fileID: 0}
+  HoldingObject: 0
 --- !u!1 &227568500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,9 +7181,13 @@ MonoBehaviour:
   - {fileID: -66598730, guid: 50631dbbe895baa42aaa37648c96ee19, type: 3}
   - {fileID: 27097702, guid: 50631dbbe895baa42aaa37648c96ee19, type: 3}
   - {fileID: 807238002, guid: 50631dbbe895baa42aaa37648c96ee19, type: 3}
-  X: 64
-  Y: 54
+  placement: {x: 0, y: 0, z: 0}
   image: {fileID: 0}
+  spriteText: {fileID: 0}
+  rect: {fileID: 0}
+  lastindex: 0
+  lastvalue: 0
+  spriteAnimate: {fileID: 0}
   error: {r: 1, g: 0.5981132, b: 0.5981132, a: 1}
 --- !u!114 &496099432
 MonoBehaviour:
@@ -9244,12 +9277,17 @@ MonoBehaviour:
   - {fileID: -2013189053, guid: 589e703aa0182e2418193006bd76c100, type: 3}
   - {fileID: -1103055511, guid: 589e703aa0182e2418193006bd76c100, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 60
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
+  length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
+  direction: 1
 --- !u!1 &640687100
 GameObject:
   m_ObjectHideFlags: 0
@@ -9300,6 +9338,8 @@ MonoBehaviour:
   scaleRange: 0.1
   rotationRange: 0
   positionRange: 0.1
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -9512,6 +9552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDManager
   ReloadSprite: {fileID: 1063273104}
+  Container: {fileID: 0}
+  Player: {fileID: 0}
   PulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -9596,8 +9638,25 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  TransitionCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   MaxRotation: 30
+  targetMelt: 0.2
+  baseMelt: 0.05
+  successDur: 0.1
+  failDur: 0.1
+  successColor: {r: 0, g: 0, b: 0, a: 0}
+  failColor: {r: 0, g: 0, b: 0, a: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  rightHandAnim: {fileID: 0}
+  leftHandAnim: {fileID: 0}
   reloading: 0
+  TargetIntensity: 0
+  TargetRange: 0
 --- !u!4 &659010586
 Transform:
   m_ObjectHideFlags: 0
@@ -12773,6 +12832,7 @@ MonoBehaviour:
   isTyping: 0
   fullTextShown: 0
   init: 0
+  world: 0
 --- !u!114 &900888053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13665,6 +13725,7 @@ MonoBehaviour:
   isTyping: 0
   fullTextShown: 0
   init: 0
+  world: 0
 --- !u!114 &981439372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15899,9 +15960,13 @@ MonoBehaviour:
   - {fileID: -1634618526, guid: 5533c3c2f2dc79646b78f98fb4b6a3cc, type: 3}
   - {fileID: 845972348, guid: 5533c3c2f2dc79646b78f98fb4b6a3cc, type: 3}
   - {fileID: 1788220764, guid: 5533c3c2f2dc79646b78f98fb4b6a3cc, type: 3}
-  X: 117.3
-  Y: -123.92
+  placement: {x: 0, y: 0, z: 0}
   image: {fileID: 0}
+  spriteText: {fileID: 0}
+  rect: {fileID: 0}
+  lastindex: 0
+  lastvalue: 0
+  spriteAnimate: {fileID: 0}
   heartAnim: {fileID: 613261691}
 --- !u!114 &1262183387
 MonoBehaviour:
@@ -17102,12 +17167,17 @@ MonoBehaviour:
   - {fileID: 1768946669, guid: b13b4a9f0e708544eaa97a9036a39738, type: 3}
   - {fileID: 1441204503, guid: b13b4a9f0e708544eaa97a9036a39738, type: 3}
   startingIndex: 0
+  randomStart: 0
   fps: 8
   image: {fileID: 0}
+  material: {fileID: 0}
   sprite: {fileID: 0}
   worldSpace: 0
+  length: 0
   index: 0
   isPlaying: 1
+  pingPong: 0
+  direction: 1
 --- !u!1 &1320005922
 GameObject:
   m_ObjectHideFlags: 0
@@ -22343,6 +22413,8 @@ MonoBehaviour:
   scaleRange: 0.1
   rotationRange: 0
   positionRange: 0.1
+  lockPosition: 0
+  parented: 0
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   targetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -24013,6 +24085,7 @@ MonoBehaviour:
   isTyping: 0
   fullTextShown: 0
   init: 0
+  world: 0
 --- !u!114 &1777322651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25056,6 +25129,7 @@ MonoBehaviour:
   isTyping: 0
   fullTextShown: 0
   init: 0
+  world: 0
 --- !u!114 &1864067754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25899,12 +25973,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 222188155}
   playerMagic: {fileID: 222188152}
+  playerInteract: {fileID: 0}
   attackPoint: {fileID: 1895879895}
   rightHandAnim: {fileID: 546207390}
   leftHandAnim: {fileID: 595619577}
   hand: {fileID: 543450653344638235}
   mana: {fileID: 496099431}
   blastCanvas: {fileID: 432315550}
+  BlastAnchor: {fileID: 0}
+  grapple: {fileID: 0}
   Fireball: {fileID: 5699600963728143066, guid: 1b2a8216ead741b40a53bc46cc8d2055, type: 3}
   blast: {fileID: 343459243508289756, guid: 7c57be891574355498015da5b8f0dfc7, type: 3}
   Windblast: {fileID: 4299399426079330108, guid: 6494f663bd94c2149bde72e91208c450, type: 3}
@@ -26161,7 +26238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

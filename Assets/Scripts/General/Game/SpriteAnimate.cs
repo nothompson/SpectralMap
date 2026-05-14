@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class SpriteAnimate : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class SpriteAnimate : MonoBehaviour
     [SerializeField] public bool pingPong = false;
     private int pingPongDir;
     public bool direction = true;
+
+    public UnityEvent OnTargetEvent;
+
 
     public Coroutine _current; 
 
@@ -145,6 +149,21 @@ public class SpriteAnimate : MonoBehaviour
         _current = AnimateTo(this, targetFrame);
     }
 
+
+private bool atEnd = false;
+public void AnimateToEnd()
+{
+    isPlaying = false;
+    if (_current != null)
+    {
+        StopCoroutine(_current);
+    }
+
+    int targetFrame = atEnd ? 0 : sprites.Length - 1;
+    atEnd = !atEnd;
+    _current = StartCoroutine(AnimateToTarget(targetFrame));
+}
+
     public Coroutine AnimateTo(MonoBehaviour script, int targetFrame, System.Action <int> onFrameChanged = null, System.Action onTarget = null)
     {
         return script.StartCoroutine(AnimateToTarget(targetFrame, onFrameChanged, onTarget));
@@ -171,5 +190,6 @@ public class SpriteAnimate : MonoBehaviour
         }
 
         onTarget?.Invoke();
+        OnTargetEvent?.Invoke();
     }
 }

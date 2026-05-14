@@ -164,7 +164,7 @@ MonoBehaviour:
   NamedEntity: {fileID: 0}
   Points: 500
   Name: sorcerer
-  ChanceToDropPickup: 1
+  ChanceToDropPickup: 0.5
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -185,6 +185,7 @@ MonoBehaviour:
   fov: {fileID: 4841478155004484700}
   hp: {fileID: 1406114434053852960}
   fbx: {fileID: 0}
+  spriteEvent: {fileID: 0}
   EnemyID: 
   Personality: 1
   Behaviors: []
@@ -270,6 +271,7 @@ MonoBehaviour:
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 10
   maxGibs: 20
   damageFlashEnable: 1
@@ -397,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907934122238b204bb9f39fbc87385b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
-  AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  AttackPrefab: {fileID: 5187648626481390823, guid: 07fb0d556464e1b42b02878bb840c273, type: 3}
   OnFire:
     m_PersistentCalls:
       m_Calls:

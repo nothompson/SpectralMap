@@ -58,7 +58,6 @@ public class Rocket : EnemyProjectile
                 }
                 if(p != null)
                 {
-                    Debug.Log("p is not null: " + p );
                     p.playerVelocity += force;
                 }
                 damagedHP.Add(targetHP);

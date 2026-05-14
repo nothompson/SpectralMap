@@ -53,6 +53,15 @@ public class ExplodeBehavior : AttackBehavior
                 if(p != null)
                 {
                     p.playerVelocity += force;
+                    float rand = Random.Range(0f,1f);
+                    if(rand <= 0.05f)
+                    {
+                    EffectManager.Instance.Infected(p.gameObject, 5f);
+                    }
+                    else if(rand >= 0.95f)
+                    {
+                    EffectManager.Instance.Polluted(p.gameObject, 5f);
+                    }
                 }
                 damagedHP.Add(targetHP);
                 targetHP.Damage(damage);

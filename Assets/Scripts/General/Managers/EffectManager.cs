@@ -183,6 +183,27 @@ public class EffectManager : MonoBehaviour
 
     #endregion
 
+    #region PotOfGreed
+
+    public void PotOfGreed(GameObject target)
+    {
+        var pool = new System.Action[]
+        {
+            () => Confuse(target,5f),
+            () => Guilt(target,10f),
+            () => Ectoplasm(target,15f),
+            () => Shapeless(target,15f),
+            () => Transience(target,15f),
+            () => Overgrowth(target, 15f),
+            () => Polluted(target, 10f),
+            () => Infected(target, 10f),
+        };
+
+        int index = Random.Range(0, pool.Length);
+        pool[index].Invoke();
+    }
+    #endregion
+
     #region Confuse
     public class ConfuseEffect: IEffect
     {
@@ -288,6 +309,369 @@ public class EffectManager : MonoBehaviour
 
     #endregion
 
+    #region Ectoplasm
+
+    public class EctoplasmEffect : IEffect
+    {
+        public string EffectID => "ectoplasm";
+
+        public Launcher launcher;
+        private float duration;
+        private float timer;
+        private float cachedCostMult; 
+        public bool isFinished => timer <= 0f;
+
+        public EctoplasmEffect(GameObject target, float duration)
+        {
+            launcher = target.GetComponentInChildren<Launcher>();
+            this.duration = duration;
+            this.timer = duration;
+        }
+
+        public void OnApply()
+        {
+            if(launcher != null)
+            {
+                cachedCostMult = launcher.costMultiplier;
+
+            }
+        }
+
+        public void Tick(float dt)
+        {
+            timer -= dt;
+            if(launcher != null)
+            {
+                launcher.costMultiplier = 0f;
+            }
+        }
+
+        public void OnRemove()
+        {
+            if(launcher != null)
+            {
+                launcher.costMultiplier = cachedCostMult;
+            }
+        }
+
+    }
+
+    public void Ectoplasm(GameObject target, float duration)
+    {
+        var container = Get(target);
+
+        var existing = container.GetEffect<EctoplasmEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new EctoplasmEffect(target, duration), target, duration);
+    }
+
+    #endregion
+
+    #region Transience
+
+    public class TransienceEffect : IEffect
+    {
+        public string EffectID => "transience";
+
+        public Launcher launcher;
+        public PlayerControlRigid pc;
+        private float duration;
+        private float timer;
+
+        private float cachedJumpHeight;
+        private float cachedMoveSpeed;
+        private float cachedDamageMult;
+
+        private float newDamageMult;
+        private float cachedForceMult;
+        public bool isFinished => timer <= 0f;
+
+        public TransienceEffect(GameObject target, float duration)
+        {
+            launcher = target.GetComponentInChildren<Launcher>();
+            pc = target.GetComponent<PlayerControlRigid>();
+            this.duration = duration;
+            this.timer = duration;
+        }
+
+        public void OnApply()
+        {
+            cachedJumpHeight = pc.jumpHeight;
+            cachedMoveSpeed = pc.moveSpeed;
+            cachedDamageMult = PlayerManager.Instance.DamageMultiplier;
+            cachedForceMult = PlayerManager.Instance.ForceMultiplier;
+            newDamageMult = cachedDamageMult + 0.5f;
+        }
+        public void Tick(float dt)
+        {
+            timer -= dt;
+            PlayerManager.Instance.DamageMultiplier = newDamageMult;
+            PlayerManager.Instance.ForceMultiplier = 1.5f;
+            pc.jumpHeight = cachedJumpHeight + 2f;
+            pc.moveSpeed = cachedMoveSpeed + 10f;
+        }
+        public void OnRemove()
+        {
+            pc.jumpHeight = cachedJumpHeight;
+            pc.moveSpeed = cachedMoveSpeed;
+            PlayerManager.Instance.DamageMultiplier = cachedDamageMult;
+            PlayerManager.Instance.ForceMultiplier = cachedForceMult;
+            PlayerManager.Instance.CheckItems();
+        }
+
+    }
+
+    public void Transience(GameObject target, float duration)
+    {
+        var container = Get(target);
+
+        var existing = container.GetEffect<TransienceEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new TransienceEffect(target, duration), target, duration);
+    }
+
+    #endregion
+
+    #region Shapeless
+
+    public class ShapelessEffect : IEffect
+    {
+        public string EffectID => "shapeless";
+
+        private HP hp;
+        private float duration;
+        private float timer;
+        public bool isFinished => timer <= 0f;
+
+        public ShapelessEffect(GameObject target, float duration)
+        {
+            hp = target.GetComponent<HP>();
+            this.duration = duration;
+            this.timer = duration;
+        }
+
+        public void OnApply()
+        {
+            if(hp != null)
+            {
+                hp.immune = true;
+            }
+        }
+
+        public void Tick(float dt)
+        {
+            timer -= dt;
+        }
+
+        public void OnRemove()
+        {
+            if(hp != null){
+                hp.immune = false;
+            }
+        }
+    }
+
+    public void Shapeless(GameObject target, float duration)
+    {
+        var container = Get(target);
+
+        var existing = container.GetEffect<ShapelessEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new ShapelessEffect(target, duration), target, duration);
+    }
+
+    #endregion
+
+    #region Overgrowth
+
+    public class OvergrowthEffect : IEffect
+    {
+        public string EffectID => "Overgrowth";
+
+        private HP hp;
+
+        private MagicManagement mana;
+        private float duration;
+        private float timer;
+
+        private float hpPerSecond => 5f;
+        private float manaPerSecond => 10f;
+        public bool isFinished => timer <= 0f;
+
+        public OvergrowthEffect(GameObject target, float duration)
+        {
+            hp = target.GetComponent<HP>();
+            mana = target.GetComponent<MagicManagement>();
+            this.duration = duration;
+            this.timer = duration;
+        }
+
+        public void OnApply()
+        {
+            
+        }
+
+        public void Tick(float dt)
+        {
+            timer -= dt;
+            hp.currentHP = Mathf.Min(hp.currentHP + hpPerSecond * dt, hp.maxHP);
+            mana.magicPoints = Mathf.Min(mana.magicPoints + manaPerSecond * dt, mana.maximumMagic);
+        }
+
+        public void OnRemove()
+        {
+            
+        }
+    }
+
+    public void Overgrowth(GameObject target, float duration)
+    {
+        var container = Get(target);
+
+        var existing = container.GetEffect<OvergrowthEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new OvergrowthEffect(target, duration), target, duration);
+    }
+
+    #endregion
+
+    #region Polluted
+
+    public class PollutedEffect : IEffect
+    {
+        public string EffectID => "Polluted";
+        private HP hp;
+        private float damagePerTick => 2.5f;
+        private float tickAccumulator;
+        private float duration;
+        private float timer;
+        public bool isFinished => timer <= 0f;
+
+        public PollutedEffect(GameObject target, float duration)
+        {
+            hp = target.GetComponent<HP>();
+            this.timer = duration;
+            this.duration = duration;
+        }
+
+        public void OnApply()
+        {
+            
+        }
+
+        public void Tick(float dt)
+        {
+            timer -= dt;
+            tickAccumulator += dt;
+
+            if(tickAccumulator >= 1f)
+            {
+                tickAccumulator -= 1f;
+                hp.Damage(damagePerTick);
+            }
+        }
+
+        public void OnRemove()
+        {
+
+        }
+    }
+
+    public void Polluted(GameObject target, float duration)
+    {
+       var container = Get(target);
+
+        var existing = container.GetEffect<PollutedEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new PollutedEffect(target, duration), target, duration); 
+    }
+
+   
+    #endregion
+
+    #region Infected
+
+    public class InfectedEffect : IEffect
+    {
+        public string EffectID => "Infection";        
+        public Launcher launcher;
+        public PlayerControlRigid pc;
+        private float duration;
+        private float timer;
+
+        private float cachedJumpHeight;
+        private float cachedMoveSpeed;
+        private float cachedDamageMult;
+
+        private float newDamageMult;
+        private float cachedForceMult;
+        public bool isFinished => timer <= 0f;
+
+        public InfectedEffect(GameObject target, float duration)
+        {
+            launcher = target.GetComponentInChildren<Launcher>();
+            pc = target.GetComponent<PlayerControlRigid>();
+            this.duration = duration;
+            this.timer = duration;
+        }
+
+        public void OnApply()
+        {
+            cachedJumpHeight = pc.jumpHeight;
+            cachedMoveSpeed = pc.moveSpeed;
+            cachedDamageMult = PlayerManager.Instance.DamageMultiplier;
+            cachedForceMult = PlayerManager.Instance.ForceMultiplier;
+            newDamageMult = cachedDamageMult - 0.5f;
+        }
+        public void Tick(float dt)
+        {
+            timer -= dt;
+            PlayerManager.Instance.DamageMultiplier = newDamageMult;
+            PlayerManager.Instance.ForceMultiplier = 0.75f;
+            pc.jumpHeight = cachedJumpHeight - 3f;
+            pc.moveSpeed = cachedMoveSpeed - 4f;
+        }
+        public void OnRemove()
+        {
+            pc.jumpHeight = cachedJumpHeight;
+            pc.moveSpeed = cachedMoveSpeed;
+            PlayerManager.Instance.DamageMultiplier = cachedDamageMult;
+            PlayerManager.Instance.ForceMultiplier = cachedForceMult;
+            PlayerManager.Instance.CheckItems();
+        }
+    }
+
+    public void Infected(GameObject target, float duration)
+    {
+       var container = Get(target);
+
+        var existing = container.GetEffect<InfectedEffect>();
+        if(existing != null)
+        {
+            return;
+        }
+        AddEffect(new InfectedEffect(target, duration), target, duration); 
+    }
+    
+    #endregion
+
+    #region TongueTied
+
     public class EnsareEffect : IEffect
     {
         public string EffectID => "Ensare";
@@ -350,6 +734,8 @@ public class EffectManager : MonoBehaviour
         }
         AddEffect(new EnsareEffect(target, duration), target, duration);
     }
+
+    #endregion
 
     #region FleshSuit
 

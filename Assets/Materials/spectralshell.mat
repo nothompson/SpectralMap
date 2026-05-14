@@ -75,8 +75,21 @@ Material:
         m_Texture: {fileID: 2800000, guid: 05854d8052ccff44a8407f8c112e69f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0.5
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -108,6 +121,6 @@ Material:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RandCoord: {r: 0.10156, g: -0.06888211, b: 0, a: 0}
+    - _RandCoord: {r: 0.1728245, g: -0.24927723, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

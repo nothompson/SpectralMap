@@ -13,24 +13,19 @@ MonoBehaviour:
   m_Name: Ensare
   m_EditorClassIdentifier: Assembly-CSharp::EffectUIData
   id: Ensare
-  DisplayName: Ensared
+  DisplayName: Tongue Tied
   sprites:
-  - {fileID: 749081188, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 159711823, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: -1040251274, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 511852519, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 285826648, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1651631786, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 797781373, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1721266384, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: -1252093209, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1978228956, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 338414671, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 395666080, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1712153994, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1841257529, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1095064279, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 257732216, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
-  - {fileID: 1867148691, guid: 32325afc97b7d5a40be7e9467f5dc557, type: 3}
+  - {fileID: -539093524, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -1312456249, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: 1405220698, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: 1438884752, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -2048118371, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: 913854624, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -1873797188, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: 764530938, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -62973049, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -1110113647, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: -613422650, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
+  - {fileID: 2143828941, guid: 4104e47d67cf25e448aa8cc2e754b2b9, type: 3}
   pingPong: 1
-  fps: 12
+  fps: 24

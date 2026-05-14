@@ -4863,6 +4863,7 @@ MonoBehaviour:
   onPlatformLastFrame: 0
   platformVelocity: {x: 0, y: 0, z: 0}
   surfing: 0
+  grappling: 0
   surfingLastFrame: 0
   StepHeight: 0.1
   SurfRadius: 0.22
@@ -5064,12 +5065,16 @@ MonoBehaviour:
     m_Bits: 7340032
   dist: 3
   speakSprite: {fileID: 1310738241}
+  grabSprite: {fileID: 0}
   pressSprite: {fileID: 25173965}
   hudbox: {fileID: 637362056}
   Text: {fileID: 1777322648}
   spriteAnimate: {fileID: 637362060}
   dialogue: {fileID: 1777322650}
   playerHasInteracted: 0
+  HeldObject: {fileID: 0}
+  ObjectAnchor: {fileID: 0}
+  HoldingObject: 0
 --- !u!136 &222188158
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34516,6 +34521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 222188155}
   playerMagic: {fileID: 222188152}
+  playerInteract: {fileID: 0}
   attackPoint: {fileID: 1895879895}
   rightHandAnim: {fileID: 546207390}
   leftHandAnim: {fileID: 595619577}
@@ -34857,7 +34863,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

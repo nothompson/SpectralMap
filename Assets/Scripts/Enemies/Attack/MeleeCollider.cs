@@ -7,7 +7,7 @@ public class MeleeCollider : MonoBehaviour
     [Header("Reference")]
     public LayerMask playerMask;
     [Header("State")]
-    bool collided = false;
+    public bool collided = false;
     [Header("General")]
     public float damage;
     public float range = 5f;
@@ -22,6 +22,7 @@ public class MeleeCollider : MonoBehaviour
         {
                 var capsule = hits[0].gameObject;
                 var player = capsule.gameObject;
+
                 var control = player.GetComponent<PlayerControlRigid>();
                 var playerHP = player.GetComponent<HP>();
 

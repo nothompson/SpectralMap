@@ -120,6 +120,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7497395683105699010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +302,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4387809114580491046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +596,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59458a5829665574e92fd02c38a861cb, type: 2}
   - {fileID: 11400000, guid: 829a072ca16b95e45a26043f25b7afb8, type: 2}
   - {fileID: 11400000, guid: 33a8fc834c085144bbe2cc7e487012f7, type: 2}
+  - {fileID: 11400000, guid: 74639b36fc5b50c459a9f22d19664264, type: 2}
+  - {fileID: 11400000, guid: 3da471b5e57ebd64dbec08ead10ba215, type: 2}
+  - {fileID: 11400000, guid: e3396fc429af3c44f8ed838713ffe5fd, type: 2}
+  - {fileID: 11400000, guid: bcf08d5c05d7e48419658f4eef8c77a6, type: 2}
+  - {fileID: 11400000, guid: 5d8313f4e356e3448ad7cb11d7ce4bb7, type: 2}
+  - {fileID: 11400000, guid: 109ddb41363bb214db4803fd1ba7cf49, type: 2}
 --- !u!1 &5203612849821286732
 GameObject:
   m_ObjectHideFlags: 0

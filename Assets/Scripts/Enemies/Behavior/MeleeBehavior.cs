@@ -21,12 +21,20 @@ public class MeleeBehavior : AttackBehavior
 
         MeleeCollider melee = hitbox.GetComponent<MeleeCollider>();
 
+        GroundSlam slam = hitbox.GetComponent<GroundSlam>();
+        
+
         if(melee != null)
         {
             melee.damage = Damage;
             melee.range = MeleeRadius;
             melee.forceMultiplier = Force;
             melee.forceOffset = ForceOffset;
+        }
+
+        if(slam != null)
+        {
+            slam.owner = Owner;
         }
 
         Destroy(hitbox, HitBoxLife);

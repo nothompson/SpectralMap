@@ -4,33 +4,39 @@ using UnityEngine;
 
 public class GroundSlam : MeleeCollider
 {
+
+    [Header("Ground Slam")]
+    public float discHeight = 0.5f;
+
+    public GameObject owner;
     public override void Update()
     {
-        // Collider[] hits = Physics.OverlapSphere(transform.position, range, playerMask);
-        // if (hits.Length != 0 && !collided)
-        // {
-        //         var capsule = hits[0].gameObject;
-        //         var player = capsule.gameObject;
-        //         var control = player.GetComponent<PlayerControlRigid>();
-        //         var playerHP = player.GetComponent<HP>();
+        Vector3 disc = new Vector3(range, discHeight, range);
+        Collider[] hits = Physics.OverlapBox(transform.position, disc, transform.rotation, playerMask);
+        if (hits.Length != 0 && !collided)
+        {
+                var capsule = hits[0].gameObject;
+                var player = capsule.gameObject;
+                var control = player.GetComponent<PlayerControlRigid>();
+                var playerHP = player.GetComponent<HP>();
 
-        //         Vector3 pos = hits[0].transform.position;
+                Vector3 pos = hits[0].transform.position;
 
-        //         Transform t = hits[0].transform;
+                Transform t = hits[0].transform;
 
-        //         Vector3 dir = (pos - transform.position).normalized;
+                Vector3 dir = (pos - transform.position).normalized;
 
-        //         float dist = Vector3.Distance(pos, transform.position);
+                float dist = Vector3.Distance(pos, transform.position);
 
-        //         float inverse = 1.0f - Mathf.Clamp01(dist / range);
+                float inverse = 1.0f - Mathf.Clamp01(dist / range);
                 
-        //         Vector3 force = dir * damage * forceMultiplier * inverse;
+                Vector3 force = dir * damage * forceMultiplier * inverse;
 
-        //         force += forceOffset;
+                force += forceOffset;
 
-        //         collided = true;
+                collided = true;
 
-        //         StartCoroutine(Collide(player, control, playerHP, force, t));
-        // }
+                StartCoroutine(Collide(player, control, playerHP, force, t));
+        }
     }
 }

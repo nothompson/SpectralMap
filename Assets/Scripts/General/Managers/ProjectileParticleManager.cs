@@ -41,6 +41,7 @@ public class ProjectileParticleManager : MonoBehaviour
 
     public ParticleSystem Skulls;
     public ParticleSystem PollutantBlast;
+    public ParticleSystem GraspingHands;
 
     // private ParticleSystem.EmitParams sorcererCastParams;
     // private ParticleSystem.EmitParams spitTongueParams;
@@ -82,6 +83,24 @@ public class ProjectileParticleManager : MonoBehaviour
         }
     }
 
+    private void SpawnParticleInRing(ParticleSystem ps, Vector3 spawn, int count)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+
+        for(int i = 0; i < count; i++)
+        {
+            float angle = (360f / count) * i * Mathf.Deg2Rad;
+            float r = 6f + Random.Range(-0.8f,0.8f);
+            Vector3 offset = new Vector3(Mathf.Cos(angle) * r, 0f, Mathf.Sin(angle) * r);
+            Vector3 worldPos = spawn + offset;
+
+            emitParams.position = worldPos;
+            emitParams.applyShapeToPosition = true;
+
+            ps.Emit(emitParams, 1);
+        }
+    }
+
     public void Register(Fireball fireball)
     {
         activeFireballs.Add(fireball);
@@ -118,14 +137,16 @@ public class ProjectileParticleManager : MonoBehaviour
     public void SpawnPollutantBlast(Transform spawn, bool track = false)
         => SpawnParticle(PollutantBlast, spawn, 1, track: track);
 
+    public void SpawnGraspingHands(Vector3 spawn)
+        => SpawnParticleInRing(GraspingHands, spawn, 20);
+
     void Update()
     {
         if(activeFireballs.Count > 0){
-         // Use a temporary list for removals to avoid modifying the set while iterating
             var toRemove = new List<Fireball>();
             foreach (var fb in activeFireballs)
             {
-                if (fb == null) // Unity's null check works for destroyed UnityEngine.Object
+                if (fb == null) 
                 {
                     toRemove.Add(fb);
                     continue;

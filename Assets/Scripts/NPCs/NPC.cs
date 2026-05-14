@@ -41,6 +41,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     public FMOD.Studio.EventInstance speechInstance;
 
+    public bool usingModularBody = true;
+
     public void Awake()
     {
         npcID = NamedEntity.Name;
@@ -54,6 +56,11 @@ public class NPC : MonoBehaviour, IInteractable
             return;
         }
         ableToSeePlayer = false;
+
+        if(!usingModularBody) {
+            ableToSeePlayer = true;
+            return;
+            }
 
         modularBody.OnPartsLoaded += OnBodyReady;
         await modularBody.LoadRandomParts();
@@ -82,6 +89,8 @@ public class NPC : MonoBehaviour, IInteractable
     public void Update()
 {
     if (!ableToSeePlayer) return;
+
+    if(!usingModularBody) return;
 
     if (fov.canSeePlayer)
     {

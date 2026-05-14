@@ -1458,6 +1458,7 @@ GameObject:
   - component: {fileID: 2479855020790304984}
   - component: {fileID: 1291181441246652279}
   - component: {fileID: 5966270999940845173}
+  - component: {fileID: 150660047107226036}
   m_Layer: 11
   m_Name: striker
   m_TagString: Untagged
@@ -1589,6 +1590,7 @@ MonoBehaviour:
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 10
   maxGibs: 20
   damageFlashEnable: 1
@@ -1803,10 +1805,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907934122238b204bb9f39fbc87385b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeBehavior
-  AttackPrefab: {fileID: 5187648626481390823, guid: 13754c6477350384288a9b952761e4ae, type: 3}
+  AttackPrefab: {fileID: 5187648626481390823, guid: 82d9667bb75f4bd45a8dfc88d9c4a553, type: 3}
   OnFire:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150660047107226036}
+        m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Range: 10
   Cooldown: 8
   Damage: 10
@@ -1836,6 +1850,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
   type: 1
   overrideSpawn: {fileID: 0}
+--- !u!114 &150660047107226036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820360266154066643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623227b9588e694a869c983bd1b22f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
+  type: 9
+  overrideSpawn: {fileID: 763617689912539918}
 --- !u!1 &7039793874015807012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,6 +2080,9 @@ MonoBehaviour:
   isPlaying: 1
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &198270878450983796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,6 +2096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
   type: 0
+  YEnabled: 0
 --- !u!1 &7627422987250368339
 GameObject:
   m_ObjectHideFlags: 0

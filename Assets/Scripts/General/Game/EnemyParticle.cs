@@ -12,7 +12,8 @@ public class EnemyParticle : MonoBehaviour
         SquidBlast,
         Screech,
         Skulls,
-        Pollutant
+        Pollutant,
+        Grasping
 
     }
 
@@ -52,6 +53,11 @@ public class EnemyParticle : MonoBehaviour
             case ParticleType.Pollutant:
                 ProjectileParticleManager.Instance.SpawnPollutantBlast(spawn);
                 break;
+            case ParticleType.Grasping:
+                ProjectileParticleManager.Instance.SpawnGraspingHands(spawn.position);
+                break;
+                
         }
     }
+
 }

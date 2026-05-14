@@ -36,7 +36,7 @@ GraphicsSettings:
   m_PreloadedShaders: []
   m_PreloadShadersBatchTimeLimit: -1
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_CustomRenderPipeline: {fileID: 0}
+  m_CustomRenderPipeline: {fileID: 11400000, guid: ee509dcb8516e9d448db9626b855a967, type: 2}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
@@ -60,7 +60,7 @@ GraphicsSettings:
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 1
   m_LightmapStripping: 0
-  m_FogStripping: 0
+  m_FogStripping: 1
   m_InstancingStripping: 0
   m_BrgStripping: 1
   m_LightmapKeepPlain: 0
@@ -69,16 +69,16 @@ GraphicsSettings:
   m_LightmapKeepDynamicDirCombined: 0
   m_LightmapKeepShadowMask: 0
   m_LightmapKeepSubtractive: 0
-  m_FogKeepLinear: 0
-  m_FogKeepExp: 0
+  m_FogKeepLinear: 1
+  m_FogKeepExp: 1
   m_FogKeepExp2: 0
   m_AlbedoSwatchInfos: []
   m_RenderPipelineGlobalSettingsMap:
     UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 483f4cf9798499c4a9ab19dc8f240e81, type: 2}
   m_ShaderBuildSettings:
     keywordDeclarationOverrides: []
-  m_LightsUseLinearIntensity: 0
-  m_LightsUseColorTemperature: 0
+  m_LightsUseLinearIntensity: 1
+  m_LightsUseColorTemperature: 1
   m_LogWhenShaderIsCompiled: 0
   m_LightProbeOutsideHullStrategy: 0
   m_CameraRelativeLightCulling: 0

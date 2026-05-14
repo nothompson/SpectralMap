@@ -67,6 +67,8 @@ public class TongueHook : EnemyProjectile
         rb.linearVelocity = vel;
     }
 
+    private float autoT = 0f;
+
     public override void Update()
     {
         if(attackPoint != null)
@@ -121,7 +123,9 @@ public class TongueHook : EnemyProjectile
     {
         if(missed) return;
         missed = true;
+        collided = false;
         rb.linearVelocity = Vector3.zero;
+        rb.isKinematic = true;
     }
 
     void ForceRetract()
@@ -224,7 +228,7 @@ public class TongueHook : EnemyProjectile
                 StartCoroutine(StartHook());
             }
 
-            if(other.gameObject.layer == 7)
+            if(other.gameObject.layer != 3)
             {
                 Retract();
             }
