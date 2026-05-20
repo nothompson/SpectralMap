@@ -129,6 +129,32 @@ public class ModularBody : MonoBehaviour
         OnPartsLoaded?.Invoke();
     }
 
+    public void UnloadParts()
+{
+    foreach (var config in parts)
+    {
+        if (config.mountPoint == null) continue;
+        config.mountPoint.transform.SetParent(transform, false);
+    }
+
+    foreach (var handle in loadedParts)
+        Addressables.Release(handle);
+
+    loadedParts.Clear();
+
+    foreach (var config in parts)
+    {
+        if (config.mountPoint == null) continue;
+        config.mountPoint.transform.localPosition = Vector3.zero;
+        config.mountPoint.transform.localRotation = Quaternion.identity;
+        config.mountPoint.transform.localScale = Vector3.one;
+        config.mountPoint.SetActive(true);
+
+        foreach (Transform child in config.mountPoint.transform)
+            Destroy(child.gameObject);
+    }
+}
+
     private string PickAllowedKey(string[] keys, string[] excluded)
     {
         if(keys == null || keys.Length == 0) return null;

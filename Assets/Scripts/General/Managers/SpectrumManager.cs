@@ -28,7 +28,7 @@ public class SpectrumManager : MonoBehaviour
 
     public SpectrumUI sprite;
 
-    private bool SpectrumActive;
+    [HideInInspector] public bool SpectrumActive;
 
     public float transitionDur;
 
@@ -44,7 +44,7 @@ public class SpectrumManager : MonoBehaviour
 
     float lastNormalized;
     float targetNormalized;
-
+    
     void Awake()
     {
         if(Instance == null)
@@ -63,7 +63,7 @@ public class SpectrumManager : MonoBehaviour
 
     public void OnSaveChange()
     {
-        PollutantLevel = 0;
+        PollutantLevel = 50;
         LoadSpectrum();
         InitUI();
     }
@@ -79,10 +79,6 @@ public class SpectrumManager : MonoBehaviour
         Image im = go.GetComponent<Image>();
 
         Vector3 pl = rt.anchoredPosition;
-
-        
-
-
 
         sprite.rect = rt;
         sprite.image = im;
@@ -172,13 +168,13 @@ public class SpectrumManager : MonoBehaviour
         File.WriteAllText(GetSavePath(), json);
     }
 
-    public void StartTransition(bool intro = true)
+    public void StartTransition(bool intro = true, bool count = true)
     {
         if(TransitionRoutine != null)
         {
             StopCoroutine(TransitionRoutine);
         }
-        TransitionRoutine = StartCoroutine(Transition(intro));
+        TransitionRoutine = StartCoroutine(Transition(intro, count));
     }
 
     public void StartShake()
@@ -214,7 +210,7 @@ public class SpectrumManager : MonoBehaviour
 
     }
 
-    IEnumerator Transition(bool intro)
+    IEnumerator Transition(bool intro, bool count = true)
     {
         sprite.waiting = true;
         float t = 0f;
@@ -236,7 +232,7 @@ public class SpectrumManager : MonoBehaviour
         
         while(t < transitionDur)
         {
-            t += Time.deltaTime;
+            t += count ? Time.deltaTime : Time.unscaledDeltaTime;
             float time = t / transitionDur;
             float elapsed = intro ? time : 1f - time;
             if(elapsed <= 0.8f && !intro)
@@ -260,7 +256,7 @@ public class SpectrumManager : MonoBehaviour
         {
             sprite.OnShow();
 
-            StartCooldown();
+            if(count) StartCooldown();
         }
         outroPlaying = false;
     }

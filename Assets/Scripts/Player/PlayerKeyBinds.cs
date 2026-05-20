@@ -24,7 +24,7 @@ public class PlayerKeyBinds : MonoBehaviour
         playerMagic = player.GetComponent<MagicManagement>();
 
         InputManager.Instance.inputs.Player.Reset.performed += OnReset;
-        InputManager.Instance.inputs.Player.Save.performed += OnSave;
+        // InputManager.Instance.inputs.Player.Save.performed += OnSave;
         InputManager.Instance.inputs.Player.Reload.performed += OnReload;
         InputManager.Instance.inputs.Player.AltFire.performed += OnAltFire;
     }
@@ -40,7 +40,7 @@ public class PlayerKeyBinds : MonoBehaviour
     {
         if(InputManager.Instance.inputs!= null){
             InputManager.Instance.inputs.Player.Reset.performed -= OnReset;
-            InputManager.Instance.inputs.Player.Save.performed -= OnSave;
+            // InputManager.Instance.inputs.Player.Save.performed -= OnSave;
              InputManager.Instance.inputs.Player.Reload.performed -= OnReload;
               InputManager.Instance.inputs.Player.AltFire.performed -= OnAltFire;
         }
@@ -87,20 +87,20 @@ public class PlayerKeyBinds : MonoBehaviour
 
         if(PauseManager.Instance.paused) return;
         
-        checkpoint.Reset();
+        CheckpointManager.Instance.ResetPlayerToCheckpoint();
 
     }
 
-    public void OnSave(InputAction.CallbackContext context)
-    {
-        if(DeathManager.PlayerDead) return;
-        if (!context.performed) return;
+    // public void OnSave(InputAction.CallbackContext context)
+    // {
+    //     if(DeathManager.PlayerDead) return;
+    //     if (!context.performed) return;
 
-        if(PauseManager.Instance.paused) return;
+    //     if(PauseManager.Instance.paused) return;
         
-        checkpoint.updateCheckpoint(player.transform);
+    //     checkpoint.updateCheckpoint(player.transform);
 
-    }
+    // }
 
     public void OnReload(InputAction.CallbackContext context)
     {

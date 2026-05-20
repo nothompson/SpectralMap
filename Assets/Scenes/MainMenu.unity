@@ -705,6 +705,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &70039078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,6 +2116,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &216745807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,6 +2481,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 0
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &269813888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4463,6 +4472,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 0
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &465282193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5550,6 +5562,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &570659745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6382,6 +6397,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &615299968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6515,6 +6533,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &623669240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6647,6 +6668,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &630642957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7926,6 +7950,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &799251085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8953,6 +8980,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &877397458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9385,6 +9415,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &947193785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9875,6 +9908,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &977832968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11121,6 +11157,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1094201419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12463,6 +12502,9 @@ MonoBehaviour:
   isPlaying: 1
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1182882034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12706,6 +12748,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1212419316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13289,6 +13334,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297178324}
   m_CullTransparentMesh: 1
+--- !u!1001 &1321235475
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3875301700198098302, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_Name
+      value: ToothManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.81843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -334.3978
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -153.12189
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109881288008927549, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 990dcc752ab144a4482a3c49a2fd9831, type: 3}
 --- !u!1 &1334927345
 GameObject:
   m_ObjectHideFlags: 0
@@ -13509,6 +13611,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1342836220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15288,6 +15393,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1455511714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15815,6 +15923,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1585116074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15963,6 +16074,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1585934020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16407,6 +16521,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1679878574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16819,6 +16936,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1694996036
 GameObject:
   m_ObjectHideFlags: 0
@@ -17391,6 +17511,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1716607666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17598,6 +17721,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1746182494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17842,6 +17968,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1774474984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18141,6 +18270,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1797143362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19674,6 +19806,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1940628745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21025,6 +21160,9 @@ MonoBehaviour:
   isPlaying: 0
   pingPong: 0
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2022126959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23934,6 +24072,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1082736555}
+  - {fileID: 1321235475}
   - {fileID: 354835190}
   - {fileID: 7608103437726203306}
   - {fileID: 3402565228763238932}

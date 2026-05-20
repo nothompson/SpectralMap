@@ -1135,6 +1135,7 @@ MonoBehaviour:
   characterID: 
   dead: 0
   type: 0
+  immune: 0
   minGibs: 5
   maxGibs: 10
   damageFlashEnable: 0

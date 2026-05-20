@@ -278,12 +278,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcc29f0cec3bd4282021be25681192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NamedEntity: {fileID: 0}
+  NamedEntity: {fileID: 11400000, guid: 42fe576c27f8ac045a091c084b24739e, type: 2}
   modularBody: {fileID: 3670952881104141622}
   npcID: 
   head: {fileID: 7317955472801406449}
   fov: {fileID: 448972914210976078}
-  dialogueData: {fileID: 11400000, guid: 48a6a26911156df478d3f2f80ec4985f, type: 2}
+  dialogueData: {fileID: 0}
   currentDialogue:
     lines: []
     requiresJournalEntry: 0
@@ -300,6 +300,8 @@ MonoBehaviour:
     lineIndexToAddItem: 0
     advance: 0
     repeat: 0
+  usingModularBody: 1
+  reload: 0
 --- !u!114 &3670952881104141622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,6 +786,7 @@ MonoBehaviour:
   characterID: 
   dead: 0
   type: 2
+  immune: 0
   minGibs: 5
   maxGibs: 10
   damageFlashEnable: 0

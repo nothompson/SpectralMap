@@ -85,6 +85,8 @@ public class PauseManager : MonoBehaviour
     public void Unpause()
     {
         StartCoroutine(Close());
+        ToothManager.Instance.StartTransition(false);
+        SpectrumManager.Instance.StartTransition(false);
         AudioManager.Instance.pause = 0f;
     }
 
@@ -174,6 +176,14 @@ public class PauseManager : MonoBehaviour
 
         PauseMenu.SetActive(true);
 
+        if(!ToothManager.Instance.ToothActive){
+        ToothManager.Instance.StartTransition(true, false);
+        }
+
+        if(!SpectrumManager.Instance.SpectrumActive){
+        SpectrumManager.Instance.StartTransition(true, false);
+        }
+
         foreach(var i in pauseSprites)
         {
             if(i._current != null) i.StopCoroutine(i._current);
@@ -197,6 +207,7 @@ public class PauseManager : MonoBehaviour
             }
             yield return null;
         }
+
     }
 
     public IEnumerator Close()

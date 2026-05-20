@@ -46,6 +46,14 @@ public static class SaveSystem
         {
             SpectrumManager.Instance.OnSaveChange();
         }
+        if(ToothManager.Instance != null)
+        {
+            ToothManager.Instance.OnSaveChange();
+        }
+        if(CheckpointManager.Instance != null)
+        {
+            CheckpointManager.Instance.OnSaveChange();
+        }
     }
     public static string GetFilePath(int slot, string fileName)
     {

@@ -12,8 +12,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     public Transform GroundCheck;
     public LayerMask GroundMask;
     public LayerMask resetMask;
-    public LayerMask checkpointMask;
-    public Checkpoint currentCheckpoint;
     public Transform player;
     public Transform playerCamera = null;
     public Transform attackingPoint = null;
@@ -178,9 +176,23 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         ReloadManager.Instance.RegisterPlayer(gameObject);
         EventManager.Instance.RegisterPlayer(gameObject);
         SpectrumManager.Instance.ProfileBackground.SetActive(true);
+        CheckpointManager.Instance.RegisterPlayer(gameObject);
 
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
+
+        StartCoroutine(DelayedInit());
+    }
+
+    IEnumerator DelayedInit()
+    {
+        yield return new WaitForEndOfFrame();
+
+        rb.isKinematic = true;
+        playerVelocity = Vector3.zero;
+        rb.position = CheckpointManager.Instance.currentCheckpoint;
+        rb.isKinematic = false;
+
     }
 
 
@@ -279,8 +291,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         if(DeathManager.PlayerDead) return;
 
         CalculateVelocity();
-        // Debug.Log($"grounded:{grounded}  vel:{playerVelocity}  rbvel:{rb.linearVelocity}");  
-        // currentCheckpoint.saveCheckpoint();
     }
 
 
@@ -602,7 +612,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     void OnCollisionStay(Collision collision)
     {
-        if(grounded || groundedLastFrame || playerSpeed < 10f) return;
+        if(grounded || groundedLastFrame || playerSpeed < 5f) return;
         MovementFunctions.Slamming(ref playerVelocity, collision);
         // Debug.Log(collision);
 
@@ -637,7 +647,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     void ResetCheck()
     {
         if(reset){
-            currentCheckpoint.Reset();
+            CheckpointManager.Instance.ResetPlayerToCheckpoint();
             reset = false;
         }
     }

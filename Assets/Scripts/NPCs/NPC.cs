@@ -43,6 +43,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool usingModularBody = true;
 
+    public bool reload = false;
+
     public void Awake()
     {
         npcID = NamedEntity.Name;
@@ -65,6 +67,28 @@ public class NPC : MonoBehaviour, IInteractable
         modularBody.OnPartsLoaded += OnBodyReady;
         await modularBody.LoadRandomParts();
 
+        if(reload)
+        StartCoroutine(ReloadPartsRoutine());
+
+    }
+
+    private IEnumerator ReloadPartsRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
+            yield return ReloadParts();
+        }
+    }
+
+    private IEnumerator ReloadParts()
+    {
+        ableToSeePlayer = false;
+        modularBody.UnloadParts();
+
+        modularBody.OnPartsLoaded += OnBodyReady;
+        var task = modularBody.LoadRandomParts();
+        yield return new WaitUntil(() => task.IsCompleted);
     }
 
     private void OnBodyReady()
