@@ -14,6 +14,7 @@ public class SquashAndStretch : MonoBehaviour
 
     [SerializeField] public UnityEvent EndEvent;
     [SerializeField] public bool Loop = false;
+      [SerializeField] public bool horizontal = true;
     private Vector3 InitialScale;
     private float maxDeviation;
     private bool peakEventTriggered;
@@ -68,7 +69,7 @@ public class SquashAndStretch : MonoBehaviour
             float verticalValue = 1f + deviation;
             float horizontalValue = 1f - deviation;
 
-            targetScale = new Vector3(cachedScale.x * horizontalValue, cachedScale.y * verticalValue, cachedScale.z * horizontalValue);
+            targetScale = horizontal ? new Vector3(cachedScale.x * horizontalValue, cachedScale.y * verticalValue, cachedScale.z * horizontalValue) : new Vector3(cachedScale.x, cachedScale.y * verticalValue, cachedScale.z) ;
             
             TargetTransform.localScale = targetScale;
             yield return null;

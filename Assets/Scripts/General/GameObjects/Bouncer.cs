@@ -8,7 +8,6 @@ public class Bouncer : MonoBehaviour
 
     public float bounceHeight = 10f;
     public float maxHeight = 30f;
-    public float cooldown = 5f;
     private float cd;
 
     public bool bounced = false;
@@ -27,6 +26,46 @@ public class Bouncer : MonoBehaviour
         Animation.Play();
         bounced = true;
     }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.layer != 3)
+        {
+            if(other.gameObject.layer != 11)
+            {
+                return;
+            }
+        }
+
+        if(bounced) return;
+            bounced = true;
+            Animation.Play();
+            bounce.Play();
+
+        if(other.gameObject.layer == 3)
+        {
+            PlayerControlRigid pc = other.gameObject.GetComponent<PlayerControlRigid>();
+            if(pc != null)
+            {
+                pc.grounded = false;
+                pc.playerVelocity.y = 0f;
+                pc.playerVelocity.y += bounceHeight; 
+            }
+        }
+
+        if(other.gameObject.layer == 11)
+        {
+            Enemy e = other.gameObject.GetComponent<Enemy>();
+            if(e != null)
+            {
+                e.grounded = false;
+                e.enemyVelocity.y = 0f;
+                e.enemyVelocity.y += bounceHeight; 
+            }
+        }
+    }
+
+
 
     public void Bounce(ref Vector3 velocity)
     {

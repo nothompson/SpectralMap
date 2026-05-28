@@ -62,7 +62,7 @@ public class ExploderEnemy : Enemy
         if ((distance > attackDistance && !attacking && !nearLedge) || (jumpAcross && !critical))
         {
             fbx.SetTrigger("moving");
-            MoveTowards(direction);
+            MoveTowards(direction, targetPosition);
         }
 
         if (distance <= attackDistance && !attacking)

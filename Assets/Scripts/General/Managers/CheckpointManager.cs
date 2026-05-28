@@ -21,6 +21,8 @@ public class CheckpointManager : MonoBehaviour
     Grapple grapple;
     MagicManagement magicManagement;
 
+    private bool disabled;
+
     void Awake()
     {
         if(Instance == null)
@@ -33,6 +35,8 @@ public class CheckpointManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        disabled = true;
+
     }
 
     public void RegisterPlayer(GameObject go)
@@ -43,6 +47,14 @@ public class CheckpointManager : MonoBehaviour
         magicManagement = player.GetComponent<MagicManagement>();
         grapple = player.GetComponentInChildren<Grapple>();
 
+        StartCoroutine(DelayedInit());
+
+    }
+
+    IEnumerator DelayedInit()
+    {
+        yield return new WaitForSeconds(0.25f);
+        disabled = false;
     }
 
     public void LoadCurrentCheckpoint()
@@ -58,6 +70,7 @@ public class CheckpointManager : MonoBehaviour
 
     public void SaveCurrentCheckpoint(Vector3 position)
     {
+        if(disabled) return;
         if(currentCheckpoint == position)
         {
             return;

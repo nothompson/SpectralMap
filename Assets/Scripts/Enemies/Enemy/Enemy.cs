@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 using MovementPhysics;
 
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float ChanceToDropPickup;
 
     [Header("References")]
+    [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Rigidbody rb;
 
     [HideInInspector] public Transform player;
@@ -264,6 +266,13 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+
+        agent = GetComponent<NavMeshAgent>();
+        if(agent != null){
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+        }
+
         fbx = GetComponentInChildren<Animator>();
     }
     
@@ -288,6 +297,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
+        if(agent != null){
+            agent.nextPosition = rb.position;
+        }
         CalculateVelocity();
         MovementFunctions.ApplyVelocity(enemyVelocity, ref rb);
     }
@@ -296,10 +308,10 @@ public class Enemy : MonoBehaviour
     {
         Movement();
         Targeting();
-        if (critical)
-        {
-            FindHealth();
-        }
+        // if (critical)
+        // {
+        //     FindHealth();
+        // }
 
         if (!grounded)
         {
@@ -371,7 +383,7 @@ public class Enemy : MonoBehaviour
         // if ((distance > preferredRange) || (jumpAcross && !critical))
         if (distance > preferredRange && !stationaryAttack)
         {
-            MoveTowards(direction);
+            MoveTowards(direction, targetPosition);
         }
         else if(distance <= preferredRange && !stationaryAttack)
         {
@@ -381,19 +393,19 @@ public class Enemy : MonoBehaviour
                         UpdateStrafe();
                         if(distance < preferredRange * 0.8f)
                         {
-                            MoveTowards(-direction);
+                            MoveTowards(-direction, transform.position + (-direction * preferredRange));
                         }
                         break;
                     case PersonalityType.Tactical:
                         UpdateStrafe();
                         if(distance < preferredRange * 0.6f && distance >= MinRange)
                         {
-                            MoveTowards(direction);
+                            MoveTowards(direction, targetPosition);
                         }
                         break;
                     case PersonalityType.Reckless:
                     default:
-                        MoveTowards(direction);
+                        MoveTowards(direction, targetPosition);
                         break;
                 }
         }
@@ -451,21 +463,60 @@ public class Enemy : MonoBehaviour
         attackPoint.localRotation = Quaternion.Inverse(transform.rotation) * desiredAttackRotation;
     }
 
-    public virtual void MoveTowards(Vector3 direction)
+    public virtual void MoveTowards(Vector3 direction, Vector3 target)
     {
+        Vector3 navDir = GetNavDirection(target);
+
+        Vector3 baseDir = navDir != Vector3.zero ? navDir : new Vector3(direction.x, 0f, direction.z).normalized;
+
         float noise = Mathf.PerlinNoise(Time.time * chaosFrequency + noiseOffset, 0f);
         float bipolar = (noise * 2f - 1f) * movementChaos;
 
-        Vector3 flattened = new Vector3(direction.x, 0f, direction.z).normalized;
-        Vector3 horiz = Vector3.Cross(Vector3.up, flattened);
+        Vector3 horiz = Vector3.Cross(Vector3.up, baseDir);
 
-        Vector3 chaosDir = (flattened + horiz * bipolar).normalized;
+        Vector3 chaosDir = (baseDir + horiz * bipolar).normalized;
 
-        Vector3 wishDir = Vector3.Lerp(flattened, chaosDir, chaosBlend).normalized;
+        Vector3 wishDir = Vector3.Lerp(baseDir, chaosDir, chaosBlend).normalized;
 
         float wishSpeed = moveSpeed;
         enemyVelocity = MovementFunctions.Accelerate(enemyVelocity, wishDir, wishSpeed, 10f);
     }
+
+    float pathRefreshTimer = 0f;
+    const float pathRefreshInterval = 0.125f;
+
+    Vector3 lastNavDir;
+
+Vector3 GetNavDirection(Vector3 target)
+{
+    float agentToEnemyY = Mathf.Abs(agent.nextPosition.y - transform.position.y);
+    if (agentToEnemyY > 5f && grounded)
+    {
+        if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+            agent.Warp(hit.position);
+        return lastNavDir;
+    }
+
+    agent.nextPosition = transform.position;
+
+    pathRefreshTimer -= Time.fixedDeltaTime;
+    if (pathRefreshTimer <= 0f)
+    {
+        agent.SetDestination(target);
+        pathRefreshTimer = pathRefreshInterval;
+    }
+
+    if (agent.pathPending) return lastNavDir;
+    if (agent.pathStatus == NavMeshPathStatus.PathInvalid) return Vector3.zero;
+    if (agent.pathStatus == NavMeshPathStatus.PathPartial) return Vector3.zero;
+
+    Vector3 toNext = agent.steeringTarget - transform.position;
+    toNext.y = 0f;
+    if (toNext.sqrMagnitude < 0.01f) return Vector3.zero;
+
+    lastNavDir = toNext.normalized;
+    return lastNavDir;
+}
 
     #endregion
 
@@ -558,6 +609,7 @@ public class Enemy : MonoBehaviour
 
             if (!attacking && engage && distance > attackDistance)
             {
+                if (agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.pathStatus == NavMeshPathStatus.PathPartial) yield break;
                 float chance = Random.value;
                 if ((chance < 0.15 && !nearLedge && grounded) || jumpAcross && grounded)
                 {
@@ -731,21 +783,15 @@ public class Enemy : MonoBehaviour
     #region Disengage
     public void Flee(float min, float max)
     {
-        Vector3 fleeDir = (player.position - transform.position).normalized;
-        distanceFromPlayer = Vector3.Distance(transform.position, player.position);
-        fleeDir.y = Mathf.Clamp(fleeDir.y, -0.2f, 0.25f);
-        if (!nearLedge) {
-            // if (distanceFromPlayer <= min)
-            // {
-            //     LookTowards(fleeDir * 1f);
-            // }
-            MoveTowards(fleeDir * -1f);
-            // else if (distanceFromPlayer > min && distanceFromPlayer < max)
-            // {
-            //     LookTowards(fleeDir * -1f);
-            //     MoveTowards(fleeDir * -1f);
-            // }
-        }
+    Vector3 awayDir = (transform.position - player.position).normalized;
+    Vector3 fleeTarget = transform.position + awayDir * max;
+
+    if (NavMesh.SamplePosition(fleeTarget, out NavMeshHit hit, max, NavMesh.AllAreas))
+        fleeTarget = hit.position;
+
+    Vector3 dir = (fleeTarget - transform.position).normalized;
+    if (!nearLedge)
+        MoveTowards(dir, transform.position + (-dir * preferredRange));
     }
 
     public IEnumerator CriticalCheck()
@@ -807,7 +853,7 @@ public class Enemy : MonoBehaviour
     public void FindHealth()
     {
         Vector3 dir = (pickupPosition - transform.position).normalized;
-        MoveTowards(dir);
+        MoveTowards(dir, Vector3.zero);
         LookTowards(dir);
     }
     #endregion

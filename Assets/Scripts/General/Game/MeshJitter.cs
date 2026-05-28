@@ -21,6 +21,7 @@ public class MeshJitter : MonoBehaviour
     private Vector3 worldScale;
     private Quaternion worldRotation;
     private bool waiting = true;
+    private bool isVisible = true;
 
     void OnEnable()
     {
@@ -31,6 +32,18 @@ public class MeshJitter : MonoBehaviour
         
         seed = new Vector3(Random.Range(0f,1000f), Random.Range(0f,1000f), Random.Range(0f,1000f));
         StartCoroutine(Jitter());
+    }
+
+    void OnBecameVisible()
+    {
+        isVisible = true;
+
+    }
+
+    void OnBecameInvisible()
+    {
+        isVisible = false;
+        
     }
 
     void OnDisable()
@@ -65,6 +78,12 @@ public class MeshJitter : MonoBehaviour
             {
                 waiting = false;
                 yield return null;
+                continue;
+            }
+
+            if (!isVisible)
+            {
+                yield return new WaitForSeconds(wait);
                 continue;
             }
 

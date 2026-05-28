@@ -187,6 +187,11 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueData.AddItem(currentDialogue);
     }
 
+    if(dialogueIndex == currentDialogue.lineIndexToAddTooth && currentDialogue.addTooth)
+    {
+        dialogueData.AddTooth(currentDialogue);
+    }
+
     if (playerInteract.dialogue.isTyping)
     {
         playerInteract.dialogue.ShowText(playerInteract);

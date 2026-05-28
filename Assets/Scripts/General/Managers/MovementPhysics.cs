@@ -187,7 +187,7 @@
                 {
                     MovingPlatform platform = null;
 
-                    Bouncer bouncer = null;
+                    // Bouncer bouncer = null;
 
                     if (rayGrounded
                         && groundhit.collider != null
@@ -196,13 +196,13 @@
                         platform = groundhit.collider.GetComponentInParent<MovingPlatform>();
                     }
 
-                    if (rayGrounded
-                        && groundhit.collider != null
-                        && groundhit.collider.CompareTag("Bouncer"))
-                    {
-                        bouncer = groundhit.collider.GetComponentInParent<Bouncer>();
-                        Debug.Log(bouncer);
-                    }
+                    // if (rayGrounded
+                    //     && groundhit.collider != null
+                    //     && groundhit.collider.CompareTag("Bouncer"))
+                    // {
+                    //     bouncer = groundhit.collider.GetComponentInParent<Bouncer>();
+                    //     Debug.Log(bouncer);
+                    // }
 
                     if (platform == null)
                     {
@@ -236,12 +236,12 @@
                         }
                     }
 
-                    if (bouncer != null)
-                    {
-                        grounded = false;
+                    // if (bouncer != null)
+                    // {
+                    //     grounded = false;
 
-                        bouncer.Bounce(ref velocity);
-                    }
+                    //     bouncer.Bounce(ref velocity);
+                    // }
                 }
             }
             else

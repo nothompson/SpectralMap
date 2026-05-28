@@ -13,4 +13,6 @@ public class SpriteAnimationEvent : ScriptableObject
     public int fps;
     public bool pingPong;
 
+    public SpriteAnimationEvent next;
+
 }

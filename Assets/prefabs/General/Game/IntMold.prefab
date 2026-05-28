@@ -125,6 +125,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 0
   OnTargetEvent:
     m_PersistentCalls:
@@ -141,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeshJitter
-  fps: 24
-  scaleRange: 0.18
+  fps: 6
+  scaleRange: 0.09
   rotationRange: 0.36
   positionRange: 0
   lockPosition: 0

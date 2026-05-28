@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1784891081814807805}
   - component: {fileID: 1127888282116806436}
   - component: {fileID: 6558097623988336961}
+  - component: {fileID: 7556407276183779427}
   m_Layer: 11
   m_Name: sorcerer
   m_TagString: Untagged
@@ -164,7 +165,8 @@ MonoBehaviour:
   NamedEntity: {fileID: 0}
   Points: 500
   Name: sorcerer
-  ChanceToDropPickup: 0.5
+  ChanceToDropPickup: 0.25
+  agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -194,7 +196,7 @@ MonoBehaviour:
   minVariance: 1
   maxVariance: 1
   variance: 0
-  memory: 15
+  memory: 20
   moveSpeed: 8
   friction: 5
   airSpeedFactor: 0.5
@@ -211,9 +213,9 @@ MonoBehaviour:
   projSpeedMultiplier: 1
   minGibs: 5
   maxGibs: 20
-  movementChaos: 3.82
-  chaosFrequency: 1.11
-  chaosBlend: 0.509
+  movementChaos: 0
+  chaosFrequency: 0
+  chaosBlend: 0
   grounded: 0
   airTimer: 0
   engage: 0
@@ -267,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HP
   currentHP: 0
-  maxHP: 1000
+  maxHP: 300
   characterID: 
   dead: 0
   type: 1
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FOV
   radius: 35
-  angle: 287
+  angle: 360
   player: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -373,7 +375,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Range: 5
-  Cooldown: 3
+  Cooldown: 1.5
   Damage: 10
   Force: 3
   AnimationEvent: attacking
@@ -500,7 +502,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Range: 20
-  Cooldown: 5
+  Cooldown: 3
   Damage: 5
   Force: 5
   AnimationEvent: casting
@@ -531,6 +533,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
   type: 6
   overrideSpawn: {fileID: 3452970371691434643}
+--- !u!195 &7556407276183779427
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542235675213923920}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.8
+  m_Speed: 0
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1375979508780757300
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,8 @@
             //private variables
 
             bool zonechange = false;
-            bool combat = false;
+            public bool combat = false;
+            bool overrideCombat = false;
             public float pause = 0f;
             float combatvalue = 0.0f;
 
@@ -95,6 +96,17 @@
         private void OnDestroy()
         {
             OnBeat -= BeatWindow;
+        }
+
+        public void EnableCombat()
+        {
+            combat = true;
+            overrideCombat = true;
+        }
+        public void DisableCombat()
+        {
+            combat = false;
+            overrideCombat = false;
         }
 
         public void RegisterPlayer(GameObject input)
@@ -388,11 +400,13 @@
         {
             while (true)
             {
+                
                 if(player == null)
                 {
                     yield return new WaitForSeconds(1f);
                     continue;
                 }
+                if(!overrideCombat){
                 Collider[] enemyCheck = Physics.OverlapSphere(player.transform.position, 30f, enemyMask);
                 if (enemyCheck.Length > 0)
                 {
@@ -405,6 +419,7 @@
                     yield return new WaitForSeconds(2f);
                         combat = false;
                 } 
+                }
                 }
             yield return new WaitForSeconds(combatcheckdel);
             }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a967f9fc29d404444b7cdc21ff8306a7, type: 3}
+  m_Name: elderfungusquest
+  m_EditorClassIdentifier: Assembly-CSharp::JournalEntry
+  ID: elderfungus
+  Logs:
+  - 'the elder fungus saw potential in me and gifted me the spectral flame. it can
+    be used for traversal and violence. I should speak to some of the students in
+    the shell temple if i want to learn more. '
+  - 'my quest is to journey to the city of aorta. i must find the flower girl for
+    guidance. first though, it is important i go to the slime garden for more teachings.  '

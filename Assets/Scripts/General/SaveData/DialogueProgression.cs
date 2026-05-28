@@ -22,6 +22,12 @@ public class DialogueProgression
     public bool addItem;
     public string itemToAddID;
     public int lineIndexToAddItem;
+
+    public bool addTooth;
+
+    public ToothObject toothData;
+    public int lineIndexToAddTooth;
+
     [Header("Dialogue Options")]
     public bool advance;
     public bool repeat;

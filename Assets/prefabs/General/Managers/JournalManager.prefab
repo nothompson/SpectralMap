@@ -783,7 +783,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1912816973620267588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2322,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 2
-  m_margin: {x: -55.374054, y: -45.15152, z: 32.056885, w: -71.06964}
+  m_margin: {x: -55.374054, y: -45.15152, z: 32.056885, w: -14.534943}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2474,7 +2478,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -65.73801, y: -7.957123, z: -15.469482, w: -19.120926}
+  m_margin: {x: -65.73801, y: -7.957123, z: -15.469482, w: 48.26381}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2899,7 +2903,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8100195822378963511
 GameObject:
   m_ObjectHideFlags: 0

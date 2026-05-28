@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
+  m_Name: mergle
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  dialogues:
+  - lines:
+    - 'speak to the elder fungus first, then come back to me. '
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 1
+    repeat: 0
+  - lines:
+    - 'if you want to sharpen your skills, i could use a hand with some sensitive
+      matters.  '
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 1
+    requiredItemID: spectralflame
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 1
+    repeat: 0
+  - lines:
+    - 'i was working on my blast jumps down by the base of the mold tree... '
+    - and blew open a hole to the sporous cave.
+    - i didn't think much of it, but last i heard some sorcerers were spotted going
+      in and out the cave.
+    - 'i would go deal with it myself, but i need to be here studying. '
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 1
+    requiredItemID: spectralflame
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 1
+    repeat: 0
+  - lines:
+    - 'go deal with those sorcerers at the sporous cave and return back to me. '
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 1
+    requiredItemID: spectralflame
+    addToJournal: 1
+    journalID: sporouscave
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 0
+    repeat: 0
+  speed: 35
+  reset: 0
+  soundbank:
+    Guid:
+      Data1: 646704756
+      Data2: 1271874889
+      Data3: -735230076
+      Data4: 1120456110
+    Path: event:/NPCs/SillyDialogue

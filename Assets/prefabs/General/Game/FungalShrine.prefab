@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3054852857752943148}
   - component: {fileID: 2303217384974573905}
   - component: {fileID: 3831803782572270510}
+  - component: {fileID: 6327690778197174210}
   m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
@@ -133,10 +134,25 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 0
   OnTargetEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6327690778197174210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847799295340562756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff9db86f145a854c97eff315f2d3b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  type: 0
+  YEnabled: 0
 --- !u!1 &5968779733353130491
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +163,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6947308566141908309}
   - component: {fileID: 7326101392816498841}
-  - component: {fileID: 7923836988103282484}
   - component: {fileID: 2035074352167828713}
   m_Layer: 10
   m_Name: FungalShrine
@@ -196,20 +211,6 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7923836988103282484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5968779733353130491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff9db86f145a854c97eff315f2d3b09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Billboard
-  type: 0
-  YEnabled: 0
 --- !u!114 &2035074352167828713
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public class Fireball : MonoBehaviour
         // Debug.Log(other);
         int layer = other.layer;
 
-        if (GameFunctions.FilterLayers(layer, ignoreLayers))
+        if (GameFunctions.FilterLayers(layer, ignoreLayers) || other.CompareTag("NoRockets"))
         {
             ProjectileParticleManager.Instance.Delete(this);
             Destroy(gameObject);
@@ -147,8 +147,8 @@ public class Fireball : MonoBehaviour
                         e.grounded = false;
                         targetHP.Damage(damage);
                         impact.y += explosionForce;
-                        impact.x *= 2f;
-                        impact.z *= 2f;
+                        impact.x *= 3f;
+                        impact.z *= 3f;
                         if (direct)
                         {
                             TrickManager.Instance.Direct();
@@ -161,6 +161,7 @@ public class Fireball : MonoBehaviour
                         e.engage = true;
                         e.memory = 15f;
                     }
+
                     float resistance = 1f - e.knockbackResistance;
                     e.enemyVelocity += impact * resistance;
                     

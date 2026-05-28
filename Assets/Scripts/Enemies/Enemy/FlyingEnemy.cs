@@ -49,7 +49,7 @@ public class FlyingEnemy : Enemy
         enemyVelocity = Vector3.Lerp(enemyVelocity, Vector3.zero, airDrag * Time.fixedDeltaTime);
     }
 
-    public override void MoveTowards(Vector3 direction)
+    public override void MoveTowards(Vector3 direction, Vector3 target)
     {
         float noise   = Mathf.PerlinNoise(Time.time * chaosFrequency + noiseOffset, 0f);
         float bipolar = (noise * 2f - 1f) * movementChaos;
@@ -86,7 +86,7 @@ public class FlyingEnemy : Enemy
         // if ((distance > preferredRange) || (jumpAcross && !critical))
         if (distance > preferredRange && !stationaryAttack)
         {
-            MoveTowards(direction);
+            MoveTowards(direction, targetPosition);
         }
         else if(distance <= preferredRange && !stationaryAttack)
         {
@@ -96,19 +96,19 @@ public class FlyingEnemy : Enemy
                         UpdateStrafe();
                         if(distance < preferredRange * 0.8f)
                         {
-                            MoveTowards(-direction);
+                            MoveTowards(-direction, targetPosition);
                         }
                         break;
                     case PersonalityType.Tactical:
                         UpdateStrafe();
                         if(distance < preferredRange * 0.6f && distance >= MinRange)
                         {
-                            MoveTowards(direction);
+                            MoveTowards(direction, targetPosition);
                         }
                         break;
                     case PersonalityType.Reckless:
                     default:
-                        MoveTowards(direction);
+                        MoveTowards(direction, targetPosition);
                         break;
                 }
         }
@@ -149,7 +149,7 @@ public class FlyingEnemy : Enemy
     void FlyingFlee()
     {
         Vector3 fleeDir = (transform.position - player.position).normalized;
-        MoveTowards(fleeDir);
+        MoveTowards(fleeDir, Vector3.zero);
     }
 
     float GetFlyingAvgRange()

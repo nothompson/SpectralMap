@@ -60,7 +60,7 @@ public class Door : MonoBehaviour, IInteractable
                     if (key)
                     {
                         Debug.Log("required key is in inventory, opening");
-                        InventoryManager.Instance.RemoveItem(Data.KeyID);
+                        if(Data.RemoveItem) InventoryManager.Instance.RemoveItem(Data.KeyID);
                         Open();
                     }
                     else

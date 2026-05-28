@@ -69,6 +69,45 @@ MonoBehaviour:
     lineIndexToAddItem: 0
     advance: 0
     repeat: 1
+  - lines:
+    - 'what? for real? '
+    - ...
+    requiresJournalEntry: 1
+    prereqId: infested
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 1
+    repeat: 0
+  - lines:
+    - we need to purge the great mold tree.
+    - 'if he was able to hide from my instruments and right under the elder funguses
+      nose, '
+    - 'we''re dealing with one nasty mamajama. '
+    - your flame won't wound him, and it won't cleanse the tree.
+    - 'open the pores of each spore on the bridge '
+    - the bridge before the shell temple
+    requiresJournalEntry: 1
+    prereqId: infested
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 0
+    repeat: 1
   speed: 30
   reset: 0
   soundbank:

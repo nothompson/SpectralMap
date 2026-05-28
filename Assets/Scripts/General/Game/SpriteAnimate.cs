@@ -26,6 +26,7 @@ public class SpriteAnimate : MonoBehaviour
 
     public bool isPlaying = true;
     [SerializeField] public bool pingPong = false;
+    public bool loop = true;
     private int pingPongDir;
     public bool direction = true;
 
@@ -96,8 +97,16 @@ public class SpriteAnimate : MonoBehaviour
             else
             {
                 index += dir;
-                if(index >= sprites.Length) index = 0;
-                else if(index < 0) index = sprites.Length - 1;
+                if(loop){
+                    if(index >= sprites.Length) index = 0;
+                    else if(index < 0) index = sprites.Length - 1;
+                }
+                    else
+                    {
+                        if(index >= sprites.Length) return;
+                        else if(index < 0) return;
+                    }
+
             }
                 if(material != null)
                 {

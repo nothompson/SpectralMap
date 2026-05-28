@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ae20d815a32c14e8e90f5ba6c8e642, type: 3}
+  m_Name: unpopped
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimationEvent
+  id: unpopped
+  restingAnimation: 1
+  sprites:
+  - {fileID: -95947122, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: -596776528, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: -693787300, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: -1939836286, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: -1440671174, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: -933859253, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  - {fileID: 833833709, guid: a9e16a35f16c8a145860b3a19656670d, type: 3}
+  fps: 12
+  pingPong: 1
+  next: {fileID: 0}

@@ -88,6 +88,8 @@ public class JournalManager : MonoBehaviour
 
         UpdateFeed();
 
+        EventManager.Instance.OnJournalEntry(ID, index);
+
         SaveJournal();
     }
 

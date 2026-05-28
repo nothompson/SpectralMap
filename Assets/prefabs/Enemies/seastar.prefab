@@ -116,7 +116,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 1
+  loop: 1
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2749430797362092941
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +179,7 @@ MonoBehaviour:
   Points: 500
   Name: spider
   ChanceToDropPickup: 1
+  agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -265,10 +270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HP
   currentHP: 0
-  maxHP: 300
+  maxHP: 100
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 10
   maxGibs: 20
   damageFlashEnable: 1

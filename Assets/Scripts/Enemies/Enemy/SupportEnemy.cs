@@ -40,7 +40,7 @@ public class SupportEnemy : Enemy
 
             float dist = Vector3.Distance(transform.position, allyPosition);
 
-            if(dist > MinRange) MoveTowards(dir);
+            if(dist > MinRange) MoveTowards(dir, allyPosition);
             
             else
             {

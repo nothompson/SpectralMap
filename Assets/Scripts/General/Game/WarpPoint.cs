@@ -16,9 +16,6 @@ public class WarpPoint : MonoBehaviour, IInteractable
         rb.position = warpPoint.position;
 
         rb.isKinematic = false;
-
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
     }
 
     public void ExitInteract()

@@ -282,7 +282,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 0
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2692276261929381505
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +395,7 @@ GameObject:
   - component: {fileID: 296902526566944104}
   - component: {fileID: 5845348964206338738}
   - component: {fileID: 3012318105882540924}
+  - component: {fileID: 1093527311902014372}
   m_Layer: 13
   m_Name: Square
   m_TagString: Untagged
@@ -523,7 +528,25 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 1
+  loop: 1
   direction: 0
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1093527311902014372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045810914172329494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff9db86f145a854c97eff315f2d3b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  type: 0
+  YEnabled: 1
 --- !u!1 &3783753070517141522
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8116484665031047685}
   - component: {fileID: 7385152730643440596}
+  - component: {fileID: 5622728293913486028}
   m_Layer: 13
   m_Name: Point Light
   m_TagString: Untagged
@@ -772,6 +796,35 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &5622728293913486028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912544268554619389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &8812009374192403409
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +929,7 @@ MonoBehaviour:
   thisEnemy: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 2056
+    m_Bits: 8
   speed: 15
   damage: 0
   autoTimer: 5

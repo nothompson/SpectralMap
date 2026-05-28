@@ -188,11 +188,12 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         yield return new WaitForEndOfFrame();
 
+        if(CheckpointManager.Instance.currentCheckpoint != Vector3.zero){
         rb.isKinematic = true;
         playerVelocity = Vector3.zero;
         rb.position = CheckpointManager.Instance.currentCheckpoint;
         rb.isKinematic = false;
-
+        }
     }
 
 
@@ -201,7 +202,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     {
         CrosshairManager.Instance.Activate();
         SpectrumManager.Instance.ProfileBackground.SetActive(false);
-        Bouncer.OnBounce -= HandleBounce;
+        // Bouncer.OnBounce -= HandleBounce;
     }
 
     // void OnDestroy()
@@ -260,27 +261,36 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         
         if(!grounded) MovementFunctions.FinishGravity(ref playerVelocity);
 
-        if (grounded && !jumped)
-        {
-            playerVelocity.y = 0f;
+        // if (grounded && !jumped)
+        // {
+        //     if(playerVelocity.y < 0f){
+        //     playerVelocity.y = 0f;
             
-            // also immediately correct the rb so it doesn't carry negative y into physics solve
-            Vector3 rbVel = rb.linearVelocity;
-            rbVel.y = 0f;
-            rb.linearVelocity = rbVel;  
-        }
+        //     // // also immediately correct the rb so it doesn't carry negative y into physics solve
+        //     // Vector3 rbVel = rb.linearVelocity;
+        //     // rbVel.y = 0f;
+        //     // rb.linearVelocity = rbVel;  
+        //     }
+        // }
 
 
         impact = Vector3.zero;
         
         if(!grappling){
-        if(move.magnitude < 1 && grounded && rb.linearVelocity.magnitude < 1f)
-        {
-            rb.maxDepenetrationVelocity = move.magnitude > 0 ? 3f : 0f;
-            rb.linearVelocity = Vector3.zero;
-            playerVelocity = Vector3.zero;
+        if(move.magnitude < 1 && grounded && rb.linearVelocity.magnitude < 0.25f && rb.linearVelocity.y > 0f)
+        {   
+            // rb.maxDepenetrationVelocity = move.magnitude > 0 ? 3f : 0f;
+            playerVelocity.y = 0f;
         } 
         }
+
+        if(grounded && groundedLastFrame)
+        {
+            if(playerVelocity.y < -5f)
+            {
+                playerVelocity.y = 0f;
+            }
+        }    
 
         MovementFunctions.ApplyVelocity(playerVelocity, ref rb);
 
@@ -593,21 +603,21 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         reset = MovementFunctions.CollisionHandler.ResetCollision(this, collision, resetMask);
     }
 
-    private void OnEnable()
-    {
-        Bouncer.OnBounce += HandleBounce;
-    }
+    // private void OnEnable()
+    // {
+    //     Bouncer.OnBounce += HandleBounce;
+    // }
 
-    private void HandleBounce(Bouncer bouncer)
-    {
-        float ymag = Mathf.Abs(playerVelocity.y);
-        if (ymag > bouncer.maxHeight) ymag = bouncer.maxHeight;
-        playerVelocity.y = ymag + bouncer.bounceHeight;
+    // private void HandleBounce(Bouncer bouncer)
+    // {
+    //     float ymag = Mathf.Abs(playerVelocity.y);
+    //     if (ymag > bouncer.maxHeight) ymag = bouncer.maxHeight;
+    //     playerVelocity.y = ymag + bouncer.bounceHeight;
 
-        // force out of grounded state so it doesn't get zeroed next frame
-        grounded = false;
-        groundTimer = 0f;
-    }
+    //     // force out of grounded state so it doesn't get zeroed next frame
+    //     grounded = false;
+    //     groundTimer = 0f;
+    // }
 
 
     void OnCollisionStay(Collision collision)

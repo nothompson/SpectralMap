@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4808f721e3e1ac04c89f09ff531c1334, type: 3}
+  m_Name: SporousCave
+  m_EditorClassIdentifier: Assembly-CSharp::DoorObject
+  ID: sporouscave
+  Type: 0
+  WarpLocation: 
+  Opened: 0
+  sprites:
+  - {fileID: -992794682, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 855860059, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 684858378, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: -545258258, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 1735309645, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 1040601295, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: -742527493, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 480108828, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 1801930289, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 912864997, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 203478627, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: -1857280824, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 1356549083, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 2113045211, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: -284922831, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  - {fileID: 2085025946, guid: 3371b830d66ed78449090f606347db22, type: 3}
+  soundbank:
+  - Guid:
+      Data1: -1079588816
+      Data2: 1173645381
+      Data3: -1344548688
+      Data4: -660501941
+    Path: event:/General/Beep
+  - Guid:
+      Data1: -1079588816
+      Data2: 1173645381
+      Data3: -1344548688
+      Data4: -660501941
+    Path: event:/General/Beep
+  KeyID: spectralflame

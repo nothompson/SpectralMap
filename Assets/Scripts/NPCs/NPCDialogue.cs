@@ -53,12 +53,12 @@ public class NPCDialogue : ScriptableObject
         DialogueProgression nextDialogue = dialogues[next];
 
         if(!nextDialogue.requiresJournalEntry && !nextDialogue.requiresItem){
-            if (currentDialogue.advance)
+        
+        if (currentDialogue.advance)
             {
                 DialogueManager.Instance.AdvanceProgress(npcID, dialogues);
             }
             return;
-
         }
 
         if((JournalManager.Instance != null
@@ -76,6 +76,14 @@ public class NPCDialogue : ScriptableObject
         JournalManager.Instance.AddJournalEntry(dialogue.journalID,dialogue.journalIndex);
     }
 
+    public void AddTooth(DialogueProgression dialogue)
+    {
+        if(dialogue == null || !dialogue.addTooth || ToothManager.Instance == null || dialogue.toothData == null) return;
+
+        ToothManager.Instance.AddTooth(dialogue.toothData);
+    }
+
+
     public void AddItem(DialogueProgression dialogue)
     {
         if(dialogue == null || !dialogue.addItem || InventoryManager.Instance == null) {
@@ -86,5 +94,7 @@ public class NPCDialogue : ScriptableObject
         InventoryManager.Instance.AddItem(dialogue.itemToAddID,new Vector2Int(0,0));
         Debug.Log("added item");
     }
+
+
 
 }

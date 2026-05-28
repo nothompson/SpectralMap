@@ -26,6 +26,7 @@ public class DoorObject : ScriptableObject
     public Sprite[] sprites;
     public FMODUnity.EventReference[] soundbank;
     [Header("Requirements")]
+    public bool RemoveItem;
     public string KeyID;
 }
 

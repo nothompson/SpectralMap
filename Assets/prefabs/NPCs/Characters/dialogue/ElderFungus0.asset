@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   dialogues:
   - lines:
-    - yooooooo
+    - I am the Elder Fungus, an animated mold of great wisdom and power
+    - I spend my days here in moldwood teaching the art of spectra
+    - moldwood is among the last places untouched by pollutants
+    - 'and i intend to keep it that way! '
+    - hoo hoo hoo hoo!!!
     requiresJournalEntry: 0
     prereqId: 
     prereqIndex: 0
@@ -27,8 +31,51 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
-    advance: 0
+    advance: 1
     repeat: 0
+  - lines:
+    - ahh, a world seed!
+    - 'it squirms in your grasp... invigorating! '
+    - equipped with a harmonic conduit as well, a slime sprite of great potential
+      indeed.
+    - 'then it''s settled! I shall impart you the spectral flame. '
+    - 'you must promise never to use it against fellow fragments, '
+    - and only for traversal or thwarting pollutants!
+    - now, you must leave here. venture far and find the source of the pollutants.
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 1
+    requiredItemID: seed
+    addToJournal: 1
+    journalID: elderfungus
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 5
+    addItem: 1
+    itemToAddID: spectralflame
+    lineIndexToAddItem: 3
+    advance: 1
+    repeat: 0
+  - lines:
+    - your destination is the great city of aorta. find the flower girl, she will
+      guide you through.
+    - 'but before leaving, you must learn to externalize your slime, just as you
+      can your spectra! '
+    - 'i''m sure the nearby slime garden will prove enlightening... '
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 1
+    journalID: elderfungus
+    journalIndex: 1
+    lineIndexToAddJournalEntry: 2
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    advance: 0
+    repeat: 1
   speed: 35
   reset: 0
   soundbank:

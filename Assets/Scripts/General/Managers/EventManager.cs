@@ -52,6 +52,19 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void OnJournalEntry(string ID, int index)
+    {
+        if(ID == "infected" && index == 0)
+        {
+            DialogueManager.Instance.SetProgress("cartographer", 3);
+        }
+
+        if(ID == "bloatfruits" && index == 1)
+        {
+            SpectrumManager.Instance.PurifySpectrum(10);
+        }
+    }
+
     public void OnRemoveItem(string itemID)
     {
         if(string.IsNullOrEmpty(itemID)) return;
@@ -150,35 +163,26 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
-        DanielSpeedQuest();
+        BegsplatChallenge();
     }
 
-    public void DanielSpeedQuest()
+    public void TriggerInfectQuest()
+    {
+        DialogueManager.Instance.SetProgress("infect0", 1);
+    }
+
+    public void BegsplatChallenge()
     {
         if(pcr == null) return;
-        if(JournalManager.Instance.HasJournalEntry("danielspeed",0) && !JournalManager.Instance.HasJournalEntry("danielspeed", 1))
-        {
-            // if(pcr.playerSpeed >= 30f)
-            // {
-            //     JournalManager.Instance.AddJournalEntry("danielspeed",1);
-            //     DialogueManager.Instance.SetProgress("daniel", 1);
-            // }
-            // if(OnAccumulatedPoints(100))
-            // {
-            //     JournalManager.Instance.AddJournalEntry("danielspeed",1);
-            //     DialogueManager.Instance.SetProgress("daniel", 1);
-            // }
-            // if (OnFinalScore(20000))
-            // {
-            //     JournalManager.Instance.AddJournalEntry("danielspeed",1);
-            //     DialogueManager.Instance.SetProgress("daniel", 1);
-            // }
 
-            if (InventoryManager.Instance.HasItem("testitem"))
+        if(JournalManager.Instance.HasJournalEntry("begsplatchallenge", 1)) return;
+        
+        if(JournalManager.Instance.HasJournalEntry("begsplatchallenge",0) && !JournalManager.Instance.HasJournalEntry("begsplatchallenge", 1))
+        {
+            if (OnFinalScore(121393))
             {
-                JournalManager.Instance.AddJournalEntry("danielspeed",1);
-                DialogueManager.Instance.SetProgress("daniel", 1);
-                DoorManager.Instance.OpenDoorRemotely("switchdoor");
+                JournalManager.Instance.AddJournalEntry("begsplatchallenge",1);
+                DialogueManager.Instance.SetProgress("begsplat", 2);
             }
         }
     }

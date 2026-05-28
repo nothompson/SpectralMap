@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10be5f31bcc7be4eaa104057db8c95a, type: 3}
+  m_Name: begsplat
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  dialogues:
+  - lines:
+    - i'm begsplat, a resident shredder here at the shell temple.
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 1
+    repeat: 0
+  - lines:
+    - i'll bet you anything you can't beat my high score of 121,393.
+    - 'i''ll even bet my sacred last tooth! '
+    - Hur hur hur hur hur!!!
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 1
+    requiredItemID: spectralflame
+    addToJournal: 1
+    journalID: begsplatchallenge
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 0
+    repeat: 0
+  - lines:
+    - what? no way!
+    - 'ahh well, a deal''s a deal. '
+    - here it is. look after it, will ya?
+    - i know it's stupid, but it's near and dear to my heart.
+    requiresJournalEntry: 1
+    prereqId: begsplatchallenge
+    prereqIndex: 1
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 1
+    toothData: {fileID: 11400000, guid: cc09e45e87b3d0d42a231a2a5d67bb7d, type: 2}
+    lineIndexToAddTooth: 2
+    advance: 1
+    repeat: 0
+  - lines:
+    - may you surf upon warm mold and fly upon cool winds, young slime.
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    advance: 0
+    repeat: 0
+  speed: 35
+  reset: 0
+  soundbank:
+    Guid:
+      Data1: 646704756
+      Data2: 1271874889
+      Data3: -735230076
+      Data4: 1120456110
+    Path: event:/NPCs/SillyDialogue
