@@ -30,6 +30,9 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:
@@ -50,6 +53,9 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:
@@ -73,6 +79,9 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:
@@ -92,8 +101,60 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 0
+  - lines:
+    - they were cultivating jesters down there? it's worse than I imagined.
+    - 'jesters require a lot of flesh to create, '
+    - they must have been taking uncorruptable scholars and coagulating them.
+    - as a token of thanks, take this lichen branch.
+    - a traditional instrument that crosses properties of spectra and slime,
+    - 'the holder is granted occasional harmonic forgiveness. '
+    requiresJournalEntry: 1
+    prereqId: sporouscave
+    prereqIndex: 1
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 1
+    itemToAddID: lichen
+    lineIndexToAddItem: 3
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 1
+    spectralChange: 10
+    lineIndexToChangeSpectrum: 3
+    advance: 1
+    repeat: 0
+  - lines:
+    - may your spectrum illuminate the path, young slime.
+    requiresJournalEntry: 1
+    prereqId: sporouscave
+    prereqIndex: 1
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
+    advance: 0
+    repeat: 1
   speed: 35
   reset: 0
   soundbank:

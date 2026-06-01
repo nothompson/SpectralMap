@@ -38,6 +38,18 @@ public class EventManager : MonoBehaviour
             case "daniel":          
                 JournalManager.Instance.AddJournalEntry("danieldeath",0);  
                 break;
+            case "sporousCaveJester1":
+                if (DeathManager.Instance.CheckIfDead("sporousCaveJester2"))
+                {
+                    JournalManager.Instance.AddJournalEntry("sporouscave",1);
+                }
+                break;
+            case "sporousCaveJester2":
+                if (DeathManager.Instance.CheckIfDead("sporousCaveJester1"))
+                {
+                    JournalManager.Instance.AddJournalEntry("sporouscave",1);
+                }
+                break;
         }
     }
 
@@ -62,6 +74,11 @@ public class EventManager : MonoBehaviour
         if(ID == "bloatfruits" && index == 1)
         {
             SpectrumManager.Instance.PurifySpectrum(10);
+        }
+        
+        if(ID == "sporouscave" && index == 1)
+        {
+            DialogueManager.Instance.SetProgress("mergle",4);
         }
     }
 

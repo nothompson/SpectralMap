@@ -301,23 +301,33 @@ public class Enemy : MonoBehaviour
             agent.nextPosition = rb.position;
         }
         CalculateVelocity();
-        MovementFunctions.ApplyVelocity(enemyVelocity, ref rb);
+    }
+
+    public virtual void AddKnockback(Vector3 force)
+    {
+        impact += force;
     }
 
     public virtual void CalculateVelocity()
     {
+
         Movement();
         Targeting();
         // if (critical)
         // {
         //     FindHealth();
         // }
+        enemyVelocity += impact;
+
 
         if (!grounded)
         {
             MovementFunctions.ApplyGravity(ref enemyVelocity);
         }
 
+        MovementFunctions.ApplyVelocity(enemyVelocity, ref rb);
+
+        impact = Vector3.zero;
         // knockVelocity = Vector3.Lerp(knockVelocity, Vector3.zero, Time.fixedDeltaTime * knockbackDecay);
         
     }
@@ -478,6 +488,11 @@ public class Enemy : MonoBehaviour
 
         Vector3 wishDir = Vector3.Lerp(baseDir, chaosDir, chaosBlend).normalized;
 
+        if (grounded && groundNormal != Vector3.up)
+        {
+            wishDir = Vector3.ProjectOnPlane(wishDir, groundNormal).normalized;
+        }
+
         float wishSpeed = moveSpeed;
         enemyVelocity = MovementFunctions.Accelerate(enemyVelocity, wishDir, wishSpeed, 10f);
     }
@@ -539,6 +554,7 @@ Vector3 GetNavDirection(Vector3 target)
             {
                 enemyVelocity.y = 0f;
             }
+            enemyVelocity = Vector3.ProjectOnPlane(enemyVelocity, groundNormal);
         }
        float enemymovement = enemyVelocity.magnitude;
 

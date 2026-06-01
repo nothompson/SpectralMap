@@ -192,6 +192,11 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueData.AddTooth(currentDialogue);
     }
 
+    if(dialogueIndex == currentDialogue.lineIndexToChangeSpectrum && currentDialogue.changeSpectrum)
+    {
+        dialogueData.ChangeSpectrum(currentDialogue);
+    }
+
     if (playerInteract.dialogue.isTyping)
     {
         playerInteract.dialogue.ShowText(playerInteract);

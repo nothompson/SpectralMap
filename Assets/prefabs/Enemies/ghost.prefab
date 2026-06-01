@@ -88,7 +88,8 @@ MonoBehaviour:
   NamedEntity: {fileID: 0}
   Points: 500
   Name: hungry ghost
-  ChanceToDropPickup: 1
+  ChanceToDropPickup: 0.25
+  agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -109,6 +110,7 @@ MonoBehaviour:
   fov: {fileID: 567467745460065304}
   hp: {fileID: 2527193713317267757}
   fbx: {fileID: 0}
+  spriteEvent: {fileID: 0}
   EnemyID: 
   Personality: 1
   Behaviors: []
@@ -178,10 +180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HP
   currentHP: 0
-  maxHP: 500
+  maxHP: 200
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 10
   maxGibs: 20
   damageFlashEnable: 1

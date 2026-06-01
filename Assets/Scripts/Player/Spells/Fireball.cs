@@ -147,8 +147,8 @@ public class Fireball : MonoBehaviour
                         e.grounded = false;
                         targetHP.Damage(damage);
                         impact.y += explosionForce;
-                        impact.x *= 3f;
-                        impact.z *= 3f;
+                        impact.x *= 2f;
+                        impact.z *= 2f;
                         if (direct)
                         {
                             TrickManager.Instance.Direct();
@@ -163,7 +163,9 @@ public class Fireball : MonoBehaviour
                     }
 
                     float resistance = 1f - e.knockbackResistance;
-                    e.enemyVelocity += impact * resistance;
+                    // e.enemyVelocity += impact * resistance;
+
+                    e.AddKnockback(impact * resistance);
                     
                     if(targetHP.currentHP <= 0f)
                     {

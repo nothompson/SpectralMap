@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7764542f3ec7e2e4b8646cc5bca0239f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  playerMagic: {fileID: 0}
+  health: {fileID: 0}
+  magic: {fileID: 0}
   rb: {fileID: 1467439305334766630}
   GroundCheck: {fileID: 1595972892445157677}
   CollisionLayer:
@@ -106,7 +106,7 @@ MonoBehaviour:
   pickupSound: {fileID: 8162388042977264404}
   platformVelocity: {x: 0, y: 0, z: 0}
   Type: 0
-  size: 0.5
+  size: 0.33
 --- !u!114 &8162388042977264404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7053019527853100283}
   - component: {fileID: 3247633117996748793}
+  - component: {fileID: 6222857777684703757}
   m_Layer: 14
   m_Name: Container
   m_TagString: Untagged
@@ -262,7 +263,24 @@ MonoBehaviour:
   PeakDeviationEvent:
     m_PersistentCalls:
       m_Calls: []
+  EndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Loop: 1
+  horizontal: 1
+--- !u!114 &6222857777684703757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995356412305827962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf37348d9bc29a4fa91c382e22ac621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshRotate
+  spinVelocity: {x: 0, y: 50, z: 0}
 --- !u!1001 &9189103662233119437
 PrefabInstance:
   m_ObjectHideFlags: 0

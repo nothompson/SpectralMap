@@ -75,6 +75,11 @@ public class CrosshairManager : MonoBehaviour
 
     public void Activate()
     {
+        Crosshair.SetActive(true);
+    }
+
+    public void Toggle()
+    {
         if (!Crosshair.activeInHierarchy)
         {
             Crosshair.SetActive(true);

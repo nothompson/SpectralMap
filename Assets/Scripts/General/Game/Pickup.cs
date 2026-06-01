@@ -38,18 +38,6 @@ public class Pickup : MonoBehaviour
     [Range(0, 1)]
     public float size;
 
-    private float spinSpeed = 80f;
-
-    void Update()
-    {
-        // transform.Rotate(0f, spinSpeed * Time.deltaTime, 0f);
-
-        float spin = Time.deltaTime * spinSpeed;
-        Vector3 angle = transform.localEulerAngles;
-        angle.y += spin;
-        transform.localEulerAngles = new Vector3(angle.x, angle.y, angle.z);
-    }
-
     public void OnSpawn()
     {
         transform.localEulerAngles = new Vector3(0f,0f,0f);

@@ -1,16 +1,25 @@
 ﻿<Solution>
   <Project Path="Unity.ProBuilder.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
   <Project Path="Unity.ProBuilder.Poly2Tri.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Csg.csproj" />
+  <Project Path="PPv2URPConverters.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Editor.Tests.csproj" />
   <Project Path="Unity.ProBuilder.Editor.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.2D.Editor.Overrides.csproj" />
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="FMODUnityEditor.csproj" />
   <Project Path="FMODUnity.csproj" />
   <Project Path="Unity.ProBuilder.KdTree.csproj" />
   <Project Path="Unity.ProBuilder.AddOns.Editor.csproj" />
   <Project Path="Unity.ProBuilder.AssetIdRemapUtility.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Runtime.Tests.csproj" />
   <Project Path="FMODUnityResonance.csproj" />
+  <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
   <Project Path="Unity.ProBuilder.Stl.csproj" />
 </Solution>

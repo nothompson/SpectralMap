@@ -14,6 +14,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] public bool pingPong;
     [SerializeField] public LayerMask riderMask;
     [SerializeField] public float MomentumCap;
+    [SerializeField] public bool Ridable = true;
 
     public Vector3 PlatformDelta;
     public Vector3 PlatformVelocity;
@@ -115,6 +116,7 @@ public class MovingPlatform : MonoBehaviour
                 //avoid tuneling with a larger ttrigger box collider and push up to surface 
                 Collider[] riders = Physics.OverlapBox(col.bounds.center + Vector3.up * 2f, new Vector3(col.bounds.extents.x, 2f, col.bounds.extents.z), collider.transform.rotation, riderMask);
 
+                if(Ridable){
                 foreach(Collider rider in riders)
                 {
                     if(rider.bounds.min.y < surfaceY)
@@ -128,6 +130,7 @@ public class MovingPlatform : MonoBehaviour
                             rider.transform.position += Vector3.up * (surfaceY - rider.bounds.min.y);
                         }
                     }
+                }
                 }
                 yield return new WaitForFixedUpdate();
             }

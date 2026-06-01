@@ -181,26 +181,25 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         InputManager.Instance.inputs.Player.Jump.performed += OnJumpPerformed;
         InputManager.Instance.inputs.Player.Jump.canceled += OnJumpCanceled;
 
-        StartCoroutine(DelayedInit());
+        // StartCoroutine(DelayedInit());
     }
 
-    IEnumerator DelayedInit()
-    {
-        yield return new WaitForEndOfFrame();
+    // IEnumerator DelayedInit()
+    // {
+    //     yield return new WaitForEndOfFrame();
 
-        if(CheckpointManager.Instance.currentCheckpoint != Vector3.zero){
-        rb.isKinematic = true;
-        playerVelocity = Vector3.zero;
-        rb.position = CheckpointManager.Instance.currentCheckpoint;
-        rb.isKinematic = false;
-        }
-    }
+    //     if(CheckpointManager.Instance.currentCheckpoint != Vector3.zero){
+    //     rb.isKinematic = true;
+    //     playerVelocity = Vector3.zero;
+    //     rb.position = CheckpointManager.Instance.currentCheckpoint;
+    //     rb.isKinematic = false;
+    //     }
+    // }
 
 
 
     void OnDisable()
     {
-        CrosshairManager.Instance.Activate();
         SpectrumManager.Instance.ProfileBackground.SetActive(false);
         // Bouncer.OnBounce -= HandleBounce;
     }
@@ -225,6 +224,7 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
     void Update()
     {
         if(DeathManager.PlayerDead) return;
+
         MovementInputs();
         PlayerCamera();
                 
@@ -582,6 +582,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             coyoteTime, ref groundNormal, out groundHit,
             ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform
         );
+
+        Debug.Log(Vector3.Angle(physicsGroundNormal, groundNormal));
 
         // if (physicsGrounded)
         // {

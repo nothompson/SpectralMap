@@ -187,6 +187,8 @@ public class LevelManager: MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         AudioManager.Instance.ReInitAudio();
+        CheckpointManager.Instance.DelayInitFunction();
+        CheckpointManager.Instance.RequestRespawn();
     }
 }
 

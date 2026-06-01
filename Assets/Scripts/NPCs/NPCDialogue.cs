@@ -92,7 +92,21 @@ public class NPCDialogue : ScriptableObject
         }
 
         InventoryManager.Instance.AddItem(dialogue.itemToAddID,new Vector2Int(0,0));
-        Debug.Log("added item");
+    }
+
+    public void ChangeSpectrum(DialogueProgression dialogue)
+    {
+        if(dialogue == null || !dialogue.changeSpectrum || SpectrumManager.Instance == null) return;
+        
+        if(dialogue.spectralChange > 0)
+        {
+            SpectrumManager.Instance.PurifySpectrum(dialogue.spectralChange);
+        }
+        else
+        {
+            SpectrumManager.Instance.PolluteSpectrum(dialogue.spectralChange);
+        }
+        
     }
 
 

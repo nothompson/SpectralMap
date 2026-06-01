@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7814402791487997341}
   - component: {fileID: 8422884619392571324}
   - component: {fileID: 7497395683105699010}
-  - component: {fileID: 2145038030645541275}
   m_Layer: 5
   m_Name: Top
   m_TagString: Untagged
@@ -119,6 +118,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 1
   OnTargetEvent:
     m_PersistentCalls:
@@ -160,28 +160,6 @@ MonoBehaviour:
   lastindex: 0
   lastvalue: 0
   spriteAnimate: {fileID: 8422884619392571324}
---- !u!114 &2145038030645541275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089290300709934271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeshJitter
-  fps: 12
-  scaleRange: 0.04
-  rotationRange: 0.6
-  positionRange: 0
-  lockPosition: 1
-  parented: 0
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
-  targetRot: {x: 0, y: 0, z: 0, w: 0}
-  scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1210656131027211799
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +173,6 @@ GameObject:
   - component: {fileID: 6949231867468502849}
   - component: {fileID: 7208798970829469626}
   - component: {fileID: 4387809114580491046}
-  - component: {fileID: 5913774191335116692}
   m_Layer: 5
   m_Name: Bottom
   m_TagString: Untagged
@@ -301,6 +278,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 1
   OnTargetEvent:
     m_PersistentCalls:
@@ -342,28 +320,6 @@ MonoBehaviour:
   lastindex: 0
   lastvalue: 0
   spriteAnimate: {fileID: 7208798970829469626}
---- !u!114 &5913774191335116692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210656131027211799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d51e3ca76dda1429fb9ea217f0c4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeshJitter
-  fps: 12
-  scaleRange: 0.04
-  rotationRange: 0.6
-  positionRange: 0
-  lockPosition: 1
-  parented: 0
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
-  targetRot: {x: 0, y: 0, z: 0, w: 0}
-  scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1679267525242192786
 GameObject:
   m_ObjectHideFlags: 0

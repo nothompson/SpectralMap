@@ -23,6 +23,8 @@ public class CheckpointManager : MonoBehaviour
 
     private bool disabled;
 
+    private bool pendingRespawn = false;
+
     void Awake()
     {
         if(Instance == null)
@@ -39,6 +41,12 @@ public class CheckpointManager : MonoBehaviour
 
     }
 
+    public void RequestRespawn()
+    {
+        LoadCurrentCheckpoint();
+        pendingRespawn = true;
+    }
+
     public void RegisterPlayer(GameObject go)
     {
         player = go;
@@ -49,11 +57,23 @@ public class CheckpointManager : MonoBehaviour
 
         StartCoroutine(DelayedInit());
 
+        if (pendingRespawn)
+        {
+            pendingRespawn = false;
+            ResetPlayerToCheckpoint(false);
+        }
+
+    }
+
+    public void DelayInitFunction()
+    {
+        disabled = true;
+        StartCoroutine(DelayedInit());
     }
 
     IEnumerator DelayedInit()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         disabled = false;
     }
 
@@ -94,12 +114,14 @@ public class CheckpointManager : MonoBehaviour
         LoadCurrentCheckpoint();
     }
 
-    public void ResetPlayerToCheckpoint()
+    public void ResetPlayerToCheckpoint(bool gib = true)
     {
-        StartCoroutine(ResetRoutine());
+        if(player == null) return;
+        if(currentCheckpoint == Vector3.zero) return;
+        StartCoroutine(ResetRoutine(gib));
     }
 
-    IEnumerator ResetRoutine()
+    IEnumerator ResetRoutine(bool gib)
     {
         ResetManager.Instance.StartReset();
 
@@ -109,7 +131,9 @@ public class CheckpointManager : MonoBehaviour
 
         TrickManager.Instance.ResetCombo();
         
+        if(gib){
         GibsManager.Instance.Gib(player.transform.position, Random.Range(4,10));
+        }
 
         Rigidbody rb = playerControl.rb;
 

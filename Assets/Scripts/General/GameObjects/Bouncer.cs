@@ -49,7 +49,7 @@ public class Bouncer : MonoBehaviour
             {
                 pc.grounded = false;
                 pc.playerVelocity.y = 0f;
-                pc.playerVelocity.y += bounceHeight; 
+                pc.playerVelocity = transform.up * bounceHeight;
             }
         }
 
@@ -60,7 +60,7 @@ public class Bouncer : MonoBehaviour
             {
                 e.grounded = false;
                 e.enemyVelocity.y = 0f;
-                e.enemyVelocity.y += bounceHeight; 
+                e.enemyVelocity = transform.up * bounceHeight;
             }
         }
     }

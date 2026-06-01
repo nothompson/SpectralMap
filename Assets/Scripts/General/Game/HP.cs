@@ -43,6 +43,11 @@ public class HP : MonoBehaviour
         currentHP = maxHP;
 
         AssignID();
+
+        if(type == ObjectType.Player)
+        {
+            EffectManager.Instance.EffectCanvas.SetActive(true);
+        }
     }
 
     void AssignID()
@@ -146,7 +151,7 @@ public class HP : MonoBehaviour
         
                     Camera.main.transform.parent = null;
 
-                    Transform overlay = Camera.main.transform.GetChild(0);
+                    Transform overlay = Camera.main.transform.GetChild(1);
                     foreach(Transform child in overlay)
                     {
                         child.gameObject.SetActive(false);

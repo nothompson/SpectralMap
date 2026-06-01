@@ -1,8 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class DamageManager : MonoBehaviour
 {
@@ -15,6 +19,8 @@ public class DamageManager : MonoBehaviour
     // }
     // public DeathScene[] DeathScenes;
 
+    public SpriteAnimate[] DeathLetters;
+
     public GameObject BloodCanvas;
     public GameObject DeathCanvas;
 
@@ -26,6 +32,7 @@ public class DamageManager : MonoBehaviour
     public Image Death;
 
     public GameObject DeathSceneCanvas;
+    public GameObject DeathTextCanvas;
 
     [HideInInspector] public Image DeathSceneImg;
 
@@ -58,9 +65,17 @@ public class DamageManager : MonoBehaviour
 
         DeathSceneAnimate = DeathSceneCanvas.GetComponentInChildren<SpriteAnimate>();
 
+        ResetAll();
+    }
+
+    void ResetAll()
+    {
         BloodCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
         DeathSceneCanvas.SetActive(false);
+        DeathTextCanvas.SetActive(false);
+        RetryCanvas.SetActive(false);
+        DeathManager.PlayerDead = false;
     }
 
     public void PlayDamageOverlay(float dmg)
@@ -86,13 +101,18 @@ public class DamageManager : MonoBehaviour
         if (DeathManager.PlayerDead)
         {
             deathOffset = 2f;
-                Death.color = new Color(1f,1f,1f,0f);
+            Death.color = new Color(1f,1f,1f,0f);
 
             // DeathSceneAnimate.sprites = DeathScenes[0].sprites;
 
             DeathCanvas.SetActive(true);
 
             DeathSceneCanvas.SetActive(true);
+
+            DeathTextCanvas.SetActive(true);
+
+            StartCoroutine(DeathText());
+
 
             DeathSceneImg.color = new Color(1f,1f,1f,0f);
 
@@ -127,7 +147,40 @@ public class DamageManager : MonoBehaviour
         if(!DeathManager.PlayerDead){
             BloodCanvas.SetActive(false);
         }
+        else
+        {
+            RetryCanvas.SetActive(true);
+        }
 
+    }
+
+    IEnumerator DeathText()
+    {
+        yield return null;
+
+        foreach(var s in DeathLetters)
+        {
+            s.AnimateToEnd();
+        }
+    }
+
+    public void Respawn()
+    {
+        StartCoroutine(DeathText());
+        
+        StartCoroutine(ReloadRoutine());
+    }
+
+    IEnumerator ReloadRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        Reload();
+        ResetAll();
+    }
+
+    public async void Reload()
+    {
+        LevelManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 

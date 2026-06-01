@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: seed
   Name: World Seed
-  Description: 
+  Description: 'Rare fungal item of great significance. '
   ItemDisplay: {fileID: -552221504, guid: 9a7db92fecb429d4992dcede17e36dfc, type: 3}
   AnimationSprites:
   - {fileID: -552221504, guid: 9a7db92fecb429d4992dcede17e36dfc, type: 3}
@@ -55,7 +55,7 @@ MonoBehaviour:
   AnimationDirection: 1
   AnimationFPS: 24
   AnimationPingPong: 0
-  PositionOnGrid: {x: 2, y: 0}
+  PositionOnGrid: {x: 1, y: 0}
   ImageOffset: {x: 0, y: 0}
   ImageScale: {x: 1.3, y: 1.3}
   IsInInventory: 1

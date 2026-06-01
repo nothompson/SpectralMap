@@ -224,6 +224,7 @@
 
                     if (platform != null)
                     {
+                        if(platform.Ridable){
                         onPlatform = true;
 
                         // update stored velocity so we can add it on next frame if leaving platform
@@ -233,6 +234,7 @@
                         if(OwnerTransform.parent != platform.collider.transform)
                         {
                             OwnerTransform.SetParent(platform.collider.transform, true);
+                        }
                         }
                     }
 

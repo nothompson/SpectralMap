@@ -470,7 +470,7 @@ MonoBehaviour:
     m_Bits: 8
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   canSeePlayer: 0
   playerInRange: 0
 --- !u!114 &1062005381016900510
@@ -489,6 +489,7 @@ MonoBehaviour:
   Points: 500
   Name: jester
   ChanceToDropPickup: 0
+  agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -576,10 +577,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HP
   currentHP: 0
-  maxHP: 1000
+  maxHP: 666
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 10
   maxGibs: 15
   damageFlashEnable: 1
@@ -1080,6 +1082,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   Loop: 0
+  horizontal: 1
 --- !u!1 &9218607851495665855
 GameObject:
   m_ObjectHideFlags: 0

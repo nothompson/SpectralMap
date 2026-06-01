@@ -858,7 +858,7 @@ MonoBehaviour:
   NamedEntity: {fileID: 0}
   Points: 200
   Name: Flesh Husk
-  ChanceToDropPickup: 1
+  ChanceToDropPickup: 0.25
   agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
@@ -895,7 +895,7 @@ MonoBehaviour:
   airSpeedFactor: 0.5
   deacelleration: 10
   jumpHeight: 8
-  knockbackResistance: 0.1
+  knockbackResistance: 0.109
   GroundDistance: 0.2
   dodgeCooldown: 1
   dodgeSpeed: 15
@@ -906,9 +906,9 @@ MonoBehaviour:
   projSpeedMultiplier: 1
   minGibs: 5
   maxGibs: 10
-  movementChaos: 8
-  chaosFrequency: 0.5
-  chaosBlend: 0.3
+  movementChaos: 10
+  chaosFrequency: 3
+  chaosBlend: 0.5
   grounded: 0
   airTimer: 0
   engage: 0
@@ -946,7 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 100
+  maxHP: 200
   characterID: 
   dead: 0
   type: 1
@@ -1020,7 +1020,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5536796893043212549}
   serializedVersion: 5
-  m_Mass: 100
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1061,7 +1061,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: -0.1, z: 0}
+  m_Center: {x: 0, y: -0.22, z: 0}
 --- !u!114 &1508291465598114109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,7 +1156,7 @@ Transform:
   m_GameObject: {fileID: 5749409566630096111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -0.029}
+  m_LocalPosition: {x: 0, y: -1.158, z: -0.029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

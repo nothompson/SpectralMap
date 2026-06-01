@@ -150,14 +150,14 @@ public class EffectManager : MonoBehaviour
                 }
             }
 
-            var flesh = container.GetEffect<FleshSuitEffect>();
+                var flesh = container.GetEffect<FleshSuitEffect>();
                 if(flesh != null)
                 {
                     hasFlesh = true;
                     FleshSuitHuds[0].Calculate(flesh.CurrentHP, flesh.MaxHP, 0f,0f,0f, true);
                     FleshSuitHuds[1].Calculate(flesh.CurrentHP, flesh.MaxHP, 0f,0f,0f, true);
+
                 }
-            
             FleshSuitCanvas.SetActive(hasFlesh);
         }
     }
@@ -777,6 +777,8 @@ public class EffectManager : MonoBehaviour
             return;
         }
         AddEffect(new FleshSuitEffect(hp), target);
+        FleshSuitHuds[0].image.sprite = FleshSuitHuds[0].sprites[0];
+        FleshSuitHuds[1].image.sprite = FleshSuitHuds[1].sprites[0];    
     }
     #endregion
 }

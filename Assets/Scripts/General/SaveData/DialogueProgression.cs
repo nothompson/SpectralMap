@@ -28,6 +28,10 @@ public class DialogueProgression
     public ToothObject toothData;
     public int lineIndexToAddTooth;
 
+    public bool changeSpectrum;
+    public int spectralChange;
+    public int lineIndexToChangeSpectrum;
+
     [Header("Dialogue Options")]
     public bool advance;
     public bool repeat;
