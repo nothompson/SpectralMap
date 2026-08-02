@@ -165,6 +165,8 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
 
     void InitPlayer()
     {
+
+        InventoryManager.Instance.AddItem("slimehook", new Vector2Int(0,0));
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -518,7 +520,12 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
                 TrickManager.Instance.StopSurfing();
                 if(playerSpeed > surfBoostThreshold)
                 {
-                playerVelocity += Vector3.up * surfBoost;
+                    Vector3 currentDir = playerVelocity.normalized;
+                    float norm = Mathf.Clamp(playerSpeed / 70f, 0f, 1f);
+                    float boost = surfBoost * (1f - (norm * norm));
+                    Vector3 wishVel = currentDir * boost;
+                    // Vector3 wishVel = playerCamera.forward * surfBoost;
+                    playerVelocity += wishVel + Vector3.up;
                 }
             }
 
@@ -583,7 +590,6 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
             ref onPlatform, ref platformVelocity, ref lastGroundCheckPos, transform
         );
 
-        Debug.Log(Vector3.Angle(physicsGroundNormal, groundNormal));
 
         // if (physicsGrounded)
         // {

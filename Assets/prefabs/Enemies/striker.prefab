@@ -1459,6 +1459,7 @@ GameObject:
   - component: {fileID: 1291181441246652279}
   - component: {fileID: 5966270999940845173}
   - component: {fileID: 150660047107226036}
+  - component: {fileID: 5431311704331125210}
   m_Layer: 11
   m_Name: striker
   m_TagString: Untagged
@@ -1500,6 +1501,7 @@ MonoBehaviour:
   Points: 500
   Name: striker
   ChanceToDropPickup: 1
+  agent: {fileID: 0}
   rb: {fileID: 0}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -1783,7 +1785,7 @@ MonoBehaviour:
   Damage: 15
   Force: 3
   AnimationEvent: punching
-  Stationary: 1
+  Stationary: 0
   Support: 0
   BurstMode: 0
   BurstCount: 3
@@ -1812,7 +1814,7 @@ MonoBehaviour:
       - m_Target: {fileID: 150660047107226036}
         m_TargetAssemblyTypeName: EnemyParticle, Assembly-CSharp
         m_MethodName: Spawn
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1864,6 +1866,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
   type: 9
   overrideSpawn: {fileID: 763617689912539918}
+--- !u!195 &5431311704331125210
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820360266154066643}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2.25
+  m_Speed: 0
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 3
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7039793874015807012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2103,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 1
   OnTargetEvent:
     m_PersistentCalls:

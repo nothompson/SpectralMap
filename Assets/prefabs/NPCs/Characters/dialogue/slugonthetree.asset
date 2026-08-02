@@ -30,12 +30,15 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 0
   - lines:
-    - 'are you here to destroy me, young slime? have you already slain my brothers?  '
+    - 'are you here to destroy me, young slime? have you slain the others already? '
     - 'once we are all gone, the pollutants will spread rapidly. '
-    - and your life will be over before you know it.A
+    - and your life will be over before you know it.
     requiresJournalEntry: 1
     prereqId: infested
     prereqIndex: 0
@@ -51,6 +54,9 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 0
   speed: 35

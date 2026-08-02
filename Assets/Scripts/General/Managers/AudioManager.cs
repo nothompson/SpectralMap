@@ -24,7 +24,7 @@
         [SerializeField] float bassdel = 32.0f;
 
         [Header("Zones")]
-        public List<BoxCollider> musicZones;
+        public List<MusicZone> musicZones;
         public List<float> musicZoneParam;
         public List<bool> musicZoneFlag;
 
@@ -49,7 +49,7 @@
 
         private float OpeningWindow;
         private float ClosingWindow; 
-        private float Buffer = 0.002f;
+        private float Buffer = 0.025f;
 
         public class MusicInfo
         {
@@ -58,6 +58,15 @@
             public float tempo;
             public int position;
         }
+
+        [System.Serializable]
+        public class MusicZone
+        {
+            public string zoneName;
+            public List<BoxCollider> colliders = new List<BoxCollider>();
+        }
+
+        
 
         public static Dictionary <FMOD.Studio.EventInstance, AudioManager.MusicInfo> musicInfos = new Dictionary<FMOD.Studio.EventInstance, AudioManager.MusicInfo>();
 
@@ -457,29 +466,27 @@
                 musicZoneParam = new List<float>();
                 yield break;
             }
-            var sorted = new List<(string name, BoxCollider collider)>();
 
-            foreach(var zone in zones)
+            int maxZone = 0;
+
+            foreach(var obj in zones)
             {
-                BoxCollider bc = zone.GetComponent<BoxCollider>();
-
-                if(bc != null)
-                {
-                    string name = zone.name;
-                    sorted.Add((name,bc));
-                }
+                var marker = obj.GetComponent<MusicZoneMarker>();
+                if(marker != null) maxZone = Mathf.Max(maxZone, marker.zoneIndex);
             }
 
-            sorted.Sort ((x, y) =>
-            {
-            int a = GetZoneNumber(x.name);
-            int b = GetZoneNumber(y.name);
-            return a.CompareTo(b);
-            });
+            musicZones = new List<MusicZone>();
+            for(int i = 0; i < maxZone; i++)
+        {
+            musicZones.Add(new MusicZone { zoneName = "Zone" + (i + 1)});
+        }
 
-            foreach(var zone in sorted)
+            foreach (var obj in zones)
             {
-                musicZones.Add(zone.collider);
+                var marker = obj.GetComponent<MusicZoneMarker>();
+                var col = obj.GetComponent<BoxCollider>();
+                if (marker != null && col != null && marker.zoneIndex >= 1 && marker.zoneIndex <= maxZone)
+                    musicZones[marker.zoneIndex - 1].colliders.Add(col);
             }
 
             musicZoneFlag = new List<bool>(new bool[musicZones.Count]);
@@ -510,13 +517,16 @@
                 
                 int foundZone = -1;
                 for(int i = 0; i < musicZones.Count; i++){
-                    var zone = musicZones[i];
-                    if(zone == null) continue;
-                    bool inZone = zone.bounds.Contains(player.transform.position);
-                    if(inZone){
-                        foundZone = i;
-                        break;
+                    bool inZone = false;
+                    foreach (var col in musicZones[i].colliders)
+                    {
+                        if (col != null && col.bounds.Contains(player.transform.position))
+                        {
+                            inZone = true;
+                            break;
+                        }
                     }
+                    if (inZone) { foundZone = i; break; }
                 }
 
                 if(foundZone != -1 && foundZone != lastActive){

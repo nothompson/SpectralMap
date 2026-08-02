@@ -61,6 +61,8 @@ MonoBehaviour:
     m_Bits: 512
   - serializedVersion: 2
     m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 8192
   player: {fileID: 0}
   playerHP: {fileID: 0}
   impact: {fileID: 3742114166126770601}

@@ -65,7 +65,7 @@ public class Fireball : MonoBehaviour
         // Debug.Log(other);
         int layer = other.layer;
 
-        if (GameFunctions.FilterLayers(layer, ignoreLayers) || other.CompareTag("NoRockets"))
+        if (GameFunctions.FilterLayers(layer, ignoreLayers) || other.CompareTag("NoRockets") || other.CompareTag("Polluted"))
         {
             ProjectileParticleManager.Instance.Delete(this);
             Destroy(gameObject);

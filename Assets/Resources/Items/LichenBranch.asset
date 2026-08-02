@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: lichen
   Name: Lichen Branch
-  Description: 
+  Description: ancient instrument of spectral scholars. properties of slime and spectra
+    allow harmonic forgiveness.
   ItemDisplay: {fileID: -1231577147, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
   AnimationSprites:
   - {fileID: -1231577147, guid: d2c56222c59ad124c894d3c97e48ffc7, type: 3}
@@ -26,7 +27,7 @@ MonoBehaviour:
   AnimationDirection: 0
   AnimationFPS: 8
   AnimationPingPong: 1
-  PositionOnGrid: {x: 2, y: 0}
+  PositionOnGrid: {x: 0, y: 0}
   ImageOffset: {x: 0, y: 0}
   ImageScale: {x: 1.5, y: 1.25}
-  IsInInventory: 1
+  IsInInventory: 0

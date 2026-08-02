@@ -914,9 +914,9 @@ MonoBehaviour:
   GroundDistance: 0.25
   CapsuleRadius: 0.2
   coyoteTime: 0.25
-  surfBoost: 10
+  surfBoost: 4
   surfBoostThreshold: 25
-  surfingThreshold: 15
+  surfingThreshold: 10
   grounded: 0
   groundedLastFrame: 0
   onPlatform: 0

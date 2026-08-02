@@ -60,7 +60,7 @@ public class GrappleProjectile : MonoBehaviour
         {
             Transform targ = hit.collider.transform;
 
-            if (targ.gameObject.CompareTag("NoGrapple"))
+            if (targ.gameObject.CompareTag("NoGrapple") || targ.gameObject.CompareTag("Polluted"))
             {
                 grapple.OnProjectileMiss();
             }

@@ -31,10 +31,16 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:
-    - 'i need to rest here for a while, please bring a bloatfruit to milmeg. '
+    - 'i need to rest here for a while, please bring a bloatfruit to melmig. '
     - we live in a shroom hut atop the other mold tree.
     requiresJournalEntry: 0
     prereqId: 
@@ -48,6 +54,34 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
+    advance: 0
+    repeat: 1
+  - lines:
+    - many thanks for the help, friend!
+    requiresJournalEntry: 0
+    prereqId: 
+    prereqIndex: 0
+    requiresItem: 0
+    requiredItemID: 
+    addToJournal: 0
+    journalID: 
+    journalIndex: 0
+    lineIndexToAddJournalEntry: 0
+    addItem: 0
+    itemToAddID: 
+    lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 1
   speed: 35

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CartographerDoor
   m_EditorClassIdentifier: Assembly-CSharp::DoorObject
   ID: cartographer
-  Type: 1
+  Type: 0
   WarpLocation: 
   Opened: 1
   sprites:
@@ -38,4 +38,5 @@ MonoBehaviour:
       Data3: -1344548688
       Data4: -660501941
     Path: event:/General/Beep
+  RemoveItem: 0
   KeyID: 

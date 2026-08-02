@@ -11,6 +11,10 @@ public class WarpPoint : MonoBehaviour, IInteractable
 
         Rigidbody rb = player.GetComponent<Rigidbody>();
 
+        Launcher launch = player.GetComponentInChildren<Launcher>();
+
+        launch.grapple.Release();
+
         rb.isKinematic = true;
 
         rb.position = warpPoint.position;

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3363749269811441777}
   m_Layer: 7
   m_Name: ShrinkStep
-  m_TagString: Untagged
+  m_TagString: NoGrapple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d4d788b0c52355419522c17c4ae1e31, type: 2}
+  - {fileID: 2100000, guid: 0850d6ec51f62964c8eb4a0f96a98803, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 4286931577998956961}
   m_Layer: 0
   m_Name: Shrinkstep
-  m_TagString: Untagged
+  m_TagString: NoGrapple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

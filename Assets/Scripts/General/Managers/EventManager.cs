@@ -61,6 +61,11 @@ public class EventManager : MonoBehaviour
             case "testitem":
                 Debug.Log("i got the googa shrmirt. i should return to daniel");
                 break;
+            case "spectralflame":
+                DialogueManager.Instance.SetProgress("mergle", 1);
+                DialogueManager.Instance.SetProgress("infect", 1);
+                break;
+
         }
     }
 
@@ -74,6 +79,8 @@ public class EventManager : MonoBehaviour
         if(ID == "bloatfruits" && index == 1)
         {
             SpectrumManager.Instance.PurifySpectrum(10);
+            DialogueManager.Instance.SetProgress("gimlem",2);
+            DialogueManager.Instance.SetProgress("melmig",1);
         }
         
         if(ID == "sporouscave" && index == 1)

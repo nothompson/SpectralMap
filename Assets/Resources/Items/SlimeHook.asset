@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: slimehook
   Name: Slime Hook
-  Description: 
+  Description: incantation that allows the extension of one's slime, originating
+    from the pacifist followers of the hidden toad.
   ItemDisplay: {fileID: -1846784267, guid: 9d238615acde9764ca8a71f40061dd12, type: 3}
   AnimationSprites:
   - {fileID: -1846784267, guid: 9d238615acde9764ca8a71f40061dd12, type: 3}
@@ -27,7 +28,7 @@ MonoBehaviour:
   AnimationDirection: 0
   AnimationFPS: 12
   AnimationPingPong: 1
-  PositionOnGrid: {x: 1, y: 0}
+  PositionOnGrid: {x: 0, y: 0}
   ImageOffset: {x: 0, y: 0}
   ImageScale: {x: 1.5, y: 1.25}
   IsInInventory: 1

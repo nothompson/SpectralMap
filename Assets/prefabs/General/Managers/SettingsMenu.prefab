@@ -448,7 +448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 840, y: 319}
+  m_AnchoredPosition: {x: 840, y: 283}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5374625747033826182
@@ -4645,7 +4645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 840, y: 373.00006}
+  m_AnchoredPosition: {x: 840, y: 337.00006}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4945394999661118818
@@ -6145,7 +6145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 842, y: 434}
+  m_AnchoredPosition: {x: 842, y: 398}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7437150871409831309
@@ -8990,7 +8990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 840, y: 257.00006}
+  m_AnchoredPosition: {x: 840, y: 221.00006}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5021307529095202477
@@ -11112,7 +11112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 840.00006, y: 142.00005}
+  m_AnchoredPosition: {x: 840.00006, y: 106.00005}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5800304258604699945
@@ -14361,7 +14361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 840, y: 203.67998}
+  m_AnchoredPosition: {x: 840, y: 167.68}
   m_SizeDelta: {x: 50.3261, y: -79.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4374637862679316197
@@ -16024,7 +16024,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7608103437708696505
 GameObject:
   m_ObjectHideFlags: 0
@@ -17278,7 +17282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &795812166350590560
 RectTransform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class FlyingEnemy : Enemy
     {
         base.Start();
         grounded = false;
+        agent = null;
     }
 
     public override void Routines()
@@ -30,6 +31,11 @@ public class FlyingEnemy : Enemy
         Movement();
         Targeting();
         ApplyDrag();
+    }
+
+    public override void FixedUpdate()
+    {
+        CalculateVelocity();
     }
 
     public override void Movement()
@@ -46,7 +52,9 @@ public class FlyingEnemy : Enemy
 
     void ApplyDrag()
     {
+        enemyVelocity += impact;
         enemyVelocity = Vector3.Lerp(enemyVelocity, Vector3.zero, airDrag * Time.fixedDeltaTime);
+        impact = Vector3.zero;
     }
 
     public override void MoveTowards(Vector3 direction, Vector3 target)

@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
     float newDist;
     float oldDist;
     Vector3 pickupPosition;
-    Vector3 impact;
+    public Vector3 impact;
     float cooldown;
     float initSpeed;
     float airSpeed;

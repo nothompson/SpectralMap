@@ -148,7 +148,7 @@ public class PlayerKeyBinds : MonoBehaviour
         }
         else
         {
-            playerMagic.Drain(25f);
+            playerMagic.Drain(10f);
             if(playerMagic.magicPoints <= 0f)
             {
                 playerMagic.magicPoints = 0f;

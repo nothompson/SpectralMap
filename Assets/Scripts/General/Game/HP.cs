@@ -33,6 +33,9 @@ public class HP : MonoBehaviour
     [SerializeField] private AnimationCurve FlashCurve;
     private Coroutine flashRoutine;
 
+    [HideInInspector] public SkinnedMeshRenderer[] skins;
+    [HideInInspector] public List<Material> mats = new List<Material>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +50,10 @@ public class HP : MonoBehaviour
         if(type == ObjectType.Player)
         {
             EffectManager.Instance.EffectCanvas.SetActive(true);
+        }
+        if(type == ObjectType.Enemy)
+        {
+            InitMeshRenders();
         }
     }
 
@@ -70,6 +77,16 @@ public class HP : MonoBehaviour
     void Update()
     {
         Death();
+    }
+
+    public void InitMeshRenders()
+    {
+        skins = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        for(int i = 0; i < skins.Length; i++)
+        {
+            mats.AddRange(skins[i].sharedMaterials);
+        }
     }
 
     public void Damage(float dmg)
@@ -244,17 +261,21 @@ public class HP : MonoBehaviour
 
     public IEnumerator DamageFlash(GameObject damaged)
     {
-        SkinnedMeshRenderer skin = damaged.GetComponentInChildren<SkinnedMeshRenderer>();
-        if(!skin) yield break;
+        List<Material> flash = new List<Material>();
 
-        Material mat = skin.material;
+        foreach(var m in mats)
+        {
+            if (m.HasProperty("_EmissionColor"))
+            {
+                m.EnableKeyword("_EMISSION");
+                m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                flash.Add(m);
+            }
+        }
 
-        if(!mat.HasProperty("_EmissionColor")) yield break;
+            if(flash.Count == 0) yield break;
 
-            mat.EnableKeyword("_EMISSION");
-            mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-
-            Color emissionColor = mat.GetColor("_EmissionColor");
+            Color emissionColor = new Color();
             
             float t = 0f;
 
@@ -269,7 +290,9 @@ public class HP : MonoBehaviour
                 emissionColor.g = targetFlashValue * value;
                 emissionColor.b = targetFlashValue * value;
 
-                mat.SetColor("_EmissionColor", emissionColor);
+                foreach(var m in flash){
+                    m.SetColor("_EmissionColor", emissionColor);
+                }
                 
                 yield return null; 
             }

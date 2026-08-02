@@ -142,9 +142,10 @@ public class TongueHook : EnemyProjectile
     public IEnumerator StartHook()
     {
         EffectManager.Instance.Ensare(player, HookDuration);
+        Rigidbody prb = player.GetComponent<Rigidbody>();
         float t = 0f;
         hookActive = true;
-        Vector3 startPosition = player.transform.position;
+        Vector3 startPosition = prb.position;
 
         while (t < HookDuration)
         {
@@ -156,18 +157,22 @@ public class TongueHook : EnemyProjectile
                 yield break;
             }
 
+            // prb.isKinematic = true;
+
             t += Time.deltaTime;
             float elapsed = t / HookDuration;
             float value = HookCurve.Evaluate(elapsed);
-            player.transform.position = Vector3.Lerp(startPosition, attackPoint.position, value);
+            target = prb.position;
+            prb.position = Vector3.Lerp(startPosition, enemy.attackPoint.position, value);
             transform.position = Vector3.Lerp(startPosition, attackPoint.position, value);
-            target = player.transform.position;
             
             SyncSegments(attackPoint.position,transform.position);
             RenderSegments(attackPoint.position,transform.position);
 
             yield return null;
         }
+        prb.position = target;
+        // prb.isKinematic = false;
         ClearSegments();
         RestorePlayer();
         Destroy(gameObject);

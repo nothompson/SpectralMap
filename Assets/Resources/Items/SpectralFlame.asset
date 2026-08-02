@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   ID: spectralflame
   Name: Spectral Flame
-  Description: 
+  Description: 'powerful spell for externalizing spectra. Favored for it''s versatility
+    in traversal, tricking, and combat. '
   ItemDisplay: {fileID: -1804410526, guid: e32701cdd28c2824e96e86ab6b205ecb, type: 3}
   AnimationSprites:
   - {fileID: -702999001, guid: e32701cdd28c2824e96e86ab6b205ecb, type: 3}
@@ -65,4 +66,4 @@ MonoBehaviour:
   PositionOnGrid: {x: 0, y: 0}
   ImageOffset: {x: 0, y: 50}
   ImageScale: {x: 1.5, y: 1.5}
-  IsInInventory: 1
+  IsInInventory: 0
