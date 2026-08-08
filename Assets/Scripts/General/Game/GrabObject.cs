@@ -21,6 +21,13 @@ public class GrabObject : MonoBehaviour, IInteractable
         PlayerInteract pi = player.GetComponent<PlayerInteract>();
         if(pi == null) return;
 
+        Launcher launch = pi.GetComponentInChildren<Launcher>();
+
+        if(launch != null)
+        {
+            launch.grapple.Release();
+        }
+
         if (isHeld)
         {
             Drop(pi);

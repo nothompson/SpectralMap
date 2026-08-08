@@ -24,6 +24,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] private int constraints;
     [SerializeField] public float collisionRadius;
     [SerializeField] private float pullStrength;
+    [SerializeField] private float sinchThreshold;
     [Range(0f,1f)]
     [SerializeField] private float resolution;
     [SerializeField] private float retractSpeed;
@@ -62,6 +63,10 @@ public class Grapple : MonoBehaviour
 
     private Animator leftHand;
 
+    private bool sinching = false;
+
+    [SerializeField] public SoundBank grappleSounds;
+
     struct RopePoint
     {
         public Vector3 position;
@@ -76,6 +81,16 @@ public class Grapple : MonoBehaviour
             renderPosition = pos;
             this.locked = locked;
         }
+    }
+
+    [System.Serializable]
+    public class SoundBank
+    {
+        public FMODUnity.EventReference shoot;
+        public FMODUnity.EventReference sinch;
+        public FMODUnity.EventReference connect;
+        public FMODUnity.EventReference release;
+        
     }
 
     void AddSegment()
@@ -326,6 +341,8 @@ public class Grapple : MonoBehaviour
     {
         if(grappleActive && playerControl.playerSpeed >= 17.5f) TrickManager.Instance.GrappleJump();
 
+        sinching = false;
+
         playerControl.grappling = false;
 
         grappleActive = false;
@@ -333,6 +350,7 @@ public class Grapple : MonoBehaviour
 
         if(projectile != null)
         {
+            FMODUnity.RuntimeManager.PlayOneShot(grappleSounds.release);
             Destroy(projectile.gameObject);
             projectile = null;
         }
@@ -367,6 +385,8 @@ public class Grapple : MonoBehaviour
         
         playerControl.grappling = true;
 
+        FMODUnity.RuntimeManager.PlayOneShot(grappleSounds.connect, target.position);
+
         if(leftHand == null) return;
 
         leftHand.SetTrigger("Catch");
@@ -398,6 +418,8 @@ public class Grapple : MonoBehaviour
         GameObject projObj = Instantiate(proj, pos, Quaternion.LookRotation(dir));
         projectile = projObj.AddComponent<GrappleProjectile>();
         projectile.Init(this, dir, playerBody.gameObject.transform);
+
+        FMODUnity.RuntimeManager.PlayOneShot(grappleSounds.shoot);
 
     }
 
@@ -525,6 +547,7 @@ public class Grapple : MonoBehaviour
         ClearAllSegments();
         points.Clear();
         renderPositions.Clear();
+        sinching = false;
     }
 
     void InitializeRope()
@@ -724,6 +747,14 @@ void SolveCollisions()
             if(radial > 0f) playerControl.playerVelocity += -dir * radial;
 
             playerControl.playerVelocity += -dir * pullStrength * (dist - grappleLength);
+
+            if(playerControl.playerVelocity.magnitude >= sinchThreshold){
+                if (!sinching)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(grappleSounds.sinch);
+                    sinching = true;
+                }
+            }
         }
     }
 

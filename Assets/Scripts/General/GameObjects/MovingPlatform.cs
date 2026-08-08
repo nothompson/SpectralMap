@@ -30,6 +30,14 @@ public class MovingPlatform : MonoBehaviour
 
     Coroutine MovingRoutine;
 
+    public bool moveTowardsSound = false;   
+
+    public FMODUnity.EventReference moveTowards;
+
+    public bool moveFromSound = false;   
+
+    public FMODUnity.EventReference moveFrom;
+
     void Start()
     {
         lastPos = collider.transform.position;
@@ -62,6 +70,7 @@ public class MovingPlatform : MonoBehaviour
             return;
         }
         Stopped = false;
+        
         MovingRoutine = StartCoroutine(MovingTowardsTarget());
 
     }
@@ -76,8 +85,20 @@ public class MovingPlatform : MonoBehaviour
                 nextIndex = index + pingPongDir;
                 if(nextIndex >= Targets.Length || nextIndex < 0)
                 {
+                    if(moveTowardsSound)
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot(moveTowards, transform.position);
+                    }
+
                     pingPongDir *= -1;
                     nextIndex = index + pingPongDir;
+                }
+                else
+                {
+                    if(moveFromSound)
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot(moveFrom, transform.position);
+                    }
                 }
             }
             else

@@ -18,6 +18,9 @@ public class EnemySoundbank : ScriptableObject
 
     public FMODUnity.EventReference attack;
 
+    public FMODUnity.EventReference attack2;
+    public FMODUnity.EventReference attack3;
+
     public FMODUnity.EventReference death;
     
 }

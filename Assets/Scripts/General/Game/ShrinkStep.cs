@@ -11,10 +11,14 @@ public class ShrinkStep : MonoBehaviour
 
     Coroutine Shrinking;
 
+    public FMODUnity.StudioEventEmitter sound;
+
     public void OnTriggerEnter(Collider other)
     {
         if(Shrinking != null) return;
 
+        sound.Play();
+        
         Shrinking = StartCoroutine(Shrink());
     }
 

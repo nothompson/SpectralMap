@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: 1014545714, guid: eea67763101c5824fb13f10635bf4262, type: 3}
   - {fileID: -2081978489, guid: eea67763101c5824fb13f10635bf4262, type: 3}
   startingIndex: 0
-  randomStart: 1
+  randomStart: 0
   fps: 12
   image: {fileID: 0}
   material: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
-  loop: 1
+  loop: 0
   direction: 0
   OnTargetEvent:
     m_PersistentCalls:
@@ -241,7 +241,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7881525151007328363}
         m_TargetAssemblyTypeName: SpriteAnimate, Assembly-CSharp
-        m_MethodName: AnimateToEnd
+        m_MethodName: AnimateToEndNoOnTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

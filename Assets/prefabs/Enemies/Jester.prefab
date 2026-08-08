@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 1062005381016900510}
   - component: {fileID: 3472552370586009759}
   - component: {fileID: 8566354382374202509}
+  - component: {fileID: 8612930801461690556}
   m_Layer: 11
   m_Name: Jester
   m_TagString: Untagged
@@ -556,6 +557,7 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  impact: {x: 0, y: 0, z: 0}
   platformVelocity: {x: 0, y: 0, z: 0}
   noiseOffset: 0
   pendingAttack: {fileID: 0}
@@ -564,6 +566,7 @@ MonoBehaviour:
   preferredRange: 0
   stationaryAttack: 0
   squashAndStretch: {fileID: 4055958244806125390}
+  ea: {fileID: 8612930801461690556}
 --- !u!114 &3472552370586009759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +623,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  skins: []
+  mats: []
 --- !u!114 &8566354382374202509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +655,23 @@ MonoBehaviour:
   onCooldown: 0
   NumberToSpawn: 5
   SpawnAngle: 30
+--- !u!114 &8612930801461690556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4749205512570598973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6350e002a9b891649825529c23439ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAudio
+  enemy: {fileID: 4749205512570598973}
+  hp: {fileID: 3472552370586009759}
+  script: {fileID: 1062005381016900510}
+  bank: {fileID: 11400000, guid: c210809afb730a04a891159c90041de5, type: 2}
+  engage: 0
 --- !u!1 &5958606706211646522
 GameObject:
   m_ObjectHideFlags: 0

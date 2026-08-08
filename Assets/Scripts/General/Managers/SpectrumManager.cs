@@ -44,6 +44,9 @@ public class SpectrumManager : MonoBehaviour
 
     float lastNormalized;
     float targetNormalized;
+
+    public FMODUnity.StudioEventEmitter pollute;
+    public FMODUnity.StudioEventEmitter purify;
     
     void Awake()
     {
@@ -118,6 +121,8 @@ public class SpectrumManager : MonoBehaviour
 
         SaveSpectrum();
 
+        pollute.Play();
+
         if(SpectrumActive && !outroPlaying){
             StartShake();
             StartCooldown();
@@ -138,6 +143,8 @@ public class SpectrumManager : MonoBehaviour
         EventManager.Instance.OnPurify(PollutantLevel);
 
         SaveSpectrum();
+
+        purify.Play();
 
         if(SpectrumActive && !outroPlaying){
             StartShake();

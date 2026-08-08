@@ -8,6 +8,10 @@ public class CollisionWarp : MonoBehaviour
 
     public float SpeedMultiplier = 1f;
 
+    public FMODUnity.EventReference warpSound;
+
+    public bool sound = false;
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -23,8 +27,17 @@ public class CollisionWarp : MonoBehaviour
 
         PlayerControlRigid pc = other.gameObject.GetComponent<PlayerControlRigid>();
 
+        Launcher launch = pc.GetComponentInChildren<Launcher>();
+
+        launch.grapple.Release();
+
         float speed = pc.playerSpeed;
 
         pc.playerVelocity = warpPoint.forward * speed * SpeedMultiplier;
+
+        if (sound)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(warpSound, warpPoint.position);
+        }
     }
 }

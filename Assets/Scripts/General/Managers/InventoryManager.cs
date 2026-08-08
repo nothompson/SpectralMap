@@ -231,6 +231,7 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         slot.SetItem(ItemToAdd);
 
         FeedManager.Instance.AddToFeed($"{item.Name} added to bodybag");
+        AudioManager.Instance.AddItem();
         EventManager.Instance.OnAddItem(itemID);
 
         SaveInventory();

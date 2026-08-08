@@ -128,9 +128,9 @@ MonoBehaviour:
     addTooth: 0
     toothData: {fileID: 0}
     lineIndexToAddTooth: 0
-    changeSpectrum: 1
-    spectralChange: 10
-    lineIndexToChangeSpectrum: 3
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:

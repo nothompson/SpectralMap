@@ -48,6 +48,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-8955954083831347750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/SlimeHookConnect
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/SlimeHookConnect
+  Guid:
+    Data1: 288265503
+    Data2: 1260884674
+    Data3: 1420516028
+    Data4: -1474007066
+  Banks:
+  - {fileID: -5380999930341741973}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8952217420572559105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +102,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1071
+--- !u!114 &-8795973304045943728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/CorruptedLantern
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/CorruptedLantern
+  Guid:
+    Data1: 998789176
+    Data2: 1311408734
+    Data3: -411084119
+    Data4: 202970689
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 28500
 --- !u!114 &-8732472131970152946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +231,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8544115918519049960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/SlimeHookShootSinch
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/SlimeHookShootSinch
+  Guid:
+    Data1: 1274536501
+    Data2: 1319573511
+    Data3: -179349362
+    Data4: 1623010964
+  Banks:
+  - {fileID: -5380999930341741973}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8502338562876275689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +282,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-8422608075812119081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/spider/death
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/spider/death
+  Guid:
+    Data1: -1357171275
+    Data2: 1326528765
+    Data3: 1807676348
+    Data4: -351007164
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8280071373320278973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,10 +351,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/NPC.bank
   Name: NPC
   StudioPath: bank:/NPC
-  lastModified: 639014099816885900
+  lastModified: 639216407702731703
   FileSizes:
   - Name: Desktop
-    Value: 1184672
+    Value: 1915680
   Exists: 1
 --- !u!114 &-8224427402596568901
 MonoBehaviour:
@@ -268,6 +376,33 @@ MonoBehaviour:
     Data4: -1594252224
   Banks:
   - {fileID: 1456473720330716372}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8223053484109521532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Melee
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Melee
+  Guid:
+    Data1: 1830897214
+    Data2: 1193259678
+    Data3: -1883847005
+    Data4: -977600349
+  Banks:
+  - {fileID: -3681280450790511800}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -377,6 +512,60 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7938693324502907640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/ClickWoosh
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/ClickWoosh
+  Guid:
+    Data1: -1573400399
+    Data2: 1323147003
+    Data3: 1017067188
+    Data4: -295052634
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7860076409112237110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/SlimeHookShootRelease
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/SlimeHookShootRelease
+  Guid:
+    Data1: -822585639
+    Data2: 1128517286
+    Data3: 895333512
+    Data4: -2132100043
+  Banks:
+  - {fileID: -5380999930341741973}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7775871295096420902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +590,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7768638946996798979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Hurt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Hurt
+  Guid:
+    Data1: -299535746
+    Data2: 1232241703
+    Data3: -2033156205
+    Data4: -1786722049
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7722581299982947571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +766,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7383087064795702316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/death
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/death
+  Guid:
+    Data1: -575855805
+    Data2: 1094566987
+    Data3: -1351022943
+    Data4: -1525316380
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7361042332183342457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +956,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1850
+--- !u!114 &-6993186549013282006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/ToothPickup
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/ToothPickup
+  Guid:
+    Data1: 1508053270
+    Data2: 1230316113
+    Data3: 930786472
+    Data4: 917985203
+  Banks:
+  - {fileID: 9191241982461446580}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-6916882896769312046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +1010,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6841276498575878707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Purify
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/Purify
+  Guid:
+    Data1: -418854552
+    Data2: 1217889738
+    Data3: -363790720
+    Data4: -148616824
+  Banks:
+  - {fileID: 9191241982461446580}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6000
 --- !u!114 &-6607498887990174852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,6 +1425,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6003047631744983694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCs/PollutedFungus
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NPCs/PollutedFungus
+  Guid:
+    Data1: 2064652615
+    Data2: 1311574317
+    Data3: -1257195342
+    Data4: -1841478250
+  Banks:
+  - {fileID: -8244455321064199370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5917599185441722081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,10 +1740,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Weapon Sounds.bank
   Name: Weapon Sounds
   StudioPath: bank:/Weapon Sounds
-  lastModified: 639056362849523236
+  lastModified: 639214625839053882
   FileSizes:
   - Name: Desktop
-    Value: 198208
+    Value: 523456
   Exists: 1
 --- !u!114 &-5300087843540356774
 MonoBehaviour:
@@ -1460,10 +1784,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639086896112670938
+  lastModified: 639216405302667470
   FileSizes:
   - Name: Desktop
-    Value: 4766
+    Value: 6914
   Exists: 1
 --- !u!114 &-5199385024163790057
 MonoBehaviour:
@@ -1717,10 +2041,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639086896112660877
+  lastModified: 639216405302652402
   FileSizes:
   - Name: Desktop
-    Value: 3652
+    Value: 4942
   Exists: 1
 --- !u!114 &-4683531070796686644
 MonoBehaviour:
@@ -1793,6 +2117,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 357184
   Exists: 1
+--- !u!114 &-4589104946600838376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/SlimeHookShoot
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/SlimeHookShoot
+  Guid:
+    Data1: 1529779469
+    Data2: 1076041813
+    Data3: -671765618
+    Data4: 1799334601
+  Banks:
+  - {fileID: -5380999930341741973}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4574650781260680805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,6 +2387,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3716655706898453429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/ghost/cast
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/ghost/cast
+  Guid:
+    Data1: -27449115
+    Data2: 1083915323
+    Data3: 1310772647
+    Data4: 955939701
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3681280450790511800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2051,10 +2429,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Enemies.bank
   Name: Enemies
   StudioPath: bank:/Enemies
-  lastModified: 639025574613015591
+  lastModified: 639216345683195604
   FileSizes:
   - Name: Desktop
-    Value: 852544
+    Value: 4585696
   Exists: 1
 --- !u!114 &-3658718638612253228
 MonoBehaviour:
@@ -2083,6 +2461,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 168
+--- !u!114 &-3650568666026428099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/CartographerInstrument
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/CartographerInstrument
+  Guid:
+    Data1: 41106455
+    Data2: 1076676320
+    Data3: -2134586207
+    Data4: -1717989787
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 47450
+--- !u!114 &-3587126455634706808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/spider/hurt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/spider/hurt
+  Guid:
+    Data1: -668671654
+    Data2: 1180920479
+    Data3: -1776481131
+    Data4: 1221518477
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3574333134262347250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2392,6 +2824,60 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2737725852536898967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/jester/death
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/jester/death
+  Guid:
+    Data1: -1595974146
+    Data2: 1218503260
+    Data3: 2120799392
+    Data4: -679027557
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2563624843504146048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/jester/birth
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/jester/birth
+  Guid:
+    Data1: 1055976161
+    Data2: 1339458791
+    Data3: 544613029
+    Data4: 809701271
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2536798725858341754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,6 +2902,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2533083131990571686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/tongueHit
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/tongueHit
+  Guid:
+    Data1: -1885182507
+    Data2: 1131573217
+    Data3: -1765899855
+    Data4: -868515070
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2521945449546033728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,6 +2983,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 937
+--- !u!114 &-2486076166223839488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/WarpTube
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/WarpTube
+  Guid:
+    Data1: 1908935039
+    Data2: 1130962706
+    Data3: 1566808466
+    Data4: -2033564522
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2447536384738895529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,6 +3085,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2361210407029592612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Engage
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Engage
+  Guid:
+    Data1: 1499892870
+    Data2: 1235434604
+    Data3: 567846579
+    Data4: -1351033271
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2351371432302820935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2692,6 +3259,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 535
+--- !u!114 &-2206857738148465284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/engage
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/engage
+  Guid:
+    Data1: 598119209
+    Data2: 1158591775
+    Data3: -1271479128
+    Data4: 1196746178
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2156949435267953908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2821,6 +3415,87 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-1988413577694759410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/jester/leech
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/jester/leech
+  Guid:
+    Data1: 1975128227
+    Data2: 1342056211
+    Data3: 1653438611
+    Data4: -2052617658
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1981331484421020754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/spider/engage
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/spider/engage
+  Guid:
+    Data1: 113785135
+    Data2: 1097451045
+    Data3: -1472387150
+    Data4: 374245628
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1910604336495217800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/ghost/idle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/ghost/idle
+  Guid:
+    Data1: 1381940582
+    Data2: 1161648084
+    Data3: -195523660
+    Data4: 1785833241
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1844728007374462607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2973,9 +3648,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/playerLand
+  m_Name: event:/Player/PlayerLand
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/playerLand
+  Path: event:/Player/PlayerLand
   Guid:
     Data1: -249512322
     Data2: 1314413100
@@ -2990,6 +3665,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 450
+--- !u!114 &-1506094843829580584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCs/Poppy
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NPCs/Poppy
+  Guid:
+    Data1: 457481241
+    Data2: 1182230662
+    Data3: -721681218
+    Data4: -725202076
+  Banks:
+  - {fileID: -8244455321064199370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1448177036938573263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/spider/shoot
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/spider/shoot
+  Guid:
+    Data1: 1138719894
+    Data2: 1227507735
+    Data3: -1431109211
+    Data4: 226530869
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1411739899188452560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3038,6 +3767,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-1265950065607548301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/hurt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/hurt
+  Guid:
+    Data1: 94309099
+    Data2: 1325304418
+    Data3: -183047032
+    Data4: -832290358
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1226989217627554517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,6 +4143,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 17984
   Exists: 1
+--- !u!114 &-387166147761705318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/jester/hurt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/jester/hurt
+  Guid:
+    Data1: 1155625923
+    Data2: 1275466946
+    Data3: 276888724
+    Data4: -573130570
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-359741504717596881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3515,6 +4298,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 857
+--- !u!114 &-93224824656540803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/idle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/idle
+  Guid:
+    Data1: 240227341
+    Data2: 1170524605
+    Data3: -312357740
+    Data4: -196593541
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-71735043617849643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCs/ElderFungus
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NPCs/ElderFungus
+  Guid:
+    Data1: 434123538
+    Data2: 1276222426
+    Data3: 407426236
+    Data4: 1507445501
+  Banks:
+  - {fileID: -8244455321064199370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3590,14 +4427,65 @@ MonoBehaviour:
   - {fileID: -6072175407245936804}
   - {fileID: -2139026344628169981}
   - {fileID: -1066901612682230306}
+  - {fileID: 4887253617797568880}
+  - {fileID: 2534404360068662419}
+  - {fileID: 2712414212668668136}
+  - {fileID: -6841276498575878707}
+  - {fileID: 1496223993044393515}
+  - {fileID: -6993186549013282006}
+  - {fileID: -7938693324502907640}
+  - {fileID: -8795973304045943728}
+  - {fileID: 1066378452433017345}
+  - {fileID: -2486076166223839488}
+  - {fileID: 6368528762453535946}
+  - {fileID: -3650568666026428099}
+  - {fileID: 1372158346989239967}
+  - {fileID: -4589104946600838376}
+  - {fileID: -8955954083831347750}
+  - {fileID: -8544115918519049960}
+  - {fileID: -7860076409112237110}
+  - {fileID: -93224824656540803}
+  - {fileID: -2206857738148465284}
+  - {fileID: -7383087064795702316}
+  - {fileID: 41979562046000107}
+  - {fileID: 513968881616099530}
+  - {fileID: 2590647415061579020}
+  - {fileID: -2533083131990571686}
+  - {fileID: -1265950065607548301}
+  - {fileID: 2870759078152199263}
+  - {fileID: 3572142051696194990}
+  - {fileID: -8223053484109521532}
+  - {fileID: -7768638946996798979}
+  - {fileID: -2361210407029592612}
+  - {fileID: 1258878813184038798}
+  - {fileID: 7906344184539443050}
+  - {fileID: 4849212751677736878}
+  - {fileID: 2003899089611107677}
+  - {fileID: -1910604336495217800}
+  - {fileID: 1034708373439958601}
+  - {fileID: -3716655706898453429}
+  - {fileID: -1981331484421020754}
+  - {fileID: -3587126455634706808}
+  - {fileID: 1698670249082487303}
+  - {fileID: -1448177036938573263}
+  - {fileID: -8422608075812119081}
+  - {fileID: -1988413577694759410}
+  - {fileID: -387166147761705318}
+  - {fileID: 6455254301744345297}
+  - {fileID: -2563624843504146048}
+  - {fileID: -2737725852536898967}
+  - {fileID: -71735043617849643}
+  - {fileID: -6003047631744983694}
+  - {fileID: -1506094843829580584}
   EditorParameters:
   - {fileID: 5939900623978048996}
+  - {fileID: 3967165549424495011}
   MasterBanks:
   - {fileID: -4687485357117633787}
   StringsBanks:
   - {fileID: -5218457811764894937}
   cacheVersion: 131849
-  cacheTime: 639133759162327200
+  cacheTime: 639216407702731703
   SerializableEventsDict:
   - key: event:/Enemies/fleshGrunt/Step
     index: 0
@@ -3675,9 +4563,9 @@ MonoBehaviour:
     index: 36
   - key: event:/Player/heartPickup
     index: 37
-  - key: event:/Player/playerHurt
+  - key: event:/Player/PlayerHurt
     index: 38
-  - key: event:/Player/playerLand
+  - key: event:/Player/PlayerLand
     index: 39
   - key: event:/Player/brainPickup
     index: 40
@@ -3703,6 +4591,133 @@ MonoBehaviour:
     index: 50
   - key: event:/General/UI/TransitionTexture
     index: 51
+  - key: event:/Enemies/sorcerer/Cast
+    index: 52
+  - key: event:/Enemies/sorcerer/Scream
+    index: 53
+  - key: event:/Player/Pollute
+    index: 54
+  - key: event:/Player/Purify
+    index: 55
+  - key: event:/General/SpectralStair
+    index: 56
+  - key: event:/Player/ToothPickup
+    index: 57
+  - key: event:/General/ClickWoosh
+    index: 58
+  - key: event:/General/CorruptedLantern
+    index: 59
+  - key: event:/General/SpectralLantern
+    index: 60
+  - key: event:/General/WarpTube
+    index: 61
+  - key: event:/General/UI/AddItem
+    index: 62
+  - key: event:/General/CartographerInstrument
+    index: 63
+  - key: event:/General/CartographerInstrumentSquirt
+    index: 64
+  - key: event:/Player/SlimeHookShoot
+    index: 65
+  - key: event:/Player/SlimeHookConnect
+    index: 66
+  - key: event:/Player/SlimeHookShootSinch
+    index: 67
+  - key: event:/Player/SlimeHookShootRelease
+    index: 68
+  - key: event:/Enemies/striker/idle
+    index: 69
+  - key: event:/Enemies/striker/engage
+    index: 70
+  - key: event:/Enemies/striker/death
+    index: 71
+  - key: event:/Enemies/striker/tongue
+    index: 72
+  - key: event:/Enemies/striker/swing
+    index: 73
+  - key: event:/Enemies/striker/footstep
+    index: 74
+  - key: event:/Enemies/striker/tongueHit
+    index: 75
+  - key: event:/Enemies/striker/hurt
+    index: 76
+  - key: event:/Enemies/striker/slam
+    index: 77
+  - key: event:/Enemies/sorcerer/Footstep
+    index: 78
+  - key: event:/Enemies/sorcerer/Melee
+    index: 79
+  - key: event:/Enemies/sorcerer/Hurt
+    index: 80
+  - key: event:/Enemies/sorcerer/Engage
+    index: 81
+  - key: event:/Enemies/sorcerer/Death
+    index: 82
+  - key: event:/Enemies/sorcerer/Idle
+    index: 83
+  - key: event:/Enemies/ghost/engage
+    index: 84
+  - key: event:/Enemies/ghost/hurt
+    index: 85
+  - key: event:/Enemies/ghost/idle
+    index: 86
+  - key: event:/Enemies/ghost/death
+    index: 87
+  - key: event:/Enemies/ghost/cast
+    index: 88
+  - key: event:/Enemies/spider/engage
+    index: 89
+  - key: event:/Enemies/spider/hurt
+    index: 90
+  - key: event:/Enemies/spider/idle
+    index: 91
+  - key: event:/Enemies/spider/shoot
+    index: 92
+  - key: event:/Enemies/spider/death
+    index: 93
+  - key: event:/Enemies/jester/leech
+    index: 94
+  - key: event:/Enemies/jester/hurt
+    index: 95
+  - key: event:/Enemies/jester/idle
+    index: 96
+  - key: event:/Enemies/jester/birth
+    index: 97
+  - key: event:/Enemies/jester/death
+    index: 98
+  - key: event:/NPCs/ElderFungus
+    index: 99
+  - key: event:/NPCs/PollutedFungus
+    index: 100
+  - key: event:/NPCs/Poppy
+    index: 101
+--- !u!114 &41979562046000107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/tongue
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/tongue
+  Guid:
+    Data1: 1944869521
+    Data2: 1246147822
+    Data3: 1631849862
+    Data4: 1751153358
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &130800245406359910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,6 +4865,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &513968881616099530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/swing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/swing
+  Guid:
+    Data1: 1697037216
+    Data2: 1206072034
+    Data3: 1177830293
+    Data4: -2007650674
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &582058809246909057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,6 +5015,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &1034708373439958601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/ghost/death
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/ghost/death
+  Guid:
+    Data1: 2104594380
+    Data2: 1310802674
+    Data3: -550699635
+    Data4: -1160344352
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1062944383169114531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3997,6 +5066,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &1066378452433017345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/SpectralLantern
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/SpectralLantern
+  Guid:
+    Data1: -1579234522
+    Data2: 1182458545
+    Data3: 1161758630
+    Data4: -1793585138
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20700
 --- !u!114 &1131785468709826373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4114,6 +5210,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27428
+--- !u!114 &1258878813184038798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Death
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Death
+  Guid:
+    Data1: 1248980635
+    Data2: 1096867124
+    Data3: -282690644
+    Data4: 1212833339
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1279912748720307988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4165,6 +5288,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1372158346989239967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/CartographerInstrumentSquirt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/CartographerInstrumentSquirt
+  Guid:
+    Data1: 295839320
+    Data2: 1106212060
+    Data3: -621299573
+    Data4: -898067702
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1456473720330716372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4185,6 +5335,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1329792
   Exists: 1
+--- !u!114 &1496223993044393515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/SpectralStair
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/SpectralStair
+  Guid:
+    Data1: 431146371
+    Data2: 1187740189
+    Data3: 1333618583
+    Data4: -322869774
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1512030503456522712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4344,6 +5521,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1698670249082487303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/spider/idle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/spider/idle
+  Guid:
+    Data1: 472619615
+    Data2: 1109247819
+    Data3: 760165775
+    Data4: -1827189864
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1753013183369468144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4470,6 +5674,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2003899089611107677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/ghost/hurt
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/ghost/hurt
+  Guid:
+    Data1: 1283066187
+    Data2: 1152672332
+    Data3: 226527923
+    Data4: -1474576725
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2039183112267494429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4568,10 +5799,10 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/General.bank
   Name: General
   StudioPath: bank:/General
-  lastModified: 639086900807107048
+  lastModified: 639216140327079285
   FileSizes:
   - Name: Desktop
-    Value: 2124320
+    Value: 3919424
   Exists: 1
 --- !u!114 &2462351514648769995
 MonoBehaviour:
@@ -4600,6 +5831,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 857
+--- !u!114 &2534404360068662419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Scream
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Scream
+  Guid:
+    Data1: -131519597
+    Data2: 1130855070
+    Data3: 294562961
+    Data4: 1281733437
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 65
+  Length: 0
+--- !u!114 &2590647415061579020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/footstep
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/footstep
+  Guid:
+    Data1: 1861953723
+    Data2: 1257286202
+    Data3: -1201354330
+    Data4: -101732838
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2618452180063794026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4675,6 +5960,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1714
+--- !u!114 &2712414212668668136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Pollute
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/Pollute
+  Guid:
+    Data1: 1419637260
+    Data2: 1156920228
+    Data3: 940260794
+    Data4: 1846423407
+  Banks:
+  - {fileID: 9191241982461446580}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5642
 --- !u!114 &2762533927421832875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4726,6 +6038,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &2870759078152199263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/striker/slam
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/striker/slam
+  Guid:
+    Data1: 1405043436
+    Data2: 1162951222
+    Data3: 1238716586
+    Data4: -458020801
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2913969698681797741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,6 +6161,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &3572142051696194990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Footstep
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Footstep
+  Guid:
+    Data1: 48771628
+    Data2: 1250553004
+    Data3: 1614509973
+    Data4: -736338015
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3622472671990272720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,6 +6389,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &3967165549424495011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lowpass
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Lowpass
+  StudioPath: parameter:/Lowpass
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3156276641
+    data2: 1943177571
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &4005232412251387583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5197,7 +6587,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639133759162327200
+  lastModified: 639215544248579143
   FileSizes:
   - Name: Desktop
     Value: 27458240
@@ -5490,6 +6880,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &4849212751677736878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/ghost/engage
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/ghost/engage
+  Guid:
+    Data1: 1348316999
+    Data2: 1136105370
+    Data3: 18519185
+    Data4: 117402950
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4853965617324869976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5508,6 +6925,33 @@ MonoBehaviour:
     Data2: 1188715181
     Data3: -1497856104
     Data4: 1527133139
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4887253617797568880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Cast
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Cast
+  Guid:
+    Data1: -247732669
+    Data2: 1133535023
+    Data3: 1408410246
+    Data4: 280150757
   Banks:
   - {fileID: -3681280450790511800}
   IsStream: 0
@@ -5958,6 +7402,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6368528762453535946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/General/UI/AddItem
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/General/UI/AddItem
+  Guid:
+    Data1: -758171183
+    Data2: 1159902155
+    Data3: -592662349
+    Data4: 1755171933
+  Banks:
+  - {fileID: 2363486382155779984}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6422280805556721345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5982,6 +7453,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6455254301744345297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/jester/idle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/jester/idle
+  Guid:
+    Data1: 1517303260
+    Data2: 1341639578
+    Data3: -17218937
+    Data4: 1732275640
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6469847237902261715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6257,7 +7755,7 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/MagicManagement.bank
   Name: MagicManagement
   StudioPath: bank:/MagicManagement
-  lastModified: 639056362848918513
+  lastModified: 639213877025005812
   FileSizes:
   - Name: Desktop
     Value: 314752
@@ -6410,9 +7908,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/playerHurt
+  m_Name: event:/Player/PlayerHurt
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/playerHurt
+  Path: event:/Player/PlayerHurt
   Guid:
     Data1: -101464453
     Data2: 1340855465
@@ -6698,6 +8196,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7906344184539443050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/sorcerer/Idle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Enemies/sorcerer/Idle
+  Guid:
+    Data1: 1352204195
+    Data2: 1216153451
+    Data3: -779439702
+    Data4: 395729790
+  Banks:
+  - {fileID: -3681280450790511800}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8155465794498906374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7296,8 +8821,8 @@ MonoBehaviour:
   Path: ../../Documents/FMOD Studio/fps/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 639086819214938020
+  lastModified: 639213795924043004
   FileSizes:
   - Name: Desktop
-    Value: 357184
+    Value: 936704
   Exists: 1

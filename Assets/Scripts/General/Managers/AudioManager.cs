@@ -77,6 +77,7 @@
             public bool combat = false;
             bool overrideCombat = false;
             public float pause = 0f;
+            public float lowpass = 0f;
             float combatvalue = 0.0f;
 
             float drumvalue = 0.0f;
@@ -151,6 +152,7 @@
             zonechange = false;
             combat = false;
             pause = 0f;
+            lowpass = 0f;
             combatvalue = 0.0f;
 
             drumvalue = 0.0f;
@@ -390,6 +392,8 @@
             LevelManager.Instance.currentTrack.setParameterByName("HP", hpParam);
 
             FMODUnity.RuntimeManager.StudioSystem.setParameterByName("GlobalPause", pause);
+
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Lowpass", lowpass);
 
             if (combat)
             {
@@ -651,6 +655,11 @@
             FMODUnity.RuntimeManager.PlayOneShot(sounds.JournalEntry);
         }
 
+        public void EnemyDeathSound(FMODUnity.EventReference sound, Transform t)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sound, t.position);
+        }
+
 
         public void TextOpen()
         {
@@ -687,6 +696,11 @@
             BagInstance = FMODUnity.RuntimeManager.CreateInstance(sounds.BodybagOpen);
             BagInstance.start();
             
+        }
+
+        public void AddItem()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sounds.AddItem);
         }
 
         public void BodybagClose()

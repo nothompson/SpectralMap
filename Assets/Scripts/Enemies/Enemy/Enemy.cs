@@ -43,6 +43,10 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Animator fbx; 
     public SpriteEventHandler spriteEvent; 
 
+    public bool DropsTooth = false;
+    public ToothObject ToothData;
+    public ToothPickup ToothPrefab;
+
     [Header("General")]
     [SerializeField] public string EnemyID;
 
@@ -142,6 +146,7 @@ public class Enemy : MonoBehaviour
     float strafeTimer = 0f;
     float strafeDuration = 0f;
 
+    private EnemyAudio audio; 
 
     public enum PersonalityType
     {
@@ -272,6 +277,8 @@ public class Enemy : MonoBehaviour
             agent.updatePosition = false;
             agent.updateRotation = false;
         }
+
+        audio = GetComponent<EnemyAudio>();
 
         fbx = GetComponentInChildren<Animator>();
     }
@@ -934,6 +941,7 @@ Vector3 GetNavDirection(Vector3 target)
         if(spriteEvent != null)
         {
             spriteEvent.PlayEvent("Attack");
+            if(audio != null) audio.Attack();
         }
 
         attacking = true;

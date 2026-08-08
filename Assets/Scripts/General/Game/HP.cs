@@ -85,7 +85,7 @@ public class HP : MonoBehaviour
 
         for(int i = 0; i < skins.Length; i++)
         {
-            mats.AddRange(skins[i].sharedMaterials);
+            mats.AddRange(skins[i].materials);
         }
     }
 
@@ -200,6 +200,12 @@ public class HP : MonoBehaviour
 
                 Enemy e = GetComponentInParent<Enemy>();
                 if(e != null){
+
+                EnemyAudio ea = e.GetComponent<EnemyAudio>();
+                if(ea != null)
+                        {
+                            AudioManager.Instance.EnemyDeathSound(ea.bank.death, transform);
+                        }
                 float roll = Random.Range(0f,1f);
                 Debug.Log(roll);
                 if(roll >= 1.0f - e.ChanceToDropPickup){
@@ -218,6 +224,16 @@ public class HP : MonoBehaviour
                             PickupPool.Instance.Get(transform.position, Pickup.PickupType.Greed, 0.5f);
                         }
                 }
+                        if (e.DropsTooth)
+                        {
+                            
+                            if(e.ToothData != null && !e.ToothData.Added){
+                            ToothPickup tooth = Instantiate(e.ToothPrefab, transform.position, transform.rotation);
+
+                            tooth.ToothData = e.ToothData;
+                            }
+
+                        }
                 }
 
                 if(type == ObjectType.NPC)

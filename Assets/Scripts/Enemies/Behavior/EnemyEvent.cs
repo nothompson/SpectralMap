@@ -16,7 +16,22 @@ public class EnemyEvent : MonoBehaviour
     public void OnAttack()
     {
         enemy.OnAttack();
+    }
+
+    public void AttackSound()
+    {
         enemyAudio.Attack();
+    }
+
+    public void AttackSound2()
+    {
+        enemyAudio.Attack2();
+    }
+
+    
+    public void AttackSound3()
+    {
+        enemyAudio.Attack3();
     }
 
     public void EndAttack()

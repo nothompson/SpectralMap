@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: ghost
+  m_EditorClassIdentifier: 
+  step:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  agro:
+    Guid:
+      Data1: 1348316999
+      Data2: 1136105370
+      Data3: 18519185
+      Data4: 117402950
+    Path: event:/Enemies/ghost/engage
+  hurt:
+    Guid:
+      Data1: 1283066187
+      Data2: 1152672332
+      Data3: 226527923
+      Data4: -1474576725
+    Path: event:/Enemies/ghost/hurt
+  idle:
+    Guid:
+      Data1: 1381940582
+      Data2: 1161648084
+      Data3: -195523660
+      Data4: 1785833241
+    Path: event:/Enemies/ghost/idle
+  attacking:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack:
+    Guid:
+      Data1: -27449115
+      Data2: 1083915323
+      Data3: 1310772647
+      Data4: 955939701
+    Path: event:/Enemies/ghost/cast
+  attack2:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack3:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  death:
+    Guid:
+      Data1: 2104594380
+      Data2: 1310802674
+      Data3: -550699635
+      Data4: -1160344352
+    Path: event:/Enemies/ghost/death

@@ -1144,6 +1144,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  skins: []
+  mats: []
 --- !u!114 &2182066883667061820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4081,6 +4083,7 @@ MonoBehaviour:
   constraints: 30
   collisionRadius: 0.1
   pullStrength: 0.05
+  sinchThreshold: 5
   resolution: 0.125
   retractSpeed: 15
   targetMask:
@@ -4093,6 +4096,35 @@ MonoBehaviour:
   releasing: 0
   proj: {fileID: 6965971208809251775, guid: 607f101203fdbaf4f8a88db122352b8f, type: 3}
   projectileSpeed: 50
+  grappleSounds:
+    shoot:
+      Guid:
+        Data1: 1529779469
+        Data2: 1076041813
+        Data3: -671765618
+        Data4: 1799334601
+      Path: event:/Player/SlimeHookShoot
+    sinch:
+      Guid:
+        Data1: 1274536501
+        Data2: 1319573511
+        Data3: -179349362
+        Data4: 1623010964
+      Path: event:/Player/SlimeHookShootSinch
+    connect:
+      Guid:
+        Data1: 288265503
+        Data2: 1260884674
+        Data3: 1420516028
+        Data4: -1474007066
+      Path: event:/Player/SlimeHookConnect
+    release:
+      Guid:
+        Data1: -822585639
+        Data2: 1128517286
+        Data3: 895333512
+        Data4: -2132100043
+      Path: event:/Player/SlimeHookShootRelease
 --- !u!114 &6601100138149223066
 MonoBehaviour:
   m_ObjectHideFlags: 0

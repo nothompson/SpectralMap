@@ -37,6 +37,8 @@ public class EnemyProjectile : MonoBehaviour, IKnockback
     {
         if (collided) return;
 
+        if(other.gameObject.layer == 6) return;
+
         if (other.gameObject.layer == 3 && other.transform.parent != null)
         {
             player = other.transform.parent.gameObject;

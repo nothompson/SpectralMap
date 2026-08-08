@@ -25,12 +25,19 @@ public class Pickup : MonoBehaviour
 
     private float gt = 0.1f;
 
+    public bool Respawning = false;
+
+    public bool floating = false;
+
+    public BoxCollider collider;
+    public GameObject container;
+
     public enum PickupType
     {
         Health,
         Magic,
         Greed,
-        FleshSuit
+        FleshSuit,
     }
 
     public PickupType Type;
@@ -38,12 +45,21 @@ public class Pickup : MonoBehaviour
     [Range(0, 1)]
     public float size;
 
+    bool consumed = false;
+
     public void OnSpawn()
     {
+        consumed = false;
         transform.localEulerAngles = new Vector3(0f,0f,0f);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.useGravity = true;
+        if(!floating){
+            rb.useGravity = true;
+        }
+        else
+        {
+            rb.useGravity = false;
+        }
         grounded = false;
         gt = 0.1f;
         lastGroundCheckPos = GroundCheck.position;
@@ -51,6 +67,7 @@ public class Pickup : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(floating) return;
         if(grounded) return;
 
         Vector3 vel = rb.linearVelocity;
@@ -103,8 +120,6 @@ public class Pickup : MonoBehaviour
         health = other.GetComponentInParent<HP>();
         magic = other.GetComponentInParent<MagicManagement>();
 
-        bool consumed = false;
-
         switch (Type)
         {
             case PickupType.Health:
@@ -148,8 +163,25 @@ public class Pickup : MonoBehaviour
         if (consumed)
         {
             pickupSound.Play();
+            if(!Respawning){
             PickupPool.Instance.Return(this);
+            }
+            else if (Respawning)
+            {
+                container.SetActive(false);
+                collider.enabled = false;
+                StartCoroutine(Respawn());
+            }
         }
+    }
+
+    public IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        container.SetActive(true);
+        collider.enabled = true;
+        consumed = false;
     }
 
     private void HandleEnemy(Collider other)

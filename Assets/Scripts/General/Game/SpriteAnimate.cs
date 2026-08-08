@@ -160,7 +160,20 @@ public class SpriteAnimate : MonoBehaviour
 
 
 private bool atEnd = false;
-public void AnimateToEnd()
+public void AnimateToEnd(System.Action onTargetAction = null)
+{
+    isPlaying = false;
+    if (_current != null)
+    {
+        StopCoroutine(_current);
+    }
+
+    int targetFrame = atEnd ? 0 : sprites.Length - 1;
+    atEnd = !atEnd;
+    _current = StartCoroutine(AnimateToTarget(targetFrame, onTarget: onTargetAction));
+}
+
+public void AnimateToEndNoOnTarget()
 {
     isPlaying = false;
     if (_current != null)

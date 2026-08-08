@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: striker
+  m_EditorClassIdentifier: 
+  step:
+    Guid:
+      Data1: 1861953723
+      Data2: 1257286202
+      Data3: -1201354330
+      Data4: -101732838
+    Path: event:/Enemies/striker/footstep
+  agro:
+    Guid:
+      Data1: 598119209
+      Data2: 1158591775
+      Data3: -1271479128
+      Data4: 1196746178
+    Path: event:/Enemies/striker/engage
+  hurt:
+    Guid:
+      Data1: 94309099
+      Data2: 1325304418
+      Data3: -183047032
+      Data4: -832290358
+    Path: event:/Enemies/striker/hurt
+  idle:
+    Guid:
+      Data1: 240227341
+      Data2: 1170524605
+      Data3: -312357740
+      Data4: -196593541
+    Path: event:/Enemies/striker/idle
+  attacking:
+    Guid:
+      Data1: 541828540
+      Data2: 1156202266
+      Data3: 551629444
+      Data4: 623348542
+    Path: event:/Enemies/fleshGrunt/Swing
+  attack:
+    Guid:
+      Data1: 1697037216
+      Data2: 1206072034
+      Data3: 1177830293
+      Data4: -2007650674
+    Path: event:/Enemies/striker/swing
+  attack2:
+    Guid:
+      Data1: 1405043436
+      Data2: 1162951222
+      Data3: 1238716586
+      Data4: -458020801
+    Path: event:/Enemies/striker/slam
+  attack3:
+    Guid:
+      Data1: 1944869521
+      Data2: 1246147822
+      Data3: 1631849862
+      Data4: 1751153358
+    Path: event:/Enemies/striker/tongue
+  death:
+    Guid:
+      Data1: -575855805
+      Data2: 1094566987
+      Data3: -1351022943
+      Data4: -1525316380
+    Path: event:/Enemies/striker/death

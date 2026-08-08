@@ -33,6 +33,8 @@ public class ToothManager : MonoBehaviour
 
     Coroutine CountdownRoutine;
 
+    public FMODUnity.EventReference pickup;
+
     void Awake()
     {
         if(Instance == null)
@@ -56,6 +58,8 @@ public class ToothManager : MonoBehaviour
 
 
         data.Added = true;
+
+         FMODUnity.RuntimeManager.PlayOneShot(pickup);
 
         ToothCount += 1;
 

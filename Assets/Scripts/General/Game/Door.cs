@@ -89,7 +89,7 @@ public class Door : MonoBehaviour, IInteractable
             case DoorType.Warp:
                 if (!string.IsNullOrEmpty(Data.WarpLocation))
                 {
-                    FMODUnity.RuntimeManager.PlayOneShotAttached(Data.soundbank[1], gameObject);
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(Data.soundbank[1], gameObject);
                         StartCoroutine(Animation.AnimateToTarget(
                         Animation.sprites.Length - 1,
                         onFrameChanged: null,
@@ -107,7 +107,6 @@ public class Door : MonoBehaviour, IInteractable
     public void Open()
     {
         //Disable box collider and trigger sprite animate animate to index
-        Debug.Log("starting open");
         if(Data.Opened) return;
 
         Debug.Log("not open, animating door");

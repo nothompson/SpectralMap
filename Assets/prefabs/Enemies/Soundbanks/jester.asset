@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: jester
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySoundbank
+  step:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  agro:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  hurt:
+    Guid:
+      Data1: 1155625923
+      Data2: 1275466946
+      Data3: 276888724
+      Data4: -573130570
+    Path: event:/Enemies/jester/hurt
+  idle:
+    Guid:
+      Data1: 1517303260
+      Data2: 1341639578
+      Data3: -17218937
+      Data4: 1732275640
+    Path: event:/Enemies/jester/idle
+  attacking:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack:
+    Guid:
+      Data1: 1055976161
+      Data2: 1339458791
+      Data3: 544613029
+      Data4: 809701271
+    Path: event:/Enemies/jester/birth
+  attack2:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack3:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  death:
+    Guid:
+      Data1: -1595974146
+      Data2: 1218503260
+      Data3: 2120799392
+      Data4: -679027557
+    Path: event:/Enemies/jester/death

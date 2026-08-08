@@ -27,6 +27,12 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 1
   - lines:
@@ -46,6 +52,12 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 1
     repeat: 0
   - lines:
@@ -65,14 +77,20 @@ MonoBehaviour:
     addItem: 0
     itemToAddID: 
     lineIndexToAddItem: 0
+    addTooth: 0
+    toothData: {fileID: 0}
+    lineIndexToAddTooth: 0
+    changeSpectrum: 0
+    spectralChange: 0
+    lineIndexToChangeSpectrum: 0
     advance: 0
     repeat: 1
   speed: 35
   reset: 0
   soundbank:
     Guid:
-      Data1: 646704756
-      Data2: 1271874889
-      Data3: -735230076
-      Data4: 1120456110
-    Path: event:/NPCs/SillyDialogue
+      Data1: 2064652615
+      Data2: 1311574317
+      Data3: -1257195342
+      Data4: -1841478250
+    Path: event:/NPCs/PollutedFungus

@@ -194,6 +194,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   ToothActive: 0
+  pickup:
+    Guid:
+      Data1: 1508053270
+      Data2: 1230316113
+      Data3: 930786472
+      Data4: 917985203
+    Path: event:/Player/ToothPickup
 --- !u!1 &4498654295634396968
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +321,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 1
   OnTargetEvent:
     m_PersistentCalls:

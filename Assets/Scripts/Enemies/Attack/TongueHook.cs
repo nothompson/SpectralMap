@@ -27,6 +27,8 @@ public class TongueHook : EnemyProjectile
 
     bool missed = false;
 
+    public FMODUnity.EventReference tongueHitSound;
+
     public override void Start()
     {
         base.Start();
@@ -187,6 +189,7 @@ public class TongueHook : EnemyProjectile
     void AddSegment()
     {
         var obj = PrefabPool.Instance.Get(segmentPoolID);
+        if (obj == null) return;
         obj.transform.rotation = Random.rotation;
         segments.Add(obj.transform);
     }
@@ -197,14 +200,16 @@ public class TongueHook : EnemyProjectile
 
         var t = segments[^1];
         segments.RemoveAt(segments.Count - 1);
-        PrefabPool.Instance.Return(segmentPoolID, t.gameObject);
+        if(t!= null)
+            PrefabPool.Instance.Return(segmentPoolID, t.gameObject);
     }
 
     void ClearSegments()
     {
         for(int i = 0; i < segments.Count; i++)
         {
-            PrefabPool.Instance.Return(segmentPoolID, segments[i].gameObject);
+            if(segments[i] != null)
+                PrefabPool.Instance.Return(segmentPoolID, segments[i].gameObject);
         }
         segments.Clear();
     }
@@ -221,6 +226,7 @@ public class TongueHook : EnemyProjectile
     {
             if (collided) return;
 
+
             if (other.gameObject.layer == 3)
             {
                 player = other.transform.gameObject;
@@ -228,10 +234,14 @@ public class TongueHook : EnemyProjectile
                 playerHealth = player.GetComponent<HP>();
 
                 collided = true;
+                FMODUnity.RuntimeManager.PlayOneShot(tongueHitSound);
                 if(pc.ensared) {Retract(); return;}
                 if(missed) return;
                 StartCoroutine(StartHook());
+
             }
+
+            if(other.gameObject.layer == 6) return;
 
             if(other.gameObject.layer != 3)
             {

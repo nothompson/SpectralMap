@@ -374,6 +374,12 @@ public class PlayerControlRigid : MonoBehaviour, IKnockback
         }
     }
 
+    public void SetYaw(float x)
+    {
+        cameraYaw = x;
+        YawPivot.transform.localEulerAngles = new Vector3(0f, cameraYaw, 0f);
+    }
+
     public void tilt()
     {
         float strafeSpeed = Mathf.Abs(Vector3.Dot(playerVelocity, YawPivot.transform.right));

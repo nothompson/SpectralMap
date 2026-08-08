@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: spider
+  m_EditorClassIdentifier: 
+  step:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  agro:
+    Guid:
+      Data1: 113785135
+      Data2: 1097451045
+      Data3: -1472387150
+      Data4: 374245628
+    Path: event:/Enemies/spider/engage
+  hurt:
+    Guid:
+      Data1: -668671654
+      Data2: 1180920479
+      Data3: -1776481131
+      Data4: 1221518477
+    Path: event:/Enemies/spider/hurt
+  idle:
+    Guid:
+      Data1: 472619615
+      Data2: 1109247819
+      Data3: 760165775
+      Data4: -1827189864
+    Path: event:/Enemies/spider/idle
+  attacking:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack:
+    Guid:
+      Data1: 1138719894
+      Data2: 1227507735
+      Data3: -1431109211
+      Data4: 226530869
+    Path: event:/Enemies/spider/shoot
+  attack2:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  attack3:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  death:
+    Guid:
+      Data1: -1357171275
+      Data2: 1326528765
+      Data3: 1807676348
+      Data4: -351007164
+    Path: event:/Enemies/spider/death

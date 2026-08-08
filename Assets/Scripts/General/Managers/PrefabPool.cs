@@ -53,8 +53,12 @@ public class PrefabPool : MonoBehaviour
 
         GameObject obj = q.Count > 0 ? q.Dequeue() : Instantiate(entries.Find(e => e.id == id).prefab);
 
+        if(obj != null){
         obj.SetActive(true);
         return obj;
+        }
+
+        return null;
     }
 
     public void Return(string id, GameObject obj)

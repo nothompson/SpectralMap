@@ -28,9 +28,14 @@ public class FlyingEnemy : Enemy
 
     public override void CalculateVelocity()
     {
+        enemyVelocity += impact;
         Movement();
         Targeting();
+
+        MovementFunctions.ApplyVelocity(enemyVelocity, ref rb);
+
         ApplyDrag();
+        impact = Vector3.zero;
     }
 
     public override void FixedUpdate()
@@ -52,9 +57,9 @@ public class FlyingEnemy : Enemy
 
     void ApplyDrag()
     {
-        enemyVelocity += impact;
+        // enemyVelocity += impact;
         enemyVelocity = Vector3.Lerp(enemyVelocity, Vector3.zero, airDrag * Time.fixedDeltaTime);
-        impact = Vector3.zero;
+        // impact = Vector3.zero;
     }
 
     public override void MoveTowards(Vector3 direction, Vector3 target)

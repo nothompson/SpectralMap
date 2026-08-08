@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402cccec0cb76284bb7999d7825a035d, type: 3}
+  m_Name: sorcerer
+  m_EditorClassIdentifier: 
+  step:
+    Guid:
+      Data1: 48771628
+      Data2: 1250553004
+      Data3: 1614509973
+      Data4: -736338015
+    Path: event:/Enemies/sorcerer/Footstep
+  agro:
+    Guid:
+      Data1: 1499892870
+      Data2: 1235434604
+      Data3: 567846579
+      Data4: -1351033271
+    Path: event:/Enemies/sorcerer/Engage
+  hurt:
+    Guid:
+      Data1: -299535746
+      Data2: 1232241703
+      Data3: -2033156205
+      Data4: -1786722049
+    Path: event:/Enemies/sorcerer/Hurt
+  idle:
+    Guid:
+      Data1: 1352204195
+      Data2: 1216153451
+      Data3: -779439702
+      Data4: 395729790
+    Path: event:/Enemies/sorcerer/Idle
+  attacking:
+    Guid:
+      Data1: 541828540
+      Data2: 1156202266
+      Data3: 551629444
+      Data4: 623348542
+    Path: event:/Enemies/fleshGrunt/Swing
+  attack:
+    Guid:
+      Data1: -247732669
+      Data2: 1133535023
+      Data3: 1408410246
+      Data4: 280150757
+    Path: event:/Enemies/sorcerer/Cast
+  attack2:
+    Guid:
+      Data1: -131519597
+      Data2: 1130855070
+      Data3: 294562961
+      Data4: 1281733437
+    Path: event:/Enemies/sorcerer/Scream
+  attack3:
+    Guid:
+      Data1: 1830897214
+      Data2: 1193259678
+      Data3: -1883847005
+      Data4: -977600349
+    Path: event:/Enemies/sorcerer/Melee
+  death:
+    Guid:
+      Data1: 1248980635
+      Data2: 1096867124
+      Data3: -282690644
+      Data4: 1212833339
+    Path: event:/Enemies/sorcerer/Death

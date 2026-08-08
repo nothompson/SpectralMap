@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpawnerEnemy : Enemy
 {
     [SerializeField] private SquashAndStretch squashAndStretch;
+    [SerializeField] private EnemyAudio ea;
     public override void FixedUpdate()
     {
         GroundedCheck();
@@ -73,7 +74,7 @@ public class SpawnerEnemy : Enemy
         pendingAttack = bestChoice;
 
         squashAndStretch.Play();
-        Debug.Log("playing animation");
+        ea.Attack();
     }
 
 

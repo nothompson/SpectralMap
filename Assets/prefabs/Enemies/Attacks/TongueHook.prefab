@@ -305,3 +305,10 @@ MonoBehaviour:
   segmentSpacing: 0.45
   maxSegments: 80
   segmentPoolID: TongueSegment
+  tongueHitSound:
+    Guid:
+      Data1: -1885182507
+      Data2: 1131573217
+      Data3: -1765899855
+      Data4: -868515070
+    Path: event:/Enemies/striker/tongueHit

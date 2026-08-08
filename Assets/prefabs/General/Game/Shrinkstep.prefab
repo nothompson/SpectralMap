@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 7245907112167804261}
   - component: {fileID: 1040590157565134146}
   - component: {fileID: 4286931577998956961}
+  - component: {fileID: 2687699766483667979}
   m_Layer: 0
   m_Name: Shrinkstep
   m_TagString: NoGrapple
@@ -475,3 +476,35 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Container: {fileID: 1308411102771033573}
+  sound: {fileID: 2687699766483667979}
+--- !u!114 &2687699766483667979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3688066197007041515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 431146371
+      Data2: 1187740189
+      Data3: 1333618583
+      Data4: -322869774
+    Path: event:/General/SpectralStair
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1

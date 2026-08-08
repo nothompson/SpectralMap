@@ -246,6 +246,7 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  impact: {x: 0, y: 0, z: 0}
   platformVelocity: {x: 0, y: 0, z: 0}
   noiseOffset: 0
   pendingAttack: {fileID: 0}
@@ -313,6 +314,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  skins: []
+  mats: []
 --- !u!114 &6413794924086954519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +331,7 @@ MonoBehaviour:
   enemy: {fileID: 2749430797362092941}
   hp: {fileID: 2095758434040908332}
   script: {fileID: 7274211379582044821}
-  bank: {fileID: 11400000, guid: 8cc55cc9001bc91499b5e93641c41ad8, type: 2}
+  bank: {fileID: 11400000, guid: 4ddf2204575c05046b0199444a697133, type: 2}
 --- !u!114 &4666909001356975068
 MonoBehaviour:
   m_ObjectHideFlags: 0

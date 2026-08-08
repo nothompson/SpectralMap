@@ -318,6 +318,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 0
+  loop: 1
   direction: 1
   OnTargetEvent:
     m_PersistentCalls:
@@ -332,6 +333,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3312150167059335272}
   - component: {fileID: 2631667493464836760}
+  - component: {fileID: 8728112028002945960}
+  - component: {fileID: 58987235510117904}
   m_Layer: 0
   m_Name: SpectrumManager
   m_TagString: Untagged
@@ -460,7 +463,72 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotation: 5
   sprite: {fileID: 4843643521128047745}
+  SpectrumActive: 0
   transitionDur: 0.75
+  pollute: {fileID: 8728112028002945960}
+  purify: {fileID: 58987235510117904}
+--- !u!114 &8728112028002945960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944650389080344580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1419637260
+      Data2: 1156920228
+      Data3: 940260794
+      Data4: 1846423407
+    Path: event:/Player/Pollute
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &58987235510117904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944650389080344580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -418854552
+      Data2: 1217889738
+      Data3: -363790720
+      Data4: -148616824
+    Path: event:/Player/Purify
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8027090932741109279
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +734,7 @@ MonoBehaviour:
   index: 0
   isPlaying: 0
   pingPong: 0
+  loop: 1
   direction: 0
   OnTargetEvent:
     m_PersistentCalls:

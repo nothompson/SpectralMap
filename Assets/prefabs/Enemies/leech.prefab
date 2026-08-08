@@ -126,7 +126,11 @@ MonoBehaviour:
   index: 0
   isPlaying: 1
   pingPong: 1
+  loop: 1
   direction: 1
+  OnTargetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6709704229617115072
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +148,7 @@ GameObject:
   - component: {fileID: 8801921599838216795}
   - component: {fileID: 7135994237155882857}
   - component: {fileID: 3977496434812107852}
+  - component: {fileID: 752551378386188483}
   m_Layer: 11
   m_Name: leech
   m_TagString: Untagged
@@ -265,6 +270,7 @@ MonoBehaviour:
   characterID: 
   dead: 0
   type: 1
+  immune: 0
   minGibs: 2
   maxGibs: 4
   damageFlashEnable: 0
@@ -276,6 +282,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  skins: []
+  mats: []
 --- !u!114 &8304575672452613849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +300,7 @@ MonoBehaviour:
   Points: 20
   Name: leech
   ChanceToDropPickup: 0
+  agent: {fileID: 0}
   rb: {fileID: 1307671098746728270}
   player: {fileID: 0}
   attackPrefab: {fileID: 0}
@@ -358,6 +367,7 @@ MonoBehaviour:
   dead: 0
   newRad: 0
   oldRad: 0
+  impact: {x: 0, y: 0, z: 0}
   platformVelocity: {x: 0, y: 0, z: 0}
   noiseOffset: 0
   pendingAttack: {fileID: 0}
@@ -450,6 +460,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyParticle
   type: 8
   overrideSpawn: {fileID: 1574390819405238992}
+--- !u!114 &752551378386188483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6709704229617115072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6350e002a9b891649825529c23439ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAudio
+  enemy: {fileID: 6709704229617115072}
+  hp: {fileID: 2335547494888419022}
+  script: {fileID: 8304575672452613849}
+  bank: {fileID: 11400000, guid: ee11f7a9e755b58499216228c620c0c2, type: 2}
+  engage: 0
 --- !u!1001 &164376525836508952
 PrefabInstance:
   m_ObjectHideFlags: 0

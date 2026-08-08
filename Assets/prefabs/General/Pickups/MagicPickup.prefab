@@ -105,6 +105,10 @@ MonoBehaviour:
     m_Bits: 384
   pickupSound: {fileID: -5609701048146523857}
   platformVelocity: {x: 0, y: 0, z: 0}
+  Respawning: 0
+  floating: 0
+  collider: {fileID: 2770389928631831184}
+  container: {fileID: 7074833701927535547}
   Type: 1
   size: 0.75
 --- !u!114 &-5609701048146523857

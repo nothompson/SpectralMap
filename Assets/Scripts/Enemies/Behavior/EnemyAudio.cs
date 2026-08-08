@@ -12,7 +12,11 @@ public class EnemyAudio : MonoBehaviour
 
     public EnemySoundbank bank;
 
+    public bool engage = true;
+
     bool spotted;
+
+    bool dead = false;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -21,12 +25,14 @@ public class EnemyAudio : MonoBehaviour
         hp = enemy.GetComponent<HP>();
 
         StartCoroutine(IdleSounds());
+        dead = false;
     }
 
     public virtual void Update()
     {
+        if(engage){
         Engaged();
-        Death();
+        }
     }
 
     public virtual void Footstep()
@@ -56,12 +62,28 @@ public class EnemyAudio : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(bank.attack, transform.position);
     }
 
+     public virtual void Attack2()
+    {
+        // attack.Play();
+        FMODUnity.RuntimeManager.PlayOneShot(bank.attack2, transform.position);
+    }
+
+      public virtual void Attack3()
+    {
+        // attack.Play();
+        FMODUnity.RuntimeManager.PlayOneShot(bank.attack3, transform.position);
+    }
+
+
     public virtual void Death()
     {
-        if(hp.currentHP <= 0){
-            // death.Play();
-            FMODUnity.RuntimeManager.PlayOneShot(bank.death, transform.position);
-        }
+        // if(hp.currentHP <= 0 && !dead){
+        //     // death.Play();
+        //     // FMODUnity.RuntimeManager.PlayOneShot(bank.death, transform.position);
+
+        //     AudioManager.Instance.EnemyDeathSound(bank.death, transform);
+        //     dead = true;
+        // }
     }
     
     public virtual void Engaged()
@@ -78,7 +100,7 @@ public class EnemyAudio : MonoBehaviour
     {
         while (true)
         {
-            float newWait = Random.Range(3f,8f);
+            float newWait = Random.Range(6f,15f);
             // idle.Play();
             FMODUnity.RuntimeManager.PlayOneShot(bank.idle, transform.position);
             yield return new WaitForSeconds(newWait);

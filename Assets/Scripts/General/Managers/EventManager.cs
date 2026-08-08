@@ -42,12 +42,14 @@ public class EventManager : MonoBehaviour
                 if (DeathManager.Instance.CheckIfDead("sporousCaveJester2"))
                 {
                     JournalManager.Instance.AddJournalEntry("sporouscave",1);
+                    SpectrumManager.Instance.PurifySpectrum(10);
                 }
                 break;
             case "sporousCaveJester2":
                 if (DeathManager.Instance.CheckIfDead("sporousCaveJester1"))
                 {
                     JournalManager.Instance.AddJournalEntry("sporouscave",1);
+                    SpectrumManager.Instance.PurifySpectrum(10);
                 }
                 break;
         }

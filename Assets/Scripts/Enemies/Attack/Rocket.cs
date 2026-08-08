@@ -16,7 +16,7 @@ public class Rocket : EnemyProjectile
 
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 11 || other.gameObject.layer == 24) return;
+        if(other.gameObject.layer == 11 || other.gameObject.layer == 24 || other.gameObject.layer == 6) return;
 
         if(other.gameObject.layer == 3) direct = true;
         collided = true;

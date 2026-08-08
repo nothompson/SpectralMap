@@ -154,21 +154,26 @@ public class DamageManager : MonoBehaviour
 
     }
 
-    IEnumerator DeathText()
+    IEnumerator DeathText(System.Action onTarget = null)
     {
         yield return null;
 
         foreach(var s in DeathLetters)
         {
-            s.AnimateToEnd();
+            s.AnimateToEnd(onTarget);
         }
     }
 
     public void Respawn()
     {
-        StartCoroutine(DeathText());
+        StartCoroutine(DeathText(DisableText));
         
         StartCoroutine(ReloadRoutine());
+    }
+
+    public void DisableText()
+    {
+        DeathTextCanvas.SetActive(false);
     }
 
     IEnumerator ReloadRoutine()
